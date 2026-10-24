@@ -1,0 +1,35 @@
+{
+    "schema_version": 1,
+    "exact": {
+        "/sitemap_index.xml": "/sitemap.xml",
+        "/wp-sitemap.xml": "/sitemap.xml",
+        "/post-sitemap.xml": "/sitemap.xml",
+        "/page-sitemap.xml": "/sitemap.xml"
+    },
+    "patterns": [
+        {
+            "match": "^/blog/page/\\d+/?$",
+            "target": "/blog/",
+            "note": "Paginated archive pages fold back into the archive."
+        },
+        {
+            "match": "^/(?:blog/|comments/)?feed/?$",
+            "target": "/blog/",
+            "note": "The old feeds fold into the archive."
+        },
+        {
+            "match": "^/blog/(?:tag|category)/[^/]+(?:/page/\\d+)?/?$",
+            "target": "/blog/",
+            "note": "Tag and category archives, and their pagination."
+        },
+        {
+            "match": "^/author/[^/]+(?:/page/\\d+)?/?$",
+            "target": "/blog/",
+            "note": "Author archives, and their pagination."
+        }
+    ],
+    "upload_prefixes": ["/wp-content/uploads/"],
+    "files": {
+        "intro-video.mp4": "/media/example/intro-video.mp4"
+    }
+}

@@ -1,0 +1,84 @@
+FROM node:22-bookworm-slim AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY vite.config.js ./
+COPY resources ./resources
+COPY public ./public
+RUN npm run build
+
+FROM composer:2 AS vendor
+
+WORKDIR /app
+
+COPY composer.json composer.lock ./
+RUN composer install \
+    --no-dev \
+    --no-interaction \
+    --no-progress \
+    --no-scripts \
+    --optimize-autoloader \
+    --prefer-dist
+
+COPY . .
+RUN mkdir -p storage/framework/cache/data storage/framework/views bootstrap/cache \
+    && composer dump-autoload \
+    --classmap-authoritative \
+    --no-dev \
+    --no-interaction \
+    --no-scripts \
+    && php artisan package:discover --ansi
+
+FROM dunglas/frankenphp:1-php8.5-bookworm AS runtime
+
+RUN install-php-extensions \
+    bcmath \
+    gd \
+    intl \
+    opcache \
+    pcntl \
+    pdo_sqlite \
+    zip
+
+WORKDIR /app
+
+ENV APP_ENV=production \
+    APP_DEBUG=false \
+    DB_CONNECTION=sqlite \
+    DB_DATABASE=/data/database.sqlite \
+    XDG_CONFIG_HOME=/tmp \
+    LOG_CHANNEL=stderr
+
+COPY . .
+COPY --from=vendor /app/vendor ./vendor
+COPY --from=frontend /app/public/build ./public/build
+COPY docker/php.ini /usr/local/etc/php/conf.d/copper-eagle.ini
+COPY docker/production/Caddyfile /etc/caddy/Caddyfile
+COPY docker/production/entrypoint.sh /usr/local/bin/copper-eagle-production-entrypoint
+
+RUN frankenphp fmt --overwrite /etc/caddy/Caddyfile \
+    && chmod +x /usr/local/bin/copper-eagle-production-entrypoint \
+    && test ! -e /app/public/hot \
+    && mkdir -p \
+        /data \
+        storage/app/private \
+        storage/app/public \
+        storage/framework/cache/data \
+        storage/framework/sessions \
+        storage/framework/views \
+        storage/logs \
+    && ln -sfn /app/storage/app/public /app/public/storage \
+    && chown -R www-data:www-data /data /app/storage /app/bootstrap/cache
+
+USER www-data
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=6 \
+    CMD ["php", "-r", "exit(@file_get_contents('http://127.0.0.1:8080/up') === false ? 1 : 0);"]
+
+ENTRYPOINT ["copper-eagle-production-entrypoint"]
+CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

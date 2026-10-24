@@ -1,0 +1,41 @@
+{
+    admin off
+    auto_https off
+    persist_config off
+}
+
+:8080 {
+    root * /app/public
+    encode zstd br gzip
+
+    @hidden path_regexp hidden (^|/)\.
+    respond @hidden 404
+
+    header {
+        X-Frame-Options "SAMEORIGIN"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        # A year, without includeSubDomains: subdomains of a client's domain are
+        # outside this deployment's control and may not all be HTTPS.
+        Strict-Transport-Security "max-age=31536000"
+        -Server
+        -X-Powered-By
+    }
+
+    @versioned_assets path /build/*
+    header @versioned_assets Cache-Control "public, max-age=31536000, immutable"
+
+    # Files that exist under /app/public are served here without ever reaching
+    # Laravel, so the application's noindex middleware never sees them. Images,
+    # the favicon and anything under /storage would otherwise stay
+    # independently indexable on a staging host whose robots file deliberately
+    # lets search crawlers in.
+    #
+    # Defaults to a host nothing matches, so an unset variable marks every host
+    # non-canonical and applies the header — the same fail-closed direction the
+    # application takes.
+    @noncanonical not host {$SITE_CANONICAL_HOST:canonical-host-not-configured}
+    header @noncanonical X-Robots-Tag "noindex, nofollow"
+
+    php_server
+}

@@ -1,0 +1,95 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    environment:
+      APP_NAME: "Copper Eagle"
+      APP_ENV: production
+      APP_KEY: ${APP_KEY:?Set APP_KEY in Dokploy}
+      APP_DEBUG: "false"
+      APP_URL: ${APP_URL:?Set APP_URL in Dokploy}
+      SITE_CANONICAL_HOST: ${SITE_CANONICAL_HOST:?Set SITE_CANONICAL_HOST in Dokploy — the public hostname. Without it every page is noindex}
+      APP_TIMEZONE: ${APP_TIMEZONE:-UTC}
+      APP_LOCALE: en
+      APP_FALLBACK_LOCALE: en
+      APP_MAINTENANCE_DRIVER: file
+      LOG_CHANNEL: stderr
+      LOG_LEVEL: info
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /data/database.sqlite
+      SESSION_DRIVER: file
+      SESSION_SECURE_COOKIE: ${SESSION_SECURE_COOKIE:-true}
+      CACHE_STORE: file
+      QUEUE_CONNECTION: sync
+      FILESYSTEM_DISK: local
+      MAIL_MAILER: ${MAIL_MAILER:?Set MAIL_MAILER in Dokploy}
+      MAIL_HOST: ${MAIL_HOST:?Set MAIL_HOST in Dokploy}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:?Set MAIL_USERNAME in Dokploy}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:?Set MAIL_PASSWORD in Dokploy}
+      MAIL_SCHEME: ${MAIL_SCHEME:-smtp}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:?Set MAIL_FROM_ADDRESS in Dokploy}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:?Set MAIL_FROM_NAME in Dokploy}
+    expose:
+      - "8080"
+    volumes:
+      - database_data:/data
+      - storage_data:/app/storage
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8080/up') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 15s
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    environment:
+      APP_NAME: "Copper Eagle"
+      APP_ENV: production
+      APP_KEY: ${APP_KEY:?Set APP_KEY in Dokploy}
+      APP_DEBUG: "false"
+      APP_URL: ${APP_URL:?Set APP_URL in Dokploy}
+      SITE_CANONICAL_HOST: ${SITE_CANONICAL_HOST:?Set SITE_CANONICAL_HOST in Dokploy — the public hostname. Without it every page is noindex}
+      APP_TIMEZONE: ${APP_TIMEZONE:-UTC}
+      APP_LOCALE: en
+      APP_FALLBACK_LOCALE: en
+      APP_MAINTENANCE_DRIVER: file
+      LOG_CHANNEL: stderr
+      LOG_LEVEL: info
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /data/database.sqlite
+      SESSION_DRIVER: file
+      SESSION_SECURE_COOKIE: ${SESSION_SECURE_COOKIE:-true}
+      CACHE_STORE: file
+      QUEUE_CONNECTION: sync
+      FILESYSTEM_DISK: local
+      MAIL_MAILER: ${MAIL_MAILER:?Set MAIL_MAILER in Dokploy}
+      MAIL_HOST: ${MAIL_HOST:?Set MAIL_HOST in Dokploy}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:?Set MAIL_USERNAME in Dokploy}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:?Set MAIL_PASSWORD in Dokploy}
+      MAIL_SCHEME: ${MAIL_SCHEME:-smtp}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:?Set MAIL_FROM_ADDRESS in Dokploy}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:?Set MAIL_FROM_NAME in Dokploy}
+      RUN_MIGRATIONS: "false"
+    command: ["php", "artisan", "schedule:work"]
+    volumes:
+      - database_data:/data
+      - storage_data:/app/storage
+    depends_on:
+      app:
+        condition: service_healthy
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 15s
+
+volumes:
+  database_data:
+  storage_data:
