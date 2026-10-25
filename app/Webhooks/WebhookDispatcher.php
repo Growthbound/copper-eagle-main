@@ -42,6 +42,8 @@ class WebhookDispatcher
         return [
             'id' => $lead->id,
             'name' => $lead->name,
+            'first_name' => $lead->first_name,
+            'last_name' => $lead->last_name,
             'email' => $lead->email,
             'phone' => $lead->phone,
             'service' => $lead->service,
@@ -53,6 +55,8 @@ class WebhookDispatcher
                 'text' => $lead->consent_text,
                 'at' => $lead->consent_at?->toIso8601String(),
                 'ip' => $lead->consent_ip,
+                // Each separately asked permission; null where it was not asked.
+                'choices' => $lead->consentChoices(),
             ],
             'source' => $lead->source(),
             'attribution' => $lead->attribution(),

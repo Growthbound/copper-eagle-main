@@ -85,7 +85,8 @@ class LeadConsentTest extends TestCase
         LeadConsent::save('checkbox', 'I agree to be contacted.', required: true);
 
         Livewire::test(QuoteForm::class)
-            ->set('name', 'Taylor Example')
+            ->set('firstName', 'Taylor')
+            ->set('lastName', 'Example')
             ->set('phone', '555 555 0100')
             ->call('submit')
             ->assertHasErrors('consent');
@@ -214,12 +215,128 @@ class LeadConsentTest extends TestCase
             ->assertSee('I agree to be contacted by text.');
     }
 
-    private function submitForm(bool $consent = false): Lead
+    public function test_choices_mode_is_offered_only_when_the_site_configures_choices(): void
+    {
+        $this->assertContains('choices', LeadConsent::modes());
+
+        config(['website-forms.consent.choices' => []]);
+
+        $this->assertNotContains('choices', LeadConsent::modes());
+
+        // A saved choice the site can no longer show falls back rather than
+        // silently dropping the consent wording.
+        LeadConsent::save('choices', '', required: false);
+        $this->assertSame('checkbox', LeadConsent::mode());
+    }
+
+    public function test_only_the_known_kinds_of_choice_are_offered(): void
+    {
+        config(['website-forms.consent.choices' => [
+            'marketing' => '  Marketing wording.  ',
+            'surveys' => 'Not a kind the lead can record.',
+            'service' => '',
+        ]]);
+
+        $this->assertSame(['marketing' => 'Marketing wording.'], LeadConsent::choices());
+    }
+
+    public function test_choices_never_become_mandatory(): void
+    {
+        LeadConsent::save('choices', '', required: true);
+
+        $this->assertFalse(LeadConsent::isRequired());
+
+        Livewire::test(QuoteForm::class)
+            ->set('firstName', 'Taylor')
+            ->set('lastName', 'Example')
+            ->set('phone', '555 555 0100')
+            ->call('submit')
+            ->assertHasNoErrors();
+
+        $this->assertSame(1, Lead::query()->count());
+    }
+
+    public function test_the_single_box_modes_leave_the_choices_unrecorded(): void
+    {
+        LeadConsent::save('checkbox', 'I agree to be contacted.', required: false);
+
+        $lead = $this->submitForm(consent: true);
+
+        $this->assertNull($lead->consent_service);
+        $this->assertNull($lead->consent_marketing);
+    }
+
+    public function test_the_owner_can_choose_the_configured_choices_from_the_admin(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        Livewire::test(SiteDetailsEditor::class)
+            ->assertSee('Separate optional text-message boxes')
+            ->set('consentMode', 'choices')
+            ->set('consentText', '')
+            ->call('saveConsent')
+            ->assertHasNoErrors()
+            ->assertSee(LeadConsent::choices()['service'])
+            ->assertSee(LeadConsent::choices()['marketing']);
+
+        $this->assertSame('choices', LeadConsent::mode());
+    }
+
+    public function test_each_choice_and_both_names_travel_with_the_webhook_payload(): void
+    {
+        LeadConsent::save('choices', '', required: false);
+
+        $payload = WebhookDispatcher::leadPayload($this->submitForm(service: true));
+
+        $this->assertSame('Taylor Example', $payload['name']);
+        $this->assertSame('Taylor', $payload['first_name']);
+        $this->assertSame('Example', $payload['last_name']);
+        $this->assertTrue($payload['consent']['given']);
+        $this->assertSame(['service' => true, 'marketing' => false], $payload['consent']['choices']);
+        $this->assertSame(LeadConsent::evidenceText(), $payload['consent']['text']);
+    }
+
+    public function test_the_export_and_inbox_show_each_choice(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        LeadConsent::save('choices', '', required: false);
+        $lead = $this->submitForm(marketing: true);
+
+        $download = Livewire::test(Leads::class)->instance()->export();
+
+        ob_start();
+        $download->sendContent();
+        $csv = (string) ob_get_clean();
+        // The stored wording spans several lines, so read real CSV records.
+        $stream = fopen('php://memory', 'r+');
+        fwrite($stream, $csv);
+        rewind($stream);
+        $header = fgetcsv($stream, escape: '\\');
+        $row = fgetcsv($stream, escape: '\\');
+        fclose($stream);
+        $exported = array_combine($header, $row);
+
+        $this->assertSame('Taylor', $exported['First name']);
+        $this->assertSame('Example', $exported['Last name']);
+        $this->assertSame('no', $exported['Service texts consent']);
+        $this->assertSame('yes', $exported['Marketing texts consent']);
+
+        Livewire::test(Leads::class)
+            ->call('toggle', $lead->id)
+            ->assertSee('Service texts: not agreed')
+            ->assertSee('Marketing texts: agreed');
+    }
+
+    private function submitForm(bool $consent = false, bool $service = false, bool $marketing = false): Lead
     {
         Livewire::test(QuoteForm::class)
-            ->set('name', 'Taylor Example')
+            ->set('firstName', 'Taylor')
+            ->set('lastName', 'Example')
             ->set('phone', '555 555 0100')
             ->set('consent', $consent)
+            ->set('consentService', $service)
+            ->set('consentMarketing', $marketing)
             ->call('submit')
             ->assertHasNoErrors();
 

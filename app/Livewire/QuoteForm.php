@@ -16,12 +16,17 @@ use Livewire\Component;
 class QuoteForm extends Component
 {
     #[Validate('required|string|max:120')]
-    public string $name = '';
+    public string $firstName = '';
+
+    #[Validate('required|string|max:120')]
+    public string $lastName = '';
 
     #[Validate('nullable|email|max:190')]
     public string $email = '';
 
-    #[Validate('nullable|string|max:40')]
+    // The company replies by calling or texting, so a phone number is the one
+    // contact detail every request needs. Email is optional.
+    #[Validate('required|string|max:40', message: ['required' => 'Add a phone number so we can call or text you back.'])]
     public string $phone = '';
 
     #[Validate('nullable|string|max:120')]
@@ -44,9 +49,23 @@ class QuoteForm extends Component
     public string $fax = '';
 
     /**
+     * The single "name" input a page loaded before the first/last split still
+     * binds. Only used to fill both names when they are empty.
+     */
+    public string $name = '';
+
+    /**
      * Starts unticked, always. A pre-ticked box is not an affirmative act.
      */
     public bool $consent = false;
+
+    /**
+     * One per separately asked text-message permission (LeadConsent::CHOICE_KINDS).
+     * Each starts unticked and stays optional.
+     */
+    public bool $consentService = false;
+
+    public bool $consentMarketing = false;
 
     public bool $sent = false;
 
@@ -98,17 +117,15 @@ class QuoteForm extends Component
             return;
         }
 
+        $this->adoptLegacyName();
+        $this->firstName = trim($this->firstName);
+        $this->lastName = trim($this->lastName);
+
         $this->validate();
 
         if (LeadConsent::isRequired() && ! $this->consent) {
             throw ValidationException::withMessages([
                 'consent' => 'Please tick the box so we know how we may contact you.',
-            ]);
-        }
-
-        if ($this->email === '' && $this->phone === '') {
-            throw ValidationException::withMessages([
-                'email' => 'Add an email address or a phone number so we can reply.',
             ]);
         }
 
@@ -122,27 +139,50 @@ class QuoteForm extends Component
 
         if (RateLimiter::tooManyAttempts($key, maxAttempts: 5)) {
             throw ValidationException::withMessages([
-                'name' => 'You have sent several requests already. Please call us instead.',
+                'firstName' => 'You have sent several requests already. Please call us instead.',
             ]);
         }
 
         RateLimiter::hit($key, decaySeconds: 3600);
 
         Lead::query()->create([
-            'name' => $this->name,
+            // Kept whole for the inbox, email, webhooks and CRM name fields.
+            'name' => $this->firstName.' '.$this->lastName,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
             'email' => $this->email ?: null,
             'phone' => $this->phone ?: null,
             'service' => $this->service ?: null,
             'message' => $this->message ?: null,
-            ...LeadConsent::record($this->consent, request()->ip()),
+            ...LeadConsent::record($this->consent, request()->ip(), [
+                'service' => $this->consentService,
+                'marketing' => $this->consentMarketing,
+            ]),
         ]);
 
         $this->showConfirmation();
     }
 
+    private function adoptLegacyName(): void
+    {
+        $legacy = trim($this->name);
+
+        if ($legacy === '' || trim($this->firstName) !== '' || trim($this->lastName) !== '') {
+            return;
+        }
+
+        $parts = preg_split('/\s+/u', $legacy, 2) ?: [$legacy];
+        $this->firstName = $parts[0];
+        $this->lastName = $parts[1] ?? '';
+    }
+
     private function showConfirmation(): void
     {
-        $this->reset(['name', 'email', 'phone', 'service', 'message', 'equipmentModel', 'filterSize', 'website', 'fax', 'consent']);
+        $this->reset([
+            'firstName', 'lastName', 'name', 'email', 'phone', 'service', 'message',
+            'equipmentModel', 'filterSize', 'website', 'fax',
+            'consent', 'consentService', 'consentMarketing',
+        ]);
         $this->resetValidation();
         $this->sent = true;
     }
@@ -154,6 +194,10 @@ class QuoteForm extends Component
             'consentMode' => LeadConsent::mode(),
             'consentText' => LeadConsent::text(),
             'consentRequired' => LeadConsent::isRequired(),
+            'consentChoices' => LeadConsent::hasChoices() ? LeadConsent::choices() : [],
+            'consentChoicesTitle' => LeadConsent::choicesTitle(),
+            'consentChoicesNote' => LeadConsent::choicesNote(),
+            'consentChoicesLinks' => LeadConsent::choicesLinks(),
         ]);
     }
 }

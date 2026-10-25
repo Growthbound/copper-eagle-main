@@ -48,7 +48,7 @@ class WebsiteFormProviderTest extends TestCase
         Bus::fake();
         Http::preventStrayRequests();
         config(['website-forms.provider' => 'native']);
-        $form = Livewire::test(QuoteForm::class)->set('name', 'Test Visitor')->set('email', 'test@example.test');
+        $form = Livewire::test(QuoteForm::class)->set('firstName', 'Test')->set('lastName', 'Visitor')->set('email', 'test@example.test');
         config(['website-forms.provider' => 'highlevel']);
         $form->call('submit')->assertHasErrors('provider')->assertSet('sent', false);
         $this->assertDatabaseCount('leads', 0);
@@ -74,7 +74,7 @@ class WebsiteFormProviderTest extends TestCase
     {
         $this->get('/_templates/contact-form')->assertOk()
             ->assertSee('data-preview="true"', false)->assertDontSee('api.leadconnectorhq.com', false)->assertDontSee(self::INQUIRY_FORM, false);
-        Livewire::test(QuoteForm::class, ['preview' => true])->set('name', 'Preview')->set('email', 'preview@example.test')
+        Livewire::test(QuoteForm::class, ['preview' => true])->set('firstName', 'Preview')->set('lastName', 'Visitor')->set('email', 'preview@example.test')->set('phone', '555 555 0100')
             ->call('submit')->assertSet('sent', true);
         $this->assertDatabaseCount((new Lead)->getTable(), 0);
     }

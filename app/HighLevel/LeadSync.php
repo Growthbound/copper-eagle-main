@@ -75,6 +75,8 @@ class LeadSync
                 }
                 $result = $client->request('POST', '/contacts/upsert', array_filter([
                     'locationId' => $delivery->location_id, 'name' => $lead->name,
+                    // Leads saved before the form asked for them have neither.
+                    'firstName' => $lead->first_name, 'lastName' => $lead->last_name,
                     'email' => $lead->email, 'phone' => $lead->phone, 'source' => $lead->source(),
                     'createNewIfDuplicateAllowed' => false,
                 ], fn ($value) => $value !== null && $value !== ''));
@@ -170,8 +172,15 @@ class LeadSync
     {
         $lead = $delivery->lead;
         $lines = [$this->marker($delivery), 'Site: '.config('site.name'), 'Received: '.$lead->created_at?->toIso8601String(),
-            'Service: '.($lead->service ?: 'Not selected'), 'Source: '.$lead->source(),
-            'Consent: '.($lead->consent_given ? 'agreed' : 'not recorded')];
+            'Service: '.($lead->service ?: 'Not selected'), 'Source: '.$lead->source()];
+        $choices = array_filter($lead->consentChoices(), fn (?bool $agreed): bool => $agreed !== null);
+        if ($choices === []) {
+            $lines[] = 'Consent: '.($lead->consent_given ? 'agreed' : 'not recorded');
+        }
+        // Separate permissions stay separate: only an agreed kind may enter that kind of workflow.
+        foreach ($choices as $kind => $agreed) {
+            $lines[] = ucfirst($kind).' texts consent: '.($agreed ? 'agreed' : 'not agreed');
+        }
         if ($lead->consent_at) {
             $lines[] = 'Consent at: '.$lead->consent_at->toIso8601String();
         }

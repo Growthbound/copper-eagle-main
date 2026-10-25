@@ -44,8 +44,8 @@ class SiteDetailsEditor extends Component
     public function saveConsent(): void
     {
         $this->validate([
-            'consentMode' => 'required|in:'.implode(',', LeadConsent::MODES),
-            'consentText' => 'required_unless:consentMode,off|nullable|string|max:600',
+            'consentMode' => 'required|in:'.implode(',', LeadConsent::modes()),
+            'consentText' => 'required_unless:consentMode,off,choices|nullable|string|max:600',
         ], [
             'consentText.required_unless' => 'Add the wording visitors will see.',
         ]);
@@ -114,11 +114,14 @@ class SiteDetailsEditor extends Component
                 ->orderBy('original_name')
                 ->get(['id', 'original_name', 'title']),
             'googleRating' => GoogleReviews::current(),
-            'consentModes' => [
+            'consentModes' => array_intersect_key([
                 'off' => 'No consent wording',
                 'disclosure' => 'Show wording — submitting the form is the agreement',
                 'checkbox' => 'Require a tick box the visitor must check themselves',
-            ],
+                'choices' => 'Separate optional text-message boxes — wording set by the site configuration',
+            ], array_flip(LeadConsent::modes())),
+            'consentChoices' => LeadConsent::choices(),
+            'consentChoicesTitle' => LeadConsent::choicesTitle(),
         ]);
     }
 }

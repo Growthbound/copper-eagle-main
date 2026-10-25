@@ -88,8 +88,9 @@ class Leads extends Component
             $handle = fopen('php://output', 'w');
 
             fputcsv($handle, [
-                'Received', 'Name', 'Email', 'Phone', 'Service', 'Status', 'Message',
-                'Consent given', 'Consent at', 'Consent IP', 'Consent wording',
+                'Received', 'Name', 'First name', 'Last name', 'Email', 'Phone', 'Service', 'Status', 'Message',
+                'Consent given', 'Service texts consent', 'Marketing texts consent',
+                'Consent at', 'Consent IP', 'Consent wording',
                 'Source', 'UTM source', 'UTM medium', 'UTM campaign', 'UTM term', 'UTM content',
                 'Google click ID', 'Meta click ID', 'Microsoft click ID', 'Referrer', 'Landing page',
             ]);
@@ -98,12 +99,18 @@ class Leads extends Component
                 fputcsv($handle, [
                     $lead->created_at?->toDateTimeString(),
                     $lead->name,
+                    $lead->first_name,
+                    $lead->last_name,
                     $lead->email,
                     $lead->phone,
                     $lead->service,
                     $lead->status,
                     $lead->message,
                     $lead->consent_given ? 'yes' : 'no',
+                    ...array_map(
+                        fn (?bool $agreed): string => $agreed === null ? '' : ($agreed ? 'yes' : 'no'),
+                        array_values($lead->consentChoices()),
+                    ),
                     $lead->consent_at?->toDateTimeString(),
                     $lead->consent_ip,
                     $lead->consent_text,

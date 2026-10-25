@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
-    'name', 'email', 'phone', 'service', 'message',
+    'name', 'first_name', 'last_name', 'email', 'phone', 'service', 'message',
     'consent_given', 'consent_text', 'consent_at', 'consent_ip',
+    'consent_service', 'consent_marketing',
 ])]
 class Lead extends Model
 {
@@ -77,6 +78,9 @@ class Lead extends Model
             'handled_at' => 'datetime',
             'consent_given' => 'boolean',
             'consent_at' => 'datetime',
+            // Null when the form did not ask; see LeadConsent::CHOICE_KINDS.
+            'consent_service' => 'boolean',
+            'consent_marketing' => 'boolean',
         ];
     }
 
@@ -120,6 +124,20 @@ class Lead extends Model
     public function source(): string
     {
         return Attribution::describe($this->attribution());
+    }
+
+    /**
+     * Each separately asked text-message permission, or null where the form
+     * that took this lead did not ask it.
+     *
+     * @return array<string, bool|null>
+     */
+    public function consentChoices(): array
+    {
+        return [
+            'service' => $this->consent_service,
+            'marketing' => $this->consent_marketing,
+        ];
     }
 
     public function markAs(string $status): void

@@ -51,8 +51,8 @@ class ManagedBlockRegressionTest extends TestCase
         preg_match_all('/\sid="([^"]+)"/', $html, $matches);
 
         $this->assertSame($matches[1], array_values(array_unique($matches[1])));
-        $this->assertStringContainsString('id="first-quote-form-name"', $html);
-        $this->assertStringContainsString('id="second-quote-form-name"', $html);
+        $this->assertStringContainsString('id="first-quote-form-first-name"', $html);
+        $this->assertStringContainsString('id="second-quote-form-first-name"', $html);
         $this->assertStringContainsString('id="first-benefits-title"', $html);
         $this->assertStringContainsString('id="second-benefits-title"', $html);
     }

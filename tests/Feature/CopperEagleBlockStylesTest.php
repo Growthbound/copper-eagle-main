@@ -291,9 +291,11 @@ class CopperEagleBlockStylesTest extends TestCase
     {
         Livewire::test(QuoteForm::class, ['preview' => true, 'formId' => 'contact-form'])
             ->call('submit')
-            ->assertHasErrors('name')
-            ->assertSeeHtml('aria-describedby="contact-form-name-error"')
-            ->assertSeeHtml('id="contact-form-name-error"')
+            ->assertHasErrors(['firstName', 'lastName'])
+            ->assertSeeHtml('aria-describedby="contact-form-first-name-error"')
+            ->assertSeeHtml('id="contact-form-first-name-error"')
+            ->assertSeeHtml('aria-describedby="contact-form-last-name-error"')
+            ->assertSeeHtml('id="contact-form-last-name-error"')
             ->assertSeeHtml('aria-invalid="true"');
     }
 

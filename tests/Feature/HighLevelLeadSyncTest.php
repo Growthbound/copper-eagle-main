@@ -293,11 +293,45 @@ class HighLevelLeadSyncTest extends TestCase
     public function test_real_quote_submission_wires_direct_delivery_without_blocking_visitor(): void
     {
         $this->connection();
-        Livewire::test(QuoteForm::class)->set('name', 'Example Person')->set('phone', '8015550100')
+        Livewire::test(QuoteForm::class)->set('firstName', 'Example')->set('lastName', 'Person')->set('phone', '8015550100')
             ->call('submit')->assertHasNoErrors()->assertSet('sent', true);
         $this->assertSame('pending', HighLevelDelivery::query()->sole()->status);
         Bus::assertDispatchedAfterResponse(SyncLeadToHighLevel::class);
         Http::assertNothingSent();
+    }
+
+    public function test_upsert_sends_first_and_last_name_and_the_note_records_each_text_choice(): void
+    {
+        $this->connection();
+        $this->fakeSuccess();
+        $lead = Lead::withoutEvents(fn () => Lead::query()->create([
+            'name' => 'Example Person', 'first_name' => 'Example', 'last_name' => 'Person', 'phone' => '8015550100',
+            'consent_given' => true, 'consent_service' => true, 'consent_marketing' => false,
+            'consent_text' => 'Choice wording.', 'consent_at' => now(),
+        ]));
+        $delivery = app(LeadSync::class)->enqueue($lead);
+        app(LeadSync::class)->send($delivery->id);
+
+        $this->assertSame('synced', $delivery->fresh()->status);
+        Http::assertSent(fn (Request $r) => str_ends_with($r->url(), '/contacts/upsert')
+            && $r['firstName'] === 'Example' && $r['lastName'] === 'Person' && $r['name'] === 'Example Person'
+            && ! isset($r['dnd']) && ! isset($r['tags']));
+        Http::assertSent(fn (Request $r) => $r->method() === 'POST' && str_ends_with($r->url(), '/contactExample/notes')
+            && str_contains($r['body'], "\nService texts consent: agreed\n")
+            && str_contains($r['body'], "\nMarketing texts consent: not agreed\n")
+            && ! str_contains($r['body'], 'Consent: agreed')
+            && str_contains($r['body'], 'Consent wording: Choice wording.'));
+    }
+
+    public function test_a_lead_saved_before_the_name_split_still_sends_its_full_name_only(): void
+    {
+        $this->connection();
+        $this->fakeSuccess();
+        $delivery = app(LeadSync::class)->enqueue($this->lead());
+        app(LeadSync::class)->send($delivery->id);
+
+        Http::assertSent(fn (Request $r) => str_ends_with($r->url(), '/contacts/upsert')
+            && $r['name'] === 'Example Person' && ! isset($r['firstName']) && ! isset($r['lastName']));
     }
 
     private function lead(): Lead

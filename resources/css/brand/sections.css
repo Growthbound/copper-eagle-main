@@ -1202,6 +1202,31 @@
     accent-color: var(--theme-primary);
 }
 
+/* Separate text-message choices: one fieldset, one box per permission. */
+.quote-consent-group {
+    min-inline-size: 0;
+    margin-top: 1.5rem;
+}
+
+.quote-consent-group .quote-consent {
+    margin-top: 0.75rem;
+}
+
+.quote-consent-note {
+    overflow-wrap: anywhere;
+}
+
+.quote-consent-note a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.quote-consent-note a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
 .quote-form--split .quote-consent,
 .quote-form--split .quote-note {
     color: var(--theme-muted);

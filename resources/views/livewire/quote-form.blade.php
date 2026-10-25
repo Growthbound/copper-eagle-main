@@ -16,21 +16,27 @@
         @error('provider') <p class="quote-error" role="alert">{{ $message }}</p> @enderror
         <form wire:submit="submit" novalidate>
             <div class="quote-grid">
-                <div @class(['quote-field', 'quote-field-name', 'quote-grid-full' => $variant === 'split'])>
-                    <label class="quote-label" for="{{ $formId }}-name">Name</label>
-                    <input id="{{ $formId }}-name" type="text" class="quote-input" wire:model="name" autocomplete="name" required @error('name') aria-invalid="true" aria-describedby="{{ $formId }}-name-error" @enderror>
-                    @error('name') <p id="{{ $formId }}-name-error" class="quote-error">{{ $message }}</p> @enderror
+                <div class="quote-field quote-field-first-name">
+                    <label class="quote-label" for="{{ $formId }}-first-name">First name</label>
+                    <input id="{{ $formId }}-first-name" type="text" class="quote-input" wire:model="firstName" autocomplete="given-name" required @error('firstName') aria-invalid="true" aria-describedby="{{ $formId }}-first-name-error" @enderror>
+                    @error('firstName') <p id="{{ $formId }}-first-name-error" class="quote-error">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="quote-field quote-field-last-name">
+                    <label class="quote-label" for="{{ $formId }}-last-name">Last name</label>
+                    <input id="{{ $formId }}-last-name" type="text" class="quote-input" wire:model="lastName" autocomplete="family-name" required @error('lastName') aria-invalid="true" aria-describedby="{{ $formId }}-last-name-error" @enderror>
+                    @error('lastName') <p id="{{ $formId }}-last-name-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="quote-field quote-field-email">
-                    <label class="quote-label" for="{{ $formId }}-email">Email</label>
+                    <label class="quote-label" for="{{ $formId }}-email">Email (optional)</label>
                     <input id="{{ $formId }}-email" type="email" class="quote-input" wire:model="email" autocomplete="email" @error('email') aria-invalid="true" aria-describedby="{{ $formId }}-email-error" @enderror>
                     @error('email') <p id="{{ $formId }}-email-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="quote-field quote-field-phone">
                     <label class="quote-label" for="{{ $formId }}-phone">Phone</label>
-                    <input id="{{ $formId }}-phone" type="tel" class="quote-input" wire:model="phone" autocomplete="tel" @error('phone') aria-invalid="true" aria-describedby="{{ $formId }}-phone-error" @enderror>
+                    <input id="{{ $formId }}-phone" type="tel" class="quote-input" wire:model="phone" autocomplete="tel" required @error('phone') aria-invalid="true" aria-describedby="{{ $formId }}-phone-error" @enderror>
                     @error('phone') <p id="{{ $formId }}-phone-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
@@ -84,6 +90,31 @@
                 @error('consent') <p class="quote-error">{{ $message }}</p> @enderror
             @endif
 
+            @if ($consentMode === 'choices' && $consentChoices !== [])
+                {{-- Wording is the registered text campaign's, word for word. Each box is its own optional permission. --}}
+                <fieldset class="quote-consent-group">
+                    <legend class="quote-label">{{ $consentChoicesTitle }}</legend>
+                    @foreach ($consentChoices as $kind => $choiceText)
+                        <label class="quote-consent" for="{{ $formId }}-consent-{{ $kind }}">
+                            <input
+                                id="{{ $formId }}-consent-{{ $kind }}"
+                                type="checkbox"
+                                wire:model="{{ 'consent'.ucfirst($kind) }}"
+                                aria-describedby="{{ $formId }}-consent-choices-note"
+                            >
+                            <span>{{ $choiceText }}</span>
+                        </label>
+                    @endforeach
+                    <p id="{{ $formId }}-consent-choices-note" class="quote-note quote-consent-note">
+                        {{ $consentChoicesNote }}
+                        See our
+                        <a href="/privacy-policy/">{{ $consentChoicesLinks['privacy'] }}</a>
+                        and
+                        <a href="/terms-and-conditions/">{{ $consentChoicesLinks['terms'] }}</a>.
+                    </p>
+                </fieldset>
+            @endif
+
             <button type="submit" class="button button-orange quote-submit">
                 <span wire:loading.remove wire:target="submit">{{ $submitLabel }}</span>
                 <span wire:loading wire:target="submit">Sending…</span>
@@ -93,7 +124,10 @@
                 <p class="quote-note">{{ $consentText }}</p>
             @endif
 
-            <p class="quote-note">We'll only use your details to answer this request.</p>
+            {{-- Untrue once a visitor can opt in to marketing texts. --}}
+            @if (! array_key_exists('marketing', $consentChoices))
+                <p class="quote-note">We'll only use your details to answer this request.</p>
+            @endif
         </form>
     @endif
 </div>

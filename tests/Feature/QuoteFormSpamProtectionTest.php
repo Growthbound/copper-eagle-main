@@ -42,7 +42,8 @@ class QuoteFormSpamProtectionTest extends TestCase
     {
         foreach (['card', 'split'] as $variant) {
             Livewire::test(QuoteForm::class, ['variant' => $variant])
-                ->set('name', 'Sales Bot')
+                ->set('firstName', 'Sales')
+                ->set('lastName', 'Bot')
                 ->set('email', 'bot@example.test')
                 ->set('message', 'Reply YES for our virtual assistant offer.')
                 ->set($field, $value)
@@ -88,7 +89,8 @@ class QuoteFormSpamProtectionTest extends TestCase
     {
         for ($submission = 0; $submission < 6; $submission++) {
             Livewire::test(QuoteForm::class)
-                ->set('name', 'Sales Bot')
+                ->set('firstName', 'Sales')
+                ->set('lastName', 'Bot')
                 ->set('phone', '5555550199')
                 ->set('filterSize', 'bot-filled')
                 ->call('submit')
@@ -97,7 +99,8 @@ class QuoteFormSpamProtectionTest extends TestCase
         }
 
         Livewire::test(QuoteForm::class)
-            ->set('name', 'Taylor Example')
+            ->set('firstName', 'Taylor')
+            ->set('lastName', 'Example')
             ->set('phone', '5555550100')
             ->call('submit')
             ->assertHasNoErrors()
@@ -109,13 +112,13 @@ class QuoteFormSpamProtectionTest extends TestCase
 
     public function test_discard_clears_earlier_errors_and_the_traps_for_another_request(): void
     {
-        $form = Livewire::test(QuoteForm::class)->call('submit')->assertHasErrors('name');
+        $form = Livewire::test(QuoteForm::class)->call('submit')->assertHasErrors('firstName');
 
         $form->set('filterSize', 'bot-filled')->call('submit')
             ->assertHasNoErrors()->assertSet('sent', true)->assertSet('filterSize', '');
         $this->assertDatabaseCount('leads', 0);
 
-        $form->set('sent', false)->set('name', 'Taylor Example')->set('email', 'taylor@example.test')
+        $form->set('sent', false)->set('firstName', 'Taylor')->set('lastName', 'Example')->set('email', 'taylor@example.test')->set('phone', '555 555 0100')
             ->call('submit')->assertHasNoErrors()->assertSet('sent', true);
         $this->assertDatabaseCount('leads', 1);
     }
@@ -144,7 +147,7 @@ class QuoteFormSpamProtectionTest extends TestCase
 
             $this->assertStringNotContainsString('name="website"', $html);
             $this->assertStringNotContainsString('name="fax"', $html);
-            foreach (['name', 'email', 'tel'] as $autocomplete) {
+            foreach (['given-name', 'family-name', 'email', 'tel'] as $autocomplete) {
                 $this->assertStringContainsString('autocomplete="'.$autocomplete.'"', $html);
             }
         }
@@ -153,8 +156,10 @@ class QuoteFormSpamProtectionTest extends TestCase
     public function test_autofilled_legacy_fields_in_an_old_tab_cannot_discard_a_real_enquiry(): void
     {
         Livewire::test(QuoteForm::class)
-            ->set('name', 'Taylor Example')
+            ->set('firstName', 'Taylor')
+            ->set('lastName', 'Example')
             ->set('email', 'taylor@example.test')
+            ->set('phone', '555 555 0100')
             ->set('website', 'https://example.test')
             ->set('fax', '5555550199')
             ->call('submit')

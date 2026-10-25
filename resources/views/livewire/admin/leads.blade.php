@@ -122,7 +122,12 @@
                                     from {{ $lead->consent_ip }}
                                 @endif
                             </p>
-                            <p class="mt-1 italic">“{{ $lead->consent_text }}”</p>
+                            @foreach ($lead->consentChoices() as $kind => $agreed)
+                                @if ($agreed !== null)
+                                    <p class="mt-1 font-semibold">{{ ucfirst($kind) }} texts: {{ $agreed ? 'agreed' : 'not agreed' }}</p>
+                                @endif
+                            @endforeach
+                            <p class="mt-1 whitespace-pre-line italic">“{{ $lead->consent_text }}”</p>
                         </div>
                     @endif
 

@@ -107,7 +107,21 @@
             @error('consentMode') <p class="admin-error">{{ $message }}</p> @enderror
         </div>
 
-        @if ($consentMode !== 'off')
+        @if ($consentMode === 'choices')
+            <div class="mb-6 rounded-lg bg-surface px-4 py-3 text-sm">
+                <p class="font-semibold">{{ $consentChoicesTitle }}</p>
+                <ul class="mt-2 list-disc space-y-2 pl-5">
+                    @foreach ($consentChoices as $choiceText)
+                        <li>{{ $choiceText }}</li>
+                    @endforeach
+                </ul>
+                <p class="mt-3 text-text-muted">
+                    Each box is optional, starts unticked, and is saved separately with the enquiry. This wording must
+                    match the registered text-message campaign, so it is changed in the site configuration rather than
+                    here.
+                </p>
+            </div>
+        @elseif ($consentMode !== 'off')
             <div class="mb-6">
                 <label class="admin-label" for="consent-text">Wording</label>
                 <p class="mb-2 text-sm text-text-muted">

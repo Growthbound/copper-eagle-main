@@ -29,7 +29,8 @@ class SplitQuoteFormTemplateTest extends TestCase
         ])->html();
 
         $this->assertStringContainsString('data-quote-form-variant="split"', $html);
-        $this->assertStringContainsString('id="quote-form-name"', $html);
+        $this->assertStringContainsString('id="quote-form-first-name"', $html);
+        $this->assertStringContainsString('id="quote-form-last-name"', $html);
         $this->assertStringContainsString('id="quote-form-email"', $html);
         $this->assertStringContainsString('id="quote-form-phone"', $html);
         $this->assertStringContainsString('id="quote-form-service"', $html);
@@ -115,8 +116,10 @@ class SplitQuoteFormTemplateTest extends TestCase
     public function test_template_preview_form_never_creates_a_real_lead(): void
     {
         Livewire::test(QuoteForm::class, ['preview' => true])
-            ->set('name', 'Preview Visitor')
+            ->set('firstName', 'Preview')
+            ->set('lastName', 'Visitor')
             ->set('email', 'preview@example.com')
+            ->set('phone', '555 555 0100')
             ->set('consent', true)
             ->call('submit')
             ->assertSet('sent', true);
