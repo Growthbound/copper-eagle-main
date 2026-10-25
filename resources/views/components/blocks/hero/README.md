@@ -21,7 +21,7 @@ open with exactly one hero.
 | `split` | Header, copy on the left, tall image on the right. Owns the page `<h1>`. |
 | `interior` | Deep-blue band (optionally over a darkened photo), centered uppercase eyebrow and white H1, white chevron rising into the next section. |
 | `service` | Full-width primary field with service copy, actions, and optional media. |
-| `location` | Service-area H1 with explicit mobile-coverage language. |
+| `location` | Service-area H1 with explicit mobile-coverage language. Shares the `interior` look (it carries the `.interior-hero` classes), and its `place` must be a service area record. Used by the Copper Eagle `city` template. |
 | `article` | Editorial H1 with visible author, publication date, and optional reviewer. |
 | `photo` | Home page: header, service icon strip, then a full-bleed photo under a deep-blue overlay with a left-aligned H1, one copper action, and a white chevron edge. |
 

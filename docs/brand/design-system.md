@@ -220,6 +220,15 @@ fixed by `app/Content/PageTemplateRegistry.php`; content changes props only.
 | `team` | Team | `hero/interior` · `team/grid` · `cta/inline-band` |
 | `reviews` | Reviews | `hero/interior` · `testimonials/quotes` · `cta/panel` · `cta/inline-band` |
 | `contact` | Contact | `hero/interior` · `cta/quote-form-split` · `service-areas/list` · `cta/panel` · `social/feed` |
+| `city` | One city or county served | `hero/location` · `content/split` · `service-cards/grid` · `content/feature-cards` · `faq/accordion` · `content/related-content` · `service-areas/list` · `cta/inline-band` |
+
+City pages (kind `location`) live at `/plumber-<place>-utah` (counties drop
+`-utah`, e.g. `/plumber-utah-county`). The `hero/location` place must be a
+service area record, and the generated `/areas/<slug>/` page folds into the
+city page through the URL ledger. Every local fact on a city page (water
+supplier and hardness, housing age, elevation, neighborhoods, permit office)
+comes from a public source listed in its `content/related-content` "Sources"
+section; a place without sourced local facts gets no page.
 
 Blog posts use `standard` with `hero/article` followed by `content/rich-text`;
 `decision-guide` is for long, evidence-led guides. `standard` also serves the

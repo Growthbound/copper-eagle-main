@@ -1,0 +1,181 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-west-valley-city-utah",
+        "title": "West Valley",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in West Valley, Utah",
+        "description": "Copper Eagle Plumbing serves West Valley, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about West Valley's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-5.jpg",
+            "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1199
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in West Valley, Utah",
+                "place": "West Valley",
+                "body": "Copper Eagle Plumbing helps West Valley homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for West Valley homes",
+                "body": "Half of the homes in West Valley were built in 1985 or later, and about 42% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nWest Valley City doesn't run its own water service. Most of the city is served by the Granger-Hunter Improvement District, which uses six deep wells for about a quarter of its supply and treated water from the Jordan Valley Water Conservancy District for the rest. The Kearns, Magna and Taylorsville-Bennion districts serve other parts of the city. Hardness averages about 176 mg/L (about 10 grains per gallon) across the Granger-Hunter service area, according to Granger-Hunter's 2026 water quality report, which covers 2025 testing. The U.S. Geological Survey classes that as hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nGranger-Hunter is building treatment plants to remove naturally occurring manganese, iron and ammonia from its well water, which can turn water yellow or brown. The first plant is running and a second is under construction.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-5.jpg",
+                    "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1199
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in West Valley?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in West Valley at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Granger-Hunter Improvement District serves most of the city, with the Kearns, Magna and Taylorsville-Bennion districts serving other parts. Hardness: about 176 mg/L across Granger-Hunter's area (2025 testing), hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1985. Built before 1980: about 42% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods",
+                        "body": "Including Granger, Hunter, Redwood, Chesterfield, Fairbourne Station and Valley Fair.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from West Valley City Building Inspections.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "West Valley plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve West Valley?",
+                        "answer": "Yes. West Valley is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Salt Lake City, Murray, West Jordan and Midvale."
+                    },
+                    {
+                        "question": "How hard is the water in West Valley?",
+                        "answer": "Hardness averages about 176 mg/L (about 10 grains per gallon) across the Granger-Hunter service area, according to Granger-Hunter's 2026 water quality report, which covers 2025 testing. That's hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in West Valley?",
+                        "answer": "West Valley City Building Inspections."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in West Valley?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in West Valley."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Granger-Hunter Improvement District water quality report",
+                        "href": "https://www.ghid.gov/annual-water-quality-report"
+                    },
+                    {
+                        "title": "West Valley City public works (water providers)",
+                        "href": "https://www.wvc-ut.gov/government/department_list/public_works/index.php"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, West Valley City (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4983470"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, West Valley City (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4983470"
+                    },
+                    {
+                        "title": "About West Valley City",
+                        "href": "https://www.wvc-ut.gov/our_community/about_us/index.php"
+                    },
+                    {
+                        "title": "West Valley City building permits",
+                        "href": "https://www.wvc-ut.gov/government/department_list/community_development/building_inspections/apply_for_a_building_permit.php"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    },
+                    {
+                        "name": "Murray",
+                        "href": "/plumber-murray-utah/"
+                    },
+                    {
+                        "name": "West Jordan",
+                        "href": "/plumber-west-jordan-utah/"
+                    },
+                    {
+                        "name": "Midvale",
+                        "href": "/plumber-midvale-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in West Valley? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

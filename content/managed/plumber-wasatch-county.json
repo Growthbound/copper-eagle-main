@@ -1,0 +1,177 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-wasatch-county",
+        "title": "Wasatch County",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Wasatch County",
+        "description": "Copper Eagle Plumbing serves Wasatch County: drains, water heaters, softeners, gas lines and remodels. Learn about Wasatch County's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-2.jpg",
+            "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "UTAH",
+                "heading": "Plumber in Wasatch County",
+                "place": "Wasatch County",
+                "body": "Copper Eagle Plumbing helps Wasatch County homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Wasatch County homes",
+                "body": "Half of the homes in Wasatch County were built in 2005 or later, and about 18% before 1980, according to the U.S. Census Bureau. In newer homes like these, the first big plumbing jobs are often water heaters, fixtures and water softeners as the original equipment ages. A water heater usually lasts 10 to 15 years.\n\nEach town in Wasatch County has its own water system. Heber City uses groundwater from Broadhead Spring and three wells, and the Jordanelle Special Service District serves the Jordanelle Basin, including water from the Ontario Drain Tunnel.\n\nJordanelle Reservoir, just north of Heber, holds up to 363,000 acre-feet behind a 296-foot dam on the Provo River, mainly for city and industrial water supply.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-2.jpg",
+                    "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Wasatch County?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Wasatch County at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Town systems such as Heber City's springs and wells, and the Jordanelle Special Service District.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 2005. Built before 1980: about 18% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Cities and towns",
+                        "body": "Including Heber City, Midway, Charleston, Daniel, Hideout and Wallsburg.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from your town's building department, or the Wasatch County Building Department. Heber City has its own Building and Safety Division.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Wasatch County plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Wasatch County?",
+                        "answer": "Yes. Wasatch County is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Park City, Summit County, Utah County and Provo."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Wasatch County?",
+                        "answer": "Your town's building department, or the Wasatch County Building Department. Heber City has its own Building and Safety Division."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Wasatch County?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Wasatch County."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Heber City drinking water quality report",
+                        "href": "https://www.heberut.gov/507/Annual-Drinking-Water-Quality-Report-202"
+                    },
+                    {
+                        "title": "Jordanelle Special Service District",
+                        "href": "https://www.uasd.org/jordanelle-special-service-district"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Wasatch County (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=050XX00US49051"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Wasatch County (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=050XX00US49051"
+                    },
+                    {
+                        "title": "Mountainland Association of Governments: Wasatch County cities",
+                        "href": "https://magutah.gov/mountainland-aog-cities"
+                    },
+                    {
+                        "title": "Wasatch County Building Department",
+                        "href": "https://www.wasatchcounty.gov/Building"
+                    },
+                    {
+                        "title": "U.S. Department of the Interior: Central Utah Project municipal system",
+                        "href": "https://www.doi.gov/cupcao/municipal-and-industrial-system"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Park City",
+                        "href": "/plumber-park-city-utah/"
+                    },
+                    {
+                        "name": "Summit County",
+                        "href": "/plumber-summit-county/"
+                    },
+                    {
+                        "name": "Utah County",
+                        "href": "/plumber-utah-county/"
+                    },
+                    {
+                        "name": "Provo",
+                        "href": "/plumber-provo-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Wasatch County? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

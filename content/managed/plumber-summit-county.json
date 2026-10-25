@@ -1,0 +1,177 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-summit-county",
+        "title": "Summit County",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Summit County",
+        "description": "Copper Eagle Plumbing serves Summit County: drains, water heaters, softeners, gas lines and remodels. Learn about Summit County's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-4.jpg",
+            "alt": "Holden in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "UTAH",
+                "heading": "Plumber in Summit County",
+                "place": "Summit County",
+                "body": "Copper Eagle Plumbing helps Summit County homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Summit County homes",
+                "body": "Half of the homes in Summit County were built in 1995 or later, and about 21% before 1980, according to the U.S. Census Bureau. In newer homes like these, the first big plumbing jobs are often water heaters, fixtures and water softeners as the original equipment ages. A water heater usually lasts 10 to 15 years.\n\nWater in Summit County comes from several systems. Park City runs its own, Summit Water serves areas including Jeremy Ranch and Kimball Junction from wells and a spring, and Mountain Regional Water brings Weber River water into the Snyderville Basin through its Lost Canyon project.\n\nSummit County's building design criteria set a 36-inch frost line depth and a winter design temperature of -7°F.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-4.jpg",
+                    "alt": "Holden in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Summit County?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Summit County at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Several systems, including Park City, Summit Water and Mountain Regional Water.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1995. Built before 1980: about 21% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Cities and towns",
+                        "body": "Including Park City, Coalville, Kamas, Oakley, Francis and Henefer.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Summit County Building Department in Coalville, or your city's building department. Park City issues its own permits.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Summit County plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Summit County?",
+                        "answer": "Yes. Summit County is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Park City, Wasatch County and Salt Lake City."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Summit County?",
+                        "answer": "The Summit County Building Department in Coalville, or your city's building department. Park City issues its own permits."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Summit County?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Summit County."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Park City water",
+                        "href": "https://www.parkcity.gov/services/public_utilities/water/index.php"
+                    },
+                    {
+                        "title": "Summit Water Distribution Company",
+                        "href": "https://www.summitwater.us/about/"
+                    },
+                    {
+                        "title": "Mountain Regional Water: Lost Canyon project",
+                        "href": "https://www.mtnregionalwaterutah.gov/lost-canyon-project"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Summit County (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=050XX00US49043"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Summit County (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=050XX00US49043"
+                    },
+                    {
+                        "title": "Utah State Library: Summit County",
+                        "href": "https://onlinelibrary.utah.gov/utah/counties/summit-county/"
+                    },
+                    {
+                        "title": "Summit County Building Department",
+                        "href": "https://www.summitcountyutah.gov/262/Building"
+                    },
+                    {
+                        "title": "Summit County building design criteria",
+                        "href": "https://www.summitcountyutah.gov/DocumentCenter/View/17882/Design-Criteria"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Park City",
+                        "href": "/plumber-park-city-utah/"
+                    },
+                    {
+                        "name": "Wasatch County",
+                        "href": "/plumber-wasatch-county/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Summit County? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

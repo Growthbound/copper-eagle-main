@@ -1,5 +1,12 @@
 {
     "name": "Midvale",
     "region": "Utah",
-    "order": 16
+    "order": 16,
+    "summary": "City wells serve the west side; the Jordan Valley Water Conservancy District serves the east side.",
+    "landmarks": [
+        "Midvale Main",
+        "Bingham Junction",
+        "Jordan Bluffs",
+        "Fort Union"
+    ]
 }

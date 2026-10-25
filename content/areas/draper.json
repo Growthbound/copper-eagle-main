@@ -1,5 +1,14 @@
 {
     "name": "Draper",
     "region": "Utah",
-    "order": 2
+    "order": 2,
+    "summary": "Two providers: Draper City, west of I-15 and south of 14600 South, and WaterPro, east of I-15 and north of 14600 South.",
+    "landmarks": [
+        "SunCrest",
+        "South Mountain",
+        "Traverse Ridge",
+        "Corner Canyon",
+        "Draper Town Center",
+        "Crescent View"
+    ]
 }

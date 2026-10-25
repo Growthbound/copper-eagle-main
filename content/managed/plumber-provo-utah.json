@@ -1,0 +1,173 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-provo-utah",
+        "title": "Provo",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Provo, Utah",
+        "description": "Copper Eagle Plumbing serves Provo, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Provo's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-1.jpg",
+            "alt": "JD in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "UTAH COUNTY",
+                "heading": "Plumber in Provo, Utah",
+                "place": "Provo",
+                "body": "Copper Eagle Plumbing helps Provo homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Provo homes",
+                "body": "Half of the homes in Provo were built in 1983 or later, and about 46% before 1980, according to the U.S. Census Bureau. Older homes like these often need work on main water lines, drains and fixtures, along with the water heater.\n\nProvo's water comes mainly from springs and deep wells, with some reservoir water treated at the Don A. Christiansen Regional Water Treatment Plant. Hardness is typically 10 to 15 grains per gallon, according to Provo's 2025 water report, which calls it moderately hard. The U.S. Geological Survey classes that as hard to very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nProvo's 2025 water report advises keeping household water pressure below 75 PSI, and says a pressure reducing valve, usually near the main shut-off, protects home plumbing from high city pressure.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-1.jpg",
+                    "alt": "JD in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Provo?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Provo at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Mainly springs and deep wells, plus treated reservoir water. Hardness: 10 to 15 grains per gallon (Provo, 2025), hard to very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1983. Built before 1980: about 46% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods",
+                        "body": "Including Downtown, Joaquin, Maeser, Franklin, Edgemont and Rock Canyon.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from Provo Development Services, Building Division. Installing or replacing a water heater needs a building permit, and a tankless unit also needs a gas line diagram.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Provo plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Provo?",
+                        "answer": "Yes. Provo is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Orem, Utah County and Wasatch County."
+                    },
+                    {
+                        "question": "How hard is the water in Provo?",
+                        "answer": "Hardness is typically 10 to 15 grains per gallon, according to Provo's 2025 water report, which calls it moderately hard. That's hard to very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Provo?",
+                        "answer": "Provo Development Services, Building Division. Installing or replacing a water heater needs a building permit, and a tankless unit also needs a gas line diagram."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Provo?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Provo."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Provo 2025 water report",
+                        "href": "https://www.provo.gov/DocumentCenter/View/5209/2025-Water-Report-PDF"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Provo (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=160XX00US4962470"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Provo (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=160XX00US4962470"
+                    },
+                    {
+                        "title": "Provo Neighborhood District Program",
+                        "href": "https://www.provo.gov/282/Neighborhood-District-Program"
+                    },
+                    {
+                        "title": "Provo Building Division",
+                        "href": "https://www.provo.gov/200/Building"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Orem",
+                        "href": "/plumber-orem-utah/"
+                    },
+                    {
+                        "name": "Utah County",
+                        "href": "/plumber-utah-county/"
+                    },
+                    {
+                        "name": "Wasatch County",
+                        "href": "/plumber-wasatch-county/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Provo? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

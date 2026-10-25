@@ -1,5 +1,12 @@
 {
     "name": "Murray",
     "region": "Utah",
-    "order": 9
+    "order": 9,
+    "summary": "Murray's own 19 deep wells and 8 springs, with other providers serving some areas.",
+    "landmarks": [
+        "Historic Downtown",
+        "Fireclay",
+        "East Vine Street",
+        "Cherry Street"
+    ]
 }

@@ -1,0 +1,185 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-south-jordan-utah",
+        "title": "South Jordan",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in South Jordan, Utah",
+        "description": "Copper Eagle Plumbing serves South Jordan, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about South Jordan's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-4.jpg",
+            "alt": "Holden in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in South Jordan, Utah",
+                "place": "South Jordan",
+                "body": "Copper Eagle Plumbing helps South Jordan homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for South Jordan homes",
+                "body": "Half of the homes in South Jordan were built in 2007 or later, and about 9% before 1980, according to the U.S. Census Bureau. In newer homes like these, the first big plumbing jobs are often water heaters, fixtures and water softeners as the original equipment ages. A water heater usually lasts 10 to 15 years.\n\nSouth Jordan buys all of its drinking water from the Jordan Valley Water Conservancy District, which draws on Deer Creek and Jordanelle reservoirs, the Provo River and some groundwater. Hardness is 7 to 10 grains per gallon, according to the city's water page, which labels it hard. The U.S. Geological Survey classes that as moderately hard to hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nSouth Jordan supplies secondary canal water to part of the city, and says it will audit backflow devices on properties with secondary water access.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-4.jpg",
+                    "alt": "Holden in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in South Jordan?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in South Jordan at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "All drinking water comes from the Jordan Valley Water Conservancy District. Hardness: 7 to 10 grains per gallon (South Jordan), moderately hard to hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 2007. Built before 1980: about 9% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods and districts",
+                        "body": "Including Daybreak, Downtown Daybreak, The District, Towne Center, RiverPark and Glenmoor.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the South Jordan Building Department. Apply through the city's online CityView portal.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "South Jordan plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve South Jordan?",
+                        "answer": "Yes. South Jordan is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with West Jordan, Sandy, Draper and Midvale."
+                    },
+                    {
+                        "question": "How hard is the water in South Jordan?",
+                        "answer": "Hardness is 7 to 10 grains per gallon, according to the city's water page, which labels it hard. That's moderately hard to hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in South Jordan?",
+                        "answer": "The South Jordan Building Department. Apply through the city's online CityView portal."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in South Jordan?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in South Jordan."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "South Jordan water",
+                        "href": "https://www.sjc.utah.gov/325/Water"
+                    },
+                    {
+                        "title": "Jordan Valley Water Conservancy District: summary of operations",
+                        "href": "https://jvwcd.gov/file/e338fc08-75cd-4e91-8285-dc7580a7d6b8/Summary-of-Operations-FY26web.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, South Jordan (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4970850"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, South Jordan (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4970850"
+                    },
+                    {
+                        "title": "South Jordan economic development (neighborhoods)",
+                        "href": "https://www.sjc.utah.gov/319/Economic-Development"
+                    },
+                    {
+                        "title": "South Jordan Building Department",
+                        "href": "https://www.sjc.utah.gov/266/Building-Department"
+                    },
+                    {
+                        "title": "South Jordan secondary water and backflow",
+                        "href": "https://www.sjc.utah.gov/DocumentCenter/View/12179"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "West Jordan",
+                        "href": "/plumber-west-jordan-utah/"
+                    },
+                    {
+                        "name": "Sandy",
+                        "href": "/plumber-sandy-utah/"
+                    },
+                    {
+                        "name": "Draper",
+                        "href": "/plumber-draper-utah/"
+                    },
+                    {
+                        "name": "Midvale",
+                        "href": "/plumber-midvale-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in South Jordan? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

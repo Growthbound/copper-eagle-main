@@ -1,0 +1,181 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-kaysville-utah",
+        "title": "Kaysville",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Kaysville, Utah",
+        "description": "Copper Eagle Plumbing serves Kaysville, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Kaysville's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-2.jpg",
+            "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "DAVIS COUNTY",
+                "heading": "Plumber in Kaysville, Utah",
+                "place": "Kaysville",
+                "body": "Copper Eagle Plumbing helps Kaysville homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Kaysville homes",
+                "body": "Half of the homes in Kaysville were built in 1994 or later, and about 30% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nKaysville buys all of its drinking water from the Weber Basin Water Conservancy District: Weber River and creek water treated at the district's plants, supplemented by groundwater, mainly from the Delta Aquifer. Hardness ranges from 10 to 18 grains per gallon (171 to 308 mg/L), according to the Weber Basin Water Conservancy District's 2025 water quality report. The U.S. Geological Survey classes that as hard to very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nAbout 94% of Kaysville properties also have a separate secondary irrigation supply, from three independent irrigation companies.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-2.jpg",
+                    "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Kaysville?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Kaysville at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "All drinking water comes from the Weber Basin Water Conservancy District. Hardness: 10 to 18 grains per gallon (Weber Basin, 2025), hard to very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1994. Built before 1980: about 30% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "City-center areas",
+                        "body": "Including Historic Main Street, Main Street North, Mutton Hollow, Flint Street and Deseret Drive.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Kaysville City Building Department. Plumbing changes and water heater replacements need a building permit; fixture swaps don't.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Kaysville plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Kaysville?",
+                        "answer": "Yes. Kaysville is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Centerville, Bountiful and Salt Lake City."
+                    },
+                    {
+                        "question": "How hard is the water in Kaysville?",
+                        "answer": "Hardness ranges from 10 to 18 grains per gallon (171 to 308 mg/L), according to the Weber Basin Water Conservancy District's 2025 water quality report. That's hard to very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Kaysville?",
+                        "answer": "The Kaysville City Building Department. Plumbing changes and water heater replacements need a building permit; fixture swaps don't."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Kaysville?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Kaysville."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Kaysville City water quality report",
+                        "href": "https://www.kaysville.gov/Archive.aspx?ADID=857"
+                    },
+                    {
+                        "title": "Weber Basin Water Conservancy District 2025 water quality report",
+                        "href": "https://weberbasin.gov/Docs/CCR2025.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Kaysville (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=160XX00US4940360"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Kaysville (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=160XX00US4940360"
+                    },
+                    {
+                        "title": "Kaysville Planning Commission: City Center Small Area Plan",
+                        "href": "https://www.utah.gov/pmn/sitemap/notice/1004782.html"
+                    },
+                    {
+                        "title": "Kaysville City building permits",
+                        "href": "https://kaysville.gov/474/Building-Permit"
+                    },
+                    {
+                        "title": "Kaysville General Plan: water element",
+                        "href": "https://water.utah.gov/wp-content/uploads/2026/03/Kaysville-Water-Element.pdf"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Centerville",
+                        "href": "/plumber-centerville-utah/"
+                    },
+                    {
+                        "name": "Bountiful",
+                        "href": "/plumber-bountiful-utah/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Kaysville? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

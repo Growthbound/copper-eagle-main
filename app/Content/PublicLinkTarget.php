@@ -117,7 +117,7 @@ final readonly class PublicLinkTarget
                 && Media::query()->whereKey((int) $segments[1])->exists();
         }
 
-        if (! Schema::hasTable('content_entries')) {
+        if (! $this->contentCatalogAvailable()) {
             return $this->pages->find($slug) !== null;
         }
 
@@ -148,6 +148,20 @@ final readonly class PublicLinkTarget
         }
 
         return File::isFile(public_path(ltrim($path, '/')));
+    }
+
+    /**
+     * Whether the publication table can be queried. Before the first
+     * migration the SQLite file may not exist at all, and asking about the
+     * table then throws instead of answering no.
+     */
+    private function contentCatalogAvailable(): bool
+    {
+        try {
+            return Schema::hasTable('content_entries');
+        } catch (\Throwable) {
+            return false;
+        }
     }
 
     private function managedFileExists(string $slug): bool

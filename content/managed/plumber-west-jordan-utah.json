@@ -1,0 +1,185 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-west-jordan-utah",
+        "title": "West Jordan",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in West Jordan, Utah",
+        "description": "Copper Eagle Plumbing serves West Jordan, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about West Jordan's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-2.jpg",
+            "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in West Jordan, Utah",
+                "place": "West Jordan",
+                "body": "Copper Eagle Plumbing helps West Jordan homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for West Jordan homes",
+                "body": "Half of the homes in West Jordan were built in 1995 or later, and about 19% before 1980, according to the U.S. Census Bureau. In newer homes like these, the first big plumbing jobs are often water heaters, fixtures and water softeners as the original equipment ages. A water heater usually lasts 10 to 15 years.\n\nAbout 93% of West Jordan's drinking water is treated water bought from the Jordan Valley Water Conservancy District, from mountain reservoirs, springs and wells. The other 7% comes from city-owned wells. Hardness averaged 183 mg/L, ranging from 16 to 602 mg/L, according to West Jordan's 2026 water quality report, which covers 2025 testing. The U.S. Geological Survey classes that as very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nWest Jordan is inventorying the materials of its water service lines, and residents can look up their own line on the city's interactive map.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-2.jpg",
+                    "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in West Jordan?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in West Jordan at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "About 93% from the Jordan Valley Water Conservancy District and 7% from city wells. Hardness: 183 mg/L on average (West Jordan, 2025 testing), very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1995. Built before 1980: about 19% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods and subdivisions",
+                        "body": "Including Jordan Landing, Highlands, Jordan Highlands, Oquirrh Shadows, Copper Hills Estates and Teton Estates.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the West Jordan Building and Safety Division. Apply through the city's online permit portal.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "West Jordan plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve West Jordan?",
+                        "answer": "Yes. West Jordan is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with South Jordan, West Valley, Murray and Midvale."
+                    },
+                    {
+                        "question": "How hard is the water in West Jordan?",
+                        "answer": "Hardness averaged 183 mg/L, ranging from 16 to 602 mg/L, according to West Jordan's 2026 water quality report, which covers 2025 testing. That's very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in West Jordan?",
+                        "answer": "The West Jordan Building and Safety Division. Apply through the city's online permit portal."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in West Jordan?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in West Jordan."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "West Jordan 2026 water quality report",
+                        "href": "https://www.westjordan.utah.gov/water-quality-consumer-confidence-report-2026/"
+                    },
+                    {
+                        "title": "Jordan Valley Water Conservancy District: summary of operations",
+                        "href": "https://jvwcd.gov/file/e338fc08-75cd-4e91-8285-dc7580a7d6b8/Summary-of-Operations-FY26web.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, West Jordan (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4982950"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, West Jordan (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4982950"
+                    },
+                    {
+                        "title": "West Jordan subdivision listing",
+                        "href": "https://www.westjordan.utah.gov//wp-content/uploads/2025/04/SUBDIVISION-LISTING-5-1-25.pdf"
+                    },
+                    {
+                        "title": "West Jordan permit portal guide",
+                        "href": "https://www.westjordan.utah.gov/permit-portal-guide/"
+                    },
+                    {
+                        "title": "West Jordan water",
+                        "href": "https://www.westjordan.utah.gov/public-works/water/"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "South Jordan",
+                        "href": "/plumber-south-jordan-utah/"
+                    },
+                    {
+                        "name": "West Valley",
+                        "href": "/plumber-west-valley-city-utah/"
+                    },
+                    {
+                        "name": "Murray",
+                        "href": "/plumber-murray-utah/"
+                    },
+                    {
+                        "name": "Midvale",
+                        "href": "/plumber-midvale-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in West Jordan? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

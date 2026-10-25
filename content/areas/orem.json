@@ -1,5 +1,14 @@
 {
     "name": "Orem",
     "region": "Utah",
-    "order": 5
+    "order": 5,
+    "summary": "About 60% treated river and reservoir water, 40% from deep wells and Provo Canyon springs.",
+    "landmarks": [
+        "Canyon View",
+        "Sharon Park",
+        "Northridge",
+        "Windsor",
+        "Geneva Heights",
+        "Cherry Hill"
+    ]
 }

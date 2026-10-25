@@ -26,7 +26,7 @@ class ContentContractRegistryTest extends TestCase
         );
         $this->assertNull($blocks->definition('../../admin'));
         $this->assertSame(
-            ['standard', 'service-pillar', 'location-pillar', 'decision-guide', 'home', 'services-hub', 'service-detail', 'emergency', 'about', 'team', 'reviews', 'contact'],
+            ['standard', 'service-pillar', 'location-pillar', 'decision-guide', 'home', 'services-hub', 'service-detail', 'emergency', 'about', 'team', 'reviews', 'contact', 'city'],
             array_column(PageTemplate::cases(), 'value'),
         );
         $this->assertSame(

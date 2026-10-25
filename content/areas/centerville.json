@@ -1,5 +1,13 @@
 {
     "name": "Centerville",
     "region": "Utah",
-    "order": 14
+    "order": 14,
+    "summary": "Seven city wells supply about two-thirds; the Weber Basin Water Conservancy District supplies the rest.",
+    "landmarks": [
+        "Southeast Centerville",
+        "Southwest Centerville",
+        "Northeast Centerville",
+        "Northwest Centerville",
+        "West Centerville"
+    ]
 }

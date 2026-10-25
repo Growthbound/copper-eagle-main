@@ -1,0 +1,177 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-bountiful-utah",
+        "title": "Bountiful",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Bountiful, Utah",
+        "description": "Copper Eagle Plumbing serves Bountiful, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Bountiful's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-3.jpg",
+            "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "DAVIS COUNTY",
+                "heading": "Plumber in Bountiful, Utah",
+                "place": "Bountiful",
+                "body": "Copper Eagle Plumbing helps Bountiful homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Bountiful homes",
+                "body": "Half of the homes in Bountiful were built in 1973 or later, and about 63% before 1980, according to the U.S. Census Bureau. Older homes like these often need work on main water lines, drains and fixtures, along with the water heater.\n\nAbout 60% of Bountiful's water comes from eight city wells, about 20% from Mill Creek, treated at the city's own plant in Mueller Park, and about 20% from the Weber River through the Weber Basin Water Conservancy District. The South Davis Water District serves the Val Verda area. Hardness ranges from 15 to 32 grains per gallon depending on the zone, according to the city's water hardness zone map (dated 2010 and still linked from the city's water page). The U.S. Geological Survey classes that as very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nWhen Bountiful crews find copper pipe or lead fittings on a service connection, they replace the service line from the meter to the main, and every main line replacement replaces the service lines too.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-3.jpg",
+                    "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Bountiful?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Bountiful at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "About 60% city wells, 20% Mill Creek and 20% Weber River water. Hardness: 15 to 32 grains per gallon by zone (city map, 2010), very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1973. Built before 1980: about 63% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Areas",
+                        "body": "Including Downtown and Main Street, Val Verda, Renaissance Towne Centre, Mueller Park and North Canyon.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Bountiful City Building Department. Apply through the city's CityInspect portal.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Bountiful plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Bountiful?",
+                        "answer": "Yes. Bountiful is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Centerville, Kaysville and Salt Lake City."
+                    },
+                    {
+                        "question": "How hard is the water in Bountiful?",
+                        "answer": "Hardness ranges from 15 to 32 grains per gallon depending on the zone, according to the city's water hardness zone map (dated 2010 and still linked from the city's water page). That's very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Bountiful?",
+                        "answer": "The Bountiful City Building Department. Apply through the city's CityInspect portal."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Bountiful?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Bountiful."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Bountiful 2025 water quality report",
+                        "href": "https://www.bountiful.gov/DocumentCenter/View/892/2025-Consumer-Confidence-Water-Quality-Report"
+                    },
+                    {
+                        "title": "Bountiful water hardness zones map",
+                        "href": "https://www.bountiful.gov/DocumentCenter/View/327"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Bountiful (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4907690"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Bountiful (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4907690"
+                    },
+                    {
+                        "title": "Bountiful By Design general plan (areas)",
+                        "href": "https://www.bountiful.gov/DocumentCenter/View/582"
+                    },
+                    {
+                        "title": "Bountiful City Building Department",
+                        "href": "https://www.bountiful.gov/177/Building"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Centerville",
+                        "href": "/plumber-centerville-utah/"
+                    },
+                    {
+                        "name": "Kaysville",
+                        "href": "/plumber-kaysville-utah/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Bountiful? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

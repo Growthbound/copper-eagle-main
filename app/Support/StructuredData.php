@@ -78,6 +78,30 @@ class StructuredData
             $nodes[] = $article;
         }
 
+        // A city page offers plumbing in one service area: the place its
+        // location hero names, which is always a service area record.
+        $place = self::cityPlace($page);
+
+        if ($place !== null) {
+            $nodes[] = [
+                '@type' => 'Service',
+                'name' => 'Plumbing in '.$place->label(),
+                'serviceType' => 'Plumbing',
+                'url' => $page->canonicalUrl(),
+                'provider' => ['@id' => self::businessId()],
+                'areaServed' => [array_filter([
+                    '@type' => self::placeType($place->name()),
+                    'name' => $place->name(),
+                    'containedInPlace' => $place->region() === null ? null : [
+                        '@type' => 'AdministrativeArea',
+                        'name' => $place->region(),
+                    ],
+                ])],
+            ];
+
+            return $nodes;
+        }
+
         // A service-detail page describes one service whatever its kind, so it
         // says so in the markup too.
         if ($page->kind === ContentKind::Service || $page->template === PageTemplate::ServiceDetail) {
@@ -241,6 +265,28 @@ class StructuredData
                 fn (Area $candidate): array => ['@type' => self::placeType($candidate->name()), 'name' => $candidate->name()]
             )->values()->all(),
         ]);
+    }
+
+    /**
+     * The service area a city page is about, from its location hero.
+     */
+    private static function cityPlace(ManagedPage $page): ?Area
+    {
+        if ($page->template !== PageTemplate::City) {
+            return null;
+        }
+
+        $hero = collect($page->blocks)->first(fn ($block): bool => $block->type === 'hero/location');
+        $name = is_string($hero?->props['place'] ?? null) ? trim($hero->props['place']) : '';
+
+        if ($name === '') {
+            return null;
+        }
+
+        return app(AreaRepository::class)->all()->first(
+            fn (Area $area): bool => strcasecmp($area->name(), $name) === 0
+                || strcasecmp($area->label(), $name) === 0,
+        );
     }
 
     /**

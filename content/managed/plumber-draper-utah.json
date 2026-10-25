@@ -1,0 +1,181 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-draper-utah",
+        "title": "Draper",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Draper, Utah",
+        "description": "Copper Eagle Plumbing serves Draper, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Draper's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-5.jpg",
+            "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1199
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in Draper, Utah",
+                "place": "Draper",
+                "body": "Copper Eagle Plumbing helps Draper homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Draper homes",
+                "body": "Half of the homes in Draper were built in 2003 or later, and about 5% before 1980, according to the U.S. Census Bureau. In newer homes like these, the first big plumbing jobs are often water heaters, fixtures and water softeners as the original equipment ages. A water heater usually lasts 10 to 15 years.\n\nDraper has two drinking water providers. Draper City serves areas generally west of I-15 and south of 14600 South, using groundwater and water bought from the Jordan Valley Water Conservancy District. WaterPro serves areas generally east of I-15 and north of 14600 South. Hardness averaged 182 mg/L, according to the Jordan Valley Water Conservancy District's 2025 water quality report (a system-wide figure; Draper City's own report lists none). The U.S. Geological Survey classes that as very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-5.jpg",
+                    "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1199
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Draper?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Draper at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Two providers: Draper City, west of I-15 and south of 14600 South, and WaterPro, east of I-15 and north of 14600 South. Hardness: 182 mg/L on average from the district that supplies Draper City (2025), very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 2003. Built before 1980: about 5% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods",
+                        "body": "Including SunCrest, South Mountain, Traverse Ridge, Corner Canyon, Draper Town Center and Crescent View.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Draper City Building Division. Apply through the city's online portal.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Draper plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Draper?",
+                        "answer": "Yes. Draper is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Sandy, South Jordan, Midvale and Utah County."
+                    },
+                    {
+                        "question": "How hard is the water in Draper?",
+                        "answer": "Hardness averaged 182 mg/L, according to the Jordan Valley Water Conservancy District's 2025 water quality report (a system-wide figure; Draper City's own report lists none). That's very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Draper?",
+                        "answer": "The Draper City Building Division. Apply through the city's online portal."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Draper?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Draper."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Draper City 2025 water quality report",
+                        "href": "https://www.draperutah.gov/media/gliphghb/draper-city-ccr-publication-2025.pdf"
+                    },
+                    {
+                        "title": "Draper City General Plan (water providers and neighborhoods)",
+                        "href": "https://www.draperutah.gov/media/cvgk0fmy/draper-city-general-plan-v2025.pdf"
+                    },
+                    {
+                        "title": "Jordan Valley Water Conservancy District 2025 water quality report",
+                        "href": "https://jvwcd.gov/file/1532dbfe-7819-4096-bef6-a496c1192ab3/JVW---Consumer-Confidence-Report-2025.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Draper (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4920120"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Draper (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4920120"
+                    },
+                    {
+                        "title": "Draper City building permits",
+                        "href": "https://www.draperutah.gov/business-development/building-and-renovating/building-permits/"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Sandy",
+                        "href": "/plumber-sandy-utah/"
+                    },
+                    {
+                        "name": "South Jordan",
+                        "href": "/plumber-south-jordan-utah/"
+                    },
+                    {
+                        "name": "Midvale",
+                        "href": "/plumber-midvale-utah/"
+                    },
+                    {
+                        "name": "Utah County",
+                        "href": "/plumber-utah-county/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Draper? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

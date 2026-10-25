@@ -1,0 +1,173 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-orem-utah",
+        "title": "Orem",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Orem, Utah",
+        "description": "Copper Eagle Plumbing serves Orem, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Orem's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-6.jpg",
+            "alt": "Matthew \"Hibs\" in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "UTAH COUNTY",
+                "heading": "Plumber in Orem, Utah",
+                "place": "Orem",
+                "body": "Copper Eagle Plumbing helps Orem homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Orem homes",
+                "body": "Half of the homes in Orem were built in 1989 or later, and about 37% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nAbout 60% of Orem's water is surface water from the Provo River and the Deer Creek and Jordanelle reservoirs, treated at the Don A. Christiansen Regional Water Treatment Plant. The other 40% comes from nine deep wells and two mountain springs in Provo Canyon. Hardness ranges from 120 to 428 mg/L (7 to 25 grains per gallon) across the city's system, according to Orem's 2025 water quality report. The U.S. Geological Survey classes that as moderately hard to very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nOrem's service line inventory found no lead service lines, though 1,830 lines of unknown material still need to be identified.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-6.jpg",
+                    "alt": "Matthew \"Hibs\" in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Orem?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Orem at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "About 60% treated river and reservoir water, 40% from deep wells and Provo Canyon springs. Hardness: 120 to 428 mg/L across the system (Orem, 2025), moderately hard to very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1989. Built before 1980: about 37% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods",
+                        "body": "Including Canyon View, Sharon Park, Northridge, Windsor, Geneva Heights and Cherry Hill.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the City of Orem Building Safety Division. Plumbing work and water heater installation or replacement need a permit; replacement water heater permits are normally issued within one business day.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Orem plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Orem?",
+                        "answer": "Yes. Orem is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Provo, Utah County and Draper."
+                    },
+                    {
+                        "question": "How hard is the water in Orem?",
+                        "answer": "Hardness ranges from 120 to 428 mg/L (7 to 25 grains per gallon) across the city's system, according to Orem's 2025 water quality report. That's moderately hard to very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Orem?",
+                        "answer": "The City of Orem Building Safety Division. Plumbing work and water heater installation or replacement need a permit; replacement water heater permits are normally issued within one business day."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Orem?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Orem."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Orem 2025 water quality report",
+                        "href": "https://orem.gov/wp-content/uploads/2026/04/CCR-2026-brochure-version-final.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Orem (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=160XX00US4957300"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Orem (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=160XX00US4957300"
+                    },
+                    {
+                        "title": "Orem neighborhoods",
+                        "href": "https://orem.gov/neighborhoods/"
+                    },
+                    {
+                        "title": "Orem Building Safety",
+                        "href": "https://orem.gov/buildingsafety/"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Provo",
+                        "href": "/plumber-provo-utah/"
+                    },
+                    {
+                        "name": "Utah County",
+                        "href": "/plumber-utah-county/"
+                    },
+                    {
+                        "name": "Draper",
+                        "href": "/plumber-draper-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Orem? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

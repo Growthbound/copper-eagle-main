@@ -1,5 +1,14 @@
 {
     "name": "West Valley",
     "region": "Utah",
-    "order": 6
+    "order": 6,
+    "summary": "Granger-Hunter Improvement District serves most of the city, with the Kearns, Magna and Taylorsville-Bennion districts serving other parts.",
+    "landmarks": [
+        "Granger",
+        "Hunter",
+        "Redwood",
+        "Chesterfield",
+        "Fairbourne Station",
+        "Valley Fair"
+    ]
 }

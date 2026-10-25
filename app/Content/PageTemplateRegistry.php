@@ -128,6 +128,18 @@ final class PageTemplateRegistry
                 'leave-a-review' => 'cta/panel',
                 'final-response' => 'cta/inline-band',
             ]),
+            // One city or county served. Every local fact is sourced, and the
+            // sources section lists where each one came from.
+            PageTemplate::City => $this->fixed($template, [
+                'hero' => 'hero/location',
+                'introduction' => 'content/split',
+                'services' => 'service-cards/grid',
+                'local-plumbing' => 'content/feature-cards',
+                'faq' => 'faq/accordion',
+                'sources' => 'content/related-content',
+                'nearby-areas' => 'service-areas/list',
+                'final-response' => 'cta/inline-band',
+            ]),
             PageTemplate::Contact => $this->fixed($template, [
                 'hero' => 'hero/interior',
                 'message' => 'cta/quote-form-split',

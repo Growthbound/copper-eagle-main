@@ -1,5 +1,14 @@
 {
     "name": "Park City",
     "region": "Utah",
-    "order": 7
+    "order": 7,
+    "summary": "Eight sources, including deep wells, a spring, two tunnels and Rockport Reservoir.",
+    "landmarks": [
+        "Old Town",
+        "Park Meadows",
+        "Prospector",
+        "Thaynes",
+        "Upper Deer Valley",
+        "Lower Deer Valley"
+    ]
 }

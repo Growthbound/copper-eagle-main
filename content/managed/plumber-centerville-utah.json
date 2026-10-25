@@ -1,0 +1,173 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-centerville-utah",
+        "title": "Centerville",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Centerville, Utah",
+        "description": "Copper Eagle Plumbing serves Centerville, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Centerville's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-4.jpg",
+            "alt": "Holden in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "DAVIS COUNTY",
+                "heading": "Plumber in Centerville, Utah",
+                "place": "Centerville",
+                "body": "Copper Eagle Plumbing helps Centerville homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Centerville homes",
+                "body": "Half of the homes in Centerville were built in 1987 or later, and about 38% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nAbout two-thirds of Centerville's drinking water comes from seven deep city wells. The rest is treated water bought from the Weber Basin Water Conservancy District, which starts mostly as Weber River surface water.\n\nOutdoor watering in Centerville uses separate secondary water from Weber Basin or the Deuel Creek irrigation system, each with its own watering days.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-4.jpg",
+                    "alt": "Holden in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Centerville?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Centerville at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Seven city wells supply about two-thirds; the Weber Basin Water Conservancy District supplies the rest.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1987. Built before 1980: about 38% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods",
+                        "body": "Including Southeast Centerville, Southwest Centerville, Northeast Centerville, Northwest Centerville and West Centerville.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from Centerville City's Building and Renovating Division. The city's plumbing permit covers new or replacement water heaters, including tankless units, and new plumbing.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Centerville plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Centerville?",
+                        "answer": "Yes. Centerville is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Bountiful, Kaysville and Salt Lake City."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Centerville?",
+                        "answer": "Centerville City's Building and Renovating Division. The city's plumbing permit covers new or replacement water heaters, including tankless units, and new plumbing."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Centerville?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Centerville."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Centerville City 2025 water quality report",
+                        "href": "https://media-002-us.cdn.govstack.com/centervilleutah-us/media/1khbmrjb/centerville-city-ccr-2025.pdf"
+                    },
+                    {
+                        "title": "Weber Basin Water Conservancy District 2025 water quality report",
+                        "href": "https://weberbasin.gov/Docs/CCR2025.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Centerville (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=160XX00US4911980"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Centerville (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=160XX00US4911980"
+                    },
+                    {
+                        "title": "Centerville General Plan (neighborhoods)",
+                        "href": "https://media-002-us.cdn.govstack.com/centervilleutah-us/media/4mwlv3rp/general-plan.pdf"
+                    },
+                    {
+                        "title": "Centerville City building and renovating",
+                        "href": "https://www.centervilleutah.gov/living-here/building-and-renovating/"
+                    },
+                    {
+                        "title": "Centerville City water",
+                        "href": "https://www.centervilleutah.gov/your-government/departments/public-works/water/"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Bountiful",
+                        "href": "/plumber-bountiful-utah/"
+                    },
+                    {
+                        "name": "Kaysville",
+                        "href": "/plumber-kaysville-utah/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Centerville? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

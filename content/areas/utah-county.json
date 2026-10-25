@@ -1,5 +1,14 @@
 {
     "name": "Utah County",
     "region": "Utah",
-    "order": 3
+    "order": 3,
+    "summary": "Each city runs its own system; much of it is Central Utah Water Conservancy District water.",
+    "landmarks": [
+        "Provo",
+        "Orem",
+        "Lehi",
+        "American Fork",
+        "Spanish Fork",
+        "Saratoga Springs"
+    ]
 }

@@ -1,5 +1,14 @@
 {
     "name": "Summit County",
     "region": "Utah",
-    "order": 8
+    "order": 8,
+    "summary": "Several systems, including Park City, Summit Water and Mountain Regional Water.",
+    "landmarks": [
+        "Park City",
+        "Coalville",
+        "Kamas",
+        "Oakley",
+        "Francis",
+        "Henefer"
+    ]
 }

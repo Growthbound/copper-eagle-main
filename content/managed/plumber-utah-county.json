@@ -1,0 +1,181 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-utah-county",
+        "title": "Utah County",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Utah County",
+        "description": "Copper Eagle Plumbing serves Utah County: drains, water heaters, softeners, gas lines and remodels. Learn about Utah County's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-3.jpg",
+            "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "UTAH",
+                "heading": "Plumber in Utah County",
+                "place": "Utah County",
+                "body": "Copper Eagle Plumbing helps Utah County homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Utah County homes",
+                "body": "Half of the homes in Utah County were built in 2001 or later, and about 25% before 1980, according to the U.S. Census Bureau. In newer homes like these, the first big plumbing jobs are often water heaters, fixtures and water softeners as the original equipment ages. A water heater usually lasts 10 to 15 years.\n\nEach city in Utah County runs its own water system. Much of north Utah County's water is Provo River water from the Central Utah Water Conservancy District, treated at the Don A. Christiansen plant in Orem or pumped from deep district wells. Hardness averaged 133 mg/L (7.75 grains per gallon) in treated water from the district's Orem plant, according to the Central Utah Water Conservancy District's 2025 water quality report (wholesale water; each city's tap water can differ). The U.S. Geological Survey classes that as hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nCentral Utah Project water reaches north Utah County through the Alpine Aqueduct and the treatment plant in north Orem.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-3.jpg",
+                    "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Utah County?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Utah County at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Each city runs its own system; much of it is Central Utah Water Conservancy District water. Hardness: 133 mg/L on average at the district's Orem plant (2025), hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 2001. Built before 1980: about 25% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Cities and towns",
+                        "body": "Including Provo, Orem, Lehi, American Fork, Spanish Fork and Saratoga Springs.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from your city's building department, or Utah County Community Development for unincorporated areas.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Utah County plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Utah County?",
+                        "answer": "Yes. Utah County is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Provo, Orem, Draper and Wasatch County."
+                    },
+                    {
+                        "question": "How hard is the water in Utah County?",
+                        "answer": "Hardness averaged 133 mg/L (7.75 grains per gallon) in treated water from the district's Orem plant, according to the Central Utah Water Conservancy District's 2025 water quality report (wholesale water; each city's tap water can differ). That's hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Utah County?",
+                        "answer": "Your city's building department, or Utah County Community Development for unincorporated areas."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Utah County?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Utah County."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Central Utah Water Conservancy District publications (2025 water quality report)",
+                        "href": "https://cuwcd.gov/resources/publications"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Utah County (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=050XX00US49049"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Utah County (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=050XX00US49049"
+                    },
+                    {
+                        "title": "Mountainland Association of Governments: Utah County cities",
+                        "href": "https://magutah.gov/mountainland-aog-cities"
+                    },
+                    {
+                        "title": "Utah County building (unincorporated areas)",
+                        "href": "https://codev.utahcounty.gov/building"
+                    },
+                    {
+                        "title": "U.S. Department of the Interior: Central Utah Project municipal system",
+                        "href": "https://www.doi.gov/cupcao/municipal-and-industrial-system"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Provo",
+                        "href": "/plumber-provo-utah/"
+                    },
+                    {
+                        "name": "Orem",
+                        "href": "/plumber-orem-utah/"
+                    },
+                    {
+                        "name": "Draper",
+                        "href": "/plumber-draper-utah/"
+                    },
+                    {
+                        "name": "Wasatch County",
+                        "href": "/plumber-wasatch-county/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Utah County? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}
