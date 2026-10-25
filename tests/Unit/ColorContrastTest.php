@@ -10,9 +10,41 @@ class ColorContrastTest extends TestCase
     {
         $tokens = $this->themeTokens();
 
-        $this->assertGreaterThanOrEqual(4.5, $this->contrast($tokens['orange'], $tokens['ink']));
+        // White labels sit on copper buttons.
+        $this->assertGreaterThanOrEqual(4.5, $this->contrast($tokens['orange'], $tokens['white']));
         $this->assertGreaterThanOrEqual(4.5, $this->contrast($tokens['orange-ink'], $tokens['white']));
         $this->assertGreaterThanOrEqual(4.5, $this->contrast($tokens['orange-light'], $tokens['teal']));
+    }
+
+    /**
+     * Every text and background pair the design spec allows.
+     */
+    public function test_brand_surface_pairs_meet_wcag_aa_for_normal_text(): void
+    {
+        $tokens = $this->themeTokens();
+
+        foreach ([
+            ['white', 'teal'],
+            ['white', 'copper-dark'],
+            ['ink', 'white'],
+            ['ink', 'mist'],
+            ['ink', 'sky'],
+            ['ink', 'stone'],
+            ['teal', 'sky'],
+            ['teal', 'mist'],
+            ['muted', 'white'],
+            ['muted', 'mist'],
+            ['orange-ink', 'stone'],
+        ] as [$text, $surface]) {
+            $this->assertGreaterThanOrEqual(
+                4.5,
+                $this->contrast($tokens[$text], $tokens[$surface]),
+                "{$text} text on {$surface} fails WCAG AA.",
+            );
+        }
+
+        // The light end of the button gradient still clears the large-text bar.
+        $this->assertGreaterThanOrEqual(3.0, $this->contrast($tokens['copper-light'], $tokens['white']));
     }
 
     /** @return array<string, string> */

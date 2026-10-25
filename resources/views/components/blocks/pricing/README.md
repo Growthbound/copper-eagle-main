@@ -60,8 +60,12 @@ exception when its contract is incomplete.
 
 ## Factors contract
 
-`factors` accepts `id`, optional `eyebrow`, `heading`, and `factors`. Each
-factor requires a non-empty `label` and `description`:
+`factors` accepts `id`, optional `eyebrow`, `heading`, optional `body` (a short
+white introduction), optional governed `image` (a decorative photo behind the
+deep-blue band, under an 80% overlay; plain deep blue without it), and
+`factors`. It renders as the "What to expect" band: copper H2, one column per
+factor (up to four per row) under a small copper diamond. Each factor requires
+a non-empty `label` and `description`:
 
 ```php
 ['label' => 'System size', 'description' => 'Explain the observed input.']

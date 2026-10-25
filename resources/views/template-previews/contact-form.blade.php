@@ -11,6 +11,7 @@
         heading="Request a free service quote"
         body="Tell us what your home needs. We’ll follow up with clear next steps and a time that works."
         submit-label="Get a quote"
+        :show-message="true"
         :image="[
             'src' => 'images/home/technician-maintenance.jpg',
             'alt' => 'Technician servicing home equipment',

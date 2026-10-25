@@ -15,8 +15,9 @@
     $validImage = $data->media($image);
 @endphp
 
+<x-site-header :cta="$primary" />
+
 <section id="{{ $id }}" class="service-hero edge-panel dotted-panel" aria-labelledby="{{ $id }}-title">
-    <x-site-header :cta="$primary" />
     <div class="service-hero-inner {{ $validImage ? '' : 'is-without-media' }}">
         <div>
             @if (filled($eyebrow))

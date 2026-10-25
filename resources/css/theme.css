@@ -1,13 +1,33 @@
 @theme {
-    --color-teal: #2b1d16;
-    --color-orange: #d4874a;
-    --color-orange-ink: #8a4a1f;
-    --color-orange-light: #f2c59a;
-    --color-sky: #f5e6d6;
-    --color-mist: #f8f5f1;
-    --color-ink: #0d0d0d;
-    --color-muted: #6f6f6f;
+    /* Editable in Admin -> Theme. Values match docs/brand/design-system.md. */
+    --color-teal: #284758;
+    --color-orange: #a56542;
+    --color-orange-ink: #9a5a38;
+    --color-orange-light: #e8b591;
+    --color-mist: #edf2f9;
+    --color-ink: #42474a;
+    --color-muted: #5c6367;
+
+    /* Fixed brand values. */
+    --color-sky: #a3c3d2;
+    --color-stone: #f2eeea;
+    --color-copper-light: #c4845a;
+    --color-copper-dark: #864629;
     --color-white: #ffffff;
+
+    /* One family for everything: the free match for the brand's Arboria. */
+    --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+    /*
+     * Shape. The brand is square-cornered; only photos, carousel arrows and
+     * social icons are round, through --radius-pill.
+     */
+    --radius-control: 0;
+    --radius-card: 0;
+    --radius-panel: 0;
+    --radius-feature: 0;
+    --radius-pill: 999px;
 }
 
 :root {
@@ -18,10 +38,18 @@
     --theme-text: var(--color-ink);
     --theme-muted: var(--color-muted);
     --theme-on-primary: var(--color-white);
-    --theme-on-accent: var(--color-ink);
+    --theme-on-accent: var(--color-white);
     --theme-accent-on-page: var(--color-orange-ink);
     --theme-accent-on-primary: var(--color-orange-light);
     --theme-cta-panel: var(--color-sky);
+    --theme-sky: var(--color-sky);
+    --theme-stone: var(--color-stone);
+    --theme-copper-band: var(--color-copper-dark);
+    --theme-accent-gradient: linear-gradient(40deg, var(--color-copper-light), var(--color-copper-dark));
+    --theme-accent-gradient-hover: linear-gradient(40deg, var(--color-copper-dark), var(--color-copper-dark));
+    --theme-heading-weight: 400;
+    --theme-emphasis-weight: 600;
+    --theme-label-tracking: 0.16em;
     --theme-border: #e5e7eb;
     --theme-danger: #b42318;
 

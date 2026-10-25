@@ -77,6 +77,7 @@ class SiteDetailsTest extends TestCase
         $shipped = config('site.name');
         config()->set('site.name', 'North Star Plumbing');
         config()->set('site.logo_media_id', null);
+        config()->set('theme.logos', []);
 
         $this->get('/')
             ->assertSee('aria-label="North Star Plumbing home"', false)

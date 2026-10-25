@@ -165,9 +165,9 @@ class ServiceRecordsTest extends TestCase
 
         $this->get('/')
             ->assertOk()
-            ->assertSee('Service areas')
+            ->assertSee('aria-label="Service areas"', false)
             ->assertSee('href="'.url('/areas/fixture-area').'"', false)
-            ->assertSee('Fixture Area, Example State')
+            ->assertSee('Fixture Area')
             ->assertSee('href="'.url('/areas/fixture-second-area').'"', false);
     }
 

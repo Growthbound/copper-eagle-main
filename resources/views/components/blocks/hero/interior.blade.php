@@ -1,3 +1,9 @@
+{{--
+    Interior page hero: deep blue band (optionally over a darkened photo),
+    centered uppercase eyebrow, centered white H1, and a white chevron rising
+    into the next section. The photo is a decorative backdrop, so it renders
+    with empty alt text; the H1 carries the meaning.
+--}}
 @props([
     'id' => 'interior-hero',
     'eyebrow' => null,
@@ -5,19 +11,37 @@
     'body' => null,
     'primaryAction' => null,
     'secondaryAction' => null,
+    'image' => null,
 ])
 
 @php
     $data = app(\App\Content\BlockData::class);
     $primary = $data->link($primaryAction);
     $secondary = $data->link($secondaryAction);
+    $backdrop = $data->media($image);
 @endphp
 
-<section id="{{ $id }}" class="interior-hero edge-panel" aria-labelledby="{{ $id }}-title">
-    <x-site-header :cta="$primary" />
+<x-site-header :cta="$primary" />
+
+<section
+    id="{{ $id }}"
+    @class(['interior-hero', 'edge-panel', 'has-backdrop' => $backdrop !== null])
+    aria-labelledby="{{ $id }}-title"
+>
+    @if ($backdrop)
+        <img
+            class="interior-hero-backdrop"
+            src="{{ $data->assetUrl($backdrop['src']) }}"
+            alt=""
+            width="{{ $backdrop['width'] }}"
+            height="{{ $backdrop['height'] }}"
+            fetchpriority="high"
+        >
+    @endif
+
     <div class="interior-hero-inner">
         @if (filled($eyebrow))
-            <p class="eyebrow text-accent">{{ $eyebrow }}</p>
+            <p class="eyebrow">{{ $eyebrow }}</p>
         @endif
         <h1 id="{{ $id }}-title">{{ $heading }}</h1>
         @if (filled($body))
@@ -26,7 +50,7 @@
         @if ($primary || $secondary)
             <div class="hero-variant-actions">
                 @if ($primary)
-                    <a class="button button-teal" href="{{ $primary['href'] }}">{{ $primary['label'] }} <span aria-hidden="true">→</span></a>
+                    <a class="button button-orange" href="{{ $primary['href'] }}">{{ $primary['label'] }}</a>
                 @endif
                 @if ($secondary)
                     <a href="{{ $secondary['href'] }}">{{ $secondary['label'] }}</a>

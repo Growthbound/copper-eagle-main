@@ -11,12 +11,13 @@ Customer quotes and ratings.
 | `items` | array | no | Explicit reviews. When omitted, permissioned records are loaded from `content/testimonials`. |
 | `service` | string | no | Limits repository records to a service slug |
 | `area` | string | no | Limits repository records to an area slug |
+| `link` | array | no | `quotes` only. `label` and safe `href`; an outline button under the quotes, such as "Read more testimonials" |
 
 ## Variants
 
 | Variant | Layout |
 |---|---|
-| `quotes` | Card grid. Defaults to the records in `content/testimonials`. |
+| `quotes` | Light-blue band with the diamond lattice: centered H2, centered quotes with their names, optional outline `link`. Defaults to the records in `content/testimonials`. Explicit `items` take `quote`, `author`, and optional `location` or `role` and `rating`. Text on the band is ink or deep blue, never white. |
 | `carousel` | Livewire carousel supporting quote and video-poster cards, with three primary cards and edge peeks on desktop, one active card on mobile, and accessible dot controls. |
 
 ## Quote carousel item shape

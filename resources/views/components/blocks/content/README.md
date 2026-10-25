@@ -27,12 +27,13 @@ more specific block fits.
 | `table-of-contents` | Current-page anchor list; non-anchor URLs are rejected. |
 | `sources-reviewer` | Dated sources and optional accountable reviewer. |
 | `related-content` | Safe internal or external links to relevant next reading. |
-| `split` | Image stack beside copy, with an optional checklist. |
+| `split` | Square photo or circle portrait beside copy, or a statement heading beside the detail copy when there is no image. See below. |
 | `story-checklist` | Overlapping media collage beside editorial copy and a two-column proof checklist. |
 | `capability-strip` | A single row of short capability names. |
 | `commitment-collage` | Dark panel: copy beside a rotated photo collage. |
 | `resource-cards` | Image cards with a collapsible tip. Defaults to `content/resources`. |
 | `benefit-carousel` | Rotating benefit panel. Reads `content/benefits`. |
+| `feature-cards` | Two to four round photo cards with H3 titles, beside a large H2 (`side`) or under a centred one (`stacked`). |
 
 ## Notes
 
@@ -85,3 +86,54 @@ props:
 
 Never manufacture sources, review dates, or comparison values to fill a card.
 See the matching `/_templates/*` previews for fictional payload examples.
+
+### `split`
+
+The two-column workhorse. With an `image`, the photo sits beside the copy
+(eyebrow, H2, optional lead, body, checklist, copper button). With no image,
+the H2 and button form a large right-aligned statement on one side and the
+eyebrow (shown as a copper subheading), lead, body, and checklist sit on the
+other. Every new prop is optional and falls back to the original look.
+
+| Prop | Type | Required | Notes |
+|---|---|---|---|
+| `id` | string | no | Anchor; the H2 is `{id}-title` (`split-title` without one) |
+| `eyebrow` | string | no | Uppercase label above the H2; a copper subheading in the no-image layout |
+| `heading` | string | yes | The H2 |
+| `emphasis` | string | no | An exact phrase from `heading`, rendered in weight 600. Anything else is rejected |
+| `lead` | string | no | A bold opening sentence before the body |
+| `body` | string | yes | One paragraph |
+| `checklist` | array | no | Short strings with copper checks |
+| `cta` | array | no | `label` and safe `href`; the copper button |
+| `image` | array | no | Governed media. Cropped square |
+| `imageShape` | string | no | `rectangle` (default) or `circle` (the portrait) |
+| `imageSide` | string | no | `start` (default, photo first) or `end` (copy first) |
+| `inset` | array | no | Governed media. Over a circle it is the badge on the lower-left edge (shown whole, transparent PNGs welcome); beside a square it overlaps the lower-right corner |
+| `stamp` | string | no | Short round copper label over the photo |
+| `background` | string | no | `white` (default), `mist`, or `stone`: the full-width band behind the section |
+
+Stacks to one column below 900px: photo first for `imageSide="start"`, copy
+first for `end`.
+
+### `feature-cards`
+
+Round photo cards (`--radius-pill`), each with an H3 title and a short body.
+Used by the `home` (`assurances`), `service-detail` (`offerings`), and `about`
+(`values`) page templates. Preview: `/_templates/feature-cards`.
+
+| Prop | Type | Required | Notes |
+|---|---|---|---|
+| `id` | string | no | Anchor. Defaults to `features`; the H2 is `{id}-title` |
+| `eyebrow` | string | no | Short uppercase kicker above the H2 |
+| `heading` | string | yes | The H2 |
+| `emphasis` | string | no | An exact phrase from `heading`, rendered in the copper accent. Anything else is rejected |
+| `body` | string | no | One short paragraph under the H2 |
+| `items` | array | yes | Two to four `{title, body, image}` records; all three are required and `image` is governed media (`media_id`, or `src`, `alt`, `width`, `height`) |
+| `layout` | string | no | `side` (default): large H2 on the left, cards to the right. `stacked`: centred deep-blue H2 above, copper card titles |
+| `background` | string | no | `white` (default) or `stone` |
+| `watermark` | boolean | no | Defaults to `true`. The eagle watermark behind a `side` heading; ignored for `stacked` |
+
+Photos of any aspect ratio are cropped to a circle. A card missing its title,
+body, or a valid image is left out, and with fewer than two cards left the
+section renders nothing. Cards sit in one row on desktop; four cards become two
+rows of two below 900px, and every layout is a single column on phones.

@@ -57,6 +57,9 @@ final class BlockRegistry
         'content/story-checklist' => 'story-checklist',
         'content/direct-answer' => 'direct-answer',
         'pricing/factors' => 'pricing-factors',
+        'hero/photo' => 'hero',
+        'service-cards/icon-strip' => 'service-strip',
+        'content/feature-cards' => 'features',
     ];
 
     /** @var array<string, BlockDefinition>|null */
@@ -170,6 +173,11 @@ final class BlockRegistry
             }
         }
 
+        // hero/photo renders the service icon strip under the header.
+        if ($type === 'hero/photo' && ($props['serviceStrip'] ?? true) !== false) {
+            $ids[] = 'service-strip';
+        }
+
         return $ids;
     }
 
@@ -191,6 +199,9 @@ final class BlockRegistry
             'cta/quote-form-split' => ['image'],
             'hero/split' => ['image'],
             'hero/service' => ['image'],
+            'hero/photo' => ['image'],
+            'hero/interior' => ['image'],
+            'pricing/factors' => ['image'],
             'before-after/slider' => ['before', 'after'],
             'media/video' => ['poster'],
             'evidence/case-study' => ['image'],
@@ -225,6 +236,7 @@ final class BlockRegistry
             'pricing/monthly' => ['plans' => ['media']],
             'pricing/toggle' => ['plans' => ['media']],
             'pricing/yearly' => ['plans' => ['media']],
+            'content/feature-cards' => ['items' => ['image']],
         ][$type] ?? [] as $collection => $fields) {
             if (! is_array($props[$collection] ?? null)) {
                 continue;
@@ -397,6 +409,8 @@ final class BlockRegistry
             'content/sources-reviewer' => ['sources'],
             'evidence/case-study' => ['facts'],
             'cta/visit-expectations' => ['items'],
+            'content/feature-cards' => ['items'],
+            'service-cards/icon-strip' => ['services'],
         ][$type] ?? [] as $field) {
             if (array_key_exists($field, $props)
                 && (! is_array($props[$field]) || ! array_is_list($props[$field]))) {
@@ -868,7 +882,182 @@ final class BlockRegistry
             }
         }
 
+        $this->validatePhotoHeroIconStripAndFeatureCards($type, $props, $errors);
+        $this->validateCopperEagleSectionOptions($type, $props, $errors);
+
         return $errors;
+    }
+
+    /**
+     * The optional presentation props on the restyled shared blocks
+     * (hero/interior, content/split, testimonials/quotes, service-areas/list,
+     * cta/inline-band, cta/panel, pricing/factors). Enumerated values are
+     * enforced by their field schemas; this covers what a schema cannot.
+     *
+     * @param  array<string, mixed>  $props
+     * @param  array<string, array<int, string>>  $errors
+     */
+    private function validateCopperEagleSectionOptions(
+        string $type,
+        array $props,
+        array &$errors,
+    ): void {
+        // <x-content.emphasized> renders plain text for anything else, so an
+        // emphasis that is not in the heading would silently disappear.
+        if (in_array($type, ['content/split', 'cta/inline-band'], true)
+            && $this->filledString($props['emphasis'] ?? null)
+            && is_string($props['heading'] ?? null)
+            && ! str_contains($props['heading'], trim($props['emphasis']))) {
+            $errors['/props/emphasis'][] = 'The emphasis must be an exact phrase from the heading.';
+        }
+
+        foreach ([
+            'content/split' => 'cta',
+            'testimonials/quotes' => 'link',
+        ] as $blockType => $field) {
+            if ($type === $blockType
+                && array_key_exists($field, $props)
+                && $props[$field] !== null
+                && $this->data->link($props[$field]) === null) {
+                $errors["/props/{$field}"][] = 'The optional action needs a label and safe link.';
+            }
+        }
+
+        if (in_array($type, ['hero/interior', 'pricing/factors'], true)
+            && array_key_exists('image', $props)
+            && $props['image'] !== null
+            && $this->data->media($props['image']) === null) {
+            $errors['/props/image'][] = 'The optional image needs valid media metadata.';
+        }
+    }
+
+    /**
+     * Schemas for the optional presentation props of the restyled shared
+     * blocks, passed to define() as overrides. Every one is optional and
+     * defaults to the block's original look.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private function copperEagleSectionFields(string $type): array
+    {
+        $link = fn (string $description): array => [
+            ...$this->field('array', false, $description),
+            'shape' => 'object',
+            'properties' => [
+                'label' => $this->scalarProperty('string', true),
+                'href' => $this->scalarProperty('string', true),
+            ],
+        ];
+        $image = fn (string $description): array => [
+            ...$this->field('array', false, $description),
+            'shape' => 'object',
+            'properties' => $this->mediaProperties(),
+        ];
+
+        return match ($type) {
+            'hero/interior' => [
+                'image' => $image('Optional photo behind the deep-blue band, darkened and decorative. Without it the band is plain deep blue.'),
+            ],
+            'content/split' => [
+                'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered in the heavier weight.'),
+                'lead' => $this->field('string', false, 'Optional bold lead sentence before the body.'),
+                'cta' => $link('Optional copper button after the copy.'),
+                'imageShape' => $this->field('string', false, 'Photo shape. Defaults to rectangle (square crop); circle is the portrait, with the inset as a badge over its lower-left edge.', ['rectangle', 'circle']),
+                'imageSide' => $this->field('string', false, 'Which column holds the photo. Defaults to start.', ['start', 'end']),
+                'background' => $this->field('string', false, 'Full-width band behind the section. Defaults to white.', ['white', 'mist', 'stone']),
+            ],
+            'testimonials/quotes' => [
+                'link' => $link('Optional outline button under the quotes, such as a link to every testimonial.'),
+            ],
+            'service-areas/list' => [
+                'note' => $this->field('string', false, 'Optional small uppercase note under the area names.'),
+            ],
+            'cta/inline-band' => [
+                'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered underlined.'),
+                'background' => $this->field('string', false, 'Band behind the prompt. Defaults to white.', ['white', 'mist']),
+                'buttonStyle' => $this->field('string', false, 'Primary button look. Defaults to copper.', ['copper', 'sky']),
+            ],
+            'cta/panel' => [
+                'body' => $this->field('string', false, 'Optional short paragraph under the heading.'),
+                'tone' => $this->field('string', false, 'Deep-blue band (primary, the default) or the solid copper guarantee band. The copper band ignores image.', ['primary', 'copper']),
+                'image' => $image('Optional photo behind the deep-blue band, darkened and decorative.'),
+            ],
+            'pricing/factors' => [
+                'body' => $this->field('string', false, 'Optional short introduction under the heading.'),
+                'image' => $image('Optional photo behind the deep-blue band, darkened and decorative.'),
+            ],
+            default => [],
+        };
+    }
+
+    /**
+     * hero/photo, service-cards/icon-strip, and content/feature-cards.
+     *
+     * @param  array<string, mixed>  $props
+     * @param  array<string, array<int, string>>  $errors
+     */
+    private function validatePhotoHeroIconStripAndFeatureCards(
+        string $type,
+        array $props,
+        array &$errors,
+    ): void {
+        // <x-content.emphasized> renders plain text for anything else, so an
+        // emphasis that is not in the heading would silently disappear.
+        if (in_array($type, ['hero/photo', 'content/feature-cards'], true)
+            && $this->filledString($props['emphasis'] ?? null)
+            && is_string($props['heading'] ?? null)
+            && ! str_contains($props['heading'], trim($props['emphasis']))) {
+            $errors['/props/emphasis'][] = 'The emphasis must be an exact phrase from the heading.';
+        }
+
+        if ($type === 'hero/photo') {
+            if ($this->data->link($props['primaryAction'] ?? null) === null) {
+                $errors['/props/primaryAction'][] = 'The action needs a label and safe link.';
+            }
+
+            if (array_key_exists('image', $props)
+                && $props['image'] !== null
+                && $this->data->media($props['image']) === null) {
+                $errors['/props/image'][] = 'The hero image needs a safe source, alt text, width, and height.';
+            }
+        }
+
+        if ($type === 'content/feature-cards' && array_key_exists('items', $props)) {
+            $count = count($this->listItems($props['items']));
+
+            if (is_array($props['items']) && array_is_list($props['items'])
+                && ($count < 2 || $count > 4)) {
+                $errors['/props/items'][] = 'Feature cards need two to four items.';
+            }
+
+            $this->validateRecords(
+                $props['items'],
+                '/props/items',
+                ['title', 'body'],
+                $errors,
+                function (array $item, string $pointer, array &$errors): void {
+                    if (array_key_exists('image', $item)
+                        && $item['image'] !== null
+                        && $this->data->media($item['image']) === null) {
+                        $errors["{$pointer}/image"][] = 'Each card image needs a safe source, alt text, width, and height.';
+                    }
+                },
+            );
+        }
+
+        if ($type === 'service-cards/icon-strip'
+            && is_array($props['services'] ?? null)
+            && array_is_list($props['services'])) {
+            $services = app(ServiceRepository::class);
+
+            foreach ($props['services'] as $index => $slug) {
+                $service = is_string($slug) ? $services->find(trim($slug)) : null;
+
+                if (! $service instanceof Service || $service->icon() === null) {
+                    $errors["/props/services/{$index}"][] = 'Each service must be the slug of a service record with a valid icon.';
+                }
+            }
+        }
     }
 
     private function governedArea(mixed $candidate, bool $checkHref = true): bool
@@ -1100,10 +1289,10 @@ final class BlockRegistry
             $this->define('content/capability-strip', 'Summarize core capabilities in a compact row.', ['items']),
             $this->define('content/commitment-collage', 'Pair company commitments with approved imagery.', ['heading']),
             $this->define('content/resource-cards', 'Link readers to selected educational resources.', ['heading', 'items']),
-            $this->define('content/split', 'Pair explanatory copy with one approved image.', ['heading', 'body']),
+            $this->define('content/split', 'Pair explanatory copy with one approved image.', ['heading', 'body'], $this->copperEagleSectionFields('content/split')),
             $this->define('content/story-checklist', 'Tell a company story beside a checklist.', ['heading', 'items']),
             $this->define('cta/image-split', 'Present a primary response beside approved imagery.', ['heading', 'cta']),
-            $this->define('cta/panel', 'Present one focused response action.', ['heading', 'cta']),
+            $this->define('cta/panel', 'Present one focused response action.', ['heading', 'cta'], $this->copperEagleSectionFields('cta/panel')),
             $this->define('cta/quote-form-split', 'Pair the quote form with an approved image.', ['heading']),
             $this->define('cta/quote-form', 'Render the shared quote form.', ['heading']),
             $this->define('faq/accordion', 'Answer a crawlable collection of common questions.', ['heading', 'items']),
@@ -1114,11 +1303,11 @@ final class BlockRegistry
             $this->define('pricing/yearly', 'Render yearly pricing cards.', ['plans']),
             $this->define('process-steps/grid', 'Explain a process as numbered steps.', ['heading']),
             $this->define('process-steps/icon-grid', 'Explain a process with approved icons.', ['heading', 'steps']),
-            $this->define('service-areas/list', 'List served communities without storefront claims.', ['heading', 'areas']),
+            $this->define('service-areas/list', 'List served communities without storefront claims.', ['heading', 'areas'], $this->copperEagleSectionFields('service-areas/list')),
             $this->define('service-cards/grid', 'Link to selected services.', ['heading']),
             $this->define('team/grid', 'Introduce verified team members.', ['heading', 'members']),
             $this->define('testimonials/carousel', 'Present attributable customer testimonials.', ['heading', 'items']),
-            $this->define('testimonials/quotes', 'Present attributable customer quotes.', ['heading']),
+            $this->define('testimonials/quotes', 'Present attributable customer quotes.', ['heading'], $this->copperEagleSectionFields('testimonials/quotes')),
             $this->define('trust-bar/cards', 'Present sourced trust statements.', ['items']),
             $this->define('trust-bar/google-rating', 'Present the maintained Google rating.'),
 
@@ -1129,7 +1318,7 @@ final class BlockRegistry
             $this->define('content/table-of-contents', 'Link to validated headings on the current page.', ['heading', 'items']),
             $this->define('content/sources-reviewer', 'Disclose sources, review ownership, and freshness.', ['heading', 'sources']),
             $this->define('content/related-content', 'Link to relevant published content.', ['heading', 'items']),
-            $this->define('pricing/factors', 'Explain factors that affect a quote without inventing prices.', ['heading', 'factors']),
+            $this->define('pricing/factors', 'Explain factors that affect a quote without inventing prices.', ['heading', 'factors'], $this->copperEagleSectionFields('pricing/factors')),
             $this->define('before-after/slider', 'Compare sourced before and after images.', ['heading', 'before', 'after']),
             $this->define('photo-grid/gallery', 'Display an accessible project photo gallery.', ['heading', 'images']),
             $this->define('evidence/case-study', 'Present a verified customer problem, work, and outcome.', ['heading', 'problem', 'work', 'outcome']),
@@ -1140,13 +1329,48 @@ final class BlockRegistry
             $this->define('service-areas/coverage', 'Pair a coverage illustration with a crawlable served-area list.', ['heading', 'areas']),
             $this->define('evidence/local-project', 'Present a verified local project.', ['heading', 'place', 'work', 'outcome', 'source']),
             $this->define('cta/sticky-mobile', 'Keep one valid response action available on small screens.', ['primaryAction']),
-            $this->define('cta/inline-band', 'Insert one contextual response between editorial sections.', ['heading', 'primaryAction']),
+            $this->define('cta/inline-band', 'Insert one contextual response between editorial sections.', ['heading', 'primaryAction'], $this->copperEagleSectionFields('cta/inline-band')),
             $this->define('cta/form-confirmation', 'Explain what happens after a form submission.', ['heading', 'steps']),
             $this->define('cta/visit-expectations', 'Set calm, accurate expectations for a service visit.', ['heading', 'items']),
-            $this->define('hero/interior', 'Introduce a standard interior page with its only H1.', ['heading']),
+            $this->define('hero/interior', 'Introduce a standard interior page with its only H1.', ['heading'], $this->copperEagleSectionFields('hero/interior')),
             $this->define('hero/service', 'Introduce a service pillar with its only H1.', ['heading', 'primaryAction']),
             $this->define('hero/location', 'Introduce service availability in a place without office claims.', ['heading', 'place', 'primaryAction']),
             $this->define('hero/article', 'Introduce editorial content and its accountable metadata.', ['heading', 'author', 'publishedAt']),
+
+            // Copper Eagle page-template blocks. Contracts are declared in full
+            // here rather than through acceptedFields/contractField.
+            $this->define('hero/photo', 'Introduce the home page with its only H1 over a full-bleed photo, under the service icon strip.', ['heading', 'primaryAction', 'image'], [
+                'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered in the heavier weight.'),
+                'body' => $this->contractField('hero/photo', 'body', false),
+                'primaryAction' => $this->contractField('hero/photo', 'primaryAction', true),
+                'image' => $this->contractField('hero/photo', 'image', true),
+                'serviceStrip' => $this->field('boolean', false, 'Whether the service icon strip renders under the header. Defaults to true.'),
+            ]),
+            $this->withoutFields($this->define('service-cards/icon-strip', 'Link to each service that has an icon, as the strip of line icons under the header.', [], [
+                'services' => [
+                    ...$this->field('array', false, 'Optional service record slugs in display order. Defaults to every service with an icon, in record order.'),
+                    'shape' => 'list',
+                    'items' => $this->scalarProperty('string', true),
+                ],
+            ]), ['eyebrow', 'heading']),
+            $this->define('content/feature-cards', 'Present two to four round photo cards beside or under a heading.', ['heading', 'items'], [
+                'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered in the copper accent.'),
+                'body' => $this->contractField('content/feature-cards', 'body', false),
+                'items' => [
+                    ...$this->field('array', true, 'Two to four cards, each with a title, a short body, and an image.'),
+                    'shape' => 'list',
+                    'minItems' => 2,
+                    'maxItems' => 4,
+                    'items' => $this->objectProperty([
+                        'title' => $this->scalarProperty('string', true),
+                        'body' => $this->scalarProperty('string', true),
+                        'image' => $this->objectProperty($this->mediaProperties()),
+                    ]),
+                ],
+                'layout' => $this->field('string', false, 'Heading beside the cards (side, the default) or centred above them (stacked).', ['side', 'stacked']),
+                'background' => $this->field('string', false, 'Section background. Defaults to white.', ['white', 'stone']),
+                'watermark' => $this->field('boolean', false, 'Whether the eagle watermark sits behind a side-layout heading. Defaults to true.'),
+            ]),
         ];
 
         return collect($definitions)
@@ -1198,6 +1422,23 @@ final class BlockRegistry
             purpose: $purpose,
             fields: $fields,
             examples: [],
+        );
+    }
+
+    /**
+     * Drop shared fields a renderer does not accept, so the live schema never
+     * offers content that would silently disappear.
+     *
+     * @param  array<int, string>  $fields
+     */
+    private function withoutFields(BlockDefinition $definition, array $fields): BlockDefinition
+    {
+        return new BlockDefinition(
+            type: $definition->type,
+            component: $definition->component,
+            purpose: $definition->purpose,
+            fields: array_diff_key($definition->fields, array_flip($fields)),
+            examples: $definition->examples,
         );
     }
 
@@ -1478,6 +1719,7 @@ final class BlockRegistry
                 'quote' => $this->scalarProperty('string', true),
                 'author' => $this->scalarProperty('string', true),
                 'role' => $this->scalarProperty('string', false),
+                'location' => $this->scalarProperty('string', false),
                 'rating' => $this->scalarProperty('integer', false),
             ],
             'content/resource-cards.items' => [
@@ -1552,6 +1794,7 @@ final class BlockRegistry
             'team/grid.members' => [
                 'name' => $this->scalarProperty('string', true),
                 'role' => $this->scalarProperty('string', true),
+                'bio' => $this->scalarProperty('string', false),
                 'image' => $this->objectProperty($this->mediaProperties()),
                 'linkedin_url' => $this->scalarProperty('string', false),
             ],

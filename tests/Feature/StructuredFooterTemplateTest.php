@@ -86,14 +86,14 @@ class StructuredFooterTemplateTest extends TestCase
         );
 
         $this->assertStringContainsString('Preview body', $html);
-        $this->assertStringNotContainsString('class="site-footer"', $html);
+        $this->assertStringNotContainsString('class="site-footer ', $html);
     }
 
     public function test_the_existing_global_footer_contract_remains_available(): void
     {
         $html = Blade::render('<x-site-footer />');
 
-        $this->assertStringContainsString('class="site-footer"', $html);
+        $this->assertStringContainsString('class="site-footer ', $html);
         $this->assertStringNotContainsString('data-footer-variant="structured"', $html);
     }
 }

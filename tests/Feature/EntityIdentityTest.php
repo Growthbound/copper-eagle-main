@@ -64,6 +64,7 @@ class EntityIdentityTest extends TestCase
      */
     public function test_a_wordmark_below_the_minimum_is_not_declared_as_the_logo(): void
     {
+        config()->set('theme.logos', []);
         $this->uploadLogo(380, 80);
 
         $this->assertArrayNotHasKey('logo', $this->businessNode());
@@ -158,6 +159,8 @@ class EntityIdentityTest extends TestCase
      */
     public function test_a_site_without_a_logo_shares_no_placeholder_image(): void
     {
+        config()->set('theme.logos', []);
+
         $this->get('/')
             ->assertOk()
             ->assertSee('<meta property="og:title"', false)
@@ -202,6 +205,7 @@ class EntityIdentityTest extends TestCase
      */
     public function test_the_share_card_falls_back_to_the_header_mark(): void
     {
+        config()->set('theme.logos', []);
         $logo = $this->uploadLogo(380, 80);
 
         $content = (string) $this->get('/')->assertOk()->getContent();
@@ -211,6 +215,20 @@ class EntityIdentityTest extends TestCase
         $this->assertNotEmpty($matches, 'No og:image on the homepage.');
         $this->assertSame($logo->url(), $matches[1]);
         $this->assertArrayNotHasKey('logo', $this->businessNode());
+    }
+
+    /**
+     * With no uploaded logo, the brand's own files stand in: the horizontal
+     * mark for the header and share card, the near-square stacked mark for the
+     * entity logo, where a wordmark would be ignored.
+     */
+    public function test_the_bundled_brand_logos_stand_in_until_one_is_uploaded(): void
+    {
+        $content = (string) $this->get('/')->assertOk()->getContent();
+
+        $this->assertStringContainsString(asset(config('theme.logos.horizontal.src')), $content);
+        $this->assertStringContainsString('<meta property="og:image" content="'.asset(config('theme.logos.horizontal.src')).'"', $content);
+        $this->assertSame(asset(config('theme.logos.stacked.src')), $this->businessNode()['logo']['url'] ?? $this->businessNode()['logo'] ?? null);
     }
 
     /**

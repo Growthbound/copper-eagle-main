@@ -114,6 +114,31 @@ deliberately non-publication-ready:
 Never copy a scaffold into a public revision or delete required fixed sections
 to make validation pass.
 
+## Choosing a page template
+
+Every Copper Eagle page uses one fixed template. Pick the one that matches the
+page, fill each section's props from `/api/content/v1/schema`, and never add,
+drop, or reorder sections: the order is the design, and it is what keeps pages
+from drifting apart. The full section list per template is in
+`docs/brand/design-system.md`; the live schema is authoritative.
+
+| Template | Use it for |
+|---|---|
+| `home` | The home page only |
+| `services-hub` | The page that lists every service |
+| `service-detail` | One page per service |
+| `emergency` | The after-hours / emergency service page |
+| `about` | The company story |
+| `team` | The people who come to the home |
+| `reviews` | Customer reviews and the review prompt |
+| `contact` | Contact details, the message form, and service areas |
+| `decision-guide` | Blog articles |
+| `standard` | One-off pages only: legal pages, thank-you pages |
+
+`service-pillar` and `location-pillar` remain available for deep, evidence-led
+service or location pages. Each template's sample content is visible in the
+local gallery at `/templates` (the pages ending in "Page").
+
 ## Create a safe standard draft
 
 ```bash

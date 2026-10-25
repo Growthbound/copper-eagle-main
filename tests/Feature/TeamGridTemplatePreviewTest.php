@@ -25,7 +25,13 @@ class TeamGridTemplatePreviewTest extends TestCase
 
         $this->assertSame(4, substr_count($response->getContent(), 'class="team-card"'));
         $this->assertSame(4, substr_count($response->getContent(), 'class="team-card-portrait"'));
-        $this->assertSame(4, substr_count($response->getContent(), 'loading="lazy"'));
+        // Scoped to the block: the site footer carries its own lazy logo.
+        $section = str($response->getContent())
+            ->after('data-team-variant="grid"')
+            ->before('</section>')
+            ->toString();
+
+        $this->assertSame(4, substr_count($section, 'loading="lazy"'));
     }
 
     public function test_preview_is_discovered_by_the_local_template_catalog(): void

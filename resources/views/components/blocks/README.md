@@ -75,12 +75,12 @@ out of the accessibility tree.
 | Category | Use it for |
 |---|---|
 | `announcement` | Site-wide promo or notice bar, scheduled from the admin |
-| `hero` | The first screen of a page, owns the `<h1>` |
+| `hero` | The first screen of a page, owns the `<h1>` (including the home page photo hero) |
 | `trust-bar` | Licenses, insurance, guarantees, badges under the hero |
-| `content` | General prose, prose paired with an image, and the rotating benefit panel |
+| `content` | General prose, prose paired with an image, round photo feature cards, and the rotating benefit panel |
 | `evidence` | Sourced case studies and documented local project proof |
 | `media` | Controlled video with poster, caption, and transcript |
-| `service-cards` | A grid of services linking to service pages |
+| `service-cards` | A grid of services linking to service pages, and the service icon strip |
 | `pricing` | Monthly, yearly, and toggleable pricing-card comparisons |
 | `process-steps` | Numbered "how it works" sequences |
 | `photo-grid` | Galleries of completed work |
@@ -157,4 +157,7 @@ hero/interior
 hero/service
 hero/location
 hero/article
+hero/photo
+service-cards/icon-strip
+content/feature-cards
 ```

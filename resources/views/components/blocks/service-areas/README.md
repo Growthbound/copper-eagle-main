@@ -9,13 +9,14 @@ outside the service radius.
 |---|---|---|---|
 | `heading` | string | no | Section heading, renders as `<h2>` |
 | `areas` | array | yes | List of `['label' => ..., 'href' => ...]` |
+| `note` | string | no | `list` only. Small uppercase line under the names, such as "And more…" |
 | `map` | array | no | `['embed' => ..., 'title' => ...]` for a map variant |
 
 ## Variants
 
 | Variant | Layout |
 |---|---|
-| `list` | Linked grid of places or services. |
+| `list` | The copper hexagon band: copper-tinted photo inside an elongated hexagon with a thin copper outline, uppercase label, area names on centered lines separated by dots, optional `note`. With an `eyebrow`, the eyebrow is the visible label and the H2 is kept for assistive technology; without one, the H2 is the visible label. |
 | `grid` | Card grid of governed service-area names and links. |
 | `coverage` | Full-width mobile-service illustration plus crawlable area links. |
 

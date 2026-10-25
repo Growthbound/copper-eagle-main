@@ -50,7 +50,7 @@ class PageTemplateSystemTest extends TestCase
             $response = $this->get('/'.$slug)->assertOk();
             $html = $response->getContent();
             $this->assertSame(1, substr_count($html, '<h1'));
-            $this->assertSame(1, substr_count($html, 'class="site-header"'));
+            $this->assertSame(1, substr_count($html, 'class="site-header '));
 
             $offset = -1;
             foreach (app(PageTemplateRegistry::class)->definition($template)->sequence as $section) {

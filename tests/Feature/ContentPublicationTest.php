@@ -524,7 +524,7 @@ class ContentPublicationTest extends TestCase
         $html = $this->get('/answer-only')->assertOk()->getContent();
 
         $this->assertSame(1, preg_match_all('/<h1\b/i', $html));
-        $this->assertStringContainsString('<header class="site-header">', $html);
+        $this->assertStringContainsString('<header class="site-header edge-panel">', $html);
         $this->assertStringContainsString('aria-label="Primary navigation"', $html);
         $this->assertStringContainsString('<h1>Answer-only page</h1>', $html);
     }

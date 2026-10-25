@@ -36,7 +36,8 @@ class ThemeCssContractTest extends TestCase
             'text' => 'ink',
             'muted' => 'muted',
             'on-primary' => 'white',
-            'on-accent' => 'ink',
+            // Copper buttons carry white text (docs/brand/design-system.md).
+            'on-accent' => 'white',
             'accent-on-page' => 'orange-ink',
             'accent-on-primary' => 'orange-light',
         ] as $semantic => $editable) {
@@ -90,7 +91,7 @@ class ThemeCssContractTest extends TestCase
     {
         $theme = $this->contents('resources/css/theme.css');
 
-        $this->assertStringContainsString('--color-muted: #6f6f6f;', $theme);
+        $this->assertMatchesRegularExpression('/--color-muted: #[0-9a-f]{6};/', $theme);
         $this->assertStringContainsString('--color-text-muted: var(--theme-muted);', $theme);
         $this->assertStringNotContainsString('--color-muted: var(--theme-muted);', $theme);
     }

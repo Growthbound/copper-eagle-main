@@ -19,6 +19,7 @@ Each member record accepts:
 | `name` | string | yes | Public display name |
 | `role` | string | yes | Public job title or responsibility |
 | `image` | array | yes | Requires `src`, `alt`, positive `width`, and positive `height` |
+| `bio` | string | no | One or two short sentences under the role |
 | `linkedin_url` | string | no | Must be an absolute HTTP or HTTPS URL |
 
 Incomplete member records are omitted. Invalid or unsafe profile URLs are
@@ -28,7 +29,7 @@ omitted without removing an otherwise valid member.
 
 | Variant | Layout |
 |---|---|
-| `grid` | Four portraits on desktop, two on tablet, and one on mobile. |
+| `grid` | Square photos, the name in ink, the role as an uppercase copper label, optional bio. Up to four per row, centered, narrowing to one column on phones. |
 
 ## Usage
 

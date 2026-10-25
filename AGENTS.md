@@ -46,6 +46,11 @@ inside a subdirectory may add or narrow rules for that subtree.
   post-adoption publishing surface.
 - `docs/brand/voice.md`: the customer-facing voice for this site. Binding on
   every word a customer reads; silent on code and internal documentation.
+- `docs/brand/design-system.md`: the visual system for this site — tokens,
+  typography, shape, components, brand assets, and the fixed page templates.
+  Binding on every visual change; see "Design system" below.
+- `resources/css/theme.css`: the only place colors, fonts, radii, and the
+  copper gradient are defined. `resources/css/brand/*.css` applies them.
 - `docs/content/hermes-content-contract.md`: human-readable Hermes API contract.
 - `docs/content/owner-cms-runbook.md`: owner publishing workflow.
 - `docs/content/publication-recovery.md`: conflict and recovery procedures.
@@ -165,6 +170,26 @@ detail the evidence does not support, write around it. Missing evidence blocks
 the claim; it does not license a placeholder standing in for one, and the only
 place a fictional detail may appear is an explicitly labeled local template
 preview.
+
+## Design system
+
+Every visual change — a block, page template, stylesheet, image, or layout —
+is governed by `docs/brand/design-system.md`. Read it before starting. The
+short version:
+
+- Tokens only. No hex values, `rgb()`, Tailwind palette classes, other fonts,
+  or literal `border-radius` values in blocks or stylesheets.
+- Outfit is the only font. Headings are weight 400; labels are uppercase with
+  `0.16em` tracking. Corners are square except the circles the spec lists.
+- Every public page uses a fixed page template. Content agents fill props;
+  they never add, remove, or reorder sections, choose block types inside a
+  fixed template, or pass classes.
+- A new look is a code change: update the block, its README, the spec, the
+  `/templates` gallery preview, and the tests in the same commit.
+
+`tests/Unit/DesignSystemContractTest.php` and
+`tests/Feature/CopperEaglePageTemplatesTest.php` compare the code with the
+spec and fail when they drift apart.
 
 ## Secrets and external systems
 

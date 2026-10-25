@@ -21,11 +21,11 @@ Conversion prompts, including inline lead forms.
 | Variant | Layout |
 |---|---|
 | `quote-form` | Dark panel with copy beside the lead form. |
-| `quote-form-split` | Full-width primary panel with compact shared lead form and validated side media. |
-| `panel` | Accent panel with a heading, a button, and an image. |
+| `quote-form-split` | The form on a mist card beside a photo, on white. Square inputs, deep-blue uppercase labels, copper submit. Errors are tied to their fields with `aria-describedby`. |
+| `panel` | Dark full-width band: centered eyebrow, H2, optional `body`, one button, and the call link. `tone`: `primary` (default, deep blue with a copper button, optionally over a darkened decorative `image`) or `copper` (the solid copper guarantee band with the lattice and a deep-blue button; ignores `image`). |
 | `image-split` | Full-width primary CTA with inner-margin copy and prominent right-side media. |
 | `sticky-mobile` | Safe-area-aware single action visible only at mobile widths. |
-| `inline-band` | Full-width accent conversion band with shared inner spacing. |
+| `inline-band` | Centered prompt: large deep-blue H2, optional body, one button, and quieter secondary and call links. `emphasis` (an exact phrase from the heading) is underlined in copper. `background`: `white` (default) or `mist`. `buttonStyle`: `copper` (default) or `sky`. |
 | `form-confirmation` | Ordered post-submit expectation sequence. |
 | `visit-expectations` | Icon-governed service-visit expectation cards. |
 

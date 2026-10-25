@@ -31,8 +31,8 @@ return [
      * Left empty until the business confirms them. The owner can also set these
      * in the admin under Site details without a deploy.
      */
-    'description' => '',
-    'phone' => '',
+    'description' => 'Plumbing services in Salt Lake City, Utah.',
+    'phone' => '(385) 625-0369',
     'email' => '',
     'address' => '',
 

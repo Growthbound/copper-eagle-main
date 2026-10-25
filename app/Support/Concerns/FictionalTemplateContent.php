@@ -5,6 +5,7 @@ namespace App\Support\Concerns;
 use App\Content\AreaRepository;
 use App\Content\Enums\PageTemplate;
 use App\Content\PageTemplateRegistry;
+use App\Support\CopperEagleTemplateContent;
 
 trait FictionalTemplateContent
 {
@@ -15,7 +16,8 @@ trait FictionalTemplateContent
         $sections = [];
 
         foreach ($definition->sectionTypes as $section => $type) {
-            $sections[$section] = $this->propsForBlock($type, $section, $title);
+            $sections[$section] = app(CopperEagleTemplateContent::class)->props($template, $section, $title)
+                ?? $this->propsForBlock($type, $section, $title);
         }
 
         return [

@@ -18,38 +18,38 @@
             <div class="quote-grid">
                 <div @class(['quote-field', 'quote-field-name', 'quote-grid-full' => $variant === 'split'])>
                     <label class="quote-label" for="{{ $formId }}-name">Name</label>
-                    <input id="{{ $formId }}-name" type="text" class="quote-input" wire:model="name" autocomplete="name" required>
-                    @error('name') <p class="quote-error">{{ $message }}</p> @enderror
+                    <input id="{{ $formId }}-name" type="text" class="quote-input" wire:model="name" autocomplete="name" required @error('name') aria-invalid="true" aria-describedby="{{ $formId }}-name-error" @enderror>
+                    @error('name') <p id="{{ $formId }}-name-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="quote-field quote-field-email">
                     <label class="quote-label" for="{{ $formId }}-email">Email</label>
-                    <input id="{{ $formId }}-email" type="email" class="quote-input" wire:model="email" autocomplete="email">
-                    @error('email') <p class="quote-error">{{ $message }}</p> @enderror
+                    <input id="{{ $formId }}-email" type="email" class="quote-input" wire:model="email" autocomplete="email" @error('email') aria-invalid="true" aria-describedby="{{ $formId }}-email-error" @enderror>
+                    @error('email') <p id="{{ $formId }}-email-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="quote-field quote-field-phone">
                     <label class="quote-label" for="{{ $formId }}-phone">Phone</label>
-                    <input id="{{ $formId }}-phone" type="tel" class="quote-input" wire:model="phone" autocomplete="tel">
-                    @error('phone') <p class="quote-error">{{ $message }}</p> @enderror
+                    <input id="{{ $formId }}-phone" type="tel" class="quote-input" wire:model="phone" autocomplete="tel" @error('phone') aria-invalid="true" aria-describedby="{{ $formId }}-phone-error" @enderror>
+                    @error('phone') <p id="{{ $formId }}-phone-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
                 <div @class(['quote-field', 'quote-field-service', 'quote-grid-full' => $variant === 'split'])>
                     <label class="quote-label" for="{{ $formId }}-service">Service</label>
-                    <select id="{{ $formId }}-service" class="quote-input" wire:model="service">
+                    <select id="{{ $formId }}-service" class="quote-input" wire:model="service" @error('service') aria-invalid="true" aria-describedby="{{ $formId }}-service-error" @enderror>
                         <option value="">Not sure yet</option>
                         @foreach ($services as $service)
                             <option value="{{ $service }}">{{ $service }}</option>
                         @endforeach
                     </select>
-                    @error('service') <p class="quote-error">{{ $message }}</p> @enderror
+                    @error('service') <p id="{{ $formId }}-service-error" class="quote-error">{{ $message }}</p> @enderror
                 </div>
 
                 @if ($showMessage)
                     <div class="quote-field quote-field-message quote-grid-full">
                         <label class="quote-label" for="{{ $formId }}-message">What can we help with?</label>
-                        <textarea id="{{ $formId }}-message" rows="4" class="quote-input" wire:model="message"></textarea>
-                        @error('message') <p class="quote-error">{{ $message }}</p> @enderror
+                        <textarea id="{{ $formId }}-message" rows="4" class="quote-input" wire:model="message" @error('message') aria-invalid="true" aria-describedby="{{ $formId }}-message-error" @enderror></textarea>
+                        @error('message') <p id="{{ $formId }}-message-error" class="quote-error">{{ $message }}</p> @enderror
                     </div>
                 @endif
             </div>
@@ -85,7 +85,7 @@
             @endif
 
             <button type="submit" class="button button-orange quote-submit">
-                <span wire:loading.remove wire:target="submit">{{ $submitLabel }} <span aria-hidden="true">→</span></span>
+                <span wire:loading.remove wire:target="submit">{{ $submitLabel }}</span>
                 <span wire:loading wire:target="submit">Sending…</span>
             </button>
 

@@ -13,8 +13,9 @@
     $data = app(\App\Content\BlockData::class);
 @endphp
 
+<x-site-header :cta="$cta" />
+
 <section class="hero-panel edge-panel dotted-panel" aria-labelledby="hero-title">
-    <x-site-header :cta="$cta" />
 
     <div class="hero-grid">
         <div class="hero-copy">

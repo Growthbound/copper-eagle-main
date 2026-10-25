@@ -17,6 +17,7 @@ entries for all of them. Nothing else needs updating.
 | `highlights` | no | Short strings rendered as a checklist |
 | `order` | no | Lower sorts first. Unordered services fall to the end alphabetically |
 | `image` | no | `src`, `alt`, `width`, `height`. `src` is a path under `public/` |
+| `icon` | no | Line icon for the home page service strip: a path under `public/`, such as `images/brand/icons/drain-cleaning.png`. PNG, WebP, or JPEG |
 | `areas` | no | Area slugs this is offered in. Omit for everywhere |
 
 ## Example
@@ -28,6 +29,7 @@ entries for all of them. Nothing else needs updating.
     "description": "A longer paragraph for the service page.",
     "highlights": ["Every downspout flushed", "Before and after photos"],
     "order": 2,
+    "icon": "images/brand/icons/general-plumbing.png",
     "image": {
         "src": "images/home/technician-controls.jpg",
         "alt": "Technician inspecting a gutter",
@@ -36,6 +38,13 @@ entries for all of them. Nothing else needs updating.
     }
 }
 ```
+
+Only services with an `icon` appear in the service icon strip
+(`service-cards/icon-strip`, shown under the header by `hero/photo`), in record
+order, captioned with `name` and linking to the service page. The icon must be
+an existing image file inside `public/` — `php artisan content:check` reports a
+missing file, another host, or a path that climbs out of `public/` as an error,
+and the strip leaves that service out.
 
 Only set `areas` when a service genuinely is not offered everywhere — listing
 an area slug that has no record in `content/areas` is an error, not a warning.

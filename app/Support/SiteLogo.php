@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Schema;
  * header, its structured data, and its link previews is harder for Google to
  * resolve into one entity, not easier.
  *
- * Resolution is the owner's uploaded logo, then nothing. Nothing is a real
- * answer: the site shows its name as text, and structured data declares no
- * logo rather than a placeholder that is not the brand's mark.
+ * Resolution is the owner's uploaded logo, then the brand's own files in
+ * config('theme.logos'), then nothing. Nothing is a real answer: the site
+ * shows its name as text, and structured data declares no logo.
  */
 final class SiteLogo
 {
@@ -76,19 +76,57 @@ final class SiteLogo
      */
     public static function forSchema(): ?array
     {
-        $logo = self::resolve();
+        $logo = self::uploaded();
 
         if ($logo !== null && $logo['width'] >= 112 && $logo['height'] >= 112) {
             return $logo;
         }
 
-        return null;
+        // The stacked mark is near-square, which is what the logo field wants.
+        return self::bundled('stacked');
+    }
+
+    /**
+     * The stacked logo for the footer notch: the brand file, since an uploaded
+     * logo is assumed to be the horizontal header mark.
+     *
+     * @return array{url: string, width: int, height: int}|null
+     */
+    public static function stacked(): ?array
+    {
+        return self::bundled('stacked');
     }
 
     /**
      * @return array{url: string, width: int, height: int}|null
      */
     private static function lookUp(): ?array
+    {
+        return self::uploaded() ?? self::bundled('horizontal');
+    }
+
+    /**
+     * @return array{url: string, width: int, height: int}|null
+     */
+    private static function bundled(string $variant): ?array
+    {
+        $logo = config('theme.logos.'.$variant);
+
+        if (! is_array($logo) || ! is_string($logo['src'] ?? null) || ! is_file(public_path($logo['src']))) {
+            return null;
+        }
+
+        return [
+            'url' => asset($logo['src']),
+            'width' => (int) $logo['width'],
+            'height' => (int) $logo['height'],
+        ];
+    }
+
+    /**
+     * @return array{url: string, width: int, height: int}|null
+     */
+    private static function uploaded(): ?array
     {
         $mediaId = config('site.logo_media_id');
 

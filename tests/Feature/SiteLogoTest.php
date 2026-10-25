@@ -16,6 +16,9 @@ class SiteLogoTest extends TestCase
     {
         parent::setUp();
 
+        // These cover uploaded logos; the bundled brand files are covered in
+        // EntityIdentityTest, so they are switched off here.
+        config()->set('theme.logos', []);
         SiteLogo::flush();
     }
 

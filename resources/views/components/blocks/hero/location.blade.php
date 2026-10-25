@@ -16,8 +16,9 @@
 @endphp
 
 @if ($validPlace)
+    <x-site-header :cta="$primary" />
+
     <section id="{{ $id }}" class="location-hero edge-panel" aria-labelledby="{{ $id }}-title">
-        <x-site-header :cta="$primary" />
         <div class="location-hero-inner">
             <p class="eyebrow">{{ $eyebrow ?: 'Serving '.$validPlace.' and nearby communities' }}</p>
             <h1 id="{{ $id }}-title">{{ $heading }}</h1>

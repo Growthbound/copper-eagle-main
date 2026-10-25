@@ -82,6 +82,58 @@ final class PageTemplateRegistry
                     'related-content-next-step' => 'content/related-content',
                 ],
             ),
+            PageTemplate::Home => $this->fixed($template, [
+                'hero' => 'hero/photo',
+                'introduction' => 'content/split',
+                'testimonials' => 'testimonials/quotes',
+                'assurances' => 'content/feature-cards',
+                'service-areas' => 'service-areas/list',
+                'help-prompt' => 'cta/inline-band',
+            ]),
+            PageTemplate::ServicesHub => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'services' => 'service-cards/grid',
+                'not-sure' => 'cta/inline-band',
+                'reviews-teaser' => 'content/split',
+            ]),
+            PageTemplate::ServiceDetail => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'introduction' => 'content/split',
+                'offerings' => 'content/feature-cards',
+                'details' => 'content/split',
+                'guarantee' => 'cta/panel',
+                'faq' => 'faq/accordion',
+                'final-response' => 'cta/inline-band',
+            ]),
+            PageTemplate::Emergency => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'reassurance' => 'content/split',
+                'what-to-expect' => 'pricing/factors',
+                'final-response' => 'cta/inline-band',
+            ]),
+            PageTemplate::About => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'story' => 'content/split',
+                'values' => 'content/feature-cards',
+                'final-response' => 'cta/inline-band',
+            ]),
+            PageTemplate::Team => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'team' => 'team/grid',
+                'final-response' => 'cta/inline-band',
+            ]),
+            PageTemplate::Reviews => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'testimonials' => 'testimonials/quotes',
+                'leave-a-review' => 'cta/panel',
+                'final-response' => 'cta/inline-band',
+            ]),
+            PageTemplate::Contact => $this->fixed($template, [
+                'hero' => 'hero/interior',
+                'message' => 'cta/quote-form-split',
+                'service-areas' => 'service-areas/list',
+                'emergency' => 'cta/panel',
+            ]),
         };
     }
 

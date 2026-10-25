@@ -23,7 +23,7 @@ class FooterTemplatePreviewTest extends TestCase
             ->assertSee('name="robots" content="noindex, nofollow"', false)
             ->assertSee('hello@example.test')
             ->assertSee('Instagram')
-            ->assertDontSee('class="site-footer"', false);
+            ->assertDontSee('class="site-footer ', false);
     }
 
     public function test_preview_is_absent_from_discovery_files(): void

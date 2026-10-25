@@ -82,7 +82,10 @@
                     <div class="team-card-meta">
                         <div>
                             <h3>{{ $member['name'] }}</h3>
-                            <p>{{ $member['role'] }}</p>
+                            <p class="team-card-role">{{ $member['role'] }}</p>
+                            @if (is_string($member['bio'] ?? null) && trim($member['bio']) !== '')
+                                <p class="team-card-bio">{{ trim($member['bio']) }}</p>
+                            @endif
                         </div>
 
                         @if ($hasLinkedIn)

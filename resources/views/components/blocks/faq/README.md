@@ -13,7 +13,7 @@ Accordion list of questions and answers.
 
 | Variant | Layout |
 |---|---|
-| `accordion` | Collapsible list. Defaults to the records in `content/faqs`. |
+| `accordion` | Square list with copper hairline separators, deep-blue questions, and a copper plus/minus. Defaults to the records in `content/faqs`. |
 | `highlighted` | Single-open rounded stack with a themed active row. |
 
 ## Notes

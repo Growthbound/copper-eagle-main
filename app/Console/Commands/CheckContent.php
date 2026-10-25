@@ -309,6 +309,13 @@ class CheckContent extends Command
                 $warnings[] = 'services/'.$service->slug.': no summary, so its card and page have nothing to say.';
             }
 
+            if ($service->get('icon') !== null && $service->icon() === null) {
+                $errors[] = sprintf(
+                    'services/%s.json: the icon must be the path of an image file under public/, such as "images/brand/icons/drain-cleaning.png".',
+                    $service->slug,
+                );
+            }
+
             foreach ($service->areaSlugs() ?? [] as $slug) {
                 if (! $areas->contains(fn ($area): bool => $area->slug === $slug)) {
                     $errors[] = sprintf(
