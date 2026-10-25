@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "Gas Lines",
-        "description": "When it comes to gas pipe repair and installation, your safety and peace of mind are our top priorities.",
+        "title": "Gas Line Installation and Repair, Utah",
+        "description": "Gas line installation, repair and safety inspections in Utah. Copper Eagle Plumbing runs new lines for gas appliances and checks for leaks.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -154,6 +154,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/ilse-driessen-qdeciexgcbu-unsplash.jpg",
+            "alt": "Blue flames on a gas stove burner",
+            "width": 1200,
+            "height": 800
         }
     }
 }

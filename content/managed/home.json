@@ -12,8 +12,8 @@
         "template": "home"
     },
     "payload": {
-        "title": "Copper Eagle Salt Lake City Plumbing",
-        "description": "We do it all, and we do it right.",
+        "title": "Salt Lake City Plumber",
+        "description": "Copper Eagle Plumbing fixes drains, water heaters, gas lines and more for homes in Salt Lake City and nearby Utah cities. Call or text to book a visit.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -155,6 +155,12 @@
                 },
                 "buttonStyle": "sky"
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/kitchen.jpg",
+            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+            "width": 1200,
+            "height": 800
         }
     }
 }

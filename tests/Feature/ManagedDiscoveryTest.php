@@ -39,6 +39,11 @@ class ManagedDiscoveryTest extends TestCase
 
         $this->assertSame(1, substr_count($sitemap, 'http://localhost/canonical/decision-guide'));
         $this->assertSame(1, substr_count($llms, 'http://localhost/guides/published'));
+        // The llms.txt list format: a markdown link, then what the page covers.
+        $this->assertStringContainsString(
+            '- [Fictional guides/published](http://localhost/guides/published): Fictional managed page description.',
+            $llms,
+        );
         foreach (['draft', 'scheduled', 'private'] as $hidden) {
             $this->assertStringNotContainsString('/guides/'.$hidden, $sitemap);
             $this->assertStringNotContainsString('/guides/'.$hidden, $llms);

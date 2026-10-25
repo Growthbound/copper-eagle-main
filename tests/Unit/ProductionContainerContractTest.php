@@ -105,7 +105,7 @@ class ProductionContainerContractTest extends TestCase
             'MAIL_PASSWORD=your-ses-smtp-password',
             'MAIL_SCHEME=smtp',
             'MAIL_FROM_ADDRESS=notifications@mail.youragency.com',
-            'MAIL_FROM_NAME="Copper Eagle"',
+            'MAIL_FROM_NAME="Copper Eagle Plumbing"',
         ] as $variable) {
             $this->assertStringContainsString($variable, $matches[1]);
         }

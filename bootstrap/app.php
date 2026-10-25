@@ -11,6 +11,7 @@ use App\Http\Middleware\CaptureAttribution;
 use App\Http\Middleware\DenyIndexingOffCanonicalHost;
 use App\Http\Middleware\EnsureContentApiRequestId;
 use App\Http\Middleware\ProtectWebsiteFormCache;
+use App\Http\Middleware\RedirectTwinToCanonicalHost;
 use App\Http\Middleware\RequireApiKeyScope;
 use App\Http\Middleware\RequireIdempotencyKey;
 use App\Http\Middleware\ResolveApiKey;
@@ -36,6 +37,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_TRAEFIK);
 
+        // First, so the bare/www twin redirects before any other work.
+        $middleware->prepend(RedirectTwinToCanonicalHost::class);
         $middleware->append(ApplySiteDetails::class);
         $middleware->append(ProtectWebsiteFormCache::class);
         $middleware->append(DenyIndexingOffCanonicalHost::class);

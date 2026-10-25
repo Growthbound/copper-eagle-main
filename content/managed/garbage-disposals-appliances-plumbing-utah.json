@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "Garbage Disposals + Appliances",
-        "description": "Your plumbing system plays a vital role in the functionality of your home.",
+        "title": "Garbage Disposal and Appliance Plumbing",
+        "description": "Garbage disposal and appliance plumbing in Utah: installation and repair for disposals, dishwashers and other water-connected appliances.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -140,6 +140,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/cdc-lzxnmflmzga-unsplash.jpg",
+            "alt": "A girl washing her hands at a kitchen sink",
+            "width": 819,
+            "height": 546
         }
     }
 }

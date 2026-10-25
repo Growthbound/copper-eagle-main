@@ -12,14 +12,14 @@
         "template": "team"
     },
     "payload": {
-        "title": "Team",
-        "description": "Meet the Copper Eagle Team",
+        "title": "Meet Our Salt Lake City Plumbing Team",
+        "description": "Meet the Copper Eagle Plumbing team in Salt Lake City: our foreman, journeyman plumbers, apprentice and office manager.",
         "noindex": false,
         "sections": {
             "hero": {
                 "heading": "Team",
                 "image": {
-                    "src": "/images/brand/pages/chatgpt-image-jun-11-2026-01-27-06-am.png",
+                    "src": "/images/brand/pages/team-hero.jpg",
                     "alt": "The Copper Eagle Plumbing team standing in front of a company truck",
                     "width": 1534,
                     "height": 1025
@@ -98,6 +98,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/team-hero.jpg",
+            "alt": "The Copper Eagle Plumbing team standing in front of a company truck",
+            "width": 1534,
+            "height": 1025
         }
     }
 }

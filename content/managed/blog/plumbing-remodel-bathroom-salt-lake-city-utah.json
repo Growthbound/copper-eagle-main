@@ -12,8 +12,8 @@
         "template": "standard"
     },
     "payload": {
-        "title": "Transform Your Bathroom: A Comprehensive Guide to Updating Your Space in Salt Lake City, Utah",
-        "description": "Welcome to the ultimate guide on updating your bathroom in Salt Lake City, Utah!",
+        "title": "Bathroom Remodel Plumbing Guide",
+        "description": "Planning a bathroom remodel in Salt Lake City? This guide covers layout changes, fixtures, water-saving faucets and choosing a licensed plumber.",
         "noindex": false,
         "blocks": [
             {
@@ -803,6 +803,12 @@
                     ]
                 }
             }
-        ]
+        ],
+        "social_image": {
+            "src": "/images/brand/pages/r-architecture-rfxkg1qm1ri-unsplash.jpg",
+            "alt": "White rectangular basin on a wood vanity with a black wall-mounted faucet and gray stone-look tile",
+            "width": 900,
+            "height": 1350
+        }
     }
 }

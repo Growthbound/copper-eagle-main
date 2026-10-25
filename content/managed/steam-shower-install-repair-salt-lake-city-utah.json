@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "Steam Showers",
-        "description": "At Copper Eagle Plumbing, we understand that your Mr.",
+        "title": "Steam Shower Repair in Salt Lake City",
+        "description": "Steam shower installation, repair and maintenance in Salt Lake City, with a focus on Mr. Steam systems, from Copper Eagle Plumbing.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -126,6 +126,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/leohoho-ksuho0bii-g-unsplash.jpg",
+            "alt": "Water droplets on a glass surface",
+            "width": 1185,
+            "height": 770
         }
     }
 }

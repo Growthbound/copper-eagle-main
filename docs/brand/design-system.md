@@ -198,7 +198,16 @@ fixed by `app/Content/PageTemplateRegistry.php`; content changes props only.
 Blog posts use `standard` with `hero/article` followed by `content/rich-text`;
 `decision-guide` is for long, evidence-led guides. `standard` also serves the
 other one-off pages (legal pages, the social media page, thank-you pages) and
-inherits the same tokens.
+inherits the same tokens. The plumbing FAQ page is `standard` with
+`hero/interior` · `faq/accordion` · `cta/inline-band`; each answer leads with the
+answer and restates only what the company's own pages say.
+
+The contact page's quote form asks for first and last name as separate required
+fields, requires a phone number (the company calls or texts back) with email
+marked optional, and shows text-message consent as a `Text Message Consent (optional)`
+fieldset of separate, unticked `.quote-consent` boxes, with the Privacy Policy
+and SMS Terms links in the note beneath them. The consent wording is the
+company's registered text and is never restyled into marketing copy.
 
 Pages keep the live site's addresses (e.g. `/24-7-emergency-plumber-salt-lake-utah`).
 Generated service and area pages are folded into the real pages through

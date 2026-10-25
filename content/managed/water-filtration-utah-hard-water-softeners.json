@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "Water Filtration",
-        "description": "At Copper Eagle Plumbing, we understand the importance of clean and safe drinking water for your home in Salt Lake City, Provo, Ogden and surrounding areas.",
+        "title": "Water Filtration and Softeners in Utah",
+        "description": "Water filtration and softeners in Utah: reverse osmosis, UV filters and water softeners for hard water, installed by Copper Eagle Plumbing.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -146,6 +146,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/water.jpg",
+            "alt": "A drop of water splashing into dark blue water",
+            "width": 1200,
+            "height": 1023
         }
     }
 }

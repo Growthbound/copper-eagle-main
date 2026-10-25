@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "General Plumbing",
-        "description": "Copper Eagle is the trusted source for exceptional plumbing solutions in the heart of Salt Lake City, Park City, and the surrounding areas.",
+        "title": "General Plumbing in Salt Lake City",
+        "description": "General plumbing in Salt Lake City: leaky faucets, main water lines, tub and shower plumbing, and fixture installation from Copper Eagle Plumbing.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -143,6 +143,12 @@
                     "href": "tel:+13856250369"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/plumbing-utah.jpg",
+            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+            "width": 1200,
+            "height": 800
         }
     }
 }

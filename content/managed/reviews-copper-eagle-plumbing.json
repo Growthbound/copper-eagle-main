@@ -12,8 +12,8 @@
         "template": "reviews"
     },
     "payload": {
-        "title": "Reviews",
-        "description": "With almost a decade of experience, we’ve been fortunate to help many people with their plumbing needs.",
+        "title": "Plumber Reviews in Salt Lake City",
+        "description": "Read reviews from Copper Eagle Plumbing customers in Salt Lake City, or leave your own review on Google.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -99,6 +99,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/washing-hands.jpg",
+            "alt": "Hands being rinsed under a bathroom sink faucet",
+            "width": 1200,
+            "height": 977
         }
     }
 }

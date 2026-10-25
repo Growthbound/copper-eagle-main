@@ -24,8 +24,8 @@ deploy:
 
 ```dotenv
 APP_KEY=base64:replace-with-a-generated-key
-APP_URL=https://your-production-domain.example
-SITE_CANONICAL_HOST=your-production-domain.example
+APP_URL=https://www.coppereagleplumbing.com
+SITE_CANONICAL_HOST=www.coppereagleplumbing.com
 APP_TIMEZONE=UTC
 MAIL_MAILER=smtp
 MAIL_HOST=email-smtp.us-east-1.amazonaws.com
@@ -34,8 +34,13 @@ MAIL_USERNAME=your-ses-smtp-username
 MAIL_PASSWORD=your-ses-smtp-password
 MAIL_SCHEME=smtp
 MAIL_FROM_ADDRESS=notifications@mail.youragency.com
-MAIL_FROM_NAME="Copper Eagle"
+MAIL_FROM_NAME="Copper Eagle Plumbing"
 ```
+
+Use the `www` host: the current Squarespace site's sitemap and canonical links
+all use `https://www.coppereagleplumbing.com`, so keeping it carries the
+existing search rankings over. Point the bare domain at the same server and
+redirect it to `www`.
 
 `SITE_CANONICAL_HOST` is the single hostname allowed into search indexes, and it
 is the hostname only — no scheme, no path, no port — because Caddy compares it
@@ -94,6 +99,51 @@ After the first successful build:
 
 Laravel trusts Traefik's forwarded headers, so HTTPS URLs and secure cookies
 remain correct even though Traefik connects to the container over HTTP.
+
+## Staging for client approval
+
+The site goes to `https://coppereagle.growthboundmarketing.com` first, so
+Copper Eagle can review and approve it before the live domain moves.
+
+1. Point a DNS record for `coppereagle.growthboundmarketing.com` at the Dokploy
+   server.
+2. Deploy with the production variables exactly as listed above, including
+   `APP_URL=https://www.coppereagleplumbing.com` and
+   `SITE_CANONICAL_HOST=www.coppereagleplumbing.com`. Both are required:
+   `compose.production.yaml` refuses to start without `SITE_CANONICAL_HOST`,
+   and boot fails if it names a different host from `APP_URL`.
+3. In the **Domains** tab, add only `coppereagle.growthboundmarketing.com`
+   (service `app`, port `8080`, HTTPS on) and redeploy.
+
+   Because the staging host is not the canonical host, every page, the sitemap
+   and every image it serves carry `noindex` (meta tag and `X-Robots-Tag`
+   header). Search engines never index the staging copy or treat it as a
+   duplicate of the live site. Never set `SITE_CANONICAL_HOST` to the staging
+   host: that would make the staging copy indexable.
+4. Before sending the link, check that a page's response headers on the
+   staging host include `X-Robots-Tag: noindex`.
+
+Until launch, links the application builds from `APP_URL` (the sitemap, the
+`llms.txt` file and links inside lead notification emails) point at
+`www.coppereagleplumbing.com`, which still serves the Squarespace site. Pages
+browsed on the staging host link within the staging host.
+
+Test leads: the contact form on staging behaves like the real one. Leave the
+HighLevel variables unset on staging to keep test submissions in the site's
+own lead inbox, or set them deliberately for the text-message consent check in
+`docs/content/website-forms-runbook.md` (one submission with a box ticked, one
+with both left unticked), and tell the client so they know the test contacts
+in HighLevel are ours.
+
+After approval, move to the live domain. No variable changes:
+
+1. Add `www.coppereagleplumbing.com` and `coppereagleplumbing.com` in
+   **Domains** and redeploy. The bare domain redirects (301) to `www`, path
+   and query kept.
+2. Change the domain's DNS from Squarespace to the Dokploy server.
+3. Remove the staging domain, or leave it: it keeps serving `noindex`.
+4. Submit `https://www.coppereagleplumbing.com/sitemap.xml` in Google Search
+   Console.
 
 The Compose project also starts the `scheduler` service. It runs Laravel's
 minute scheduler against the same database and storage volumes as `app`, so

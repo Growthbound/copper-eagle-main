@@ -12,8 +12,8 @@
         "template": "contact"
     },
     "payload": {
-        "title": "Contact Us",
-        "description": "Give us a call today to learn more about our plumbing services, to receive an estimate, or to get your questions answered.",
+        "title": "Contact a Salt Lake City Plumber",
+        "description": "Contact Copper Eagle Plumbing in Salt Lake City. Send a message, or call or text, to book drain, water heater, gas line and other plumbing work.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -123,6 +123,12 @@
                 },
                 "tone": "copper"
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/kitchen.jpg",
+            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+            "width": 1200,
+            "height": 800
         }
     }
 }

@@ -42,6 +42,7 @@ final class SiteStructureRepository
             'company' => $this->links($payload['company'] ?? [
                 ['label' => 'About', 'href' => '/about-jordan-walker-master-plumber-utah'],
                 ['label' => 'Reviews', 'href' => '/reviews-copper-eagle-plumbing'],
+                ['label' => 'FAQ', 'href' => '/plumbing-faq-salt-lake-city-utah'],
                 ['label' => 'Blog', 'href' => '/blog'],
                 ['label' => 'Contact', 'href' => '/contact-copper-eagle-plumbing'],
                 ['label' => '24/7 Emergencies', 'href' => '/24-7-emergency-plumber-salt-lake-utah'],

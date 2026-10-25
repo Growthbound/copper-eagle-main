@@ -92,8 +92,121 @@ class StructuredDataTest extends TestCase
             'name' => 'Service title',
             'description' => 'Service description',
             'url' => 'https://example.com/service/',
+            'isPartOf' => ['@id' => StructuredData::websiteId()],
             'about' => ['@id' => StructuredData::businessId()],
         ]], $nodes);
+    }
+
+    public function test_the_site_is_declared_as_a_website_the_business_publishes(): void
+    {
+        $graph = collect($this->graphFrom('/')['@graph']);
+        $website = $graph->firstWhere('@type', 'WebSite');
+        $page = $graph->first(fn (array $node): bool => in_array('WebPage', (array) ($node['@type'] ?? []), true));
+
+        $this->assertSame(StructuredData::websiteId(), $website['@id']);
+        $this->assertSame(config('site.name'), $website['name']);
+        $this->assertSame(StructuredData::businessId(), $website['publisher']['@id']);
+        $this->assertSame(StructuredData::websiteId(), $page['isPartOf']['@id']);
+    }
+
+    /**
+     * Service-area lists mix towns and counties. A county marked up as a City
+     * points search engines at a town that does not exist.
+     */
+    public function test_a_county_is_declared_as_an_administrative_area(): void
+    {
+        $this->fixtureArea('fixture-county', ['name' => 'Fixture County', 'region' => 'Example State']);
+        $this->fixtureArea('fixture-city', ['name' => 'Fixture City', 'region' => 'Example State']);
+
+        $served = collect($this->businessNodeFrom('/')['areaServed'])->keyBy('name');
+
+        $this->assertSame('AdministrativeArea', $served['Fixture County']['@type']);
+        $this->assertSame('City', $served['Fixture City']['@type']);
+    }
+
+    public function test_opening_hours_and_people_come_only_from_site_settings(): void
+    {
+        config()->set('site.opening_hours', []);
+        config()->set('site.people', []);
+
+        $business = $this->businessNodeFrom('/');
+
+        $this->assertArrayNotHasKey('openingHoursSpecification', $business);
+        $this->assertArrayNotHasKey('employee', $business);
+
+        config()->set('site.opening_hours', [
+            ['days' => ['Monday', 'Sunday'], 'opens' => '00:00', 'closes' => '23:59'],
+            ['days' => [], 'opens' => '08:00', 'closes' => '17:00'],
+        ]);
+        config()->set('site.people', [
+            ['name' => 'Pat Example', 'job_title' => 'Owner', 'url' => '/about-pat'],
+            ['name' => ' '],
+        ]);
+
+        $business = $this->businessNodeFrom('/');
+
+        $this->assertSame([[
+            '@type' => 'OpeningHoursSpecification',
+            'dayOfWeek' => ['Monday', 'Sunday'],
+            'opens' => '00:00',
+            'closes' => '23:59',
+        ]], $business['openingHoursSpecification']);
+        $this->assertSame([[
+            '@type' => 'Person',
+            'name' => 'Pat Example',
+            'jobTitle' => 'Owner',
+            'url' => url('/about-pat'),
+        ]], $business['employee']);
+    }
+
+    public function test_a_service_detail_page_describes_its_service_and_marks_up_only_real_questions(): void
+    {
+        $payload = $this->fixedPayload(PageTemplate::ServiceDetail, 'Fixture Drain Cleaning');
+        $payload['sections']['faq']['items'] = [
+            ['question' => 'Expertise', 'answer' => 'A labelled reason, not a question.'],
+            ['question' => 'How often should drains be cleaned?', 'answer' => 'At least once a year.'],
+        ];
+
+        $path = $this->publishManagedPage(ContentKind::Page, PageTemplate::ServiceDetail, 'fixture-drain-cleaning', 'Fixture Drain Cleaning', $payload);
+
+        $service = $this->nodeOfType($path, 'Service');
+        $faq = $this->nodeOfType($path, 'FAQPage');
+
+        $this->assertSame('Fixture Drain Cleaning', $service['name']);
+        $this->assertSame(StructuredData::businessId(), $service['provider']['@id']);
+        $this->assertSame(['How often should drains be cleaned?'], array_column($faq['mainEntity'], 'name'));
+    }
+
+    public function test_an_accordion_of_labels_is_not_marked_up_as_questions(): void
+    {
+        $payload = $this->fixedPayload(PageTemplate::ServiceDetail, 'Fixture Disposals');
+        $payload['sections']['faq']['items'] = [
+            ['question' => 'Expertise', 'answer' => 'A labelled reason.'],
+            ['question' => 'Reliability', 'answer' => 'Another labelled reason.'],
+        ];
+
+        $path = $this->publishManagedPage(ContentKind::Page, PageTemplate::ServiceDetail, 'fixture-disposals', 'Fixture Disposals', $payload);
+
+        $types = array_column($this->graphFrom($path)['@graph'], '@type');
+
+        $this->assertNotContains('FAQPage', $types);
+    }
+
+    public function test_an_article_names_the_business_as_its_publisher(): void
+    {
+        $path = $this->publishManagedPage(
+            ContentKind::Article,
+            PageTemplate::DecisionGuide,
+            'blog/fixture-article',
+            'Fixture Article',
+            $this->fixedPayload(PageTemplate::DecisionGuide, 'Fixture Article'),
+        );
+
+        $article = $this->nodeOfType($path, 'Article');
+
+        $this->assertSame(StructuredData::businessId(), $article['publisher']['@id']);
+        // The fixture's share image becomes the article's image, as an absolute URL.
+        $this->assertStringStartsWith('http://localhost/', $article['image']);
     }
 
     public function test_existing_page_identity_is_preserved_including_multiple_types(): void
@@ -243,6 +356,25 @@ class StructuredDataTest extends TestCase
             'title' => $title,
             'template' => PageTemplate::DecisionGuide,
         ], $this->fixedPayload(PageTemplate::DecisionGuide, $title), $user);
+
+        $lifecycle->publish($entry, $entry->revisions()->sole(), 0, $user);
+
+        return '/'.$slug;
+    }
+
+    /**
+     * @param  array<string, mixed>  $payload
+     */
+    private function publishManagedPage(ContentKind $kind, PageTemplate $template, string $slug, string $title, array $payload): string
+    {
+        $user = User::factory()->create();
+        $lifecycle = app(ContentLifecycle::class);
+        $entry = $lifecycle->createDraft([
+            'kind' => $kind,
+            'slug' => $slug,
+            'title' => $title,
+            'template' => $template,
+        ], $payload, $user);
 
         $lifecycle->publish($entry, $entry->revisions()->sole(), 0, $user);
 

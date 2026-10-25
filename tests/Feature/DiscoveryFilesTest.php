@@ -60,11 +60,36 @@ class DiscoveryFilesTest extends TestCase
             ->assertDontSee('Email:');
     }
 
+    /**
+     * An assistant answering "is this plumber open now?" or "who runs it?"
+     * reads these lines, so they come straight from site settings.
+     */
+    public function test_llms_file_states_the_configured_hours_and_people(): void
+    {
+        config()->set('site.opening_hours', [
+            ['days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], 'opens' => '00:00', 'closes' => '23:59'],
+        ]);
+        config()->set('site.people', [['name' => 'Pat Example', 'job_title' => 'Owner']]);
+
+        $this->get('/llms.txt')
+            ->assertOk()
+            ->assertSee('Hours: Open 24 hours, 7 days a week', false)
+            ->assertSee('People: Pat Example, Owner', false);
+
+        config()->set('site.opening_hours', [
+            ['days' => ['Monday', 'Friday'], 'opens' => '08:00', 'closes' => '17:00'],
+        ]);
+
+        $this->get('/llms.txt')->assertOk()->assertSee('Hours: Monday, Friday 08:00-17:00', false);
+    }
+
     public function test_llms_file_for_a_new_install_states_nothing_it_was_not_told(): void
     {
         foreach (['description', 'phone', 'email', 'address'] as $field) {
             config()->set('site.'.$field, '');
         }
+        config()->set('site.opening_hours', []);
+        config()->set('site.people', []);
 
         $body = (string) $this->get('/llms.txt')->assertOk()->getContent();
 
@@ -144,6 +169,6 @@ class DiscoveryFilesTest extends TestCase
         $this->get('/llms.txt')
             ->assertOk()
             ->assertSee('Address: 123 Example Street, Springfield', false)
-            ->assertSee('Service areas: Fixture Town, Springfield, Example State', false);
+            ->assertSee('Service areas: Fixture Town; Springfield, Example State', false);
     }
 }

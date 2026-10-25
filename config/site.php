@@ -16,7 +16,7 @@
 */
 
 return [
-    'name' => 'Copper Eagle',
+    'name' => 'Copper Eagle Plumbing',
     'logo_media_id' => null,
 
     /*
@@ -25,16 +25,43 @@ return [
      * RoofingContractor, HousePainter, MovingCompany. Falls back to
      * LocalBusiness when unset.
      */
-    'business_type' => null,
+    'business_type' => 'Plumber',
 
     /*
      * Left empty until the business confirms them. The owner can also set these
      * in the admin under Site details without a deploy.
      */
-    'description' => 'Plumbing services in Salt Lake City, Utah.',
+    'description' => 'Copper Eagle Plumbing is a plumbing company in Salt Lake City, Utah, for drain cleaning, water heaters, water filtration, gas lines, steam showers and remodel plumbing.',
     'phone' => '(385) 625-0369',
     'email' => '',
     'address' => '',
+
+    /*
+     * Opening hours for structured data. Each entry lists days and a time
+     * range; a 24/7 business lists every day from 00:00 to 23:59. Leave empty
+     * to declare none. Copper Eagle's own pages say it answers 24/7, 365 days
+     * a year.
+     */
+    'opening_hours' => [
+        [
+            'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            'opens' => '00:00',
+            'closes' => '23:59',
+        ],
+    ],
+
+    /*
+     * People the business names on its own pages, declared in structured data
+     * so search engines and AI answers can connect them to the business. Use
+     * only names and titles the business publishes.
+     */
+    'people' => [
+        [
+            'name' => 'Jordan Walker',
+            'job_title' => 'Owner and Master Plumber',
+            'url' => '/about-jordan-walker-master-plumber-utah',
+        ],
+    ],
 
     /*
      * Profiles to link from the footer, and to declare as the business's other

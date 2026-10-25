@@ -90,13 +90,27 @@ class DiscoveryFilesController extends Controller
             $lines[] = 'Address: '.config('site.address');
         }
 
+        if (($hours = $this->hoursLine()) !== null) {
+            $lines[] = 'Hours: '.$hours;
+        }
+
+        $people = collect(config('site.people') ?: [])
+            ->filter(fn (mixed $person): bool => is_array($person) && filled($person['name'] ?? null))
+            ->map(fn (array $person): string => trim($person['name'])
+                .(filled($person['job_title'] ?? null) ? ', '.$person['job_title'] : ''))
+            ->values();
+
+        if ($people->isNotEmpty()) {
+            $lines[] = 'People: '.$people->implode('; ');
+        }
+
         $serviceAreas = app(AreaRepository::class)->all()
             ->map(fn ($area): string => $area->label())
             ->values()
             ->all();
 
         if ($serviceAreas !== []) {
-            $lines[] = 'Service areas: '.implode(', ', $serviceAreas);
+            $lines[] = 'Service areas: '.implode('; ', $serviceAreas);
         }
 
         $publicManaged = $managedPages->publishedPages()
@@ -105,13 +119,48 @@ class DiscoveryFilesController extends Controller
         if ($publicManaged->isNotEmpty()) {
             $lines[] = '';
             $lines[] = '## Published pages';
+            // The llms.txt convention: a markdown link, then what the page
+            // covers, so an assistant can pick the page that answers a question.
             foreach ($publicManaged as $page) {
-                $lines[] = '- '.$page->title.': '.$page->url();
+                $lines[] = '- ['.$page->title.']('.$page->url().')'
+                    .(filled($page->description) ? ': '.$page->description : '');
             }
         }
 
         return response(implode("\n", $lines)."\n", 200)
             ->header('Content-Type', 'text/plain; charset=UTF-8');
+    }
+
+    /**
+     * Opening hours from site settings in one line, or null when none are set.
+     */
+    private function hoursLine(): ?string
+    {
+        $hours = collect(config('site.opening_hours') ?: [])
+            ->filter(fn (mixed $entry): bool => is_array($entry)
+                && is_array($entry['days'] ?? null)
+                && $entry['days'] !== []
+                && is_string($entry['opens'] ?? null)
+                && is_string($entry['closes'] ?? null))
+            ->values();
+
+        if ($hours->isEmpty()) {
+            return null;
+        }
+
+        $everyDay = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        $first = $hours->first();
+
+        if ($hours->count() === 1
+            && array_values(array_intersect($everyDay, $first['days'])) === $everyDay
+            && $first['opens'] === '00:00'
+            && $first['closes'] === '23:59') {
+            return 'Open 24 hours, 7 days a week';
+        }
+
+        return $hours
+            ->map(fn (array $entry): string => implode(', ', $entry['days']).' '.$entry['opens'].'-'.$entry['closes'])
+            ->implode('; ');
     }
 
     /**

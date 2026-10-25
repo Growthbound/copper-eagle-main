@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "New Construction + Remodels",
-        "description": "When it comes to your remodeling or new construction project, every detail matters, and plumbing is no exception.",
+        "title": "New Construction and Remodel Plumbing",
+        "description": "Plumbing for new construction and remodels in Utah: pipe installation, water and sewer lines, fixtures, and testing and inspections.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -137,6 +137,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+            "alt": "A row of newly built houses with driveways",
+            "width": 1070,
+            "height": 714
         }
     }
 }

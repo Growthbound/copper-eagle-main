@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "Water Heater Repairs + Installation",
-        "description": "Hot water is an essential component of our daily routines, facilitating everything from refreshing showers to efficient household cleaning.",
+        "title": "Water Heater Repair and Installation, Utah",
+        "description": "Water heater repair and installation in Utah, including tankless models. Learn the signs your water heater needs service from Copper Eagle Plumbing.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -137,6 +137,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/water-banner.jpg",
+            "alt": "A water droplet splashing up from a pool of water",
+            "width": 1200,
+            "height": 1200
         }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Support;
 use App\Content\Area;
 use App\Content\AreaRepository;
 use App\Content\Enums\ContentKind;
+use App\Content\Enums\PageTemplate;
 use App\Content\Faq;
 use App\Content\FaqRepository;
 use App\Content\ManagedPage;
@@ -41,6 +42,7 @@ class StructuredData
             'name' => $title,
             'description' => $description,
             'url' => $url,
+            'isPartOf' => ['@id' => self::websiteId()],
             'about' => ['@id' => self::businessId()],
         ], fn (mixed $value): bool => $value !== null && $value !== '');
 
@@ -52,13 +54,15 @@ class StructuredData
      */
     public static function managedPage(ManagedPage $page): array
     {
-        $nodes = [[
+        $nodes = [array_filter([
             '@type' => 'WebPage',
             '@id' => $page->canonicalUrl().'#webpage',
             'name' => $page->title,
             'description' => $page->description,
             'url' => $page->canonicalUrl(),
-        ]];
+            'isPartOf' => ['@id' => self::websiteId()],
+            'about' => ['@id' => self::businessId()],
+        ], fn (mixed $value): bool => $value !== null && $value !== '')];
 
         if ($page->breadcrumbs !== []) {
             $nodes[] = self::breadcrumbs($page->breadcrumbs);
@@ -74,17 +78,42 @@ class StructuredData
             $nodes[] = $article;
         }
 
-        if ($page->kind === ContentKind::Service) {
-            $nodes[] = [
+        // A service-detail page describes one service whatever its kind, so it
+        // says so in the markup too.
+        if ($page->kind === ContentKind::Service || $page->template === PageTemplate::ServiceDetail) {
+            $nodes[] = array_filter([
                 '@type' => 'Service',
                 'name' => $page->title,
                 'description' => $page->description,
                 'url' => $page->canonicalUrl(),
                 'provider' => ['@id' => self::businessId()],
-            ];
+            ], fn (mixed $value): bool => $value !== null && $value !== '');
         }
 
         return $nodes;
+    }
+
+    /**
+     * The site itself, published by the business. Search engines read the
+     * site's name from this node.
+     */
+    public static function websiteId(): string
+    {
+        return rtrim(url('/'), '/').'/#website';
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public static function website(): array
+    {
+        return [
+            '@type' => 'WebSite',
+            '@id' => self::websiteId(),
+            'name' => config('site.name'),
+            'url' => rtrim(url('/'), '/'),
+            'publisher' => ['@id' => self::businessId()],
+        ];
     }
 
     /**
@@ -131,7 +160,7 @@ class StructuredData
 
         if ($areas->isNotEmpty()) {
             $business['areaServed'] = $areas->map(fn (Area $area): array => array_filter([
-                '@type' => 'City',
+                '@type' => self::placeType($area->name()),
                 'name' => $area->name(),
                 'containedInPlace' => $area->region() === null ? null : [
                     '@type' => 'AdministrativeArea',
@@ -157,6 +186,14 @@ class StructuredData
 
         if (filled(config('site.social_links'))) {
             $business['sameAs'] = array_column(config('site.social_links'), 'url');
+        }
+
+        if (($hours = self::openingHours()) !== []) {
+            $business['openingHoursSpecification'] = $hours;
+        }
+
+        if (($people = self::people()) !== []) {
+            $business['employee'] = $people;
         }
 
         /*
@@ -201,9 +238,68 @@ class StructuredData
             'url' => $area === null ? $service->url() : $service->urlInArea($area),
             'provider' => ['@id' => self::businessId()],
             'areaServed' => $areas->isEmpty() ? null : $areas->map(
-                fn (Area $candidate): array => ['@type' => 'City', 'name' => $candidate->name()]
+                fn (Area $candidate): array => ['@type' => self::placeType($candidate->name()), 'name' => $candidate->name()]
             )->values()->all(),
         ]);
+    }
+
+    /**
+     * A county is not a city. Service-area lists mix the two, and calling
+     * "Utah County" a City tells a search engine to look for a town that
+     * doesn't exist.
+     */
+    private static function placeType(string $name): string
+    {
+        return preg_match('/\b(County|Parish|Borough)$/i', trim($name)) === 1
+            ? 'AdministrativeArea'
+            : 'City';
+    }
+
+    /**
+     * Opening hours from site settings, for example a 24/7 business that
+     * lists every day from 00:00 to 23:59.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private static function openingHours(): array
+    {
+        return collect(config('site.opening_hours') ?: [])
+            ->filter(fn (mixed $hours): bool => is_array($hours)
+                && is_array($hours['days'] ?? null)
+                && $hours['days'] !== []
+                && is_string($hours['opens'] ?? null)
+                && is_string($hours['closes'] ?? null))
+            ->map(fn (array $hours): array => [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => array_values($hours['days']),
+                'opens' => $hours['opens'],
+                'closes' => $hours['closes'],
+            ])
+            ->values()
+            ->all();
+    }
+
+    /**
+     * The people the business names on its own pages, such as its owner.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private static function people(): array
+    {
+        return collect(config('site.people') ?: [])
+            ->filter(fn (mixed $person): bool => is_array($person)
+                && is_string($person['name'] ?? null)
+                && trim($person['name']) !== '')
+            ->map(fn (array $person): array => array_filter([
+                '@type' => 'Person',
+                'name' => trim($person['name']),
+                'jobTitle' => is_string($person['job_title'] ?? null) ? $person['job_title'] : null,
+                'url' => is_string($person['url'] ?? null) && str_starts_with($person['url'], '/')
+                    ? url($person['url'])
+                    : null,
+            ]))
+            ->values()
+            ->all();
     }
 
     /**
@@ -264,7 +360,7 @@ class StructuredData
     {
         return [
             '@context' => 'https://schema.org',
-            '@graph' => [self::localBusiness(), ...array_values(array_filter($nodes))],
+            '@graph' => [self::localBusiness(), self::website(), ...array_values(array_filter($nodes))],
         ];
     }
 
@@ -278,9 +374,12 @@ class StructuredData
             ->flatMap(fn ($block): array => is_array($block->props['items'] ?? null)
                 ? $block->props['items']
                 : [])
+            // An accordion can hold labelled reasons ("Expertise", "Safety")
+            // as well as questions. Only an item phrased as a question is one,
+            // and marking a label up as a question misdescribes the page.
             ->filter(fn (mixed $item): bool => is_array($item)
                 && is_string($item['question'] ?? null)
-                && trim($item['question']) !== ''
+                && str_ends_with(trim($item['question']), '?')
                 && is_string($item['answer'] ?? null)
                 && trim($item['answer']) !== '')
             ->values();
@@ -351,6 +450,12 @@ class StructuredData
                         'name' => $hero->props['reviewer']['name'],
                     ]
                     : null,
+            'publisher' => ['@id' => self::businessId()],
+            // Article results want an image; the page's share image is the
+            // photo it already presents as itself.
+            'image' => is_string($page->socialImage['src'] ?? null)
+                ? (str_starts_with($page->socialImage['src'], '/') ? url($page->socialImage['src']) : $page->socialImage['src'])
+                : null,
             'mainEntityOfPage' => $page->canonicalUrl(),
         ]);
     }

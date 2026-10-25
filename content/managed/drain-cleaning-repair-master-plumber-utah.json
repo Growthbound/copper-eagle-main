@@ -12,8 +12,8 @@
         "template": "service-detail"
     },
     "payload": {
-        "title": "Drain Cleaning + Repair",
-        "description": "Clogged drains can throw a wrench into your daily life, causing both plumbing woes and health concerns.",
+        "title": "Drain Cleaning and Repair in Salt Lake City",
+        "description": "Drain cleaning and repair in Salt Lake City. Copper Eagle Plumbing clears clogged and slow drains, and explains the warning signs to watch for.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -161,6 +161,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/photos/drain.jpg",
+            "alt": "Water running into a sink drain",
+            "width": 1200,
+            "height": 800
         }
     }
 }

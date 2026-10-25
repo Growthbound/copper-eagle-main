@@ -12,8 +12,8 @@
         "template": "about"
     },
     "payload": {
-        "title": "About Us",
-        "description": "We strive to be the best plumbers in Utah.",
+        "title": "About Jordan Walker, Master Plumber",
+        "description": "Meet Jordan Walker, the owner and master plumber behind Copper Eagle Plumbing in Salt Lake City, and see how the team approaches every job.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -83,6 +83,12 @@
                     "href": "/contact-copper-eagle-plumbing"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/plumbing-pipes-jordan-walker-utah.jpg",
+            "alt": "Copper pipes and valves connected to a steam generator",
+            "width": 1600,
+            "height": 790
         }
     }
 }

@@ -12,8 +12,8 @@
         "template": "emergency"
     },
     "payload": {
-        "title": "24/7 Emergency Plumber",
-        "description": "Call us 24/7, and we’ll help solve your plumbing emergency, even if it’s in the middle of the night.",
+        "title": "24/7 Emergency Plumber, Salt Lake City",
+        "description": "Plumbing emergency in Salt Lake City? Copper Eagle Plumbing takes calls 24/7. See what an after-hours visit and diagnostics cost before you call.",
         "noindex": false,
         "sections": {
             "hero": {
@@ -73,6 +73,12 @@
                     "href": "tel:+13856250369"
                 }
             }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/night.jpg",
+            "alt": "Full moon in a night sky above silhouetted trees",
+            "width": 1200,
+            "height": 675
         }
     }
 }
