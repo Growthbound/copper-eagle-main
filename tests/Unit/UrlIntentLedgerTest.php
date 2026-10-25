@@ -243,6 +243,19 @@ class UrlIntentLedgerTest extends TestCase
     }
 
     /**
+     * The site serves its redirects straight from the shipped ledger without
+     * validating it, so a ledger that breaks these rules would still deploy.
+     * Every redirect target must be listed, and each intent needs one owner.
+     */
+    public function test_the_shipped_ledger_passes_its_own_rules(): void
+    {
+        $path = dirname(__DIR__, 2).'/content/registries/url-intent-ledger.json';
+        $ledger = json_decode((string) file_get_contents($path), true, flags: JSON_THROW_ON_ERROR);
+
+        $this->assertSame([], (new UrlIntentLedger)->validate($ledger));
+    }
+
+    /**
      * @param  list<array<string, mixed>>  $intents
      * @param  list<array<string, mixed>>  $entries
      * @param  list<array<string, string>>  $defects

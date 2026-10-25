@@ -3471,6 +3471,8 @@
     .rich-content-reading {
         margin-top: clamp(2.5rem, 5vw, 4rem);
         color: var(--theme-text);
+        /* A bare web address has no spaces, so let it break instead of widening the page. */
+        overflow-wrap: anywhere;
     }
 
     .rich-content-reading > * + * {

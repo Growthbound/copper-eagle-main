@@ -56,9 +56,158 @@
             "id": "service.garbage-disposals",
             "label": "Garbage Disposals",
             "status": "resolved"
+        },
+        {
+            "id": "legal.privacy",
+            "label": "Privacy Policy",
+            "status": "resolved"
         }
     ],
     "entries": [
+        {
+            "url": "/plumbing-services-salt-lake-city-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "services.hub",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumbing-services-salt-lake-city-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/contact-copper-eagle-plumbing/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "contact",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/contact-copper-eagle-plumbing/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/general-plumbing-services-salt-lake-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.general-plumbing",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/general-plumbing-services-salt-lake-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/drain-cleaning-repair-master-plumber-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.drain-cleaning",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/drain-cleaning-repair-master-plumber-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/water-filtration-utah-hard-water-softeners/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.water-filtration",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/water-filtration-utah-hard-water-softeners/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/water-heater-repairs-installation-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.water-heaters",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/water-heater-repairs-installation-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/steam-shower-install-repair-salt-lake-city-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.steam-showers",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/steam-shower-install-repair-salt-lake-city-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/new-construction-remodels-plumber-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.new-construction",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/new-construction-remodels-plumber-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/gas-lines-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.gas-lines",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/gas-lines-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/garbage-disposals-appliances-plumbing-utah/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "service.garbage-disposals",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/garbage-disposals-appliances-plumbing-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "home",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
+        {
+            "url": "/privacy-policy/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "legal.privacy",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/privacy-policy/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "The live page, kept at its live-site address."
+        },
         {
             "url": "/services/",
             "source": "service_record",
@@ -1137,6 +1286,19 @@
             "disposition_target": "/",
             "evidence_gates": [],
             "notes": "Squarespace served the home page at this path too."
+        },
+        {
+            "url": "/privacy/",
+            "source": "legacy_url",
+            "content_kind": "page",
+            "intent": "legal.privacy",
+            "intent_role": "supporting",
+            "indexation": "noindex",
+            "canonical": "/privacy-policy/",
+            "disposition": "redirect",
+            "disposition_target": "/privacy-policy/",
+            "evidence_gates": [],
+            "notes": "The SMS consent text on the legal pages quotes this address; the privacy page lives at /privacy-policy/."
         },
         {
             "url": "/areas/murray/",
