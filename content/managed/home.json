@@ -29,6 +29,14 @@
                     "width": 1200,
                     "height": 800
                 },
+                "video": {
+                    "src": "/videos/brand/hero-home.mp4",
+                    "poster": {
+                        "src": "/videos/brand/hero-home-poster.jpg",
+                        "width": 1280,
+                        "height": 720
+                    }
+                },
                 "serviceStrip": true
             },
             "introduction": {

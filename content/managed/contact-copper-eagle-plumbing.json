@@ -30,11 +30,18 @@
                 "eyebrow": "CONNECT WITH US",
                 "heading": "Call or Text",
                 "body": "Give us a call today to learn more about our plumbing services, to receive an estimate, or to get your questions answered.",
+                "showContact": true,
                 "image": {
                     "src": "/images/brand/pages/dsc-1111.jpg",
                     "alt": "Contact A Plumber in Utah Today Jordan Walker Salt Lake",
                     "width": 900,
                     "height": 1350
+                },
+                "secondaryImage": {
+                    "src": "/images/brand/pages/crew-photo.jpg",
+                    "alt": "The Copper Eagle Plumbing crew",
+                    "width": 1200,
+                    "height": 745
                 },
                 "submitLabel": "Submit",
                 "showMessage": true
@@ -122,6 +129,113 @@
                     "href": "/24-7-emergency-plumber-salt-lake-utah"
                 },
                 "tone": "copper"
+            },
+            "social": {
+                "heading": "Connect with us on social media",
+                "profiles": [
+                    {
+                        "label": "INSTAGRAM",
+                        "handle": "@Copper.Eagle.Plumbing",
+                        "href": "https://www.instagram.com/copper.eagle.plumbing/"
+                    },
+                    {
+                        "label": "YOUTUBE",
+                        "handle": "@CopperEaglePlumbing",
+                        "href": "https://www.youtube.com/channel/UCnSBO4aWLcKSncFczU4eRsg"
+                    }
+                ],
+                "posts": [
+                    {
+                        "href": "https://www.instagram.com/p/DBktXGdxyVt/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-01.jpg",
+                            "alt": "Mini excavator digging beside a residential street to reach a water line",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/C8gCIPzRJel/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-02.jpg",
+                            "alt": "Finished bathroom with a dark tiled walk-in shower and a white toilet",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/C8QdjnPvXPK/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-03.jpg",
+                            "alt": "White comfort-height toilet",
+                            "width": 350,
+                            "height": 350
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/C8Qc5QhvMQu/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-04.jpg",
+                            "alt": "FloLogic smart water shutoff valve beside its phone app",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/C2LubLixsQN/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-05.jpg",
+                            "alt": "Corroded, separated joints on a water heater flue pipe",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/reel/CpJ4BFyoo64/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-06.jpg",
+                            "alt": "Copper Eagle Plumbing logo",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/CpBwf-kLIeq/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-07.jpg",
+                            "alt": "Newly installed Rheem water heater in a utility room",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/CoOlD6ZumFt/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-08.jpg",
+                            "alt": "Water heater vent pipe running through a basement ceiling",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/CoOht2vrhbh/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-09.jpg",
+                            "alt": "Worn shower cartridge parts lying in a white tub",
+                            "width": 750,
+                            "height": 750
+                        }
+                    },
+                    {
+                        "href": "https://www.instagram.com/p/CoOhIHvrY9p/",
+                        "image": {
+                            "src": "/images/brand/instagram/instagram-10.jpg",
+                            "alt": "Leaking basement water lines dripping into a bucket",
+                            "width": 750,
+                            "height": 750
+                        }
+                    }
+                ]
             }
         },
         "social_image": {

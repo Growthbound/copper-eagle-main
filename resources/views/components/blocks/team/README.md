@@ -53,3 +53,13 @@ omitted without removing an otherwise valid member.
 
 Use approved, current staff photography and titles on public pages. The local
 preview intentionally uses synthetic people and stock images.
+
+## Footer team spotlight
+
+The `team` section of the published team page (slug `team`, template `team`)
+also feeds the team spotlight above the site footer
+(`<x-team-spotlight />`, read through `App\Content\TeamSpotlight`): each
+member's photo beside their name and bio. Edit the team page and both update.
+The spotlight is left out on the team page itself, whose grid already shows
+everyone, and on fictional template previews; the gallery shows it with
+synthetic people at `/_templates/team-spotlight`.

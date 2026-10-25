@@ -169,10 +169,84 @@ const initializeLazyHeroVideos = () => {
     });
 };
 
+/*
+ * Decorative hero background videos (hero/photo, hero/interior). The markup
+ * ships without a <source>, so nothing heavy loads with the page. Once the
+ * page is idle, and only when the visitor has not asked for reduced motion,
+ * the source is attached and the muted loop starts; otherwise the poster
+ * still stays. The pause control appears once the video is playing.
+ */
+const initializeBackgroundVideos = () => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll('[data-background-video]').forEach((video) => {
+        if (!(video instanceof HTMLVideoElement)) {
+            return;
+        }
+
+        const control = video.parentElement?.querySelector('[data-background-video-control]');
+
+        const updateControl = () => {
+            if (!(control instanceof HTMLButtonElement)) {
+                return;
+            }
+
+            control.hidden = false;
+            control.classList.toggle('is-paused', video.paused);
+            control.setAttribute('aria-label', video.paused ? 'Play background video' : 'Pause background video');
+        };
+
+        const start = () => {
+            if (reducedMotion.matches || video.dataset.hydrated === 'true' || !video.dataset.src) {
+                return;
+            }
+
+            video.dataset.hydrated = 'true';
+
+            const source = document.createElement('source');
+            source.src = video.dataset.src;
+
+            if (video.dataset.type) {
+                source.type = video.dataset.type;
+            }
+
+            video.append(source);
+            video.load();
+            video.play().catch(() => {
+                // Autoplay was refused; the poster stays.
+            });
+        };
+
+        video.addEventListener('playing', updateControl);
+        video.addEventListener('pause', updateControl);
+        control?.addEventListener('click', () => {
+            if (video.paused) {
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        });
+        reducedMotion.addEventListener?.('change', () => {
+            if (reducedMotion.matches) {
+                video.pause();
+            } else {
+                start();
+            }
+        });
+
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(start, { timeout: 2000 });
+        } else {
+            window.setTimeout(start, 300);
+        }
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeBeforeAfter();
     initializePhotoGalleries();
     initializeLazyHeroVideos();
+    initializeBackgroundVideos();
 });
 
 // Legacy campaigns target /#contact-us. Keep managed/native anchors unchanged.

@@ -2,6 +2,10 @@
     A centered prompt between sections: large heading (one phrase may be
     underlined through `emphasis`), optional body, and one button. White or
     mist band; copper or light-blue button.
+
+    An optional `image` (such as a portrait) sits on the start side with the
+    prompt beside it; on phones it stacks above. It comes last in the markup
+    so the heading is read first.
 --}}
 @props([
     'id' => 'inline-cta',
@@ -13,6 +17,7 @@
     'secondaryAction' => null,
     'background' => 'white',
     'buttonStyle' => 'copper',
+    'image' => null,
 ])
 
 @php
@@ -21,12 +26,13 @@
     $secondary = $data->link($secondaryAction);
     $isMist = $background === 'mist';
     $buttonClass = $buttonStyle === 'sky' ? 'button-sky' : 'button-orange';
+    $photo = $data->media($image);
 @endphp
 
 @if ($primary)
     <section
         id="{{ $id }}"
-        @class(['inline-cta', 'edge-panel', 'is-mist' => $isMist])
+        @class(['inline-cta', 'edge-panel', 'is-mist' => $isMist, 'has-media' => $photo !== null])
         aria-labelledby="{{ $id }}-title"
     >
         <div>
@@ -54,5 +60,17 @@
                 </div>
             @endif
         </div>
+
+        @if ($photo)
+            <div class="inline-cta-media">
+                <img
+                    src="{{ $data->assetUrl($photo['src']) }}"
+                    alt="{{ $photo['alt'] }}"
+                    width="{{ $photo['width'] }}"
+                    height="{{ $photo['height'] }}"
+                    loading="lazy"
+                >
+            </div>
+        @endif
     </section>
 @endif

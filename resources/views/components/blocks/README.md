@@ -92,6 +92,7 @@ out of the accessibility tree.
 | `service-areas` | Coverage lists and maps |
 | `cta` | Conversion prompts and inline lead forms |
 | `logo-strip` | Manufacturer, partner, or association logos |
+| `social` | Social profile handles, a static grid of recent posts, and profile tiles |
 
 Each folder has its own README describing the props that category expects.
 
@@ -160,4 +161,6 @@ hero/article
 hero/photo
 service-cards/icon-strip
 content/feature-cards
+social/feed
+social/profiles
 ```

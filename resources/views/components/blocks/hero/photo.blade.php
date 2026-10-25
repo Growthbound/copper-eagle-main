@@ -7,6 +7,11 @@
 
     The strip reads the service records (see service-cards/icon-strip); set
     `serviceStrip` to false to leave it out.
+
+    An optional `video` plays muted and looping over the photo, under the same
+    overlay. It is decorative (hidden from assistive technology), its source is
+    attached by resources/js/app.js only when the visitor allows motion, and
+    otherwise its poster still shows. The photo stays the priority image.
 --}}
 @props([
     'id' => 'hero',
@@ -16,6 +21,7 @@
     'body' => null,
     'primaryAction',
     'image',
+    'video' => null,
     'serviceStrip' => true,
 ])
 
@@ -23,6 +29,7 @@
     $data = app(\App\Content\BlockData::class);
     $primary = $data->link($primaryAction);
     $photo = $data->media($image);
+    $backgroundVideo = $data->backgroundVideo($video);
 @endphp
 
 <x-site-header :cta="$primary" />
@@ -41,6 +48,10 @@
             height="{{ $photo['height'] }}"
             fetchpriority="high"
         >
+    @endif
+
+    @if ($backgroundVideo)
+        @include('components.blocks.hero.partials.background-video', ['video' => $backgroundVideo, 'class' => 'photo-hero-video'])
     @endif
 
     <div class="photo-hero-inner">

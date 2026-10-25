@@ -133,6 +133,7 @@ final class PageTemplateRegistry
                 'message' => 'cta/quote-form-split',
                 'service-areas' => 'service-areas/list',
                 'emergency' => 'cta/panel',
+                'social' => 'social/feed',
             ]),
         };
     }

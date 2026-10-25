@@ -3,6 +3,10 @@
     centered uppercase eyebrow, centered white H1, and a white chevron rising
     into the next section. The photo is a decorative backdrop, so it renders
     with empty alt text; the H1 carries the meaning.
+
+    An optional `video` plays muted and looping behind the same overlay, over
+    the photo when there is one (see hero/partials/background-video). Without
+    a photo the poster still is the fallback.
 --}}
 @props([
     'id' => 'interior-hero',
@@ -12,6 +16,7 @@
     'primaryAction' => null,
     'secondaryAction' => null,
     'image' => null,
+    'video' => null,
 ])
 
 @php
@@ -19,13 +24,14 @@
     $primary = $data->link($primaryAction);
     $secondary = $data->link($secondaryAction);
     $backdrop = $data->media($image);
+    $backgroundVideo = $data->backgroundVideo($video);
 @endphp
 
 <x-site-header :cta="$primary" />
 
 <section
     id="{{ $id }}"
-    @class(['interior-hero', 'edge-panel', 'has-backdrop' => $backdrop !== null])
+    @class(['interior-hero', 'edge-panel', 'has-backdrop' => $backdrop !== null || $backgroundVideo !== null])
     aria-labelledby="{{ $id }}-title"
 >
     @if ($backdrop)
@@ -37,6 +43,10 @@
             height="{{ $backdrop['height'] }}"
             fetchpriority="high"
         >
+    @endif
+
+    @if ($backgroundVideo)
+        @include('components.blocks.hero.partials.background-video', ['video' => $backgroundVideo, 'class' => 'interior-hero-video'])
     @endif
 
     <div class="interior-hero-inner">

@@ -107,6 +107,19 @@ send `<p>` or `<br>`. `content/feature-cards` takes two to six cards. A
 text. The schema field descriptions say which fields accept blank-line
 paragraphs.
 
+A few optional props carry the live site's media and statements.
+`hero/photo` and `hero/interior` accept a decorative background `video`:
+`{"src": "/videos/brand/….mp4", "poster": {"src": "…", "width": 1280, "height": 720}}`
+(`.mp4` or `.webm`; the poster needs its size but no alt text).
+`cta/inline-band` accepts an `image` beside the prompt. The `cta/panel` button
+(`cta`) is optional, so a guarantee band can be a statement, and the panel
+accepts a small `logo`. `cta/quote-form-split` accepts `showContact` (the phone
+and email come from site settings, never from content) and a `secondaryImage`.
+`social/feed` and `social/profiles` links must be absolute `http`/`https`
+addresses; they open in a new tab. A link to a document shipped in `public/`
+(`.vcf` or `.pdf`, such as `/s/JW.vcf`) counts as an existing internal
+destination.
+
 ## Fixed-template scaffolds
 
 The owner CMS can create a fixed-template draft containing placeholder sections
@@ -140,7 +153,7 @@ from drifting apart. The full section list per template is in
 | `about` | The company story |
 | `team` | The people who come to the home |
 | `reviews` | Customer reviews and the review prompt |
-| `contact` | Contact details, the message form, and service areas |
+| `contact` | Contact details, the message form, service areas, and the social feed |
 | `standard` + `hero/article` | Blog posts (`decision-guide` for long, evidence-led guides) |
 | `standard` | One-off pages only: legal pages, thank-you pages |
 

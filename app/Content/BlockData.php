@@ -119,6 +119,66 @@ final readonly class BlockData
     }
 
     /**
+     * A decorative background video: a safe .mp4 or .webm source and a poster
+     * still with its intrinsic size. The poster needs no alt text because the
+     * video is hidden from assistive technology; the section's heading and
+     * photo carry the meaning.
+     *
+     * @return array{src: string, type: string, poster: array{src: string, width: int, height: int}}|null
+     */
+    public function backgroundVideo(mixed $video): ?array
+    {
+        if (! is_array($video)
+            || ! $this->richContent->isSafeMediaUrl($video['src'] ?? null)
+            || ! is_array($video['poster'] ?? null)) {
+            return null;
+        }
+
+        $poster = $video['poster'];
+        $path = strtolower((string) parse_url($video['src'], PHP_URL_PATH));
+        $type = match (true) {
+            str_ends_with($path, '.mp4') => 'video/mp4',
+            str_ends_with($path, '.webm') => 'video/webm',
+            default => null,
+        };
+
+        if ($type === null
+            || ! $this->richContent->isSafeMediaUrl($poster['src'] ?? null)
+            || ! is_int($poster['width'] ?? null)
+            || $poster['width'] < 1
+            || ! is_int($poster['height'] ?? null)
+            || $poster['height'] < 1) {
+            return null;
+        }
+
+        return [
+            'src' => $video['src'],
+            'type' => $type,
+            'poster' => [
+                'src' => $poster['src'],
+                'width' => $poster['width'],
+                'height' => $poster['height'],
+            ],
+        ];
+    }
+
+    /**
+     * An absolute http(s) address on another site, for links that open in a
+     * new tab (social profiles and posts).
+     */
+    public function externalUrl(mixed $url): ?string
+    {
+        if (! is_string($url)
+            || filter_var($url, FILTER_VALIDATE_URL) === false
+            || ! in_array(strtolower((string) parse_url($url, PHP_URL_SCHEME)), ['http', 'https'], true)
+            || ! $this->richContent->isSafeUrl($url)) {
+            return null;
+        }
+
+        return $url;
+    }
+
+    /**
      * @return array{label: string, url: string}|null
      */
     public function source(mixed $item): ?array

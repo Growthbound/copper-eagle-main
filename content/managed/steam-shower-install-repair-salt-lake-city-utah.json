@@ -95,10 +95,6 @@
             "guarantee": {
                 "heading": "Quality Assurance",
                 "body": "Our commitment to quality ensures that every repair, maintenance, or installation we undertake is done to the highest standards.",
-                "cta": {
-                    "label": "GET IN TOUCH WITH US",
-                    "href": "/contact-copper-eagle-plumbing"
-                },
                 "tone": "primary"
             },
             "faq": {

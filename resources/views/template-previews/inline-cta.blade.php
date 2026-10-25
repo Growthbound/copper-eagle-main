@@ -2,7 +2,7 @@
     <section class="marketing-icon-catalog-heading section-space">
         <p class="eyebrow text-accent">Fictional local template</p>
         <h1>Inline CTA</h1>
-        <p>A centered prompt between sections: white or mist band, copper or light-blue button, one optional underlined phrase.</p>
+        <p>A centered prompt between sections: white or mist band, copper or light-blue button, one optional underlined phrase, and an optional photo on the start side.</p>
     </section>
 
     <x-blocks.cta.inline-band
@@ -18,6 +18,14 @@
         background="mist"
         :primary-action="['label' => 'Talk to a fictional plumber', 'href' => '#quote']"
         :secondary-action="['label' => 'Review the process', 'href' => '/templates']"
+    />
+
+    <x-blocks.cta.inline-band
+        id="inline-cta-photo"
+        heading="Let us help with any of your fictional plumbing problems today."
+        emphasis="fictional plumbing problems"
+        :primary-action="['label' => 'Get in touch with us', 'href' => '#quote']"
+        :image="['src' => '/images/brand/photos/bath-sink.jpg', 'alt' => 'Bathroom sink and faucet', 'width' => 900, 'height' => 900]"
     />
 
     <x-blocks.cta.inline-band

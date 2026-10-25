@@ -1,3 +1,9 @@
+{{--
+    The form on a mist card beside a photo. `showContact` adds the phone
+    number (a call button under the heading) and the email address (under the
+    body), both from site settings and each hidden when blank. An optional
+    `secondaryImage` stacks under the first photo.
+--}}
 @props([
     'id' => 'quote',
     'eyebrow' => null,
@@ -7,6 +13,8 @@
     'submitLabel' => 'Request a visit',
     'showMessage' => false,
     'purpose' => 'inquiry',
+    'showContact' => false,
+    'secondaryImage' => null,
 ])
 
 @php
@@ -21,6 +29,8 @@
         && (int) $image['width'] > 0
         && (int) $image['height'] > 0;
     $isTemplatePreview = request()->routeIs('template-preview.*', 'content.preview');
+    $second = $hasImage ? $data->media($secondaryImage) : null;
+    $email = $showContact === true ? trim((string) config('site.email')) : '';
 @endphp
 
 <section data-website-form-section
@@ -41,8 +51,16 @@
 
         <h2 id="{{ $id }}-title">{{ $heading }}</h2>
 
+        @if ($showContact === true)
+            <x-call-link class="button button-orange contact-split-call" />
+        @endif
+
         @if (filled($body))
             <p>{{ $body }}</p>
+        @endif
+
+        @if (filter_var($email, FILTER_VALIDATE_EMAIL))
+            <p class="contact-split-email"><a href="mailto:{{ $email }}">{{ $email }}</a></p>
         @endif
 
         <x-forms.website
@@ -56,7 +74,7 @@
     </div>
 
     @if ($hasImage)
-        <div class="contact-split-media">
+        <div @class(['contact-split-media', 'has-secondary' => $second !== null])>
             <img
                 src="{{ $data->assetUrl($image['src']) }}"
                 alt="{{ $image['alt'] }}"
@@ -64,6 +82,16 @@
                 height="{{ (int) $image['height'] }}"
                 loading="lazy"
             >
+            @if ($second)
+                <img
+                    class="contact-split-secondary"
+                    src="{{ $data->assetUrl($second['src']) }}"
+                    alt="{{ $second['alt'] }}"
+                    width="{{ $second['width'] }}"
+                    height="{{ $second['height'] }}"
+                    loading="lazy"
+                >
+            @endif
         </div>
     @endif
 </section>

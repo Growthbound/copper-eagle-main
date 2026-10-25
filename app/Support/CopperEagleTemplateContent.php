@@ -142,8 +142,8 @@ final class CopperEagleTemplateContent
                 'guarantee' => [
                     'eyebrow' => 'Sample promise eyebrow',
                     'heading' => 'Sample guarantee headline',
+                    'body' => 'A sample promise about the work. Like the live guarantee band, it is a statement with no button.',
                     'tone' => 'copper',
-                    'cta' => ['label' => 'Get in touch', 'href' => '#final-response'],
                 ],
                 'faq' => [
                     'heading' => 'Common questions',
@@ -270,6 +270,8 @@ final class CopperEagleTemplateContent
                     'heading' => 'Send us a message',
                     'body' => 'Tell us what is going on and the best way to reach you. We will get back to you to talk it through.',
                     'image' => $this->photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900),
+                    'secondaryImage' => $this->photo('copper-pipe.jpg', 'Copper pipe joint', 1200, 800),
+                    'showContact' => true,
                     'submitLabel' => 'Send message',
                     'showMessage' => true,
                 ],
@@ -282,6 +284,20 @@ final class CopperEagleTemplateContent
                     'eyebrow' => 'Sample emergency eyebrow',
                     'heading' => 'Plumbing emergencies',
                     'cta' => ['label' => 'Learn more', 'href' => '#hero'],
+                ],
+                'social' => [
+                    'heading' => 'Connect with us on social media',
+                    'profiles' => [
+                        ['label' => 'Instagram', 'handle' => '@sample.company', 'href' => 'https://example.com/sample-profile'],
+                        ['label' => 'YouTube', 'handle' => '@SampleCompany'],
+                    ],
+                    'posts' => [
+                        ['href' => 'https://example.com/sample-post-1', 'image' => $this->photo('drain.jpg', 'Water running into a sink drain', 1200, 800)],
+                        ['href' => 'https://example.com/sample-post-2', 'image' => $this->photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900)],
+                        ['href' => 'https://example.com/sample-post-3', 'image' => $this->photo('copper-pipe.jpg', 'Copper pipe joint', 1200, 800)],
+                        ['href' => 'https://example.com/sample-post-4', 'image' => $this->photo('valve.jpg', 'Valve and gauge on a water line', 900, 900)],
+                        ['href' => 'https://example.com/sample-post-5', 'image' => $this->photo('kitchen.jpg', 'Kitchen counter with copper pans', 900, 900)],
+                    ],
                 ],
             ],
         ];

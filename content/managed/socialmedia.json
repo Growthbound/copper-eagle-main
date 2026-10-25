@@ -23,32 +23,67 @@
                 }
             },
             {
-                "type": "content/related-content",
+                "type": "social/profiles",
                 "props": {
                     "id": "social-media",
                     "heading": "Social Media",
-                    "items": [
+                    "profiles": [
                         {
-                            "title": "Nextdoor",
-                            "href": "https://nextdoor.com/page/copper-eagle-plumbing-glenburn-me"
+                            "href": "https://www.tiktok.com/t/ZP8P2soup/",
+                            "image": {
+                                "src": "/images/brand/pages/tictok.png",
+                                "alt": "Copper Eagle Plumbing on TikTok",
+                                "width": 400,
+                                "height": 408
+                            }
                         },
                         {
-                            "title": "TikTok",
-                            "href": "https://www.tiktok.com/t/ZP8P2soup/"
+                            "href": "https://nextdoor.com/page/copper-eagle-plumbing-glenburn-me",
+                            "image": {
+                                "src": "/images/brand/pages/next-door.png",
+                                "alt": "Copper Eagle Plumbing on Nextdoor",
+                                "width": 400,
+                                "height": 353
+                            }
                         },
                         {
-                            "title": "Google Reviews",
-                            "href": "https://g.co/kgs/Rxtokp"
+                            "href": "https://www.facebook.com/coppereagleplumbingut",
+                            "image": {
+                                "src": "/images/brand/pages/face-book.png",
+                                "alt": "Copper Eagle Plumbing on Facebook",
+                                "width": 400,
+                                "height": 380
+                            }
                         },
                         {
-                            "title": "Instagram",
-                            "href": "https://www.instagram.com/copper.eagle.plumbing/"
+                            "href": "https://g.co/kgs/Rxtokp",
+                            "image": {
+                                "src": "/images/brand/pages/google-reviews.png",
+                                "alt": "Copper Eagle Plumbing Google reviews",
+                                "width": 400,
+                                "height": 319
+                            }
                         },
                         {
-                            "title": "Facebook",
-                            "href": "https://www.facebook.com/coppereagleplumbingut"
+                            "href": "https://www.instagram.com/copper.eagle.plumbing/",
+                            "image": {
+                                "src": "/images/brand/pages/instagram.png",
+                                "alt": "Copper Eagle Plumbing on Instagram",
+                                "width": 400,
+                                "height": 403
+                            }
                         }
-                    ]
+                    ],
+                    "card": {
+                        "label": "Click to Save contact info",
+                        "href": "/s/JW.vcf",
+                        "image": {
+                            "src": "/images/brand/pages/vcard-qr-3.png",
+                            "alt": "QR code that saves Jordan Walker’s contact card",
+                            "width": 220,
+                            "height": 220
+                        }
+                    }
                 }
             }
         ],
