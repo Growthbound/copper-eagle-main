@@ -13,11 +13,13 @@ use App\Content\PublicLinkTarget;
 use App\Models\Media;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\WritesRecordFixtures;
 use Tests\TestCase;
 
 class ManagedContentRepositoryTest extends TestCase
 {
+    use IsolatesManagedContent;
     use RefreshDatabase;
     use WritesRecordFixtures;
 

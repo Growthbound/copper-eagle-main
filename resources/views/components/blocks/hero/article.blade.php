@@ -27,7 +27,9 @@
 @if (filled($author) && $publishedDate)
     <x-site-header :cta="null" />
     <header id="{{ $id }}" class="article-hero" aria-labelledby="{{ $id }}-title">
-        <p class="eyebrow text-accent">{{ $eyebrow }}</p>
+        @if (filled($eyebrow))
+            <p class="eyebrow text-accent">{{ $eyebrow }}</p>
+        @endif
         <h1 id="{{ $id }}-title">{{ $heading }}</h1>
         @if (filled($summary))
             <p class="article-hero-summary">{{ $summary }}</p>

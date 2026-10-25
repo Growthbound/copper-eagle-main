@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Support\SiteLogo;
 use App\Support\StructuredData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\TestCase;
 
@@ -21,6 +22,7 @@ use Tests\TestCase;
  */
 class EntityIdentityTest extends TestCase
 {
+    use IsolatesManagedContent;
     use RefreshDatabase;
     use UsesFixtureContent;
 

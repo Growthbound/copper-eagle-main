@@ -1,0 +1,145 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/garbage-disposals-appliances-plumbing-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "garbage-disposals-appliances-plumbing-utah",
+        "title": "Garbage Disposals + Appliances",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "Garbage Disposals + Appliances",
+        "description": "Your plumbing system plays a vital role in the functionality of your home.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Elevate Your Plumbing System with Professional Appliance Services",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/pages/cdc-lzxnmflmzga-unsplash.jpg",
+                    "alt": "A girl washing her hands at a kitchen sink",
+                    "width": 819,
+                    "height": 546
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Elevate Your Plumbing System with Professional Appliance Services",
+                "body": "Your plumbing system plays a vital role in the functionality of your home. When it comes to installing and repairing plumbing-related appliances and garbage disposals, you need a trusted partner who understands the intricacies of these systems. At Copper Eagle Plumbing, we specialize in providing top-notch appliance installation and garbage disposal services to enhance the efficiency and convenience of your plumbing.",
+                "image": {
+                    "src": "/images/brand/pages/chastity-cortijo-temdscvgvvs-unsplash.jpg",
+                    "alt": "Garbage disposals and appliance installation in utah",
+                    "width": 919,
+                    "height": 608
+                },
+                "imageSide": "start",
+                "cta": {
+                    "label": "CALL or text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "offerings": {
+                "id": "offerings",
+                "heading": "Our Comprehensive Appliance Services",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Dishwasher Installation and Repair",
+                        "body": "A properly installed dishwasher can save you time and water. Our expert technicians ensure seamless installations and efficient repairs, keeping your kitchen running smoothly.",
+                        "image": {
+                            "src": "/images/brand/pages/nathan-dumlao-mawtlziji8k-unsplash.jpg",
+                            "alt": "Plumber to install dishwasher in utah",
+                            "width": 896,
+                            "height": 1344
+                        }
+                    },
+                    {
+                        "title": "Washing Machine Installation",
+                        "body": "Installing a washing machine requires precision to prevent leaks and ensure proper drainage. Let Copper Eagle Plumbing install your new washing machine for a leak-free washing experience.",
+                        "image": {
+                            "src": "/images/brand/pages/pavol-tancibok-a7vpznviyfg-unsplash.jpg",
+                            "alt": "Plumber to install washing machine in utah",
+                            "width": 1114,
+                            "height": 742
+                        }
+                    },
+                    {
+                        "title": "Refrigerator Water Line Installation",
+                        "body": "Enjoy fresh, filtered water and ice from your refrigerator. Our specialists expertly install water lines, ensuring clean and convenient water access.",
+                        "image": {
+                            "src": "/images/brand/pages/sidekix-media-vagdhk-ki1c-unsplash-2.jpg",
+                            "alt": "refrigerator water line installation",
+                            "width": 544,
+                            "height": 544
+                        }
+                    },
+                    {
+                        "title": "Garbage Disposal Installation and Repairs",
+                        "body": "Garbage disposals simplify kitchen cleanup. Our team offers precise installations and efficient repairs to keep your disposal unit running smoothly.",
+                        "image": {
+                            "src": "/images/brand/pages/lenka-dzurendova-ftcqpjpffs4-unsplash.jpg",
+                            "alt": "garbage disposal installation and repair",
+                            "width": 922,
+                            "height": 614
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "Get the help you need with your appliances today.",
+                "body": "Don't compromise on the efficiency and convenience of your plumbing system. Whether you're looking to install a new appliance or need a repair for your existing one, Copper Eagle Plumbing is your trusted partner. We deliver expert appliance services and garbage disposal solutions to elevate your daily life.",
+                "image": {
+                    "src": "/images/brand/pages/sidekix-media-vagdhk-ki1c-unsplash-1.jpg",
+                    "alt": "Help with plumbing in appliances",
+                    "width": 1200,
+                    "height": 800
+                },
+                "imageSide": "start"
+            },
+            "guarantee": {
+                "heading": "Safety",
+                "body": "Your safety is our paramount concern. We adhere to the highest safety standards, guaranteeing that all installations and repairs are completed securely.",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "tone": "primary"
+            },
+            "faq": {
+                "heading": "Why Choose Us for Appliance Services?",
+                "items": [
+                    {
+                        "question": "Expertise",
+                        "answer": "Our technicians have extensive experience in handling various plumbing-related appliances. We understand the nuances of each system, ensuring accurate installations and effective repairs."
+                    },
+                    {
+                        "question": "Reliability",
+                        "answer": "When you choose Copper Eagle Plumbing, you can trust that your appliances will function as intended. Our team is committed to delivering reliable and long-lasting solutions."
+                    },
+                    {
+                        "question": "Efficiency",
+                        "answer": "We prioritize efficiency in every project. From swift installations to timely repairs, we minimize disruption to your daily life."
+                    },
+                    {
+                        "question": "Transparency",
+                        "answer": "We believe in transparent pricing and open communication. You'll always know what to expect, ensuring a hassle-free experience."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Contact us today to schedule your appliance installation, repair, or garbage disposal service.",
+                "body": "Experience the difference of working with plumbing professionals who prioritize your satisfaction and peace of mind.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

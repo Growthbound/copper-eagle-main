@@ -1,0 +1,131 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/steam-shower-install-repair-salt-lake-city-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "steam-shower-install-repair-salt-lake-city-utah",
+        "title": "Steam Showers",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "Steam Showers",
+        "description": "At Copper Eagle Plumbing, we understand that your Mr.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Mr. Steam Shower Repair, Maintenance, and Installation Services",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/pages/leohoho-ksuho0bii-g-unsplash.jpg",
+                    "alt": "Water droplets on a glass surface",
+                    "width": 1185,
+                    "height": 770
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Unlock the Luxury of a Pristine Steam Shower Experience",
+                "body": "At Copper Eagle Plumbing, we understand that your Mr. Steam shower is more than just a bathroom fixture; it's a sanctuary of relaxation and well-being. Our dedicated team of plumbing experts specializes in providing comprehensive repair, maintenance, and installation services tailored exclusively to Mr. Steam showers.",
+                "image": {
+                    "src": "/images/brand/pages/curology-ycekaheao5u-unsplash-1.jpg",
+                    "alt": "Bathroom with a glass shower enclosure decorated with green hanging plants, marble tiles on the wall, a showerhead, and toiletries on the shower floor.",
+                    "width": 887,
+                    "height": 1331
+                },
+                "imageSide": "start",
+                "cta": {
+                    "label": "CALL or text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "offerings": {
+                "id": "offerings",
+                "heading": "We offer maintenance, repair and new installations of steam showers.",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Maintenance to Prolong the Luxury",
+                        "body": "Regular maintenance is the key to preserving the longevity of your Mr. Steam shower and ensuring it functions flawlessly. Our maintenance services are designed to keep your steam shower in top-notch condition. From cleaning and descaling to inspecting and replacing components as needed, our meticulous approach guarantees that your steam shower remains a haven of relaxation for years to come.",
+                        "image": {
+                            "src": "/images/brand/pages/carson-masterson-twdis-5ygny-unsplash.jpg",
+                            "alt": "Finding a plumber to work on my steam shower in Salt Lake",
+                            "width": 746,
+                            "height": 1120
+                        }
+                    },
+                    {
+                        "title": "Repair Services for Mr. Steam Showers",
+                        "body": "Is your Mr. Steam shower showing signs of wear and tear? Perhaps you've noticed inconsistent steam production, unusual sounds, or leaks. Worry not; our technicians are well-versed in diagnosing and repairing various issues that can affect your steam shower's performance. We provide prompt and efficient repair services to ensure your Mr. Steam shower operates at its best. Whether it's addressing faulty valves, control panel malfunctions, or steam generator problems, we have you covered.",
+                        "image": {
+                            "src": "/images/brand/pages/flavio-anibal-exy5-e9y5ue-unsplash.jpg",
+                            "alt": "Mr. Steam specialist in Utah",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "New Installations for Mr. Steam Showers",
+                        "body": "If you're considering the luxurious addition of a brand new Mr. Steam shower to your home, we're here to turn your dream into reality. Our expert technicians have extensive experience in installing Mr. Steam showers, ensuring every detail is handled with precision. From plumbing connections to electrical wiring, we take care of every aspect of the installation process, so you can enjoy a seamless and hassle-free experience.",
+                        "image": {
+                            "src": "/images/brand/pages/grl5bhofxuy5unfrizqe.jpg",
+                            "alt": "New installation Mr steam shower in utah",
+                            "width": 1600,
+                            "height": 1068
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "Steam Showers",
+                "body": "When it comes to preserving the peak performance of your luxury steam shower or bringing the bliss of a brand new Mr. Steam installation into your home, we are your trusted partners.",
+                "image": {
+                    "src": "/images/brand/pages/zac-gudakov-fikcg6emney-unsplash.jpg",
+                    "alt": "Choose copper eagle for your steam shower in utah",
+                    "width": 1248,
+                    "height": 832
+                },
+                "imageSide": "end"
+            },
+            "guarantee": {
+                "heading": "Quality Assurance",
+                "body": "Our commitment to quality ensures that every repair, maintenance, or installation we undertake is done to the highest standards.",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "tone": "primary"
+            },
+            "faq": {
+                "heading": "Why Choose Copper Eagle Plumbing for Your Steam Shower Needs?",
+                "items": [
+                    {
+                        "question": "Mr. Steam Expertise",
+                        "answer": "We specialize in Mr. Steam products, meaning you can trust our in-depth knowledge and experience with these luxury steam showers."
+                    },
+                    {
+                        "question": "Prompt and Reliable Service",
+                        "answer": "We understand the importance of a functioning steam shower, and we prioritize prompt and dependable service."
+                    },
+                    {
+                        "question": "Transparent Pricing",
+                        "answer": "You can count on us for transparent and competitive pricing, so you know exactly what to expect."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Elevate your Mr. Steam shower experience with the care and expertise it deserves.",
+                "body": "Contact Copper Eagle Plumbing today to schedule your Mr. Steam shower repair, maintenance, or installation service, and let us bring the soothing luxury of steam to your home.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

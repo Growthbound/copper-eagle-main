@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\TestCase;
 
 class HomepageTest extends TestCase
 {
+    use IsolatesManagedContent;
+
     public function test_homepage_renders_every_required_section_without_template_debris(): void
     {
         $response = $this->get('/')->assertOk()->assertSee((string) config('site.name'));

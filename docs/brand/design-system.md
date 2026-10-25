@@ -183,8 +183,15 @@ fixed by `app/Content/PageTemplateRegistry.php`; content changes props only.
 | `reviews` | Reviews | `hero/interior` · `testimonials/quotes` · `cta/panel` · `cta/inline-band` |
 | `contact` | Contact | `hero/interior` · `cta/quote-form-split` · `service-areas/list` · `cta/panel` |
 
-Blog articles use the platform's `decision-guide` template. `standard` remains
-for one-off pages (legal pages, thank-you pages) and inherits the same tokens.
+Blog posts use `standard` with `hero/article` followed by `content/rich-text`;
+`decision-guide` is for long, evidence-led guides. `standard` also serves the
+other one-off pages (legal pages, the social media page, thank-you pages) and
+inherits the same tokens.
+
+Pages keep the live site's addresses (e.g. `/24-7-emergency-plumber-salt-lake-utah`).
+Generated service and area pages are folded into the real pages through
+`content/registries/url-intent-ledger.json`, so record links always point at
+the page that owns the topic.
 
 ## Checklist for any visual change
 

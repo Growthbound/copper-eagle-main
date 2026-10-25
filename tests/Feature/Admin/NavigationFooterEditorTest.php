@@ -7,10 +7,12 @@ use App\Livewire\Admin\NavigationFooterEditor;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\TestCase;
 
 class NavigationFooterEditorTest extends TestCase
 {
+    use IsolatesManagedContent;
     use RefreshDatabase;
 
     public function test_owner_publishes_safe_navigation_and_footer_links(): void

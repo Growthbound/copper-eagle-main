@@ -5,10 +5,13 @@ namespace Tests\Feature;
 use App\Content\InvalidPage;
 use App\Content\PageRepository;
 use Illuminate\Support\Facades\File;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\TestCase;
 
 class PageSystemTest extends TestCase
 {
+    use IsolatesManagedContent;
+
     /** @var array<int, string> */
     private array $temporaryPages = [];
 
@@ -144,6 +147,8 @@ class PageSystemTest extends TestCase
 
     public function test_content_check_passes_for_the_shipped_pages(): void
     {
+        $this->restoreManagedContent();
+
         $this->artisan('content:check')->assertSuccessful();
     }
 
@@ -162,6 +167,7 @@ class PageSystemTest extends TestCase
 
     public function test_content_check_warns_about_a_missing_description(): void
     {
+        $this->restoreManagedContent();
         $this->writePage('no-description', [
             'title' => 'No description',
             'blocks' => [['type' => 'cta/panel', 'props' => ['heading' => 'Hello']]],

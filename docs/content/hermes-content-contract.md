@@ -132,7 +132,7 @@ from drifting apart. The full section list per template is in
 | `team` | The people who come to the home |
 | `reviews` | Customer reviews and the review prompt |
 | `contact` | Contact details, the message form, and service areas |
-| `decision-guide` | Blog articles |
+| `standard` + `hero/article` | Blog posts (`decision-guide` for long, evidence-led guides) |
 | `standard` | One-off pages only: legal pages, thank-you pages |
 
 `service-pillar` and `location-pillar` remain available for deep, evidence-led

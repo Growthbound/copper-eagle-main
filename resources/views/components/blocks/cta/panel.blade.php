@@ -57,6 +57,9 @@
             <a @class(['button', 'button-teal' => $isCopper, 'button-orange' => ! $isCopper]) href="{{ $action['href'] }}">{{ $action['label'] }}</a>
         @endif
 
-        <x-call-link class="cta-call" prefix="or call" />
+        {{-- No "or call" line when the button already places the call. --}}
+        @unless ($action && str_starts_with((string) $action['href'], 'tel:'))
+            <x-call-link class="cta-call" prefix="or call" />
+        @endunless
     </div>
 </section>

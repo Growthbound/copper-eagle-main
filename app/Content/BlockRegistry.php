@@ -1066,8 +1066,11 @@ final class BlockRegistry
             return false;
         }
 
+        // An area may be named on its own ("Murray") or with its region
+        // ("Murray, Utah"), the way service-area lists usually write it.
         $area = $this->areas->all()->first(
-            fn (Area $area): bool => strcasecmp($area->name(), trim($candidate['name'])) === 0,
+            fn (Area $area): bool => strcasecmp($area->name(), trim($candidate['name'])) === 0
+                || strcasecmp($area->label(), trim($candidate['name'])) === 0,
         );
 
         if (! $checkHref) {
@@ -1716,6 +1719,7 @@ final class BlockRegistry
                 'transcript' => $this->scalarProperty('string', false),
             ],
             'testimonials/quotes.items' => [
+                'title' => $this->scalarProperty('string', false),
                 'quote' => $this->scalarProperty('string', true),
                 'author' => $this->scalarProperty('string', true),
                 'role' => $this->scalarProperty('string', false),

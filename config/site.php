@@ -40,11 +40,28 @@ return [
      * Profiles to link from the footer, and to declare as the business's other
      * official presences in structured data.
      */
-    'social_links' => [],
+    'social_links' => [
+        ['label' => 'Instagram', 'url' => 'https://www.instagram.com/copper.eagle.plumbing/'],
+        ['label' => 'YouTube', 'url' => 'https://www.youtube.com/channel/UCnSBO4aWLcKSncFczU4eRsg'],
+        ['label' => 'Facebook', 'url' => 'https://www.facebook.com/coppereagleplumbingut'],
+        ['label' => 'TikTok', 'url' => 'https://www.tiktok.com/t/ZP8P2soup/'],
+        ['label' => 'Nextdoor', 'url' => 'https://nextdoor.com/page/copper-eagle-plumbing-glenburn-me'],
+        ['label' => 'Google reviews', 'url' => 'https://g.page/r/CY-WA3uO3va4kEAE/review'],
+    ],
 
     /*
      * The header menu. A path such as '/services' links to a page; one level
      * of 'children' becomes a dropdown. Add entries as the pages are published.
      */
-    'navigation' => [],
+    'navigation' => [
+        ['label' => 'Services', 'href' => '/plumbing-services-salt-lake-city-utah'],
+        ['label' => '24/7 Emergency', 'href' => '/24-7-emergency-plumber-salt-lake-utah'],
+        ['label' => 'About', 'href' => '/about-jordan-walker-master-plumber-utah', 'children' => [
+            ['label' => 'About Us', 'href' => '/about-jordan-walker-master-plumber-utah'],
+            ['label' => 'Team', 'href' => '/team'],
+            ['label' => 'Reviews', 'href' => '/reviews-copper-eagle-plumbing'],
+            ['label' => 'Social Media', 'href' => '/socialmedia'],
+        ]],
+        ['label' => 'Contact', 'href' => '/contact-copper-eagle-plumbing'],
+    ],
 ];

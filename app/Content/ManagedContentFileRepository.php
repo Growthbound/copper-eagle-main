@@ -8,7 +8,13 @@ use Throwable;
 
 final readonly class ManagedContentFileRepository
 {
-    public function __construct(private ContentValidator $validator) {}
+    /**
+     * @param  string|null  $directory  Override for tests; defaults to content/managed.
+     */
+    public function __construct(
+        private ContentValidator $validator,
+        private ?string $directory = null,
+    ) {}
 
     public function find(string $slug): ?ManagedPage
     {
@@ -22,7 +28,7 @@ final readonly class ManagedContentFileRepository
      */
     public function all(): Collection
     {
-        $directory = base_path('content/managed');
+        $directory = $this->directory ?? base_path('content/managed');
 
         if (! File::isDirectory($directory)) {
             return collect();

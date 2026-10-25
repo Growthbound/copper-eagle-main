@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\TestCase;
 
@@ -14,6 +15,7 @@ use Tests\TestCase;
  */
 class CallToActionReachTest extends TestCase
 {
+    use IsolatesManagedContent;
     use UsesFixtureContent;
 
     protected function setUp(): void

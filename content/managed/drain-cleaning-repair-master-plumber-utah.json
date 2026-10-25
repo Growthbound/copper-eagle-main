@@ -1,0 +1,148 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/drain-cleaning-repair-master-plumber-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "drain-cleaning-repair-master-plumber-utah",
+        "title": "Drain Cleaning + Repair",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "Drain Cleaning + Repair",
+        "description": "Clogged drains can throw a wrench into your daily life, causing both plumbing woes and health concerns.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Drain Cleaning and Repair Services",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/photos/drain.jpg",
+                    "alt": "Water running into a sink drain",
+                    "width": 1200,
+                    "height": 800
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Why Choose Our Drain Cleaning Services?",
+                "body": "Clogged drains can throw a wrench into your daily life, causing both plumbing woes and health concerns. But fear not, because we're here to clear the path to a smoothly flowing home. At Copper Eagle Plumbing, our top-tier drain cleaning services in Salt Lake City are designed to obliterate blockages and restore tranquility to your space.",
+                "checklist": [
+                    "Expert Technicians Our highly trained technicians are well-versed in the art of drain cleaning. Equipped with the latest plumbing technologies and tools, they tackle every drain cleaning job with precision.",
+                    "Swift and Safe Solutions We take pride in executing our cleaning and unclogging procedures quickly, correctly, and safely. From water jets and motorized rooters to snake devices and cutting tools, we use the best equipment to ensure your drains are free-flowing once more.",
+                    "Comprehensive Drain Cleaning Whether it's your sink, shower, tub, toilet, or floor drain that's in need of attention, Copper Eagle Plumbing has you covered. We not only diagnose the issue accurately but also ensure a thorough and safe clog removal process, getting your pipes back to their optimal state swiftly."
+                ],
+                "image": {
+                    "src": "/images/brand/pages/water-3-1.jpg",
+                    "alt": "Drain Cleaning and Repair Plumber in UTah",
+                    "width": 900,
+                    "height": 1179
+                },
+                "imageSide": "start",
+                "cta": {
+                    "label": "CALL US (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "offerings": {
+                "id": "offerings",
+                "heading": "Our Drain Services",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Expert Drain Cleaning",
+                        "body": "Don't let a slow drain bring you down. Our experts will clear out the gunk and get your water flowing freely again.",
+                        "image": {
+                            "src": "/images/brand/pages/drain-2.jpg",
+                            "alt": "Expert Drain Cleaning Plumber in Salt Lake",
+                            "width": 900,
+                            "height": 675
+                        }
+                    },
+                    {
+                        "title": "Clog & Drain Blockage Removal",
+                        "body": "Stubborn blockages are our specialty. We'll get to the root of the problem and ensure it doesn't return.",
+                        "image": {
+                            "src": "/images/brand/pages/drain-4.jpg",
+                            "alt": "Clog and Drain blockage removal plumber in Salt Lake City",
+                            "width": 900,
+                            "height": 900
+                        }
+                    },
+                    {
+                        "title": "Pipe Repair & Replacement",
+                        "body": "If your drains need more than a simple cleaning, we've got you covered. Our skilled technicians can repair or replace damaged pipes quickly and efficiently.",
+                        "image": {
+                            "src": "/images/brand/pages/drain-1.jpg",
+                            "alt": "Need Pipe Repair and Replacement in Utah?",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Preventative Maintenance",
+                        "body": "Stay ahead of drain issues with our preventative maintenance plans. We'll keep your plumbing in tip-top shape year-round.",
+                        "image": {
+                            "src": "/images/brand/pages/drain-3.jpg",
+                            "alt": "Prevent Drain Clogs in Utah",
+                            "width": 900,
+                            "height": 900
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "Why Regular Drain Maintenance Matters",
+                "body": "Neglecting your drains can lead to bigger headaches down the line. Here are some reasons why regular maintenance is crucial:",
+                "checklist": [
+                    "Prevent Costly Repairs: Catching minor issues early can save you from expensive repairs later on.",
+                    "Maintain Hygiene: Clogged drains can be a breeding ground for bacteria and unpleasant odors. Keeping them clean ensures a healthy home.",
+                    "Protect the Environment: Properly maintained drains are less likely to cause pollution, which benefits our beautiful city and the environment."
+                ],
+                "image": {
+                    "src": "/images/brand/pages/dsc-1127.jpg",
+                    "alt": "Regular Drain Maintenance with Utah Plumber Jordan Walker",
+                    "width": 900,
+                    "height": 1350
+                },
+                "imageSide": "start"
+            },
+            "guarantee": {
+                "eyebrow": "DONE RIGHT, EVERY TIME",
+                "heading": "100% Guaranteed",
+                "body": "We pride ourselves in being the best plumbers in Utah with work done to perfection every time. We warranty all of our work so that you can rest easy knowing you’re getting a quality plumbing job.",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "tone": "copper"
+            },
+            "faq": {
+                "heading": "Drain Cleaning + Repair",
+                "items": [
+                    {
+                        "question": "How Often Should I Schedule Drain Cleaning?",
+                        "answer": "Don't wait for a pesky clog to wreak havoc in your plumbing system. Preventative drain cleaning should be on your radar at least once a year. This proactive approach prevents minor clogs from snowballing into major blockages, ensuring your plumbing system functions efficiently year-round. With regular drain cleaning, you'll enjoy peace of mind, knowing your drains are in tip-top shape. When was the last time you had your drains cleaned? If it's been over a year, don't wait for trouble to strike. Contact Copper Eagle Plumbing now, and we'll promptly take care of your drains before they become a problem."
+                    },
+                    {
+                        "question": "Watch for Warning Signs",
+                        "answer": "Don't let drain issues catch you off guard. Slow drainage is often an early warning sign of a looming clog caused by waste buildup in your pipes. If you've been experiencing sluggish drainage, act now by calling Copper Eagle Plumbing for professional support. Unpleasant odors are another red flag that shouldn't be ignored. Bad smells indicate waste is trapped in your plumbing, whether it's the kitchen or bathroom drain. If multiple drains emit foul odors, it's time for emergency drain services, and we'll go the extra mile to resolve the issue. We understand your schedule is busy, but addressing these issues head-on will save you time, money, and stress in the long run."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Book Your Drain Cleaning Service Now",
+                "body": "Don't wait until a clog disrupts your day. Book your drain cleaning service with Copper Eagle Plumbing today and experience the joy of free-flowing pipes and peace of mind!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

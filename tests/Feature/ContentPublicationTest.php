@@ -14,11 +14,13 @@ use App\Models\Media;
 use App\Models\User;
 use App\Support\Integrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Support\ManagedContentFixtures;
 use Tests\TestCase;
 
 class ContentPublicationTest extends TestCase
 {
+    use IsolatesManagedContent;
     use ManagedContentFixtures;
     use RefreshDatabase;
 

@@ -1,0 +1,56 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/socialmedia"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "socialmedia",
+        "title": "Social Media",
+        "template": "standard"
+    },
+    "payload": {
+        "title": "Social Media",
+        "noindex": false,
+        "blocks": [
+            {
+                "type": "hero/interior",
+                "props": {
+                    "eyebrow": "CONNECT WITH US Your Local Plumber",
+                    "heading": "Help Us, Help Your Neighbor!!"
+                }
+            },
+            {
+                "type": "content/related-content",
+                "props": {
+                    "id": "social-media",
+                    "heading": "Social Media",
+                    "items": [
+                        {
+                            "title": "Nextdoor",
+                            "href": "https://nextdoor.com/page/copper-eagle-plumbing-glenburn-me"
+                        },
+                        {
+                            "title": "TikTok",
+                            "href": "https://www.tiktok.com/t/ZP8P2soup/"
+                        },
+                        {
+                            "title": "Google Reviews",
+                            "href": "https://g.co/kgs/Rxtokp"
+                        },
+                        {
+                            "title": "Instagram",
+                            "href": "https://www.instagram.com/copper.eagle.plumbing/"
+                        },
+                        {
+                            "title": "Facebook",
+                            "href": "https://www.facebook.com/coppereagleplumbingut"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

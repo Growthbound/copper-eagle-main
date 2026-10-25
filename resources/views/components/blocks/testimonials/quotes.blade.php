@@ -58,6 +58,9 @@
                         </p>
                     @endif
 
+                    @if (filled($quote['title'] ?? null))
+                        <h3 class="testimonial-title">{{ $quote['title'] }}</h3>
+                    @endif
                     <blockquote>{{ $quote['quote'] }}</blockquote>
 
                     <figcaption>

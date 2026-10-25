@@ -11,11 +11,13 @@ use App\Support\GoogleReviews;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Livewire\Livewire;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\TestCase;
 
 class ReviewsTest extends TestCase
 {
+    use IsolatesManagedContent;
     use RefreshDatabase;
     use UsesFixtureContent;
 
@@ -118,7 +120,7 @@ class ReviewsTest extends TestCase
         $this->assertFalse(GoogleReviews::isConfigured());
         $this->assertNull(GoogleReviews::current());
 
-        $this->get('/')->assertOk()->assertDontSee('Google reviews');
+        $this->get('/')->assertOk()->assertDontSee('class="google-rating"', false);
     }
 
     public function test_the_rating_is_fetched_and_displayed(): void
@@ -236,7 +238,7 @@ class ReviewsTest extends TestCase
             ->call('saveGoogle');
 
         $this->assertNull(GoogleReviews::current());
-        $this->get('/')->assertOk()->assertDontSee('Google reviews');
+        $this->get('/')->assertOk()->assertDontSee('class="google-rating"', false);
     }
 
     public function test_a_stored_rating_is_treated_as_stale_after_a_day(): void

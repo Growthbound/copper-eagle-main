@@ -1211,3 +1211,11 @@
     border-radius: 0;
     background: var(--theme-page);
 }
+
+/* Optional per-quote headline ("Jordan was terrific!") above the quote. */
+.testimonial-band .testimonial-title {
+    margin-bottom: 0.75rem;
+    color: var(--theme-primary);
+    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    line-height: 1.25;
+}

@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\TestCase;
 
 class DiscoveryFilesTest extends TestCase
 {
+    use IsolatesManagedContent;
     use UsesFixtureContent;
 
     protected function setUp(): void

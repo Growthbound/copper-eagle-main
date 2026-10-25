@@ -1,0 +1,142 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/new-construction-remodels-plumber-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "new-construction-remodels-plumber-utah",
+        "title": "New Construction + Remodels",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "New Construction + Remodels",
+        "description": "When it comes to your remodeling or new construction project, every detail matters, and plumbing is no exception.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Comprehensive Plumbing Services for Remodels and New Construction",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                    "alt": "A row of newly built houses with driveways",
+                    "width": 1070,
+                    "height": 714
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Crafting the Perfect Plumbing Solution for Your Vision",
+                "body": "When it comes to your remodeling or new construction project, every detail matters, and plumbing is no exception. At Copper Eagle Plumbing, we understand that the foundation of a well-functioning and beautiful space begins with expert plumbing services. Whether you're embarking on a full-scale home renovation, a kitchen makeover, or constructing a new property from the ground up, our dedicated team of plumbing professionals is here to ensure your project's plumbing needs are met with precision, efficiency, and innovation.",
+                "image": {
+                    "src": "/images/brand/pages/sergei-sushchik-dqpuenzrj6s-unsplash.jpg",
+                    "alt": "Modern kitchen with wooden cabinets, stainless steel refrigerator, and a white countertop island with a potted plant.",
+                    "width": 605,
+                    "height": 806
+                },
+                "imageSide": "end",
+                "cta": {
+                    "label": "CALL / text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "offerings": {
+                "id": "offerings",
+                "emphasis": "for Remodels",
+                "heading": "Our Comprehensive Plumbing Services for Remodels",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Plumbing for Bathroom Remodels:",
+                        "body": "Fixture Upgrades: Enhance your bathroom's aesthetic and functionality with modern fixtures, faucets, and showerheads. Layout Adjustments: Revamp the layout for improved space utilization and convenience. Tub and Shower Installations: Install luxurious bathtubs and showers to create a spa-like experience. Piping Upgrades: Update aging pipes to ensure reliability and efficiency.",
+                        "image": {
+                            "src": "/images/brand/pages/flavio-anibal-nahq4vpjhck-unsplash.jpg",
+                            "alt": "Utah plumber for bathroom remodels",
+                            "width": 800,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "title": "Plumbing for Kitchen Remodels:",
+                        "body": "Appliance Hookups: Connect new appliances such as dishwashers and refrigerators with precision. Sink and Faucet Installations: Upgrade your kitchen's centerpiece with stylish sinks and faucets. Gas Line Extensions: If your project involves gas appliances, we'll extend and install gas lines safely and efficiently. Water Filtration: Enjoy pure and delicious water with our water filtration solutions.",
+                        "image": {
+                            "src": "/images/brand/pages/olbku3rbbyk3kkggtyw1.jpg",
+                            "alt": "Utah plumber for kitchen remodels",
+                            "width": 1600,
+                            "height": 1068
+                        }
+                    },
+                    {
+                        "title": "Plumbing for Whole-House Remodels:",
+                        "body": "Plumbing System Assessments: We conduct thorough assessments to identify potential issues and ensure your plumbing system meets modern standards. Re-piping: Replace outdated or problematic pipes with durable and efficient alternatives. Fixture and Appliance Relocations: Rework plumbing to accommodate changes in layout and fixture placements.",
+                        "image": {
+                            "src": "/images/brand/pages/dsc-0837.jpg",
+                            "alt": "Salt Lake City Utah plumber for whole house remodels",
+                            "width": 1200,
+                            "height": 1800
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "Expert Plumbing Solutions for New Construction and Remodeling",
+                "lead": "Crafting Seamless Plumbing Systems for Your Vision",
+                "body": "Whether it's a residential home or a commercial building, the plumbing system of a new property often poses the first challenge for homeowners and business owners alike. The intricacies of plumbing extend far beyond the simple concept of 'water in, water out.' From property layout to pipe routing, creating an efficient plumbing system demands meticulous planning to prevent future complications. The success or failure of a property hinges on the efficiency of its plumbing system.",
+                "image": {
+                    "src": "/images/brand/pages/dsc-0842.jpg",
+                    "alt": "Master plumber Jordan Walker from Copper Eagle Plumbing",
+                    "width": 1200,
+                    "height": 1800
+                },
+                "imageSide": "start"
+            },
+            "guarantee": {
+                "heading": "Our Accomplished Master Plumbers",
+                "body": "At Copper Eagle Plumbing, we offer professional plumbing services for new construction and remodeling projects throughout Salt Lake City's commercial and residential sectors. Crafting a property's plumbing system from scratch requires specialized knowledge, as mistakes can lead to significant issues down the road. Our team of experienced plumbers collaborates closely with you and your developers to ensure your home or building's plumbing system operates seamlessly. We establish an installation timeline and oversee every detail, from water supply systems to drainage pipes.",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "image": {
+                    "src": "/images/brand/pages/r-architecture-m6e8so73mpy-unsplash.jpg",
+                    "alt": "Seamless plumbing systems in utah",
+                    "width": 600,
+                    "height": 900
+                },
+                "tone": "primary"
+            },
+            "faq": {
+                "heading": "Our Comprehensive Plumbing Services for New Construction in Utah",
+                "items": [
+                    {
+                        "question": "Pipe Installation",
+                        "answer": "Every construction project necessitates the installation of new plumbing and piping. This includes water distribution, gas lines, and drainage. Correct installation is crucial to prevent functionality issues and plumbing system damage."
+                    },
+                    {
+                        "question": "Water and Sewer Lines",
+                        "answer": "Functional water and sewer lines are essential for proper drainage and toilet operation. Our skilled technicians ensure the correct installation of these lines to prevent future problems, such as sewer backups or water supply contamination."
+                    },
+                    {
+                        "question": "Fixture Installation",
+                        "answer": "Your new construction plumbing encompasses the installation of fixtures, including faucets, showerheads, and toilets. We assist you in selecting attractive and high-quality fixtures that complement your plumbing system. Proper installation is crucial for code compliance and optimal functionality."
+                    },
+                    {
+                        "question": "Testing and Inspections",
+                        "answer": "No one wants to get to the end of their construction project only to find out things weren’t done right. With Copper Eagle Plumbing, we conduct rigorous testing and inspections to guarantee that all plumbing components operate flawlessly."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Transform your remodeling or new construction project into a plumbing masterpiece with Copper Eagle Plumbing.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

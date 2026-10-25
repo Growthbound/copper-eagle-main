@@ -37,7 +37,12 @@
 
             <x-call-link class="button button-orange site-footer-call" prefix="Call us" />
 
-            @if (filled($site['description']))
+            @if (filled($footerLinks['emergency']['body'] ?? null))
+                <div class="site-footer-emergency">
+                    <h2>{{ $footerLinks['emergency']['heading'] }}</h2>
+                    <p class="site-footer-description">{{ $footerLinks['emergency']['body'] }}</p>
+                </div>
+            @elseif (filled($site['description']))
                 <p class="site-footer-description">{{ $site['description'] }}</p>
             @endif
 

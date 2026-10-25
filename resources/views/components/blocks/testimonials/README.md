@@ -17,7 +17,7 @@ Customer quotes and ratings.
 
 | Variant | Layout |
 |---|---|
-| `quotes` | Light-blue band with the diamond lattice: centered H2, centered quotes with their names, optional outline `link`. Defaults to the records in `content/testimonials`. Explicit `items` take `quote`, `author`, and optional `location` or `role` and `rating`. Text on the band is ink or deep blue, never white. |
+| `quotes` | Light-blue band with the diamond lattice: centered H2, centered quotes with their names, optional outline `link`. Defaults to the records in `content/testimonials`. Explicit `items` take `quote`, `author`, and optional `title` (a short headline above the quote), `location` or `role`, and `rating`. Text on the band is ink or deep blue, never white. |
 | `carousel` | Livewire carousel supporting quote and video-poster cards, with three primary cards and edge peeks on desktop, one active card on mobile, and accessible dot controls. |
 
 ## Quote carousel item shape

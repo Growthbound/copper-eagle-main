@@ -1,0 +1,104 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/reviews-copper-eagle-plumbing"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "reviews-copper-eagle-plumbing",
+        "title": "Reviews",
+        "template": "reviews"
+    },
+    "payload": {
+        "title": "Reviews",
+        "description": "With almost a decade of experience, we’ve been fortunate to help many people with their plumbing needs.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "eyebrow": "TESTIMONIALS AND",
+                "heading": "Reviews",
+                "image": {
+                    "src": "/images/brand/pages/washing-hands.jpg",
+                    "alt": "Hands being rinsed under a bathroom sink faucet",
+                    "width": 1200,
+                    "height": 977
+                }
+            },
+            "testimonials": {
+                "eyebrow": "With almost a decade of experience, we’ve been fortunate to help many people with their plumbing needs.",
+                "heading": "Here’s what our customers are saying about us!",
+                "items": [
+                    {
+                        "quote": "Jordan Walker showed me how to maintain my sink and tub stoppers. Was super helpful to tell me things that I can do on my own. He also changed my water softener level. He changed the shower cartridge so that the shower wouldn’t just be hot. Last week he cleaned, drained and replaced heating elements in my rental unit hot water heater.",
+                        "author": "GRACE M.",
+                        "title": "“Super friendly, timely and knowledgeable.”"
+                    },
+                    {
+                        "quote": "We used them to repair a shower steam generator. He diagnosed the problem and had it repaired on the spot in no time. I will definitely use this company and request Jordan Walker for all my plumbing work.",
+                        "author": "KEN M.",
+                        "title": "“Jordan Walker was outstanding.”"
+                    },
+                    {
+                        "quote": "He got to the bottom of the hot water and low-pressure issues I was having with my guy’s bathroom sink and shower, and was able to fix them the same day (I thought that would have taken him several days). Great service!",
+                        "author": "JOSH G.",
+                        "title": "“Jordan was terrific!”"
+                    },
+                    {
+                        "quote": "I recommend them 100%, as a single mother, they gave me the confidence with their honesty and the good price. Very kind. Thank you Jordan Walker!",
+                        "author": "LILIA P.",
+                        "title": "“I recommend them 100%.”"
+                    },
+                    {
+                        "quote": "Jordan was amazing. We had a problem with a strong sulfur smell making our drinking water unusable. He spent considerable time diagnosing the problem and found a filter system that would remove it. Great job!",
+                        "author": "TONY D.",
+                        "title": "“He even called to follow up!”"
+                    },
+                    {
+                        "quote": "We arrived home from a family vacation last night to find that our hot water heater had burst and flooded our basement. I called them after hours and Jordan came out and did an excellent job of replacing our heater in a very efficient and professional manner. He later returned today to check on us and ensure that our new water heater is working well. The entire Buford family highly recommends him!",
+                        "author": "ANDREA B.",
+                        "title": "“Jordan went above and beyond in providing amazing customer service.”"
+                    },
+                    {
+                        "quote": "A note to relay the excellent job Jordan Walker did repairing a leak on the water pipes in my condo. He also noticed an issue with my water heater and repaired a critical vent. This was an after-hours call, and Jordan responded promptly, diagnosed the problem and was able to fix the leak quickly and expertly. His manner was friendly, skillful and informative. Thank you Jordan!",
+                        "author": "LANCE P.",
+                        "title": "“Diagnosed the problem and was able to fix the leak quickly and expertly.”"
+                    },
+                    {
+                        "quote": "Jordan was very helpful in solving our plumbing issues. He was kind and professional! I would highly recommend him.",
+                        "author": "DANIELLE N.",
+                        "title": "“Helpful in solving our plumbing issues.”"
+                    },
+                    {
+                        "quote": "Jordan did a fantastic job fixing our toilet. He was professional and explained the cause of the issue so that it would not occur again. I will definitely use him again in the future!",
+                        "author": "CODY",
+                        "title": "“I’ll definitely use him again in the future.”"
+                    }
+                ]
+            },
+            "leave-a-review": {
+                "heading": "Your review is next!",
+                "body": "Already a fan of Copper Eagle Plumbing? We’d love to hear from you. Use the link below to leave us a review on Google today.",
+                "cta": {
+                    "label": "LEAVE US A REVIEW",
+                    "href": "https://g.co/kgs/i2ZD1Q"
+                },
+                "image": {
+                    "src": "/images/brand/pages/plumbing-pipes-jordan-walker-utah.jpg",
+                    "alt": "Copper pipes and valves connected to a steam generator",
+                    "width": 1600,
+                    "height": 790
+                }
+            },
+            "final-response": {
+                "heading": "Let us help you solve any of your home’s plumbing problems today.",
+                "emphasis": "solve",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

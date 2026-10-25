@@ -7,10 +7,12 @@ use App\Models\Lead;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Livewire;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\TestCase;
 
 class QuoteFormTest extends TestCase
 {
+    use IsolatesManagedContent;
     use RefreshDatabase;
 
     protected function setUp(): void

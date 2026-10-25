@@ -25,7 +25,8 @@ final class SiteStructureRepository
     /**
      * @return array{
      *     company: array<int, array{label: string, href: string}>,
-     *     resources: array<int, array{label: string, href: string}>
+     *     resources: array<int, array{label: string, href: string}>,
+     *     emergency: array{heading: string, body: string}
      * }
      */
     public function footer(bool $lockForUpdate = false): array
@@ -37,17 +38,25 @@ final class SiteStructureRepository
         );
 
         return [
-            /*
-             * Until the owner publishes a footer, link only to what every
-             * install serves. Company pages are added once they exist.
-             */
+            // Copper Eagle's footer links, until the owner publishes a footer.
             'company' => $this->links($payload['company'] ?? [
-                ['label' => 'Home', 'href' => '/'],
+                ['label' => 'About', 'href' => '/about-jordan-walker-master-plumber-utah'],
+                ['label' => 'Reviews', 'href' => '/reviews-copper-eagle-plumbing'],
+                ['label' => 'Blog', 'href' => '/blog'],
+                ['label' => 'Contact', 'href' => '/contact-copper-eagle-plumbing'],
+                ['label' => '24/7 Emergencies', 'href' => '/24-7-emergency-plumber-salt-lake-utah'],
             ]),
             'resources' => $this->links($payload['resources'] ?? [
-                ['label' => 'Site summary', 'href' => '/llms.txt'],
+                ['label' => 'Privacy Policy', 'href' => '/privacy-policy'],
+                // Text-message (A2P) programs need both legal pages one click away.
+                ['label' => 'Terms and Conditions', 'href' => '/terms-and-conditions'],
                 ['label' => 'Sitemap', 'href' => '/sitemap.xml'],
             ]),
+            // The company's own emergency note, from its contact page.
+            'emergency' => [
+                'heading' => 'Emergency service',
+                'body' => 'Our expert Emergency Maintenance team are available 24 Hours 7 days a week, 365 days a year to attend to your problems promptly!',
+            ],
         ];
     }
 

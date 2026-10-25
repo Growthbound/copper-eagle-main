@@ -1,0 +1,78 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/24-7-emergency-plumber-salt-lake-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "24-7-emergency-plumber-salt-lake-utah",
+        "title": "24/7 Emergency Plumber",
+        "template": "emergency"
+    },
+    "payload": {
+        "title": "24/7 Emergency Plumber",
+        "description": "Call us 24/7, and we’ll help solve your plumbing emergency, even if it’s in the middle of the night.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "eyebrow": "AFTER HOURS PLUMBING",
+                "heading": "24/7 Emergency Plumber",
+                "image": {
+                    "src": "/images/brand/pages/night.jpg",
+                    "alt": "Full moon in a night sky above silhouetted trees",
+                    "width": 1200,
+                    "height": 675
+                }
+            },
+            "reassurance": {
+                "heading": "Has disaster struck in the middle of the night?",
+                "eyebrow": "We’ve got you covered.",
+                "lead": "Call us 24/7, and we’ll help solve your plumbing emergency, even if it’s in the middle of the night.",
+                "body": "We present an upfront after hours price to show up to your job, and usually a quote a typical amount* that is our normal rate for the job you are calling about. *A typical amount is an educated guess, and exact pricing is subject to change once we arrive and have a better idea of what it will take to accomplish the job.",
+                "cta": {
+                    "label": "Call or Text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "what-to-expect": {
+                "eyebrow": "For your after-hours plumbing services in Salt Lake City",
+                "heading": "What to Expect",
+                "body": "We offer fair and honest upfront pricing for typical charges on our 24/7 plumbing services.",
+                "image": {
+                    "src": "/images/brand/pages/stars.jpg",
+                    "alt": "Milky Way over silhouetted pine trees at night",
+                    "width": 1200,
+                    "height": 800
+                },
+                "factors": [
+                    {
+                        "label": "After-Hours Service Fee",
+                        "description": "Our plumbers love thier family time as you can imagine. After a full days work we will continue our day for you and your family.  Typically $150 flat rate to come out after hours. Special hollidays are $300"
+                    },
+                    {
+                        "label": "Plumbing Diagnostics",
+                        "description": "We charge $178 to walk through and Diagnose what is going wrong with your plumbing emergency and why it’s happening."
+                    },
+                    {
+                        "label": "Extended Diagnostics",
+                        "description": "When a problem requires additional tools beyond the basic diagnostics, we charge $278 to gain further knowledge of the problem."
+                    },
+                    {
+                        "label": "Upfront Pricing",
+                        "description": "We work on an upfront flat rate.  We have a book that has all of our standard prices. We show you priving before we start. No surprises here!"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Let us help solve your after-hours plumbing emergency so you can get back to bed.",
+                "emphasis": "back to bed",
+                "primaryAction": {
+                    "label": "CALL US NOW",
+                    "href": "tel:+13856250369"
+                }
+            }
+        }
+    }
+}

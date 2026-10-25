@@ -8,12 +8,14 @@ use App\Content\Enums\PageTemplate;
 use App\Models\User;
 use App\Support\StructuredData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\Support\ManagedContentFixtures;
 use Tests\TestCase;
 
 class StructuredDataTest extends TestCase
 {
+    use IsolatesManagedContent;
     use ManagedContentFixtures;
     use RefreshDatabase;
     use UsesFixtureContent;
@@ -199,8 +201,12 @@ class StructuredDataTest extends TestCase
 
         preg_match_all('#https?://[^"\\\\/]+#', json_encode($graph, JSON_UNESCAPED_SLASHES), $matches);
 
-        // schema.org is the vocabulary, not one of our URLs.
-        $hosts = array_values(array_unique(array_diff($matches[0], ['https://schema.org'])));
+        // schema.org is the vocabulary, not one of our URLs, and the business's
+        // other official profiles (sameAs) are meant to be on other hosts.
+        $profiles = collect(config('site.social_links'))
+            ->map(fn (array $link): string => (string) preg_replace('#^(https?://[^/]+).*$#', '$1', $link['url']))
+            ->all();
+        $hosts = array_values(array_unique(array_diff($matches[0], ['https://schema.org'], $profiles)));
 
         $this->assertNotEmpty($hosts);
         $this->assertCount(1, $hosts, 'The graph mixes hosts: '.implode(', ', $hosts));

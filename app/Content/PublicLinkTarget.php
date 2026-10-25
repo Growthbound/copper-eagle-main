@@ -71,6 +71,8 @@ final readonly class PublicLinkTarget
         if (in_array($path, [
             '/services',
             '/areas',
+            // The blog index always answers, listing the published articles.
+            '/blog',
             '/robots.txt',
             '/llms.txt',
             '/sitemap.xml',

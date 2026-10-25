@@ -12,10 +12,12 @@ use App\Webhooks\WebhookDispatcher;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Livewire;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\TestCase;
 
 class LeadConsentTest extends TestCase
 {
+    use IsolatesManagedContent;
     use RefreshDatabase;
 
     protected function setUp(): void

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\TestCase;
 
 /**
@@ -15,6 +16,8 @@ use Tests\TestCase;
  */
 class SearchVisibilityTest extends TestCase
 {
+    use IsolatesManagedContent;
+
     public function test_the_canonical_host_is_indexable_and_advertises_its_sitemap(): void
     {
         $this->get('/robots.txt')

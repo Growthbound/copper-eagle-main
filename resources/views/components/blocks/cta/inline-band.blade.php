@@ -41,12 +41,16 @@
         <div class="inline-cta-actions">
             <a class="button {{ $buttonClass }}" href="{{ $primary['href'] }}">{{ $primary['label'] }}</a>
 
-            @if ($secondary || filled(config('site.phone')))
+            {{-- No "or call" line when the button already places the call. --}}
+            @php($primaryCalls = str_starts_with((string) $primary['href'], 'tel:'))
+            @if ($secondary || (filled(config('site.phone')) && ! $primaryCalls))
                 <div class="inline-cta-links">
                     @if ($secondary)
                         <a href="{{ $secondary['href'] }}">{{ $secondary['label'] }}</a>
                     @endif
-                    <x-call-link class="cta-call" prefix="or call" />
+                    @unless ($primaryCalls)
+                        <x-call-link class="cta-call" prefix="or call" />
+                    @endunless
                 </div>
             @endif
         </div>

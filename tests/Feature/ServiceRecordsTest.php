@@ -5,11 +5,13 @@ namespace Tests\Feature;
 use App\Content\AreaRepository;
 use App\Content\ServiceRepository;
 use Illuminate\Support\Facades\File;
+use Tests\Concerns\IsolatesManagedContent;
 use Tests\Concerns\WritesRecordFixtures;
 use Tests\TestCase;
 
 class ServiceRecordsTest extends TestCase
 {
+    use IsolatesManagedContent;
     use WritesRecordFixtures;
 
     /** @var array<int, string> */

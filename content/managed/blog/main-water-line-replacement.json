@@ -1,0 +1,159 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/blog/main-water-line-replacement"
+    },
+    "identity": {
+        "kind": "article",
+        "slug": "blog/main-water-line-replacement",
+        "title": "Main Water line replacement",
+        "template": "standard"
+    },
+    "payload": {
+        "title": "Main Water line replacement",
+        "description": "Another Underground Water Line Successfully Replaced!",
+        "noindex": false,
+        "blocks": [
+            {
+                "type": "hero/article",
+                "props": {
+                    "eyebrow": "",
+                    "heading": "Main Water line replacement",
+                    "author": "Team Implementation",
+                    "publishedAt": "2026-06-30"
+                }
+            },
+            {
+                "type": "content/rich-text",
+                "props": {
+                    "id": "article",
+                    "heading": "Another Underground Water Line Successfully Replaced!",
+                    "nodes": [
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Sometimes what starts as a simple leak repair turns into finding the best long-term solution."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "On this project, we excavated to locate where the existing water service transitioned from galvanized pipe to copper. Unfortunately, we found that the copper didn't begin until just outside the home, meaning repairing only a small section wouldn't have solved the problem for long."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Instead, we replaced the entire water service line from the meter to inside the house."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Here's what we completed:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Installed a brand-new water service line from the meter to the home"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Connected directly to the existing copper at the meter yoke"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Sealed the foundation penetration with Hydro Crete to help prevent water intrusion"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Installed a new tee and reconnected the existing sprinkler system with a stop-and-waste valve"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Pressure tested the entire system—no leaks found"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Carefully backfilled the trench"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Replaced the sod and seeded disturbed areas"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "✅ Cleaned the jobsite and left extra grass seed with the homeowner for future touch-ups"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "At Copper Eagle Plumbing, we believe the job isn't finished until the customer has a reliable plumbing system and their property is treated with respect."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "If your home has an older galvanized water line, unexplained wet spots in the yard, or low water pressure, we'd be happy to help."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Copper Eagle Plumbing Honest. Professional. Affordable. Plumbing Done Right. Every Time."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
