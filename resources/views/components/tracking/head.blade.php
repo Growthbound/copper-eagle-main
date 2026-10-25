@@ -5,7 +5,7 @@
 
     Never included in the admin layout: the back office is not analytics data.
 --}}
-@php($integrations = App\Support\Integrations::values())
+@php($integrations = App\Support\Integrations::forPublicPage())
 
 @if (isset($integrations['gtm_container_id']))
     <script>

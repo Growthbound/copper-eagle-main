@@ -103,6 +103,23 @@ class LeadNotificationTest extends TestCase
         Mail::assertSent(LeadReceived::class, fn (LeadReceived $mail): bool => $mail->hasTo('hello@example.test'));
     }
 
+    /**
+     * A deployment can name the lead inbox in its environment. A list saved in
+     * the admin still wins, and the site's contact address is the last resort.
+     */
+    public function test_the_environment_recipient_list_is_used_until_one_is_saved(): void
+    {
+        config()->set('site.email', 'hello@example.test');
+        config()->set('website-forms.lead_notification_recipients', 'leads@example.test, office@example.test');
+        LeadNotifications::save(true, '');
+
+        $this->assertSame(['leads@example.test', 'office@example.test'], LeadNotifications::recipients());
+
+        LeadNotifications::save(true, 'owner@example.test');
+
+        $this->assertSame(['owner@example.test'], LeadNotifications::recipients());
+    }
+
     public function test_notifications_are_on_before_anyone_configures_them(): void
     {
         $this->assertTrue(LeadNotifications::enabled());

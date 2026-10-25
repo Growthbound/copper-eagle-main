@@ -23,11 +23,24 @@ class Integrations
     public static function values(): array
     {
         $saved = Setting::values();
+        $defaults = config('integrations.defaults') ?: [];
+        $fields = config('integrations.fields') ?: [];
 
         $values = [];
 
         foreach (array_keys(self::editable()) as $field) {
             $value = trim((string) ($saved[self::PREFIX.$field] ?? ''));
+
+            // Nothing saved: fall back to the deployment's environment value,
+            // as long as it has the field's format.
+            if ($value === '' && is_string($defaults[$field] ?? null)) {
+                $default = trim($defaults[$field]);
+                $pattern = $fields[$field]['pattern'] ?? null;
+
+                if ($default !== '' && (! is_string($pattern) || preg_match($pattern, $default) === 1)) {
+                    $value = $default;
+                }
+            }
 
             if ($value !== '') {
                 $values[$field] = $value;
@@ -35,6 +48,21 @@ class Integrations
         }
 
         return $values;
+    }
+
+    /**
+     * What the public page may load: everything configured on the canonical
+     * host, and nothing elsewhere unless tracking is allowed on every host.
+     *
+     * @return array<string, string>
+     */
+    public static function forPublicPage(): array
+    {
+        if (config('integrations.canonical_host_only', true) && ! SearchVisibility::indexable()) {
+            return [];
+        }
+
+        return self::values();
     }
 
     public static function get(string $field): ?string

@@ -3,6 +3,10 @@
 return [
     // Independent of config/referrals.php and its separate HighLevel account.
     'provider' => env('WEBSITE_FORM_PROVIDER', 'native'),
+    // Who is emailed about each new lead, comma separated. Used until the
+    // owner saves a list under Admin → Notifications; with neither set, the
+    // site's contact email gets them.
+    'lead_notification_recipients' => env('LEAD_NOTIFICATION_RECIPIENTS'),
     'origin' => env('WEBSITE_HIGHLEVEL_ORIGIN', 'https://api.leadconnectorhq.com'),
     'forms' => [
         'inquiry' => env('WEBSITE_HIGHLEVEL_INQUIRY_FORM_ID'),
