@@ -98,6 +98,15 @@ property contract. Optional renderer fields are part of this live contract;
 do not infer fields from screenshots or Blade templates. Unknown blocks,
 unknown fixed sections, raw markup, and wrong field shapes fail closed.
 
+Some plain-text fields carry more than one paragraph: the `content/split`
+body, `content/feature-cards` card bodies, the `cta/panel` body, and
+`faq/accordion` answers. Separate paragraphs with a blank line (`\n\n`); never
+send `<p>` or `<br>`. `content/feature-cards` takes two to six cards. A
+`content/split` checklist point is a string, or
+`{"label": "...", "text": "..."}` when the point has a bold label above its
+text. The schema field descriptions say which fields accept blank-line
+paragraphs.
+
 ## Fixed-template scaffolds
 
 The owner CMS can create a fixed-template draft containing placeholder sections

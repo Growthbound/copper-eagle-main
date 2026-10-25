@@ -319,6 +319,12 @@
     --feature-columns: 4;
 }
 
+/* Five or six cards sit in rows of three. */
+.feature-cards-list.is-count-5,
+.feature-cards-list.is-count-6 {
+    --feature-columns: 3;
+}
+
 .feature-card {
     display: flex;
     flex-direction: column;
@@ -410,7 +416,9 @@
 }
 
 @media (max-width: 900px) {
-    .feature-cards-list.is-count-4 {
+    .feature-cards-list.is-count-4,
+    .feature-cards-list.is-count-5,
+    .feature-cards-list.is-count-6 {
         --feature-columns: 2;
     }
 }
@@ -422,7 +430,9 @@
 
     .feature-cards-list,
     .feature-cards-list.is-count-2,
-    .feature-cards-list.is-count-4 {
+    .feature-cards-list.is-count-4,
+    .feature-cards-list.is-count-5,
+    .feature-cards-list.is-count-6 {
         --feature-columns: 1;
     }
 

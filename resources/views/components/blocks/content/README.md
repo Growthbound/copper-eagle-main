@@ -13,7 +13,7 @@ more specific block fits.
 | `image` | array | no | `['src' => ..., 'alt' => ..., 'width' => ..., 'height' => ...]` |
 | `inset` | array | no | Optional overlapping image using the same metadata contract |
 | `align` | string | no | `left` or `right`, which side the image sits on |
-| `checklist` | array | no | List of short strings rendered with check icons |
+| `checklist` | array | no | Short strings rendered with check icons; `split` also takes `{label, text}` pairs |
 | `items` | array | no | Story checklist proof points rendered in a responsive grid |
 
 ## Variants
@@ -33,7 +33,7 @@ more specific block fits.
 | `commitment-collage` | Dark panel: copy beside a rotated photo collage. |
 | `resource-cards` | Image cards with a collapsible tip. Defaults to `content/resources`. |
 | `benefit-carousel` | Rotating benefit panel. Reads `content/benefits`. |
-| `feature-cards` | Two to four round photo cards with H3 titles, beside a large H2 (`side`) or under a centred one (`stacked`). |
+| `feature-cards` | Two to six round photo cards with H3 titles, beside a large H2 (`side`) or under a centred one (`stacked`). |
 
 ## Notes
 
@@ -102,8 +102,8 @@ other. Every new prop is optional and falls back to the original look.
 | `heading` | string | yes | The H2 |
 | `emphasis` | string | no | An exact phrase from `heading`, rendered in weight 600. Anything else is rejected |
 | `lead` | string | no | A bold opening sentence before the body |
-| `body` | string | yes | One paragraph |
-| `checklist` | array | no | Short strings with copper checks |
+| `body` | string | yes | Plain text. A blank line starts a new paragraph |
+| `checklist` | array | no | Points with copper checks. Each is a short string, or a `{label, text}` record whose label renders in weight 600 on its own line above the text. Other shapes are rejected |
 | `cta` | array | no | `label` and safe `href`; the copper button |
 | `image` | array | no | Governed media. Cropped square |
 | `imageShape` | string | no | `rectangle` (default) or `circle` (the portrait) |
@@ -114,6 +114,11 @@ other. Every new prop is optional and falls back to the original look.
 
 Stacks to one column below 900px: photo first for `imageSide="start"`, copy
 first for `end`.
+
+`body` is plain, escaped text: a blank line (`\n\n`) starts a new `<p>`, and a
+single line break stays inside its paragraph. A checklist point given as
+`{"label": "Expert Technicians", "text": "Our highly trained…"}` renders the
+label in bold above its text; a string renders as before.
 
 ### `feature-cards`
 
@@ -128,12 +133,14 @@ Used by the `home` (`assurances`), `service-detail` (`offerings`), and `about`
 | `heading` | string | yes | The H2 |
 | `emphasis` | string | no | An exact phrase from `heading`, rendered in the copper accent. Anything else is rejected |
 | `body` | string | no | One short paragraph under the H2 |
-| `items` | array | yes | Two to four `{title, body, image}` records; all three are required and `image` is governed media (`media_id`, or `src`, `alt`, `width`, `height`) |
+| `items` | array | yes | Two to six `{title, body, image}` records; all three are required and `image` is governed media (`media_id`, or `src`, `alt`, `width`, `height`). A blank line in `body` starts a new paragraph |
 | `layout` | string | no | `side` (default): large H2 on the left, cards to the right. `stacked`: centred deep-blue H2 above, copper card titles |
 | `background` | string | no | `white` (default) or `stone` |
 | `watermark` | boolean | no | Defaults to `true`. The eagle watermark behind a `side` heading; ignored for `stacked` |
 
 Photos of any aspect ratio are cropped to a circle. A card missing its title,
 body, or a valid image is left out, and with fewer than two cards left the
-section renders nothing. Cards sit in one row on desktop; four cards become two
-rows of two below 900px, and every layout is a single column on phones.
+section renders nothing, and cards after the sixth are never shown. Up to four
+cards sit in one row on desktop and five or six sit in rows of three; four or
+more become rows of two below 900px, and every layout is a single column on
+phones.

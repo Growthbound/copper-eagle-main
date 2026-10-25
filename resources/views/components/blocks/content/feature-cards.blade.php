@@ -1,6 +1,7 @@
 {{--
-    Two to four round photo cards, each with an H3 and a short paragraph
-    ("Shape" and "Page templates" in docs/brand/design-system.md).
+    Two to six round photo cards, each with an H3 and a body where a blank
+    line starts a new paragraph ("Shape", "Components" and "Page templates"
+    in docs/brand/design-system.md).
 
     `layout` "side" puts a large H2 on the left, over the eagle watermark
     unless `watermark` is false, with the cards to its right (home page).
@@ -45,7 +46,7 @@
             ];
         })
         ->filter()
-        ->take(4)
+        ->take(6)
         ->values();
 @endphp
 
@@ -85,7 +86,7 @@
                             decoding="async"
                         >
                         <h3>{{ $card['title'] }}</h3>
-                        <p>{{ $card['body'] }}</p>
+                        <x-content.paragraphs :text="$card['body']" />
                     </li>
                 @endforeach
             </ul>

@@ -85,9 +85,18 @@
                 "heading": "Why hire us for Water Heater Repairs and Installations?",
                 "body": "When it comes to installing a water heater, be it for a new construction project or an upgrade to a more efficient tankless model, the quality of the installation process is just as vital as the choice of equipment. Our team of licensed and certified technicians boasts the experience and tools necessary to ensure a safe and efficient installation. Unlike some home improvement projects that homeowners can tackle themselves, water heater installation is a task best left to the professionals due to several critical factors, including:",
                 "checklist": [
-                    "High-Pressure Holding Tank Water heaters involve high-pressure systems that demand careful handling and expertise to avoid potential hazards.",
-                    "Carbon Monoxide Concerns Proper ventilation and gas connections are crucial to prevent carbon monoxide issues, which require professional knowledge.",
-                    "Natural Gas Expertise For gas-powered water heaters, ensuring the safe installation of natural gas connections is essential for your safety and the proper functioning of the unit."
+                    {
+                        "label": "High-Pressure Holding Tank",
+                        "text": "Water heaters involve high-pressure systems that demand careful handling and expertise to avoid potential hazards."
+                    },
+                    {
+                        "label": "Carbon Monoxide Concerns",
+                        "text": "Proper ventilation and gas connections are crucial to prevent carbon monoxide issues, which require professional knowledge."
+                    },
+                    {
+                        "label": "Natural Gas Expertise",
+                        "text": "For gas-powered water heaters, ensuring the safe installation of natural gas connections is essential for your safety and the proper functioning of the unit."
+                    }
                 ],
                 "image": {
                     "src": "/images/brand/pages/faucet-2.jpg",
@@ -99,7 +108,7 @@
             },
             "guarantee": {
                 "heading": "Repair or Replace?",
-                "body": "Timing is everything when it comes to water heater issues. The best moment to seek water heater repair is at the initial signs of trouble, preventing further damage. Our highly skilled technicians specialize in swift diagnosis and provide expert guidance on the necessary steps, whether it's water heater repair or replacement. For dependable water heater replacement services in Salt Lake City, look no further than Copper Eagle Plumbing. We are well-versed in servicing and replacing both traditional and tankless water heaters, ensuring your home continues to enjoy a steady supply of hot water.",
+                "body": "Timing is everything when it comes to water heater issues. The best moment to seek water heater repair is at the initial signs of trouble, preventing further damage. Our highly skilled technicians specialize in swift diagnosis and provide expert guidance on the necessary steps, whether it's water heater repair or replacement.\n\nFor dependable water heater replacement services in Salt Lake City, look no further than Copper Eagle Plumbing. We are well-versed in servicing and replacing both traditional and tankless water heaters, ensuring your home continues to enjoy a steady supply of hot water.",
                 "cta": {
                     "label": "GET IN TOUCH WITH US",
                     "href": "/contact-copper-eagle-plumbing"

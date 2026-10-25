@@ -31,9 +31,18 @@
                 "heading": "Why Choose Our Drain Cleaning Services?",
                 "body": "Clogged drains can throw a wrench into your daily life, causing both plumbing woes and health concerns. But fear not, because we're here to clear the path to a smoothly flowing home. At Copper Eagle Plumbing, our top-tier drain cleaning services in Salt Lake City are designed to obliterate blockages and restore tranquility to your space.",
                 "checklist": [
-                    "Expert Technicians Our highly trained technicians are well-versed in the art of drain cleaning. Equipped with the latest plumbing technologies and tools, they tackle every drain cleaning job with precision.",
-                    "Swift and Safe Solutions We take pride in executing our cleaning and unclogging procedures quickly, correctly, and safely. From water jets and motorized rooters to snake devices and cutting tools, we use the best equipment to ensure your drains are free-flowing once more.",
-                    "Comprehensive Drain Cleaning Whether it's your sink, shower, tub, toilet, or floor drain that's in need of attention, Copper Eagle Plumbing has you covered. We not only diagnose the issue accurately but also ensure a thorough and safe clog removal process, getting your pipes back to their optimal state swiftly."
+                    {
+                        "label": "Expert Technicians",
+                        "text": "Our highly trained technicians are well-versed in the art of drain cleaning. Equipped with the latest plumbing technologies and tools, they tackle every drain cleaning job with precision."
+                    },
+                    {
+                        "label": "Swift and Safe Solutions",
+                        "text": "We take pride in executing our cleaning and unclogging procedures quickly, correctly, and safely. From water jets and motorized rooters to snake devices and cutting tools, we use the best equipment to ensure your drains are free-flowing once more."
+                    },
+                    {
+                        "label": "Comprehensive Drain Cleaning",
+                        "text": "Whether it's your sink, shower, tub, toilet, or floor drain that's in need of attention, Copper Eagle Plumbing has you covered. We not only diagnose the issue accurately but also ensure a thorough and safe clog removal process, getting your pipes back to their optimal state swiftly."
+                    }
                 ],
                 "image": {
                     "src": "/images/brand/pages/water-3-1.jpg",
@@ -100,9 +109,18 @@
                 "heading": "Why Regular Drain Maintenance Matters",
                 "body": "Neglecting your drains can lead to bigger headaches down the line. Here are some reasons why regular maintenance is crucial:",
                 "checklist": [
-                    "Prevent Costly Repairs: Catching minor issues early can save you from expensive repairs later on.",
-                    "Maintain Hygiene: Clogged drains can be a breeding ground for bacteria and unpleasant odors. Keeping them clean ensures a healthy home.",
-                    "Protect the Environment: Properly maintained drains are less likely to cause pollution, which benefits our beautiful city and the environment."
+                    {
+                        "label": "Prevent Costly Repairs:",
+                        "text": "Catching minor issues early can save you from expensive repairs later on."
+                    },
+                    {
+                        "label": "Maintain Hygiene:",
+                        "text": "Clogged drains can be a breeding ground for bacteria and unpleasant odors. Keeping them clean ensures a healthy home."
+                    },
+                    {
+                        "label": "Protect the Environment:",
+                        "text": "Properly maintained drains are less likely to cause pollution, which benefits our beautiful city and the environment."
+                    }
                 ],
                 "image": {
                     "src": "/images/brand/pages/dsc-1127.jpg",
@@ -127,11 +145,11 @@
                 "items": [
                     {
                         "question": "How Often Should I Schedule Drain Cleaning?",
-                        "answer": "Don't wait for a pesky clog to wreak havoc in your plumbing system. Preventative drain cleaning should be on your radar at least once a year. This proactive approach prevents minor clogs from snowballing into major blockages, ensuring your plumbing system functions efficiently year-round. With regular drain cleaning, you'll enjoy peace of mind, knowing your drains are in tip-top shape. When was the last time you had your drains cleaned? If it's been over a year, don't wait for trouble to strike. Contact Copper Eagle Plumbing now, and we'll promptly take care of your drains before they become a problem."
+                        "answer": "Don't wait for a pesky clog to wreak havoc in your plumbing system. Preventative drain cleaning should be on your radar at least once a year. This proactive approach prevents minor clogs from snowballing into major blockages, ensuring your plumbing system functions efficiently year-round.\n\nWith regular drain cleaning, you'll enjoy peace of mind, knowing your drains are in tip-top shape. When was the last time you had your drains cleaned? If it's been over a year, don't wait for trouble to strike. Contact Copper Eagle Plumbing now, and we'll promptly take care of your drains before they become a problem."
                     },
                     {
                         "question": "Watch for Warning Signs",
-                        "answer": "Don't let drain issues catch you off guard. Slow drainage is often an early warning sign of a looming clog caused by waste buildup in your pipes. If you've been experiencing sluggish drainage, act now by calling Copper Eagle Plumbing for professional support. Unpleasant odors are another red flag that shouldn't be ignored. Bad smells indicate waste is trapped in your plumbing, whether it's the kitchen or bathroom drain. If multiple drains emit foul odors, it's time for emergency drain services, and we'll go the extra mile to resolve the issue. We understand your schedule is busy, but addressing these issues head-on will save you time, money, and stress in the long run."
+                        "answer": "Don't let drain issues catch you off guard. Slow drainage is often an early warning sign of a looming clog caused by waste buildup in your pipes. If you've been experiencing sluggish drainage, act now by calling Copper Eagle Plumbing for professional support.\n\nUnpleasant odors are another red flag that shouldn't be ignored. Bad smells indicate waste is trapped in your plumbing, whether it's the kitchen or bathroom drain. If multiple drains emit foul odors, it's time for emergency drain services, and we'll go the extra mile to resolve the issue.\n\nWe understand your schedule is busy, but addressing these issues head-on will save you time, money, and stress in the long run."
                     }
                 ]
             },

@@ -297,6 +297,12 @@
     line-height: 1.6;
 }
 
+/* A labelled point: the bold label on its own line, the text under it. */
+.split-section .check-list-label {
+    display: block;
+    font-weight: 600;
+}
+
 .split-section .check-icon-small {
     width: 1.25rem;
     margin-top: 0.2em;

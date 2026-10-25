@@ -259,6 +259,47 @@ class CopperEagleBlocksTest extends TestCase
         $this->assertSame('', trim(Blade::render('<x-blocks.content.feature-cards heading="Values" :items="$items" />', ['items' => $items])));
     }
 
+    public function test_feature_cards_render_up_to_six_cards(): void
+    {
+        $html = Blade::render(
+            '<x-blocks.content.feature-cards id="offerings" heading="Our services" layout="stacked" :items="$items" />',
+            ['items' => $this->cards(6)],
+        );
+
+        $this->assertSame(6, substr_count($html, '<h3'));
+        $this->assertStringContainsString('is-count-6', $html);
+
+        $five = Blade::render('<x-blocks.content.feature-cards heading="Values" :items="$items" />', ['items' => $this->cards(5)]);
+        $this->assertSame(5, substr_count($five, '<h3'));
+        $this->assertStringContainsString('is-count-5', $five);
+
+        $seven = Blade::render('<x-blocks.content.feature-cards heading="Values" :items="$items" />', ['items' => $this->cards(7)]);
+        $this->assertSame(6, substr_count($seven, '<h3'), 'A seventh card is never rendered.');
+    }
+
+    public function test_feature_card_bodies_split_on_blank_lines_into_escaped_paragraphs(): void
+    {
+        $items = $this->cards(2);
+        $items[0]['body'] = "First <b>paragraph</b>.\nStill the first.\n\n  \n\nSecond paragraph.";
+
+        $html = Blade::render('<x-blocks.content.feature-cards heading="Values" :items="$items" />', ['items' => $items]);
+
+        $this->assertMatchesRegularExpression('#<p>First &lt;b&gt;paragraph&lt;/b&gt;\.\s+Still the first\.</p>\s*<p>Second paragraph\.</p>#', $html);
+        $this->assertStringNotContainsString('<b>', $html);
+        $this->assertStringContainsString('<p>A short fictional card body 2.</p>', $html);
+        $this->assertSame(3, substr_count($html, '<p>'));
+    }
+
+    public function test_registry_accepts_six_feature_cards(): void
+    {
+        $result = app(BlockRegistry::class)->validate('content/feature-cards', [
+            'heading' => 'Our services',
+            'items' => [...$this->cards(5), ['body' => "One.\n\nTwo."] + $this->cards(6)[5]],
+        ]);
+
+        $this->assertTrue($result->isValid(), json_encode($result->errors()));
+    }
+
     public function test_registry_accepts_valid_payloads_for_all_three_blocks(): void
     {
         $this->fixtureService('fixture-drains', ['icon' => self::ICON]);
@@ -314,7 +355,7 @@ class CopperEagleBlocksTest extends TestCase
         $cardsProps = ['heading' => 'Peace of mind.', 'items' => $cards];
 
         yield 'cards one item' => ['content/feature-cards', ['items' => self::baseCards(1)] + $cardsProps, '/props/items'];
-        yield 'cards five items' => ['content/feature-cards', ['items' => self::baseCards(5)] + $cardsProps, '/props/items'];
+        yield 'cards seven items' => ['content/feature-cards', ['items' => self::baseCards(7)] + $cardsProps, '/props/items'];
         yield 'cards missing items' => ['content/feature-cards', ['heading' => 'Peace of mind.'], '/props'];
         yield 'cards item without image' => ['content/feature-cards', ['items' => [array_diff_key($cards[0], ['image' => true]), $cards[1]]] + $cardsProps, '/props/items/0/image'];
         yield 'cards item with bad image' => ['content/feature-cards', ['items' => [['image' => ['src' => 'javascript:x', 'alt' => 'x', 'width' => 1, 'height' => 1]] + $cards[0], $cards[1]]] + $cardsProps, '/props/items/0/image'];
@@ -355,7 +396,7 @@ class CopperEagleBlocksTest extends TestCase
         $this->assertSame(['side', 'stacked'], $cards['fields']['layout']['allowed']);
         $this->assertSame(['white', 'stone'], $cards['fields']['background']['allowed']);
         $this->assertSame(2, $cards['fields']['items']['minItems']);
-        $this->assertSame(4, $cards['fields']['items']['maxItems']);
+        $this->assertSame(6, $cards['fields']['items']['maxItems']);
         $this->assertSame(
             ['title', 'body', 'image'],
             array_keys($cards['fields']['items']['items']['properties']),

@@ -1,6 +1,6 @@
 {{--
-    A dark full-width response band: centered eyebrow, heading, optional body,
-    and one button. `tone` is the deep-blue band (default, optionally over a
+    A dark full-width response band: centered eyebrow, heading, optional body
+    (a blank line starts a new paragraph), and one button. `tone` is the deep-blue band (default, optionally over a
     darkened photo) or the solid copper guarantee band with the lattice.
     The photo is a decorative backdrop, so it renders with empty alt text.
 --}}
@@ -50,7 +50,7 @@
         <h2 id="{{ $id }}-title">{{ $heading }}</h2>
 
         @if (filled($body))
-            <p class="cta-panel-body">{{ $body }}</p>
+            <x-content.paragraphs :text="$body" class="cta-panel-body" />
         @endif
 
         @if ($action)

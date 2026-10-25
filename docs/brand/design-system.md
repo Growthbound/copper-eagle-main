@@ -150,6 +150,18 @@ dark sections back to back.
 Interior heroes are deep blue over a photo, with a centered uppercase eyebrow,
 a centered white H1, and a white chevron rising into the next section.
 
+### Cards, points, and paragraphs
+
+- `content/feature-cards` takes two to six cards. Up to four sit in one row;
+  five or six sit in rows of three. Below 900px four or more become rows of
+  two, and phones show one card per row.
+- A `content/split` checklist point is a short string, or a `{label, text}`
+  pair: the label sits on its own line in weight 600, the text under it, both
+  in the body color, beside the copper check.
+- The `content/split` body, feature-card bodies, the `cta/panel` body, and
+  `faq/accordion` answers are plain text. A blank line starts a new paragraph;
+  they never carry HTML.
+
 ## Brand assets
 
 All in `public/images/brand`, downloaded from the live site with the owner's

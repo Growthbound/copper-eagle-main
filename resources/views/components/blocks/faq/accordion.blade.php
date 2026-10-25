@@ -4,7 +4,8 @@
     markup so search engines and answer engines can read them.
 
     Defaults to the FAQ records, narrowed to the service or area when the page
-    is about one, so a page never has to repeat a general question.
+    is about one, so a page never has to repeat a general question. A blank
+    line in an answer starts a new paragraph.
 --}}
 @props([
     'id' => 'faq',
@@ -38,7 +39,7 @@
             @foreach ($questions as $question)
                 <details class="faq-item">
                     <summary>{{ $question['question'] }}</summary>
-                    <p>{{ $question['answer'] }}</p>
+                    <x-content.paragraphs :text="$question['answer']" />
                 </details>
             @endforeach
         </div>

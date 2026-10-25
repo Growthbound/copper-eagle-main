@@ -87,6 +87,26 @@
                             "width": 605,
                             "height": 806
                         }
+                    },
+                    {
+                        "title": "Safety Inspections",
+                        "body": "For recently completed construction projects, it's crucial to confirm that everything is functioning correctly and safely. Our comprehensive safety inspections provide you with confidence in your gas system.",
+                        "image": {
+                            "src": "/images/brand/pages/mufid-majnun-6203ynp5zqe-unsplash.jpg",
+                            "alt": "safety inspections for gas",
+                            "width": 800,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "title": "… And More",
+                        "body": "Looking for something we don’t have listed here? Chances are we’re able to help with your gas line needs. Give us a call today to learn more about our gas line services.",
+                        "image": {
+                            "src": "/images/brand/pages/jason-grant-mes8f-sg4xc-unsplash.jpg",
+                            "alt": "Plumber for gas lines in utah",
+                            "width": 774,
+                            "height": 518
+                        }
                     }
                 ]
             },
@@ -122,15 +142,7 @@
                 "items": [
                     {
                         "question": "Why Trust the Professionals at Copper Eagle Plumbing?",
-                        "answer": "Whether you're adding a new gas-powered appliance to your home or enhancing your outdoor living space with a barbecue, fire pit, or fireplace, you deserve a service you can trust. Gas piping projects demand the precision and knowledge that only licensed professionals can provide. This holds true for both underground and interior piping installations. Our highly trained technicians possess in-depth expertise in gas sizing and installation codes, utilizing cutting-edge technology to detect even the smallest leaks. With Copper Eagle Plumbing, you can be confident that your gas installation or repair is in capable hands. Safety is paramount, and we take swift action in the event of a gas leak. Gas leaks are often the result of improper installations or the work of unqualified individuals handling your gas dryer, water heater, or appliances."
-                    },
-                    {
-                        "question": "Safety Inspections",
-                        "answer": "For recently completed construction projects, it's crucial to confirm that everything is functioning correctly and safely. Our comprehensive safety inspections provide you with confidence in your gas system."
-                    },
-                    {
-                        "question": "… And More",
-                        "answer": "Looking for something we don’t have listed here? Chances are we’re able to help with your gas line needs. Give us a call today to learn more about our gas line services."
+                        "answer": "Whether you're adding a new gas-powered appliance to your home or enhancing your outdoor living space with a barbecue, fire pit, or fireplace, you deserve a service you can trust.\n\nGas piping projects demand the precision and knowledge that only licensed professionals can provide. This holds true for both underground and interior piping installations.\n\nOur highly trained technicians possess in-depth expertise in gas sizing and installation codes, utilizing cutting-edge technology to detect even the smallest leaks.\n\nWith Copper Eagle Plumbing, you can be confident that your gas installation or repair is in capable hands. Safety is paramount, and we take swift action in the event of a gas leak. Gas leaks are often the result of improper installations or the work of unqualified individuals handling your gas dryer, water heater, or appliances."
                     }
                 ]
             },

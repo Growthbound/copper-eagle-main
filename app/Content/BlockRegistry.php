@@ -421,13 +421,16 @@ final class BlockRegistry
         foreach ([
             'content/capability-strip' => ['items'],
             'content/story-checklist' => ['items'],
-            'content/split' => ['checklist'],
             'content/inclusions-exclusions' => ['included', 'excluded'],
             'cta/form-confirmation' => ['steps'],
         ][$type] ?? [] as $field) {
             if (array_key_exists($field, $props)) {
                 $this->validateStringList($props[$field], "/props/{$field}", $errors);
             }
+        }
+
+        if ($type === 'content/split' && array_key_exists('checklist', $props)) {
+            $this->validateChecklist($props['checklist'], '/props/checklist', $errors);
         }
 
         if (in_array($type, ['faq/accordion', 'faq/highlighted'], true)
@@ -978,7 +981,7 @@ final class BlockRegistry
                 'buttonStyle' => $this->field('string', false, 'Primary button look. Defaults to copper.', ['copper', 'sky']),
             ],
             'cta/panel' => [
-                'body' => $this->field('string', false, 'Optional short paragraph under the heading.'),
+                'body' => $this->field('string', false, 'Optional text under the heading. A blank line starts a new paragraph.'),
                 'tone' => $this->field('string', false, 'Deep-blue band (primary, the default) or the solid copper guarantee band. The copper band ignores image.', ['primary', 'copper']),
                 'image' => $image('Optional photo behind the deep-blue band, darkened and decorative.'),
             ],
@@ -1026,8 +1029,8 @@ final class BlockRegistry
             $count = count($this->listItems($props['items']));
 
             if (is_array($props['items']) && array_is_list($props['items'])
-                && ($count < 2 || $count > 4)) {
-                $errors['/props/items'][] = 'Feature cards need two to four items.';
+                && ($count < 2 || $count > 6)) {
+                $errors['/props/items'][] = 'Feature cards need two to six items.';
             }
 
             $this->validateRecords(
@@ -1243,6 +1246,37 @@ final class BlockRegistry
     }
 
     /**
+     * A content/split checklist: each point is a non-empty string, or a
+     * record with a non-empty label and text. The field schema already
+     * rejects unknown keys and blank label or text values.
+     *
+     * @param  array<string, array<int, string>>  $errors
+     */
+    private function validateChecklist(
+        mixed $items,
+        string $pointer,
+        array &$errors,
+    ): void {
+        if (! is_array($items) || ! array_is_list($items)) {
+            $errors[$pointer][] = 'The checklist must be an ordered array.';
+
+            return;
+        }
+
+        foreach ($items as $index => $item) {
+            $valid = is_string($item)
+                ? trim($item) !== ''
+                : is_array($item) && $item !== [] && ! array_is_list($item)
+                    && $this->filledString($item['label'] ?? null)
+                    && $this->filledString($item['text'] ?? null);
+
+            if (! $valid) {
+                $errors["{$pointer}/{$index}"][] = 'Each point must be a non-empty string, or a label and text.';
+            }
+        }
+    }
+
+    /**
      * @param  array<string, array<int, string>>  $errors
      */
     private function validateMediaList(mixed $items, string $pointer, array &$errors): void
@@ -1356,14 +1390,14 @@ final class BlockRegistry
                     'items' => $this->scalarProperty('string', true),
                 ],
             ]), ['eyebrow', 'heading']),
-            $this->define('content/feature-cards', 'Present two to four round photo cards beside or under a heading.', ['heading', 'items'], [
+            $this->define('content/feature-cards', 'Present two to six round photo cards beside or under a heading.', ['heading', 'items'], [
                 'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered in the copper accent.'),
                 'body' => $this->contractField('content/feature-cards', 'body', false),
                 'items' => [
-                    ...$this->field('array', true, 'Two to four cards, each with a title, a short body, and an image.'),
+                    ...$this->field('array', true, 'Two to six cards, each with a title, a body, and an image. A blank line in a body starts a new paragraph.'),
                     'shape' => 'list',
                     'minItems' => 2,
-                    'maxItems' => 4,
+                    'maxItems' => 6,
                     'items' => $this->objectProperty([
                         'title' => $this->scalarProperty('string', true),
                         'body' => $this->scalarProperty('string', true),
@@ -1544,6 +1578,14 @@ final class BlockRegistry
             ];
         }
 
+        if ($type === 'content/split' && $field === 'body') {
+            return $this->field(
+                'string',
+                $required,
+                ($required ? 'Required' : 'Optional').' body text. A blank line starts a new paragraph.',
+            );
+        }
+
         if (in_array($field, [
             'message', 'url', 'linkLabel', 'label', 'body', 'collageLabel',
             'summaryLabel', 'submitLabel', 'service', 'area', 'badge',
@@ -1635,8 +1677,14 @@ final class BlockRegistry
             ];
         }
 
+        $description = match ("{$type}.{$field}") {
+            'content/split.checklist' => 'Optional short points with copper checks. Each is a string, or a label and text pair whose bold label sits above the text.',
+            'faq/accordion.items' => 'Required questions and answers. A blank line in an answer starts a new paragraph.',
+            default => ($required ? 'Required' : 'Optional')." {$field} collection.",
+        };
+
         return [
-            ...$this->field('array', $required, ($required ? 'Required' : 'Optional')." {$field} collection."),
+            ...$this->field('array', $required, $description),
             'shape' => 'list',
             'items' => $this->listItemContract($type, $field),
         ];
@@ -1647,6 +1695,18 @@ final class BlockRegistry
      */
     private function listItemContract(string $type, string $field): array
     {
+        if ($type === 'content/split' && $field === 'checklist') {
+            return [
+                'type' => 'string|array',
+                'required' => true,
+                'shape' => 'object',
+                'properties' => [
+                    'label' => $this->scalarProperty('string', true),
+                    'text' => $this->scalarProperty('string', true),
+                ],
+            ];
+        }
+
         if (in_array($field, [
             'points',
             'checklist',
@@ -1657,7 +1717,6 @@ final class BlockRegistry
         ], true) && in_array($type, [
             'content/capability-strip',
             'content/story-checklist',
-            'content/split',
             'content/inclusions-exclusions',
             'cta/form-confirmation',
         ], true)) {

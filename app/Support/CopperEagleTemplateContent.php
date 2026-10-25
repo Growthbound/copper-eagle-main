@@ -112,8 +112,12 @@ final class CopperEagleTemplateContent
                 ],
                 'introduction' => [
                     'heading' => 'Why choose us for this service?',
-                    'body' => 'A slow drain or a recurring clog is usually a sign of something further down the line. We find where it starts, clear it properly, and tell you what will keep it from coming back.',
-                    'checklist' => ['A camera look when the cause is not obvious', 'The right tool for the pipe, not the fastest one', 'A clean work area when we leave'],
+                    'body' => "A slow drain or a recurring clog is usually a sign of something further down the line.\n\nWe find where it starts, clear it properly, and tell you what will keep it from coming back.",
+                    'checklist' => [
+                        ['label' => 'A camera look', 'text' => 'When the cause is not obvious, we look before we guess.'],
+                        ['label' => 'The right tool', 'text' => 'Chosen for the pipe, not for the fastest finish.'],
+                        'A clean work area when we leave',
+                    ],
                     'background' => 'mist',
                     'cta' => ['label' => 'Get in touch with us', 'href' => '#final-response'],
                 ],
@@ -144,7 +148,7 @@ final class CopperEagleTemplateContent
                 'faq' => [
                     'heading' => 'Common questions',
                     'items' => [
-                        ['question' => 'How often should this be done?', 'answer' => 'It depends on the home and how it is used. We will suggest a schedule after looking at your system.'],
+                        ['question' => 'How often should this be done?', 'answer' => "It depends on the home and how it is used.\n\nWe will suggest a schedule after looking at your system."],
                         ['question' => 'What warning signs should I watch for?', 'answer' => 'Slow draining, gurgling sounds, and odors near fixtures are the most common early signs.'],
                         ['question' => 'Do I need to be home for the visit?', 'answer' => 'Someone needs to let us in and agree on the work before we start.'],
                     ],

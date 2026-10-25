@@ -117,6 +117,99 @@ class CopperEagleBlockStylesTest extends TestCase
         $this->assertStringNotContainsString('section-copy', $statementOnly);
     }
 
+    public function test_split_body_splits_on_blank_lines_into_escaped_paragraphs(): void
+    {
+        $html = Blade::render(
+            '<x-blocks.content.split heading="Why us" :body="$body" :image="$image" />',
+            ['body' => "One <b>bold</b> claim.\n\nTwo.\r\n\r\nThree.", 'image' => self::PHOTO],
+        );
+
+        $this->assertMatchesRegularExpression('#<p>One &lt;b&gt;bold&lt;/b&gt; claim\.</p>\s*<p>Two\.</p>\s*<p>Three\.</p>#', $html);
+        $this->assertStringNotContainsString('<b>', $html);
+
+        $single = Blade::render('<x-blocks.content.split heading="Why us" body="Just one." />');
+        $this->assertStringContainsString('<p>Just one.</p>', $single);
+    }
+
+    public function test_split_checklist_items_take_an_optional_bold_label(): void
+    {
+        $points = [
+            ['label' => 'Expert <i>technicians</i>', 'text' => 'Trained on every drain.'],
+            'A plain point',
+            ['label' => 'No text'],
+            ['text' => 'Text without a label'],
+            42,
+        ];
+
+        foreach (['<x-blocks.content.split heading="Why us" body="Body." :checklist="$points" :image="$image" />', '<x-blocks.content.split heading="Why us" body="Body." :checklist="$points" />'] as $markup) {
+            $html = Blade::render($markup, ['points' => $points, 'image' => self::PHOTO]);
+
+            $this->assertStringContainsString(
+                '<span class="check-list-copy"><strong class="check-list-label">Expert &lt;i&gt;technicians&lt;/i&gt;</strong> Trained on every drain.</span>',
+                $html,
+            );
+            $this->assertMatchesRegularExpression('#</span>\s*A plain point</li>#', $html);
+            $this->assertMatchesRegularExpression('#</span>\s*Text without a label</li>#', $html);
+            $this->assertStringNotContainsString('No text', $html);
+            $this->assertStringNotContainsString('42</li>', $html);
+            $this->assertSame(3, substr_count($html, '<li>'));
+            $this->assertStringNotContainsString('<i>', $html);
+        }
+    }
+
+    public function test_cta_panel_and_faq_answers_split_on_blank_lines_into_paragraphs(): void
+    {
+        $panel = Blade::render(
+            '<x-blocks.cta.panel heading="Repair or replace?" :body="$body" :cta="$cta" />',
+            ['body' => "Timing is everything.\n\nCall <b>us</b>.", 'cta' => ['label' => 'Get in touch', 'href' => '#contact']],
+        );
+
+        $this->assertMatchesRegularExpression('#<p class="cta-panel-body">Timing is everything\.</p>\s*<p class="cta-panel-body">Call &lt;b&gt;us&lt;/b&gt;\.</p>#', $panel);
+
+        $faq = Blade::render('<x-blocks.faq.accordion heading="Questions" :items="$items" />', ['items' => [
+            ['question' => 'How often?', 'answer' => "Once a year.\n\nSooner if it is <em>slow</em>."],
+            ['question' => 'Warning signs?', 'answer' => 'Slow drains.'],
+        ]]);
+
+        $this->assertMatchesRegularExpression('#<summary>How often\?</summary>\s*<p>Once a year\.</p>\s*<p>Sooner if it is &lt;em&gt;slow&lt;/em&gt;\.</p>\s*</details>#', $faq);
+        $this->assertMatchesRegularExpression('#<summary>Warning signs\?</summary>\s*<p>Slow drains\.</p>\s*</details>#', $faq);
+    }
+
+    public function test_registry_accepts_labelled_checklist_items_and_rejects_malformed_ones(): void
+    {
+        $registry = app(BlockRegistry::class);
+        $base = ['heading' => 'Why us', 'body' => "One.\n\nTwo."];
+
+        $this->assertSame([], $registry->validate('content/split', [
+            ...$base,
+            'checklist' => ['Plain point', ['label' => 'Expert Technicians', 'text' => 'Our highly trained technicians.']],
+        ])->errors());
+
+        foreach ([
+            'label without text' => [['label' => 'Expert Technicians'], '/props/checklist/0'],
+            'blank text' => [['label' => 'Expert Technicians', 'text' => '  '], '/props/checklist/0/text'],
+            'blank label' => [['label' => '', 'text' => 'Our technicians.'], '/props/checklist/0/label'],
+            'unknown key' => [['label' => 'L', 'text' => 'T', 'icon' => 'x'], '/props/checklist/0/icon'],
+            'a number' => [42, '/props/checklist/0'],
+            'blank string' => ['  ', '/props/checklist/0'],
+            'a list' => [['L', 'T'], '/props/checklist/0'],
+        ] as $case => [$item, $pointer]) {
+            $errors = $registry->validate('content/split', [...$base, 'checklist' => [$item]])->errors();
+
+            $this->assertArrayHasKey($pointer, $errors, $case.': '.json_encode($errors));
+        }
+
+        $checklist = $registry->definition('content/split')->fields['checklist'];
+        $this->assertSame('list', $checklist['shape']);
+        $this->assertSame('string|array', $checklist['items']['type']);
+        $this->assertSame('object', $checklist['items']['shape']);
+        $this->assertSame(['label', 'text'], array_keys($checklist['items']['properties']));
+        $this->assertStringContainsString('blank line', $registry->definition('content/split')->fields['body']['description']);
+        $this->assertStringContainsString('blank line', $registry->definition('cta/panel')->fields['body']['description']);
+        $this->assertStringContainsString('blank line', $registry->definition('faq/accordion')->fields['items']['description']);
+        $this->assertStringContainsString('blank line', $registry->definition('content/feature-cards')->fields['items']['description']);
+    }
+
     public function test_quotes_band_renders_context_and_an_optional_outline_link(): void
     {
         $html = Blade::render(
@@ -401,7 +494,7 @@ class CopperEagleBlockStylesTest extends TestCase
             $this->assertMatchesRegularExpression('/^(?:0|var\(--radius-[a-z]+\))$/', trim($radius), "Literal radius: {$radius}");
         }
 
-        foreach (['.interior-hero', '.split-band--mist', '.testimonial-band', '.areas-band', '.inline-cta.is-mist', '.cta-panel.is-copper', '.service-icon-grid', '.pricing-factor-mark', '.faq-item summary::after'] as $selector) {
+        foreach (['.interior-hero', '.split-band--mist', '.testimonial-band', '.areas-band', '.inline-cta.is-mist', '.cta-panel.is-copper', '.service-icon-grid', '.pricing-factor-mark', '.faq-item summary::after', '.check-list-label'] as $selector) {
             $this->assertStringContainsString($selector, $css);
         }
     }

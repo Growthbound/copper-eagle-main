@@ -7,7 +7,7 @@ Accordion list of questions and answers.
 | Prop | Type | Required | Notes |
 |---|---|---|---|
 | `heading` | string | no | Section heading, renders as `<h2>` |
-| `items` | array | yes | List of `['question' => ..., 'answer' => ...]` |
+| `items` | array | yes | List of `['question' => ..., 'answer' => ...]`. Answers are plain text; in `accordion` a blank line starts a new paragraph |
 
 ## Variants
 

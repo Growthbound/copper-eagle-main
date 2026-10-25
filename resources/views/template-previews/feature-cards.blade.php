@@ -5,13 +5,14 @@
         'width' => $width,
         'height' => $height,
     ];
+    $twoParagraphs = "A sample first paragraph about finding the leak before anything is opened up.\n\nA second fictional paragraph, so a longer card shows how its paragraphs space out.";
 @endphp
 
 <x-layouts.marketing title="Feature cards" :noindex="true">
     <section class="marketing-icon-catalog-heading section-space" aria-labelledby="feature-cards-preview-title">
         <p class="eyebrow text-accent">Fictional local template</p>
         <h1 id="feature-cards-preview-title">Feature cards</h1>
-        <p>Two to four round photo cards, beside a large heading over the eagle watermark or under a centred one. Every card here is fictional.</p>
+        <p>Two to six round photo cards, beside a large heading over the eagle watermark or under a centred one. A blank line in a card body starts a new paragraph. Every card here is fictional.</p>
     </section>
 
     <x-blocks.content.feature-cards
@@ -35,6 +36,21 @@
             ['title' => 'Clog and blockage removal', 'body' => 'Finding the blockage at its source and clearing it, with a longer fictional sentence to show how uneven card lengths line up.', 'image' => $photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900)],
             ['title' => 'Pipe repair and replacement', 'body' => 'Repairing or replacing a damaged section of pipe.', 'image' => $photo('copper-pipe.jpg', 'Copper pipe joint against a dark background', 1200, 800)],
             ['title' => 'Preventive maintenance', 'body' => 'A periodic check that keeps small problems small.', 'image' => $photo('valve.jpg', 'Valve and gauge on a water line', 900, 900)],
+        ]"
+    />
+
+    <x-blocks.content.feature-cards
+        id="features-six"
+        heading="Six fictional services, in rows of three"
+        layout="stacked"
+        background="stone"
+        :items="[
+            ['title' => 'Pipe repairs', 'body' => $twoParagraphs, 'image' => $photo('copper-pipe.jpg', 'Copper pipe joint against a dark background', 1200, 800)],
+            ['title' => 'Tub and shower', 'body' => 'Sample copy about drains and valves behind the tile.', 'image' => $photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900)],
+            ['title' => 'Leaking faucets', 'body' => 'Replacing the worn part that causes the drip.', 'image' => $photo('kitchen.jpg', 'Kitchen counter with copper pans', 900, 900)],
+            ['title' => 'Toilets', 'body' => 'A fictional card about repairs and replacements.', 'image' => $photo('drain.jpg', 'Water running into a sink drain', 1200, 800)],
+            ['title' => 'Main water lines', 'body' => 'Sample copy about the line that brings water to the home.', 'image' => $photo('valve.jpg', 'Valve and gauge on a water line', 900, 900)],
+            ['title' => 'Fixtures', 'body' => 'Fitting sinks, faucets, and showers.', 'image' => $photo('bath-sink.jpg', 'Modern bathroom sink with a wall-mounted faucet', 900, 900)],
         ]"
     />
 

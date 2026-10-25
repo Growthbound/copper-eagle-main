@@ -8,6 +8,10 @@
 
     `background` sets the full-width band behind the section; `imageSide`
     mirrors the columns. Every option falls back to the original look.
+
+    A blank line in `body` starts a new paragraph. A checklist item is a
+    string, or a `label` and `text` pair whose bold label sits above the
+    text; anything else is left out.
 --}}
 @props([
     'id' => null,
@@ -35,7 +39,23 @@
     $imageAtEnd = $imageSide === 'end';
     $band = in_array($background, ['mist', 'stone'], true) ? $background : null;
     $parts = $hasImage && $imageAtEnd ? ['copy', 'media'] : ['media', 'copy'];
-    $hasDetail = filled($eyebrow) || filled($lead) || filled($body) || filled($checklist);
+    $points = collect(is_iterable($checklist) ? $checklist : [])
+        ->map(function (mixed $point): ?array {
+            if (is_string($point)) {
+                return trim($point) === '' ? null : ['label' => null, 'text' => trim($point)];
+            }
+
+            if (! is_array($point) || ! is_string($point['text'] ?? null) || trim($point['text']) === '') {
+                return null;
+            }
+
+            $label = is_string($point['label'] ?? null) && trim($point['label']) !== '' ? trim($point['label']) : null;
+
+            return ['label' => $label, 'text' => trim($point['text'])];
+        })
+        ->filter()
+        ->values();
+    $hasDetail = filled($eyebrow) || filled($lead) || filled($body) || $points->isNotEmpty();
 @endphp
 
 <section
@@ -94,13 +114,13 @@
                     @endif
 
                     @if (filled($body))
-                        <p>{{ $body }}</p>
+                        <x-content.paragraphs :text="$body" />
                     @endif
 
-                    @if (filled($checklist))
+                    @if ($points->isNotEmpty())
                         <ul class="check-list">
-                            @foreach ($checklist as $point)
-                                <li><x-check-icon class="check-icon-small" />{{ $point }}</li>
+                            @foreach ($points as $point)
+                                @include('components.blocks.content.partials.check-point', ['point' => $point])
                             @endforeach
                         </ul>
                     @endif
@@ -131,13 +151,13 @@
                 @endif
 
                 @if (filled($body))
-                    <p>{{ $body }}</p>
+                    <x-content.paragraphs :text="$body" />
                 @endif
 
-                @if (filled($checklist))
+                @if ($points->isNotEmpty())
                     <ul class="check-list">
-                        @foreach ($checklist as $point)
-                            <li><x-check-icon class="check-icon-small" />{{ $point }}</li>
+                        @foreach ($points as $point)
+                            @include('components.blocks.content.partials.check-point', ['point' => $point])
                         @endforeach
                     </ul>
                 @endif

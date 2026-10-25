@@ -95,6 +95,32 @@ class CopperEaglePageTemplatesTest extends TestCase
         }
     }
 
+    public function test_a_service_page_can_carry_six_cards_labelled_points_and_paragraphs(): void
+    {
+        $payload = app(ContentDraftScaffold::class)->for(PageTemplate::ServiceDetail, 'Sample service');
+        unset($payload['_scaffold']);
+
+        $card = $payload['sections']['offerings']['items'][0];
+        $payload['sections']['offerings']['items'] = array_map(
+            fn (int $index): array => ['title' => "Card {$index}", 'body' => "First paragraph {$index}.\n\nSecond paragraph."] + $card,
+            range(1, 6),
+        );
+        $payload['sections']['introduction']['body'] = "One.\n\nTwo.";
+        $payload['sections']['introduction']['checklist'] = [
+            ['label' => 'Sample label', 'text' => 'Sample text under the label.'],
+            'A plain point',
+        ];
+        $payload['sections']['guarantee']['body'] = "One.\n\nTwo.";
+        $payload['sections']['faq']['items'][0]['answer'] = "One.\n\nTwo.";
+
+        $errors = app(ContentValidator::class)->validate(
+            ['kind' => ContentKind::Page, 'slug' => 'sample-service', 'title' => 'Sample service', 'template' => PageTemplate::ServiceDetail],
+            $payload,
+        )->errors();
+
+        $this->assertSame([], $errors);
+    }
+
     /**
      * @return array<string, array<int, string>> template => block types, from the spec.
      */

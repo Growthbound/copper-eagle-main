@@ -143,6 +143,39 @@ class DesignSystemContractTest extends TestCase
         }
     }
 
+    public function test_every_feature_card_count_the_spec_allows_has_a_layout(): void
+    {
+        $spec = $this->read('docs/brand/design-system.md');
+        $words = ['two' => 2, 'three' => 3, 'four' => 4, 'five' => 5, 'six' => 6, 'seven' => 7, 'eight' => 8];
+
+        $this->assertMatchesRegularExpression('/`content\/feature-cards` takes (\w+) to (\w+) cards/', $spec, 'The spec no longer states the feature card range.');
+        preg_match('/`content\/feature-cards` takes (\w+) to (\w+) cards/', $spec, $range);
+        [$min, $max] = [$words[$range[1]] ?? 0, $words[$range[2]] ?? 0];
+
+        $view = $this->read('resources/views/components/blocks/content/feature-cards.blade.php');
+        $this->assertStringContainsString("->take({$max})", $view, 'The block renders a different number of cards than the spec allows.');
+        $this->assertStringContainsString("->count() >= {$min}", $view, 'The block needs a different minimum than the spec states.');
+
+        $css = $this->read('resources/css/brand/blocks.css');
+
+        foreach (range($min, $max) as $count) {
+            if ($count === 3) {
+                continue; // Three columns is the list's default.
+            }
+
+            $this->assertStringContainsString(".feature-cards-list.is-count-{$count}", $css, "{$count} feature cards have no layout.");
+        }
+    }
+
+    public function test_checklist_labels_are_weight_600_on_their_own_line(): void
+    {
+        $spec = $this->read('docs/brand/design-system.md');
+        $css = $this->read('resources/css/brand/sections.css');
+
+        $this->assertStringContainsString('`{label, text}`', $spec, 'The spec no longer documents labelled checklist items.');
+        $this->assertMatchesRegularExpression('/\.check-list-label \{[^}]*display: block;[^}]*font-weight: 600;[^}]*\}/', $css);
+    }
+
     /**
      * @return array<string, string> token => hex, from the spec's color table.
      */

@@ -85,9 +85,18 @@
                 "heading": "The Benefits of Regular Water Filtration",
                 "body": "Regular water filtration is not only about the immediate benefits but also long-term advantages for your health and home:",
                 "checklist": [
-                    "Better Tasting Water: Filtered water simply tastes better, making it more enjoyable to stay hydrated.",
-                    "Healthier Lifestyle: Clean water is essential for your well-being, ensuring your family stays healthy and hydrated.",
-                    "Protecting Appliances: Filtered water extends the lifespan of your appliances and plumbing by reducing the buildup of mineral deposits."
+                    {
+                        "label": "Better Tasting Water:",
+                        "text": "Filtered water simply tastes better, making it more enjoyable to stay hydrated."
+                    },
+                    {
+                        "label": "Healthier Lifestyle:",
+                        "text": "Clean water is essential for your well-being, ensuring your family stays healthy and hydrated."
+                    },
+                    {
+                        "label": "Protecting Appliances:",
+                        "text": "Filtered water extends the lifespan of your appliances and plumbing by reducing the buildup of mineral deposits."
+                    }
                 ],
                 "image": {
                     "src": "/images/brand/pages/eenefits.jpg",
@@ -99,7 +108,7 @@
             },
             "guarantee": {
                 "heading": "Water Softeners",
-                "body": "Experience the transformational effects of soft water with our expert water softener services. Say goodbye to mineral buildup on fixtures and appliances while enjoying the silky feel of soft water in your daily routines. At Copper Eagle Plumbing, we specialize in the installation, maintenance, and repair of water-softening systems. Let us help you enjoy cleaner dishes, softer laundry, and the extended lifespan of your plumbing fixtures. Say hello to a world of softer water – schedule your water softener service today!",
+                "body": "Experience the transformational effects of soft water with our expert water softener services.\n\nSay goodbye to mineral buildup on fixtures and appliances while enjoying the silky feel of soft water in your daily routines. At Copper Eagle Plumbing, we specialize in the installation, maintenance, and repair of water-softening systems.\n\nLet us help you enjoy cleaner dishes, softer laundry, and the extended lifespan of your plumbing fixtures. Say hello to a world of softer water – schedule your water softener service today!",
                 "cta": {
                     "label": "GET IN TOUCH WITH US",
                     "href": "/contact-copper-eagle-plumbing"
