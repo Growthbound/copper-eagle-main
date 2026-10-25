@@ -13,6 +13,7 @@ RUN apt-get update \
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
 COPY docker/php.ini /usr/local/etc/php/conf.d/copper-eagle.ini
+COPY docker/php.dev.ini /usr/local/etc/php/conf.d/copper-eagle-dev.ini
 
 WORKDIR /var/www/html
 
