@@ -1,0 +1,109 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/team"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "team",
+        "title": "Team",
+        "template": "team"
+    },
+    "payload": {
+        "title": "Meet Our Salt Lake City Plumbing Team",
+        "description": "Meet the Copper Eagle Plumbing team in Salt Lake City: our foreman, journeyman plumbers, apprentice and office manager.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Team",
+                "image": {
+                    "src": "/images/brand/pages/team-hero.jpg",
+                    "alt": "The Copper Eagle Plumbing team standing in front of a company truck",
+                    "width": 1534,
+                    "height": 1025
+                }
+            },
+            "team": {
+                "eyebrow": "Team Heros",
+                "heading": "Meet the Copper Eagle Team",
+                "members": [
+                    {
+                        "name": "Matt Porter",
+                        "role": "Foreman",
+                        "image": {
+                            "src": "/images/brand/photos/team-truck-5.jpg",
+                            "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+                            "width": 1600,
+                            "height": 1199
+                        }
+                    },
+                    {
+                        "name": "Dalton",
+                        "role": "Journeyman Plumber",
+                        "image": {
+                            "src": "/images/brand/photos/team-truck-3.jpg",
+                            "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+                            "width": 1600,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "name": "Holden",
+                        "role": "soon to be Journeyman Plumber",
+                        "image": {
+                            "src": "/images/brand/photos/team-truck-4.jpg",
+                            "alt": "Holden in front of a Copper Eagle Plumbing truck",
+                            "width": 1600,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "name": "Spencer",
+                        "role": "longest-standing employee",
+                        "image": {
+                            "src": "/images/brand/photos/team-truck-2.jpg",
+                            "alt": "Spencer in front of a Copper Eagle Plumbing truck",
+                            "width": 1600,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "name": "JD",
+                        "role": "Plumbing Apprentice",
+                        "image": {
+                            "src": "/images/brand/photos/team-truck-1.jpg",
+                            "alt": "JD in front of a Copper Eagle Plumbing truck",
+                            "width": 1600,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "name": "Matthew \"Hibs\"",
+                        "role": "Customer Retention Agent and Office Manager",
+                        "image": {
+                            "src": "/images/brand/photos/team-truck-6.jpg",
+                            "alt": "Matthew \"Hibs\" in front of a Copper Eagle Plumbing truck",
+                            "width": 1600,
+                            "height": 1200
+                        }
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/team-hero.jpg",
+            "alt": "The Copper Eagle Plumbing team standing in front of a company truck",
+            "width": 1534,
+            "height": 1025
+        }
+    }
+}

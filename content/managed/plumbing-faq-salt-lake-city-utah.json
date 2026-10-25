@@ -1,0 +1,103 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-pages",
+        "note": "Each answer restates wording from the company's own pages on this site."
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "plumbing-faq-salt-lake-city-utah",
+        "title": "Plumbing FAQ",
+        "template": "standard"
+    },
+    "payload": {
+        "title": "Plumbing FAQ for Salt Lake City",
+        "description": "Answers to common questions about Copper Eagle Plumbing: 24/7 emergency service, after-hours prices, service areas, drains, water heaters and more.",
+        "noindex": false,
+        "blocks": [
+            {
+                "type": "hero/interior",
+                "props": {
+                    "eyebrow": "Plumbing FAQ",
+                    "heading": "Common Plumbing Questions"
+                }
+            },
+            {
+                "type": "faq/accordion",
+                "props": {
+                    "id": "plumbing-questions",
+                    "heading": "Questions and answers",
+                    "items": [
+                        {
+                            "question": "Do you offer 24/7 emergency plumbing in Salt Lake City?",
+                            "answer": "Yes. Copper Eagle Plumbing's emergency team is available 24 hours a day, 7 days a week, 365 days a year, including holidays. Call or text any time and a plumber will help with your emergency."
+                        },
+                        {
+                            "question": "How much does an after-hours plumbing visit cost?",
+                            "answer": "An after-hours visit is typically a $150 flat rate to come out, or $300 on special holidays. Diagnosing the problem costs $178, or $278 when it needs tools beyond the basic diagnostics. You see the price from our standard price book before any work starts."
+                        },
+                        {
+                            "question": "What areas does Copper Eagle Plumbing serve?",
+                            "answer": "Salt Lake City and nearby Utah communities: Bountiful, Centerville, Draper, Kaysville, Midvale, Murray, Orem, Park City, Provo, Sandy, South Jordan, West Jordan and West Valley, plus Summit, Utah and Wasatch counties."
+                        },
+                        {
+                            "question": "Who owns Copper Eagle Plumbing?",
+                            "answer": "Jordan Walker, a master plumber, owns Copper Eagle Plumbing. It is a locally owned and family-operated plumbing company serving Northern Utah."
+                        },
+                        {
+                            "question": "Is Copper Eagle Plumbing licensed and insured?",
+                            "answer": "Yes. Copper Eagle Plumbing is a licensed and insured plumber in Utah. Its master plumbing license number is listed on the home page."
+                        },
+                        {
+                            "question": "How soon will the plumber arrive?",
+                            "answer": "You get a 2-hour arrival window when you schedule. If your plumber is running late, they will let you know in advance."
+                        },
+                        {
+                            "question": "How often should I schedule drain cleaning?",
+                            "answer": "At least once a year. Regular drain cleaning keeps small clogs from building into major blockages."
+                        },
+                        {
+                            "question": "What are the warning signs of a clogged drain?",
+                            "answer": "Slow drainage and bad smells. A slow drain is often an early sign of waste building up in your pipes, and an odor means waste is trapped in the plumbing."
+                        },
+                        {
+                            "question": "How long does a water heater last?",
+                            "answer": "Usually 10 to 15 years, and many need replacing around the 12-year mark. Unusual noises from the tank can mean mineral deposits have built up on its bottom."
+                        },
+                        {
+                            "question": "What water filtration systems do you install?",
+                            "answer": "Reverse osmosis, carbon filters, UV water treatment and water softeners. Reverse osmosis gives the highest level of purification."
+                        },
+                        {
+                            "question": "Do you repair Mr. Steam steam showers?",
+                            "answer": "Yes. Copper Eagle Plumbing installs, repairs and maintains steam showers and specializes in Mr. Steam products."
+                        },
+                        {
+                            "question": "Do you handle emergency gas line repairs?",
+                            "answer": "Yes. Copper Eagle Plumbing offers 24-hour emergency service for gas line repairs. It also installs new gas lines and runs safety inspections."
+                        },
+                        {
+                            "question": "Do you install garbage disposals and dishwashers?",
+                            "answer": "Yes. Copper Eagle Plumbing installs and repairs garbage disposals and dishwashers, along with other plumbing-related appliances."
+                        },
+                        {
+                            "question": "Do you do plumbing for new construction and remodels?",
+                            "answer": "Yes. Copper Eagle Plumbing handles pipe installation, water and sewer lines, fixture installation, and testing and inspections for new construction and remodels."
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "cta/inline-band",
+                "props": {
+                    "heading": "Have a different question? Send us a message, or call or text.",
+                    "primaryAction": {
+                        "label": "CONTACT US",
+                        "href": "/contact-copper-eagle-plumbing"
+                    }
+                }
+            }
+        ]
+    }
+}

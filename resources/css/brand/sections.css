@@ -1,0 +1,1252 @@
+/*
+ * Copper Eagle look for the shared blocks: section backgrounds, chevron edges,
+ * and the restyled catalog blocks. See docs/brand/design-system.md.
+ *
+ * Unlayered, so these rules outrank the layered platform defaults in app.css
+ * without out-specifying them. Tokens only: no literal colors or radii.
+ *
+ * Background images point at the files in public/ by a path relative to this
+ * file. Vite serves those in development and fingerprints them in a build; a
+ * root-relative "/images/..." would resolve against the Vite dev server and
+ * 404 there.
+ */
+
+/* Heading emphasis from <x-content.emphasized>. */
+.heading-emphasis {
+    font-weight: var(--theme-emphasis-weight);
+}
+
+.heading-emphasis--accent {
+    color: var(--theme-accent-on-page);
+    font-weight: inherit;
+}
+
+/*
+ * Full-width bands keep their content on the page-shell grid (1200px wide,
+ * 1.5rem gutters; 1rem on phones) by padding rather than an inner wrapper.
+ */
+.split-band,
+.testimonial-band,
+.inline-cta,
+.cta-panel,
+.pricing-factors-section,
+.contact-split-panel {
+    --ce-band-inline: max(1.5rem, calc((100vw - 1200px) / 2));
+    --ce-band-block: clamp(4rem, 8vw, 6.5rem);
+}
+
+@media (max-width: 600px) {
+    .split-band,
+    .testimonial-band,
+    .inline-cta,
+    .cta-panel,
+    .pricing-factors-section,
+    .contact-split-panel {
+        --ce-band-inline: 1rem;
+    }
+}
+
+/* A darkened, decorative photo behind a deep-blue band. 80% deep blue keeps
+   white text above 5:1 even over a pure-white pixel. */
+.interior-hero-backdrop,
+.cta-panel-backdrop,
+.pricing-factors-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    border-radius: 0;
+    object-fit: cover;
+    filter: grayscale(1);
+    mix-blend-mode: normal;
+}
+
+.interior-hero.has-backdrop::before,
+.cta-panel.has-backdrop::before,
+.pricing-factors-section.has-backdrop::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in srgb, var(--theme-primary) 80%, transparent);
+    content: '';
+}
+
+/* ------------------------------------------------------------------------
+ * hero/interior: deep blue (over an optional photo), centered uppercase
+ * eyebrow and white H1, and a white chevron rising into the next section.
+ * --------------------------------------------------------------------- */
+.interior-hero {
+    --interior-hero-edge: clamp(1.75rem, 6vw, 5rem);
+
+    position: relative;
+    isolation: isolate;
+    /* Visible, so the chevron's extra pixel covers the sub-pixel seam
+       between the band and the section below. */
+    overflow: visible;
+    border-radius: 0;
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+}
+
+.interior-hero::after {
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    height: calc(var(--interior-hero-edge) + 2px);
+    background: var(--interior-hero-next, var(--theme-page));
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    content: '';
+    pointer-events: none;
+}
+
+.interior-hero-inner {
+    width: min(100% - 3rem, 58rem);
+    max-width: none;
+    margin-inline: auto;
+    padding-block: clamp(3.5rem, 7vw, 6rem) calc(clamp(3rem, 6vw, 5rem) + var(--interior-hero-edge));
+    text-align: center;
+}
+
+.interior-hero .eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--theme-on-primary);
+    font-size: 0.85rem;
+}
+
+.interior-hero h1 {
+    color: var(--theme-on-primary);
+    text-wrap: balance;
+}
+
+.interior-hero-inner > p:not(.eyebrow) {
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
+    color: var(--theme-on-primary);
+    font-size: 1.05rem;
+}
+
+.interior-hero .hero-variant-actions {
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.interior-hero .hero-variant-actions > a:not(.button),
+.interior-hero .hero-call {
+    color: var(--theme-on-primary);
+}
+
+/*
+ * The chevron takes the color of the section it rises into, so a mist, stone
+ * or light-blue band directly under the hero meets it without a white seam.
+ * Page templates wrap each section in [data-page-section]; other pages place
+ * blocks side by side.
+ */
+[data-page-section]:has(> .interior-hero):has(+ [data-page-section] > :is(.split-band--mist, .inline-cta.is-mist)) > .interior-hero,
+.interior-hero:has(+ :is(.split-band--mist, .inline-cta.is-mist)) {
+    --interior-hero-next: var(--theme-surface);
+}
+
+[data-page-section]:has(> .interior-hero):has(+ [data-page-section] > :is(.split-band--stone, .feature-cards--stone)) > .interior-hero,
+.interior-hero:has(+ :is(.split-band--stone, .feature-cards--stone)) {
+    --interior-hero-next: var(--theme-stone);
+}
+
+[data-page-section]:has(> .interior-hero):has(+ [data-page-section] > .testimonial-band) > .interior-hero,
+.interior-hero:has(+ .testimonial-band) {
+    --interior-hero-next: var(--theme-sky);
+}
+
+@media (max-width: 600px) {
+    .interior-hero-inner {
+        width: min(100% - 2rem, 58rem);
+    }
+
+    .interior-hero .hero-variant-actions {
+        align-items: center;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * content/split: photo (square or circle portrait) beside the copy, or a
+ * statement heading beside the detail copy. Optional mist or stone band.
+ * --------------------------------------------------------------------- */
+.split-section {
+    --split-surface: var(--theme-page);
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+    margin-block: clamp(3.5rem, 7vw, 6rem);
+    padding-inline: 0;
+}
+
+.split-band {
+    margin-block: 0;
+    padding-block: var(--ce-band-block);
+    padding-inline: var(--ce-band-inline);
+}
+
+.split-band--mist {
+    --split-surface: var(--theme-surface);
+
+    background: var(--theme-surface);
+}
+
+.split-band--stone {
+    --split-surface: var(--theme-stone);
+
+    background: var(--theme-stone);
+}
+
+.split-section .image-stack {
+    position: relative;
+    display: block;
+    min-height: 0;
+}
+
+.split-section .image-stack-main {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+/* Square photo with an inset: the inset overlaps the lower-right corner. */
+.split-section .image-stack-small {
+    right: 0;
+    bottom: -2rem;
+    width: 40%;
+    height: auto;
+    aspect-ratio: 1;
+    rotate: none;
+    border: 0.5rem solid var(--split-surface);
+    border-radius: 0;
+    object-fit: cover;
+}
+
+/* Circle portrait with the inset as a badge over its lower-left edge. */
+.split-section.is-image-circle .image-stack {
+    justify-self: center;
+    width: min(100%, 30rem);
+}
+
+.split-section.is-image-circle .image-stack-main {
+    border-radius: var(--radius-pill);
+}
+
+.split-section.is-image-circle .image-stack-small {
+    right: auto;
+    bottom: 2%;
+    left: -5%;
+    width: 36%;
+    aspect-ratio: auto;
+    border: 0;
+    object-fit: contain;
+    filter: drop-shadow(0 0.6rem 1rem var(--theme-text-24));
+}
+
+.split-section .image-stamp {
+    background: var(--theme-accent-gradient);
+    color: var(--theme-on-accent);
+    rotate: none;
+}
+
+.split-section .section-copy > h2 {
+    text-wrap: balance;
+}
+
+.split-section .section-copy > p:not(.eyebrow) {
+    max-width: 36rem;
+    margin-top: 1.25rem;
+    color: var(--theme-text);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.split-section .section-copy > .split-lead {
+    font-weight: var(--theme-emphasis-weight);
+}
+
+.split-section .section-copy > p.split-subheading {
+    margin-top: 0;
+    color: var(--theme-accent-on-page);
+    font-family: var(--font-heading);
+    font-size: clamp(1.35rem, 2vw, 1.6rem);
+    line-height: 1.3;
+}
+
+.split-section .check-list {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    max-width: 36rem;
+    margin-top: 1.5rem;
+}
+
+.split-section .check-list li {
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* A labelled point: the bold label on its own line, the text under it. */
+.split-section .check-list-label {
+    display: block;
+    font-weight: 600;
+}
+
+.split-section .check-icon-small {
+    width: 1.25rem;
+    margin-top: 0.2em;
+    background: none;
+    color: var(--theme-accent-on-page);
+}
+
+.split-section .check-icon-small svg {
+    width: 1.1rem;
+}
+
+.split-action {
+    margin-top: 2rem;
+}
+
+/* Statement layout: no photo. Large heading and button on the start side,
+   aligned toward the detail copy on the end side. */
+.split-section.is-without-media {
+    grid-template-columns: minmax(0, 27rem) minmax(0, 32rem);
+    justify-content: center;
+    align-items: start;
+}
+
+.split-statement {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.split-statement > h2 {
+    font-size: clamp(2.25rem, 4.2vw, 3.4rem);
+    line-height: 1.12;
+    text-wrap: balance;
+}
+
+.split-section.is-statement-only {
+    grid-template-columns: minmax(0, 48rem);
+}
+
+.split-section.is-statement-only .split-statement {
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .split-section,
+    .split-section.is-without-media {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+        padding-inline: 0;
+    }
+
+    .split-section.split-band {
+        padding-inline: var(--ce-band-inline);
+    }
+
+    .split-section .image-stack {
+        width: min(100%, 34rem);
+        justify-self: center;
+    }
+
+    .split-section.is-image-circle .image-stack {
+        width: min(100% - 2rem, 22rem);
+    }
+
+    .split-section.is-image-circle .image-stack-small {
+        left: -1rem;
+    }
+
+    .split-statement {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .split-statement .split-action {
+        margin-top: 1.5rem;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * testimonials/quotes: light-blue band with the diamond lattice, centered
+ * heading and quotes, optional outline link. Ink and deep blue on sky only.
+ * --------------------------------------------------------------------- */
+.testimonial-band {
+    margin-block: 0;
+    padding-block: var(--ce-band-block);
+    padding-inline: var(--ce-band-inline);
+    background: var(--theme-sky) url('../../../public/images/brand/patterns/diamond-lattice.jpg') center / cover no-repeat;
+    color: var(--theme-text);
+    text-align: center;
+}
+
+.testimonial-band .section-heading {
+    max-width: 46rem;
+    margin: 0 auto clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.testimonial-band .eyebrow {
+    color: var(--theme-primary);
+}
+
+.testimonial-band h2 {
+    color: var(--theme-primary);
+    font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+    text-wrap: balance;
+}
+
+.testimonial-band .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 2.5rem clamp(2rem, 4vw, 3.5rem);
+    max-width: 64rem;
+    margin-inline: auto;
+}
+
+.testimonial-band.is-single .testimonial-grid {
+    grid-template-columns: minmax(0, 42rem);
+    justify-content: center;
+}
+
+.testimonial-band .testimonial-card {
+    border-radius: 0;
+    background: none;
+    padding: 0;
+}
+
+.testimonial-band .testimonial-rating {
+    color: var(--theme-primary);
+}
+
+.testimonial-band blockquote {
+    margin-top: 0;
+    color: var(--theme-text);
+    font-size: 1.12rem;
+    line-height: 1.85;
+    quotes: '\201C' '\201D';
+}
+
+.testimonial-band blockquote::before {
+    content: open-quote;
+}
+
+.testimonial-band blockquote::after {
+    content: close-quote;
+}
+
+.testimonial-band figcaption {
+    margin-top: 1rem;
+    color: var(--theme-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.testimonial-more {
+    margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* ------------------------------------------------------------------------
+ * service-areas/list: the copper hexagon band. A copper-tinted photo inside
+ * an elongated hexagon with a thin copper outline along its top and bottom.
+ * --------------------------------------------------------------------- */
+.areas-section {
+    margin-block: clamp(3rem, 6vw, 5rem);
+    padding-inline: 0;
+}
+
+.areas-band {
+    --areas-slope: clamp(1.25rem, 5vw, 4.5rem);
+    --areas-line: 0.25rem;
+    --areas-shape: polygon(
+        0 var(--areas-slope),
+        50% 0,
+        100% var(--areas-slope),
+        100% calc(100% - var(--areas-slope)),
+        50% 100%,
+        0 calc(100% - var(--areas-slope))
+    );
+
+    position: relative;
+    isolation: isolate;
+    background: var(--theme-accent-gradient);
+    clip-path: var(--areas-shape);
+    color: var(--theme-on-accent);
+    text-align: center;
+}
+
+/* 82% copper over the photo keeps white text at AA over its brightest highlight. */
+.areas-band::before {
+    position: absolute;
+    inset: var(--areas-line) 0;
+    z-index: -1;
+    background:
+        linear-gradient(
+            color-mix(in srgb, var(--theme-copper-band) 82%, transparent),
+            color-mix(in srgb, var(--theme-copper-band) 82%, transparent)
+        ),
+        url('../../../public/images/brand/photos/copper-pipe.jpg') center / cover no-repeat;
+    clip-path: var(--areas-shape);
+    content: '';
+}
+
+.areas-band-inner {
+    width: min(100% - 3rem, 60rem);
+    margin-inline: auto;
+    padding-block: calc(var(--areas-slope) + clamp(2rem, 4vw, 3rem));
+}
+
+.areas-band .eyebrow,
+.areas-band .areas-label {
+    margin-bottom: 1rem;
+    color: var(--theme-on-accent);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.areas-band .area-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.15rem 0;
+    max-width: 50rem;
+    margin-inline: auto;
+}
+
+.areas-band .area-grid li {
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    padding: 0;
+    color: var(--theme-on-accent);
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.areas-band .area-grid li:not(:last-child)::after {
+    display: inline-block;
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-inline: 0.7rem;
+    border-radius: var(--radius-pill);
+    background: currentColor;
+    content: '';
+}
+
+.areas-band .area-grid a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.areas-band .area-grid a:hover {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.areas-note {
+    margin-top: 1rem;
+    color: var(--theme-on-accent);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+    .areas-band-inner {
+        width: min(100% - 2rem, 60rem);
+    }
+
+    .areas-band .area-grid li:not(:last-child)::after {
+        margin-inline: 0.5rem;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * cta/inline-band: the centered prompt. Large deep-blue heading (one phrase
+ * may be underlined), optional body, one button. White or mist band.
+ * --------------------------------------------------------------------- */
+.inline-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-block: clamp(4.5rem, 9vw, 7.5rem);
+    padding: 0 var(--ce-band-inline);
+    background: transparent;
+    color: var(--theme-text);
+    text-align: center;
+}
+
+.inline-cta.is-mist {
+    margin-block: 0;
+    padding-block: var(--ce-band-block);
+    background: var(--theme-surface);
+}
+
+.inline-cta > div:first-child {
+    max-width: 52rem;
+}
+
+.inline-cta .eyebrow {
+    color: var(--theme-accent-on-page);
+}
+
+.inline-cta h2 {
+    color: var(--theme-primary);
+    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height: 1.12;
+    text-wrap: balance;
+}
+
+.inline-cta h2 .heading-emphasis {
+    font-weight: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: var(--theme-accent);
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.2em;
+}
+
+.inline-cta > div:first-child > p:not(.eyebrow) {
+    max-width: 40rem;
+    margin: 1.25rem auto 0;
+    color: var(--theme-text);
+}
+
+.inline-cta-actions {
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.inline-cta .button-orange {
+    background-color: var(--theme-accent);
+    background-image: var(--theme-accent-gradient);
+    color: var(--theme-on-accent);
+}
+
+.inline-cta .button-orange:hover {
+    background-image: var(--theme-accent-gradient-hover);
+}
+
+.inline-cta-links {
+    justify-content: center;
+    color: var(--theme-text);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .inline-cta-actions {
+        align-items: center;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * cta/panel: dark full-width band with centered copy and one button. Deep
+ * blue (optionally over a photo) or the solid copper guarantee band.
+ * --------------------------------------------------------------------- */
+.cta-panel {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    min-height: 0;
+    margin-block: 0;
+    overflow: hidden;
+    border-radius: 0;
+    padding: var(--ce-band-block) var(--ce-band-inline);
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+    text-align: center;
+}
+
+.cta-panel > .cta-panel-copy {
+    max-width: 46rem;
+    margin-inline: auto;
+    padding: 0;
+}
+
+.cta-panel .eyebrow {
+    color: var(--theme-accent-on-primary);
+}
+
+.cta-panel h2 {
+    color: var(--theme-on-primary);
+    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height: 1.12;
+    text-wrap: balance;
+}
+
+.cta-panel-body {
+    max-width: 40rem;
+    margin: 1.25rem auto 0;
+    color: var(--theme-on-primary);
+}
+
+.cta-panel .button {
+    margin-top: 2rem;
+}
+
+.cta-panel .cta-call {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+    color: var(--theme-on-primary);
+}
+
+/* The guarantee band: solid copper with the lattice lines, white text. */
+.cta-panel.is-copper {
+    background: var(--theme-copper-band);
+    color: var(--theme-on-accent);
+}
+
+.cta-panel.is-copper::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('../../../public/images/brand/patterns/diamond-lattice.jpg') center / cover no-repeat;
+    content: '';
+    mix-blend-mode: overlay;
+    opacity: 0.3;
+}
+
+.cta-panel.is-copper .eyebrow,
+.cta-panel.is-copper h2,
+.cta-panel.is-copper .cta-panel-body,
+.cta-panel.is-copper .cta-call {
+    color: var(--theme-on-accent);
+}
+
+/* ------------------------------------------------------------------------
+ * service-cards/grid (icon mode): the services hub. Four per row, line icon
+ * above a two-line title, centered, no card chrome, whole tile is the link.
+ * --------------------------------------------------------------------- */
+.services-panel.is-icon-grid {
+    margin-block: clamp(3.5rem, 7vw, 6rem);
+    border-radius: 0;
+    background: none;
+    padding: 0;
+}
+
+.service-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 3vw, 2.5rem);
+    max-width: 68rem;
+    margin-inline: auto;
+}
+
+.service-icon-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.service-icon-card img {
+    display: block;
+    width: clamp(6rem, 11vw, 9.5rem);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.service-icon-card h3 {
+    margin-top: 1rem;
+    color: var(--theme-primary);
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    line-height: 1.3;
+}
+
+.service-icon-card h3 span {
+    display: block;
+}
+
+.service-icon-card a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* The title link covers the whole tile; the tile shows the focus ring. */
+.service-icon-card a::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+}
+
+.service-icon-card a:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.service-icon-card:focus-within {
+    outline: 3px solid var(--theme-primary);
+    outline-offset: 0.75rem;
+}
+
+.service-icon-card:hover h3,
+.service-icon-card:focus-within h3 {
+    color: var(--theme-accent-on-page);
+}
+
+.service-icon-card:hover img {
+    transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+    .service-icon-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-icon-card img {
+        transition: none;
+    }
+
+    .service-icon-card:hover img {
+        transform: none;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * faq/accordion: square, hairline separators, deep-blue questions, copper
+ * plus and minus. The answers stay in the markup.
+ * --------------------------------------------------------------------- */
+.faq-section {
+    margin-block: clamp(3.5rem, 7vw, 6rem);
+    padding-inline: 0;
+}
+
+.faq-list {
+    max-width: 52rem;
+    border-top: 1px solid color-mix(in srgb, var(--theme-accent) 45%, transparent);
+}
+
+.faq-item {
+    border-bottom: 1px solid color-mix(in srgb, var(--theme-accent) 45%, transparent);
+    border-radius: 0;
+    padding-block: 0;
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.35rem;
+    color: var(--theme-primary);
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: var(--theme-heading-weight);
+    line-height: 1.4;
+}
+
+.faq-item summary::after {
+    flex-shrink: 0;
+    float: none;
+    color: var(--theme-accent-on-page);
+    content: '+';
+    content: '+' / '';
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.faq-item[open] summary::after {
+    content: '\2013';
+    content: '\2013' / '';
+}
+
+.faq-item summary:hover {
+    color: var(--theme-accent-on-page);
+}
+
+.faq-item summary:focus-visible {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 4px;
+    box-shadow: none;
+}
+
+.faq-item p {
+    max-width: 44rem;
+    margin: 0 0 1.5rem;
+    color: var(--theme-text);
+}
+
+/* ------------------------------------------------------------------------
+ * pricing/factors: the "What to expect" band. Deep blue (optionally over a
+ * photo), copper heading, white intro, a copper diamond over each factor.
+ * --------------------------------------------------------------------- */
+.pricing-factors-section {
+    position: relative;
+    isolation: isolate;
+    margin-block: 0;
+    overflow: hidden;
+    padding: var(--ce-band-block) var(--ce-band-inline);
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+    text-align: center;
+}
+
+.pricing-factors-section .evidence-section-heading {
+    max-width: 46rem;
+    margin: 0 auto clamp(2.75rem, 5vw, 4rem);
+}
+
+.pricing-factors-section .eyebrow {
+    color: var(--theme-on-primary);
+}
+
+.pricing-factors-section .evidence-section-heading > h2 {
+    max-width: none;
+    color: var(--theme-accent-on-primary);
+    text-wrap: balance;
+}
+
+.pricing-factors-section .evidence-section-heading > p:not(.eyebrow) {
+    margin-top: 1rem;
+    color: var(--theme-on-primary);
+    font-size: 1.1rem;
+}
+
+.pricing-factors-section .pricing-factors-grid {
+    --factor-columns: 4;
+
+    grid-template-columns: repeat(var(--factor-columns), minmax(0, 1fr));
+    gap: 2.75rem clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.pricing-factors-section.is-count-1 .pricing-factors-grid {
+    --factor-columns: 1;
+}
+
+.pricing-factors-section.is-count-2 .pricing-factors-grid {
+    --factor-columns: 2;
+}
+
+.pricing-factors-section.is-count-3 .pricing-factors-grid {
+    --factor-columns: 3;
+}
+
+.pricing-factors-section .pricing-factors-grid li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    padding: 0;
+}
+
+/* The small copper diamond: an outline with a solid diamond inside. */
+.pricing-factor-mark {
+    position: relative;
+    display: block;
+    width: 2.75rem;
+    aspect-ratio: 1;
+    margin-bottom: 1.25rem;
+}
+
+.pricing-factor-mark::before,
+.pricing-factor-mark::after {
+    position: absolute;
+    background: linear-gradient(40deg, var(--theme-accent-on-primary), var(--theme-accent));
+    content: '';
+}
+
+.pricing-factor-mark::before {
+    inset: 0;
+    clip-path: polygon(evenodd, 50% 0, 100% 50%, 50% 100%, 0 50%, 50% 0, 50% 11%, 11% 50%, 50% 89%, 89% 50%, 50% 11%);
+}
+
+.pricing-factor-mark::after {
+    inset: 30%;
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.pricing-factors-section .pricing-factors-grid h3 {
+    max-width: 13rem;
+    color: var(--theme-on-primary);
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    text-wrap: balance;
+}
+
+.pricing-factors-section .pricing-factors-grid p {
+    max-width: 17rem;
+    margin-top: 1rem;
+    color: var(--theme-on-primary);
+    font-size: 0.92rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+    .pricing-factors-section .pricing-factors-grid {
+        --factor-columns: 2;
+    }
+
+    .pricing-factors-section.is-count-1 .pricing-factors-grid {
+        --factor-columns: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .pricing-factors-section .pricing-factors-grid,
+    .pricing-factors-section.is-count-2 .pricing-factors-grid,
+    .pricing-factors-section.is-count-3 .pricing-factors-grid {
+        --factor-columns: 1;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * team/grid: square photos, name in ink, role as an uppercase label.
+ * --------------------------------------------------------------------- */
+.team-grid-section {
+    margin-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.team-grid-heading > p:not(.eyebrow) {
+    color: var(--theme-text);
+}
+
+.team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 17.5rem));
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+.team-card-portrait {
+    aspect-ratio: 1;
+    border-radius: 0;
+}
+
+.team-card-meta {
+    margin-top: 1.25rem;
+}
+
+.team-card-meta h3 {
+    color: var(--theme-text);
+    font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+}
+
+.team-card-meta .team-card-role {
+    margin-top: 0.4rem;
+    color: var(--theme-accent-on-page);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.team-card-meta .team-card-bio {
+    margin-top: 0.75rem;
+    color: var(--theme-text);
+    font-size: 0.92rem;
+    line-height: 1.75;
+}
+
+.team-card-link {
+    border-radius: var(--radius-pill);
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+}
+
+.team-card-link:hover {
+    background: var(--theme-accent);
+}
+
+/* ------------------------------------------------------------------------
+ * cta/quote-form-split and the quote form: the form on a mist card beside
+ * a photo, on white. Square inputs, deep-blue labels, copper submit.
+ * --------------------------------------------------------------------- */
+.contact-split-panel {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: stretch;
+    overflow: visible;
+    border-radius: 0;
+    padding-inline: var(--ce-band-inline);
+    margin-block: clamp(3.5rem, 7vw, 6rem);
+    background: var(--theme-page);
+    color: var(--theme-text);
+}
+
+.contact-split-copy {
+    background: var(--theme-surface);
+    padding: clamp(2rem, 4.5vw, 3.5rem);
+}
+
+.contact-split-copy .eyebrow {
+    color: var(--theme-accent-on-page);
+}
+
+.contact-split-copy > h2 {
+    color: var(--theme-text);
+    text-wrap: balance;
+}
+
+.contact-split-copy > p:not(.eyebrow) {
+    color: var(--theme-text);
+}
+
+.contact-split-copy .quote-form {
+    margin-top: 2rem;
+}
+
+.contact-split-media img {
+    height: 100%;
+    min-height: 0;
+    border-radius: 0;
+}
+
+.contact-split-panel.is-without-media {
+    grid-template-columns: minmax(0, 52rem);
+    justify-content: center;
+}
+
+.contact-split-panel.is-without-media .contact-split-copy {
+    width: auto;
+}
+
+@media (max-width: 900px) {
+    .contact-split-panel {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-split-media img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-split-copy {
+        padding: 2rem 1.25rem;
+    }
+}
+
+.quote-form {
+    border-radius: 0;
+}
+
+.quote-form--split {
+    background: transparent;
+    padding: 0;
+    color: var(--theme-text);
+}
+
+.quote-grid {
+    gap: 1.25rem;
+}
+
+.quote-label,
+.quote-form--split .quote-label {
+    margin-bottom: 0.45rem;
+    color: var(--theme-primary);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+/* 65% ink keeps the field edge above 3:1 on white and on mist. */
+.quote-input,
+.quote-form--split .quote-input {
+    min-height: 3.25rem;
+    border: 1px solid color-mix(in srgb, var(--theme-text) 65%, var(--theme-page));
+    border-radius: 0;
+    background: var(--theme-page);
+    padding: 0.8rem 1rem;
+    color: var(--theme-text);
+    font-size: 1rem;
+}
+
+.quote-input:focus,
+.quote-form--split .quote-input:focus {
+    border-color: var(--theme-primary);
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+}
+
+.quote-input[aria-invalid='true'] {
+    border-color: var(--theme-danger);
+}
+
+.quote-error {
+    color: var(--theme-danger);
+}
+
+.quote-submit {
+    margin-top: 1.75rem;
+}
+
+.quote-consent input {
+    accent-color: var(--theme-primary);
+}
+
+/* Separate text-message choices: one fieldset, one box per permission. */
+.quote-consent-group {
+    min-inline-size: 0;
+    margin-top: 1.5rem;
+}
+
+.quote-consent-group .quote-consent {
+    margin-top: 0.75rem;
+}
+
+.quote-consent-note {
+    overflow-wrap: anywhere;
+}
+
+.quote-consent-note a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.quote-consent-note a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.quote-form--split .quote-consent,
+.quote-form--split .quote-note {
+    color: var(--theme-muted);
+}
+
+.quote-form--split .quote-sent {
+    border-radius: 0;
+    background: var(--theme-page);
+}
+
+/* Optional per-quote headline ("Jordan was terrific!") above the quote. */
+.testimonial-band .testimonial-title {
+    margin-bottom: 0.75rem;
+    color: var(--theme-primary);
+    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    line-height: 1.25;
+}

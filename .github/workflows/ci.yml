@@ -1,0 +1,57 @@
+name: CI
+
+# Every push and pull request. The deploy branch is what Dokploy builds, so a
+# red run here is the last chance to notice before a client's site changes.
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Tests and content checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          # gd is needed by the media library's fake-image test helper.
+          extensions: bcmath, gd, intl, pcntl, pdo_sqlite, zip
+          coverage: none
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Prepare the application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Check code style
+        run: ./vendor/bin/pint --test
+
+      # Fails on a page or record that would not render, which the test suite
+      # does not cover: content is data, not code.
+      - name: Validate content
+        run: php artisan content:check
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      # The suite renders real pages, which need the built asset manifest.
+      - run: npm ci
+      - run: npm run build
+
+      - name: Run tests
+        run: php artisan test

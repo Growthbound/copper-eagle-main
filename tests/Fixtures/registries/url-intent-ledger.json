@@ -1,0 +1,63 @@
+{
+    "schema_version": 1,
+    "reviewed_on": "2026-10-01",
+    "intents": [
+        {"id": "service.ledger-fixture-pillar", "label": "Fixture pillar service", "status": "resolved"},
+        {"id": "service.ledger-fixture-held", "label": "Fixture service held for evidence", "status": "resolved"}
+    ],
+    "entries": [
+        {
+            "url": "/services/ledger-fixture-pillar/",
+            "source": "service_record",
+            "content_kind": "service",
+            "intent": "service.ledger-fixture-pillar",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/services/ledger-fixture-pillar/",
+            "disposition": "preserve",
+            "disposition_target": null,
+            "evidence_gates": [],
+            "notes": "The pillar the duplicates fold into."
+        },
+        {
+            "url": "/services/ledger-fixture-duplicate/",
+            "source": "service_record",
+            "content_kind": "service",
+            "intent": "service.ledger-fixture-pillar",
+            "intent_role": "supporting",
+            "indexation": "noindex",
+            "canonical": "/services/ledger-fixture-pillar/",
+            "disposition": "consolidate",
+            "disposition_target": "/services/ledger-fixture-pillar/",
+            "evidence_gates": [],
+            "notes": "A generated duplicate of the pillar."
+        },
+        {
+            "url": "/services/ledger-fixture-variant",
+            "source": "service_record",
+            "content_kind": "service",
+            "intent": "service.ledger-fixture-pillar",
+            "intent_role": "supporting",
+            "indexation": "noindex",
+            "canonical": "/services/ledger-fixture-pillar/",
+            "disposition": "redirect",
+            "disposition_target": "/services/ledger-fixture-pillar/",
+            "evidence_gates": [],
+            "notes": "Recorded without a trailing slash, to exercise normalization."
+        },
+        {
+            "url": "/services/ledger-fixture-held/",
+            "source": "service_record",
+            "content_kind": "service",
+            "intent": "service.ledger-fixture-held",
+            "intent_role": "primary_owner",
+            "indexation": "noindex",
+            "canonical": "/services/ledger-fixture-held/",
+            "disposition": "noindex_hold",
+            "disposition_target": null,
+            "evidence_gates": [],
+            "notes": "Shares the prefix, but is held rather than folded."
+        }
+    ],
+    "known_defects": []
+}

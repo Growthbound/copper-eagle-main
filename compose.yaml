@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8012:8000"
+      - "5175:5175"
+    volumes:
+      - .:/var/www/html
+      - vendor:/var/www/html/vendor
+      - node_modules:/var/www/html/node_modules
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://127.0.0.1:8000/up"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  vendor:
+  node_modules:

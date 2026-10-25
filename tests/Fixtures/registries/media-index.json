@@ -1,0 +1,92 @@
+{
+    "schema_version": 1,
+    "source_origin": "https://library.example.test",
+    "reviewed_on": "2026-10-01",
+    "rights": {
+        "holder": "Example Co.",
+        "status": "approved",
+        "confirmed_on": "2026-10-01",
+        "note": "Fictional fixture library for platform tests."
+    },
+    "assets": [
+        {
+            "id": 2,
+            "path": "/media/2",
+            "original_name": "Crew-on-site.jpg",
+            "width": 1920,
+            "height": 1080,
+            "provenance": "first_party",
+            "evidence_class": "team",
+            "verified": "analyzed",
+            "subject": ["crew", "job-site"],
+            "description": "Two crew members unloading equipment at a job site.",
+            "alt": "Two crew members unloading equipment from a van"
+        },
+        {
+            "id": 7,
+            "path": "/media/7",
+            "original_name": "Imported-twice.jpg",
+            "width": 800,
+            "height": 600,
+            "provenance": "first_party",
+            "evidence_class": "decorative",
+            "verified": "catalog_only",
+            "subject": [],
+            "description": null,
+            "alt": null,
+            "duplicate_of": 3
+        },
+        {
+            "id": 3,
+            "path": "/media/3",
+            "original_name": "imported-twice.jpg",
+            "width": 800,
+            "height": 600,
+            "provenance": "first_party",
+            "evidence_class": "decorative",
+            "verified": "catalog_only",
+            "subject": [],
+            "description": null,
+            "alt": null
+        },
+        {
+            "id": 42,
+            "path": "/media/42",
+            "original_name": "Example-photo.png",
+            "width": 1200,
+            "height": 800,
+            "provenance": "stock",
+            "evidence_class": "illustration",
+            "verified": "catalog_only",
+            "subject": [],
+            "description": null,
+            "alt": null
+        },
+        {
+            "id": 43,
+            "path": "/media/43",
+            "original_name": "Finished-project.jpg",
+            "width": 601,
+            "height": 802,
+            "provenance": "first_party",
+            "evidence_class": "before_after",
+            "verified": "analyzed",
+            "subject": ["finished-project", "after"],
+            "description": "A finished project photographed on site.",
+            "alt": "A finished project photographed on site"
+        },
+        {
+            "id": 51,
+            "path": "/media/51",
+            "original_name": "Large-site-photo-scaled.jpg",
+            "width": 2560,
+            "height": 1707,
+            "provenance": "first_party",
+            "evidence_class": "job_documentation",
+            "verified": "catalog_only",
+            "subject": [],
+            "description": null,
+            "alt": null
+        }
+    ]
+}

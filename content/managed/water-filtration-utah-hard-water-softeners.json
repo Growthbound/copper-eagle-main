@@ -1,0 +1,157 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/water-filtration-utah-hard-water-softeners"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "water-filtration-utah-hard-water-softeners",
+        "title": "Water Filtration",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "Water Filtration and Softeners in Utah",
+        "description": "Water filtration and softeners in Utah: reverse osmosis, UV filters and water softeners for hard water, installed by Copper Eagle Plumbing.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Comprehensive Water Filtration Solutions",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/pages/water.jpg",
+                    "alt": "A drop of water splashing into dark blue water",
+                    "width": 1200,
+                    "height": 1023
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Water Filtration",
+                "body": "At Copper Eagle Plumbing, we understand the importance of clean and safe drinking water for your home in Salt Lake City, Provo, Ogden and surrounding areas. That's why we offer a wide range of water filtration solutions designed to cater to your unique needs. Our mission is to ensure your family enjoys the purest and healthiest water possible.",
+                "image": {
+                    "src": "/images/brand/pages/water-filtration.jpg",
+                    "alt": "A person holding a clear glass filled with water, with their fingers wrapped around it. The background is blurred.",
+                    "width": 900,
+                    "height": 600
+                },
+                "imageSide": "start",
+                "cta": {
+                    "label": "CALL US (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "offerings": {
+                "id": "offerings",
+                "heading": "Our Water Filtration Options",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Reverse Osmosis Water Filtration",
+                        "body": "Reverse osmosis is a highly efficient method for removing impurities from your water. It works by pushing water through a permeable membrane, leaving behind only pure water molecules. If you desire the highest level of purification and removal of contaminants, reverse osmosis is an excellent choice.",
+                        "image": {
+                            "src": "/images/brand/pages/water-soft.jpg",
+                            "alt": "RO Reverse Osmosis Water Filtration Plumber in Utah",
+                            "width": 900,
+                            "height": 1350
+                        }
+                    },
+                    {
+                        "title": "Carbon Filter Water Filtration",
+                        "body": "Carbon filters use activated carbon to remove unwanted tastes and odors from your water supply. Say farewell to the taste of chlorine and other common water treatment chemicals. This method is ideal for those who prioritize improved taste and odor reduction.",
+                        "image": {
+                            "src": "/images/brand/pages/2water.jpg",
+                            "alt": "Plumber to install carbon filter water filtration in Salt Lake City",
+                            "width": 900,
+                            "height": 578
+                        }
+                    },
+                    {
+                        "title": "UV Filter Water Treatment",
+                        "body": "Our UV filter water treatment systems use ultraviolet light to eliminate bacteria and microorganisms that may be present in your water supply. This chemical-free and heat-free method is both eco-friendly and highly effective, ensuring your water is safe to drink.",
+                        "image": {
+                            "src": "/images/brand/pages/uv-water.jpg",
+                            "alt": "UV Water Filter Treatment in Utah",
+                            "width": 900,
+                            "height": 675
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "The Benefits of Regular Water Filtration",
+                "body": "Regular water filtration is not only about the immediate benefits but also long-term advantages for your health and home:",
+                "checklist": [
+                    {
+                        "label": "Better Tasting Water:",
+                        "text": "Filtered water simply tastes better, making it more enjoyable to stay hydrated."
+                    },
+                    {
+                        "label": "Healthier Lifestyle:",
+                        "text": "Clean water is essential for your well-being, ensuring your family stays healthy and hydrated."
+                    },
+                    {
+                        "label": "Protecting Appliances:",
+                        "text": "Filtered water extends the lifespan of your appliances and plumbing by reducing the buildup of mineral deposits."
+                    }
+                ],
+                "image": {
+                    "src": "/images/brand/pages/eenefits.jpg",
+                    "alt": "Person turning on water tap in kitchen, water splashing into sink.",
+                    "width": 900,
+                    "height": 1350
+                },
+                "imageSide": "end"
+            },
+            "guarantee": {
+                "heading": "Water Softeners",
+                "body": "Experience the transformational effects of soft water with our expert water softener services.\n\nSay goodbye to mineral buildup on fixtures and appliances while enjoying the silky feel of soft water in your daily routines. At Copper Eagle Plumbing, we specialize in the installation, maintenance, and repair of water-softening systems.\n\nLet us help you enjoy cleaner dishes, softer laundry, and the extended lifespan of your plumbing fixtures. Say hello to a world of softer water – schedule your water softener service today!",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "image": {
+                    "src": "/images/brand/pages/water-softener.jpg",
+                    "alt": "Water Softener Installation in Utah",
+                    "width": 900,
+                    "height": 1350
+                },
+                "tone": "primary"
+            },
+            "faq": {
+                "heading": "Why Choose Our Water Filtration Services?",
+                "items": [
+                    {
+                        "question": "Personalized Solutions",
+                        "answer": "We believe that every home in Salt Lake City is unique, and so are its water filtration needs. Our experts will work closely with you to determine the best system for your specific requirements."
+                    },
+                    {
+                        "question": "Cutting-Edge Technology",
+                        "answer": "Our water filtration systems are equipped with the latest technology to remove contaminants effectively while preserving essential minerals, ensuring the best-tasting water."
+                    },
+                    {
+                        "question": "Improved Health",
+                        "answer": "Clean, filtered water not only tastes better but is also safer for your health. Say goodbye to concerns about impurities in your drinking water."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Experience the difference of pure and clean water in your Salt Lake City home.",
+                "body": "Contact Copper Eagle Plumbing today for expert water filtration solutions. Our team is ready to assist you in choosing the ideal system that meets your needs and budget. Don't compromise on your family's health; invest in a water filtration system that provides peace of mind and pure hydration.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/water.jpg",
+            "alt": "A drop of water splashing into dark blue water",
+            "width": 1200,
+            "height": 1023
+        }
+    }
+}

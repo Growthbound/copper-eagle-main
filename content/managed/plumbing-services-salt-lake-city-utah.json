@@ -1,0 +1,51 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/plumbing-services-salt-lake-city-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "plumbing-services-salt-lake-city-utah",
+        "title": "Services",
+        "template": "services-hub"
+    },
+    "payload": {
+        "title": "Plumbing Services in Salt Lake City",
+        "description": "Every plumbing service Copper Eagle Plumbing offers in Salt Lake City: drain cleaning, water heaters, water filtration, gas lines, steam showers and more.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE CITY + SURROUNDING AREAS",
+                "heading": "Utah Plumbing Services"
+            },
+            "services": {
+                "heading": "What can we help you with?"
+            },
+            "not-sure": {
+                "heading": "Not sure what you need?",
+                "body": "If you aren’t sure what exactly your plumbing problem is, but know you need an expert plumber out to help solve the issue, give us a call. Our friendly team can help you figure out what those strange noises are, what might be going wrong with your appliances, or any variety of plumbing problems.",
+                "primaryAction": {
+                    "label": "CALL or Text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                },
+                "background": "mist"
+            },
+            "reviews-teaser": {
+                "heading": "The Friendliest Plumbers in Utah",
+                "body": "Check out our 5-star reviews and see what our customers say about The Copper Eagle Plumbing Team.",
+                "image": {
+                    "src": "/images/brand/pages/dsc-0837.jpg",
+                    "alt": "Jordan Walker, Friendliest Plumber in Utah",
+                    "width": 1200,
+                    "height": 1800
+                },
+                "cta": {
+                    "label": "TESTIMONIALS",
+                    "href": "/reviews-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

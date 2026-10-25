@@ -1,0 +1,166 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "/",
+        "title": "Copper Eagle Salt Lake City Plumbing",
+        "template": "home"
+    },
+    "payload": {
+        "title": "Salt Lake City Plumber",
+        "description": "Copper Eagle Plumbing fixes drains, water heaters, gas lines and more for homes in Salt Lake City and nearby Utah cities. Call or text to book a visit.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Life’s too short to worry about your home’s plumbing.",
+                "body": "We do it all, and we do it right. From fixing broken or clogged drains to upgrading your water filtration systems, or even complete remodels, we can tackle it all. Let us help by fixing all of your plumbing problems so you can get back to doing what you love.",
+                "primaryAction": {
+                    "label": "CONTACT US TODAY",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "image": {
+                    "src": "/images/brand/pages/kitchen.jpg",
+                    "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                    "width": 1200,
+                    "height": 800
+                },
+                "serviceStrip": true
+            },
+            "introduction": {
+                "heading": "Finally, a master plumber in Utah you can trust.",
+                "emphasis": "master plumber",
+                "body": "In today’s world, it can be tough to find a skilled plumber who is dedicated to the highest degree of quality. At Copper Eagle Plumbing in Salt Lake City, Utah, we are dedicated to our craft. We use the highest quality parts and materials combined with the utmost degree of accuracy and commitment to detail.",
+                "image": {
+                    "src": "/images/brand/photos/jordan-walker.jpg",
+                    "alt": "Jordan Walker, Master Plumber in Utah Salt Lake City",
+                    "width": 900,
+                    "height": 900
+                },
+                "imageShape": "circle",
+                "inset": {
+                    "src": "/images/brand/photos/master-plumber-badge.png",
+                    "alt": "Utah's Best Master Plumber",
+                    "width": 900,
+                    "height": 896
+                },
+                "cta": {
+                    "label": "Meet Jordan Walker",
+                    "href": "/about-jordan-walker-master-plumber-utah"
+                }
+            },
+            "testimonials": {
+                "heading": "Testimonials",
+                "items": [
+                    {
+                        "quote": "He got to the bottom of the hot water and low pressure issues I was having with my guest bathroom sink and shower, and was able to fix them the same day (I had thought that it would have taken several days). Great service!",
+                        "author": "Josh G.",
+                        "title": "\"Jordan was terrific!\""
+                    },
+                    {
+                        "quote": "Jordan Walker showed me how to maintain my sink and tub stoppers. Was super helpful to tell me things that I can do on my own. He also changed my water softener level. He changed the shower cartridge so that the shower wouldn’t just be hot. Last week he cleaned, drained and replaced heating elements in my rental unit hot water heater.",
+                        "author": "Grace M.",
+                        "title": "\"Jordan is super friendly, timely and knowledgeable.”"
+                    }
+                ],
+                "link": {
+                    "label": "READ MORE TESTIMONIALS",
+                    "href": "/reviews-copper-eagle-plumbing"
+                }
+            },
+            "assurances": {
+                "heading": "The ultimate peace of mind.",
+                "emphasis": "peace of mind.",
+                "layout": "side",
+                "items": [
+                    {
+                        "title": "Done right every time.",
+                        "body": "With over 10 years of plumbing experience, our work is 100% guaranteed so you can rest easy knowing you have the best.",
+                        "image": {
+                            "src": "/images/brand/photos/bath-sink.jpg",
+                            "alt": "Plumbing Done Right Every Time",
+                            "width": 900,
+                            "height": 900
+                        }
+                    },
+                    {
+                        "title": "Fair and honest pricing.",
+                        "body": "With Copper Eagle, you won’t get taken for a ride. We’re honest and upfront with all of our pricing so you know exactly what to expect.",
+                        "image": {
+                            "src": "/images/brand/photos/kitchen.jpg",
+                            "alt": "Fair and Honest Affordable Plumber in Utah",
+                            "width": 900,
+                            "height": 900
+                        }
+                    },
+                    {
+                        "title": "Licensed and insured.",
+                        "body": "We use the latest techniques to ensure all our plumbing services are up to code. Master plumbing license number: UT- 9495287-5518.",
+                        "image": {
+                            "src": "/images/brand/photos/valve.jpg",
+                            "alt": "Licensed and Insured Plumber in Utah",
+                            "width": 900,
+                            "height": 900
+                        }
+                    }
+                ]
+            },
+            "service-areas": {
+                "heading": "PLUMBING SERVICES FOR LOCAL UTAH AREAS",
+                "areas": [
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "Draper",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "Utah County",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "Provo",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "Orem",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "West Valley",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "Park City",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    },
+                    {
+                        "name": "Summit County",
+                        "href": "/contact-copper-eagle-plumbing/"
+                    }
+                ],
+                "note": "AND MORE…"
+            },
+            "help-prompt": {
+                "heading": "What can we help you with?",
+                "primaryAction": {
+                    "label": "REACH OUT TO US TODAY",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "buttonStyle": "sky"
+            }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/kitchen.jpg",
+            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+            "width": 1200,
+            "height": 800
+        }
+    }
+}

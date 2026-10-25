@@ -1,0 +1,345 @@
+/*
+ * Copper Eagle site chrome: announcement bar, header, mobile menu, footer.
+ * See "Site chrome" in docs/brand/design-system.md.
+ */
+/* Announcement bar: light blue, uppercase, deep-blue text. */
+.announcement-bar {
+    background: var(--theme-sky);
+    color: var(--theme-primary);
+}
+
+.announcement-bar p {
+    width: min(100% - 2rem, 1200px);
+    padding-block: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.announcement-bar a {
+    border-bottom-color: currentColor;
+    color: inherit;
+}
+
+/* Header: white bar, navigation left, logo centered, call button right. */
+.site-header {
+    display: block;
+    padding: 0;
+    background: var(--theme-page);
+    box-shadow: 0 0.5rem 1.5rem var(--theme-text-08);
+    color: var(--theme-text);
+}
+
+.site-header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 2rem;
+    width: min(100% - 3rem, 1360px);
+    min-height: 8rem;
+    margin-inline: auto;
+    padding-block: 1.25rem;
+}
+
+.site-header .brand-mark {
+    grid-column: 2;
+    justify-self: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.site-header .brand-mark img {
+    width: auto;
+    max-width: min(19rem, 52vw);
+    height: auto;
+    max-height: 4.5rem;
+}
+
+.site-header .primary-nav {
+    grid-column: 1;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.site-header .primary-nav a:hover,
+.site-header .primary-nav a:focus-visible {
+    color: var(--theme-accent-on-page);
+}
+
+/* The current page carries the light-blue underline from the live site. */
+.site-header .primary-nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-color: var(--theme-sky);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.45em;
+}
+
+.site-header .nav-menu {
+    border-top: 2px solid var(--theme-accent);
+    background: var(--theme-page);
+}
+
+.site-header .header-actions {
+    grid-column: 3;
+}
+
+.site-header .header-call {
+    color: var(--theme-on-accent);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.site-header .header-call:hover,
+.site-header .header-call:focus-visible {
+    text-decoration: none;
+}
+
+.site-header .header-call .call-link-prefix {
+    font-weight: 500;
+    opacity: 1;
+}
+
+.site-header .mobile-nav {
+    display: none;
+}
+
+.mobile-nav-call {
+    color: var(--theme-accent-on-page);
+    font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+    .site-header .primary-nav {
+        gap: 0.5rem 1.25rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .site-header-inner {
+        grid-template-columns: 1fr auto;
+        min-height: 5.5rem;
+        padding-block: 1rem;
+    }
+
+    .site-header .brand-mark {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    .site-header .brand-mark img {
+        max-height: 3rem;
+    }
+
+    .site-header .primary-nav,
+    .site-header .header-actions {
+        display: none;
+    }
+
+    .site-header .mobile-nav {
+        position: relative;
+        display: block;
+        grid-column: 2;
+        color: var(--theme-primary);
+    }
+
+    .site-header .mobile-nav nav {
+        border-top: 2px solid var(--theme-accent);
+        border-radius: var(--radius-card);
+    }
+}
+
+/* The phone bar on small screens: copper, like every call button. */
+@media (max-width: 640px) {
+    .sticky-mobile-call {
+        background-color: var(--theme-accent);
+        background-image: var(--theme-accent-gradient);
+        font-size: 0.9rem;
+        letter-spacing: var(--theme-label-tracking);
+        text-transform: uppercase;
+    }
+}
+
+/*
+ * Footer: deep blue with a centered notch holding the stacked logo.
+ * Services left, logo and call button center, company and social right.
+ */
+.site-footer {
+    position: relative;
+    margin-top: clamp(6rem, 10vw, 8rem);
+    padding: 0 0 2rem;
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+}
+
+.site-footer::before {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 9rem;
+    height: 3.25rem;
+    translate: -50% 1px;
+    background: var(--theme-primary);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    content: '';
+}
+
+.site-footer a {
+    color: var(--theme-on-primary);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: var(--theme-accent-on-primary);
+}
+
+.site-footer h2 {
+    margin-bottom: 1.25rem;
+    color: var(--theme-sky);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+.site-footer-inner {
+    display: grid;
+    grid-template-columns: 1fr minmax(15rem, 20rem) 1fr;
+    align-items: start;
+    gap: 3rem;
+    width: min(100% - 3rem, 1200px);
+    margin-inline: auto;
+    text-align: center;
+}
+
+.site-footer-column,
+.site-footer-column > nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-top: 4rem;
+}
+
+.site-footer-column > nav {
+    padding-top: 0;
+}
+
+.site-footer-column > nav + nav {
+    margin-top: 2rem;
+}
+
+.site-footer-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: -2.25rem;
+}
+
+.site-footer-logo img {
+    width: 9.5rem;
+    height: auto;
+}
+
+.site-footer-logo span {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+.site-footer-call {
+    width: 100%;
+}
+
+.site-footer .site-footer-call:hover,
+.site-footer .site-footer-call:focus-visible {
+    color: var(--theme-on-accent);
+}
+
+.site-footer-emergency h2 {
+    margin-bottom: 0.5rem;
+}
+
+.site-footer-description {
+    color: var(--theme-on-primary-78);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.site-footer-center address {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--theme-on-primary-78);
+    font-size: 0.92rem;
+    font-style: normal;
+}
+
+.site-footer-areas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    width: min(100% - 3rem, 1200px);
+    margin: 3.5rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--theme-on-primary-15);
+    font-size: 0.92rem;
+}
+
+.site-footer-areas h2 {
+    margin: 0;
+}
+
+.site-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    width: min(100% - 3rem, 1200px);
+    margin: 2rem auto 0;
+    color: var(--theme-on-primary-70);
+    font-size: 0.85rem;
+}
+
+.site-footer-bottom nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+}
+
+.site-footer-bottom a {
+    color: var(--theme-on-primary-70);
+}
+
+.site-footer .copyright {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .site-footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .site-footer-center {
+        order: -1;
+    }
+
+    .site-footer-column {
+        padding-top: 0;
+    }
+
+    .site-footer-bottom {
+        justify-content: center;
+        text-align: center;
+    }
+}

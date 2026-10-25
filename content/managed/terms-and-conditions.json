@@ -1,0 +1,529 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/terms-and-conditions"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "terms-and-conditions",
+        "title": "Terms and Conditions",
+        "template": "standard"
+    },
+    "payload": {
+        "title": "Terms and Conditions",
+        "description": "The terms and conditions for the Copper Eagle Plumbing website and its text message program.",
+        "noindex": false,
+        "blocks": [
+            {
+                "type": "hero/interior",
+                "props": {
+                    "heading": "Copper Eagle Plumbing Privacy Policy"
+                }
+            },
+            {
+                "type": "content/rich-text",
+                "props": {
+                    "id": "policy",
+                    "heading": "Privacy Policy",
+                    "nodes": [
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Effective Date:",
+                                    "mark": "strong"
+                                },
+                                {
+                                    "text": " [10/16/25] "
+                                },
+                                {
+                                    "text": "Last Updated:",
+                                    "mark": "strong"
+                                },
+                                {
+                                    "text": " [10/30/25]"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "1. Introduction"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Copper Eagle Plumbing respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard information obtained from our customers, website visitors, and anyone who communicates with us through phone, text, or online channels."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "By contacting us, using our website, or opting in to SMS communication, you agree to the terms described below."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "2. Information We Collect"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We collect information in several ways to provide plumbing and related services efficiently:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "a. Information You Provide Directly",
+                                    "mark": "strong"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "Name, phone number, email address, and service address"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Photos, videos, or descriptions of plumbing issues"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Payment information (if processed for service)"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Any details you share through forms, text messages, or verbal communication"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "b. Information We Collect Automatically",
+                                    "mark": "strong"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "Website usage data (such as IP address, browser type, and device information)"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Communication preferences and message interaction data (if using SMS or email)"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "c. Information from Third Parties",
+                                    "mark": "strong"
+                                },
+                                {
+                                    "text": " We may receive data from service platforms, scheduling software, or payment processors when necessary to complete your service."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "3. How We Use Your Information"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We use your information to:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "Schedule, confirm, and perform plumbing services"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Communicate with you about appointments, estimates, or updates"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Send invoices, receipts, or payment confirmations"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Respond to customer inquiries and provide support"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Improve our services and website"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Comply with legal and safety obligations"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "4. SMS and Text Messaging"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Our organization uses SMS as a core communication tool to streamline daily operations and maintain high-quality service with clients and field staff. SMS messaging allows us to efficiently:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "Coordinate Normal Business Activities:",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " We use text messaging to confirm appointments, schedule jobs, and update clients on technician arrival times, project progress, or schedule adjustments."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Gather Picture Evidence for Jobs:",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " Team members and clients can send and receive photos through SMS to document job conditions, completed work, or issues requiring approval. This helps ensure accuracy, transparency, and accountability on every project."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Relay Photos and Job Information:",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " Technicians and office staff exchange pictures, notes, and instructions related to each job directly through text. This allows quick responses to changing on-site conditions without delays."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Build Rapport with Clients Who Prefer Texting:",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " Many customers appreciate the convenience of texting rather than phone calls. SMS helps us provide a friendly, accessible, and responsive experience — improving communication and customer satisfaction."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Customer Service and Follow-Ups:",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " We occasionally use SMS for follow-up messages, satisfaction checks, or to share post-service photos and information, ensuring clients remain informed and engaged."
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Inbound Consent Message:",
+                                    "mark": "strong"
+                                },
+                                {
+                                    "text": " When a client first texts or confirms participation, we inform them:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "quote",
+                            "quote": "“Thank you for choosing Copper Eagle Plumbing! You can receive text updates, scheduling notices, and service information from our team. Reply HELP for more info or STOP to opt out at any time. Standard message and data rates may apply. See our Privacy Policy at https://www.coppereagleplumbing.com/privacy.”"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "If you contact us by phone or text, or if you opt in through our website:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "You may receive text messages regarding service updates, scheduling, and promotions."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Message and data rates may apply."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Message frequency will vary based on your communication needs."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "You can reply "
+                                    },
+                                    {
+                                        "text": "STOP",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " at any time to opt out or "
+                                    },
+                                    {
+                                        "text": "HELP",
+                                        "mark": "strong"
+                                    },
+                                    {
+                                        "text": " for assistance."
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "We will not share or sell your phone number to any third parties for marketing purposes."
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "5. How We Share Information"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We only share information as necessary to operate our business and deliver service:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "With trusted vendors (e.g., dispatching, billing, or payment partners)"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "With legal authorities if required by law or safety concerns"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "With subcontractors or technicians involved in completing your job"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We "
+                                },
+                                {
+                                    "text": "do not sell, rent, or trade",
+                                    "mark": "strong"
+                                },
+                                {
+                                    "text": " customer information for marketing or solicitation."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "6. Data Security"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We take reasonable administrative, technical, and physical measures to protect your data against unauthorized access, disclosure, or misuse."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "7. Data Retention"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We keep your information only as long as necessary to:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "Complete active service jobs"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Maintain business records for accounting and legal compliance"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Provide warranty or follow-up service support"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "8. Your Rights and Choices"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "You may:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "unordered-list",
+                            "items": [
+                                [
+                                    {
+                                        "text": "Request a copy of the information we hold about you"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Ask us to correct or delete your data (subject to legal requirements)"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Opt out of marketing messages at any time"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "text": "Control cookie and tracking preferences through your browser"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "To make a request, contact us using the details below."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "9. Children’s Privacy"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Our services are intended for adults. We do not knowingly collect information from children under 13."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "10. Updates to This Policy"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "We may update this Privacy Policy periodically. When we make changes, we’ll update the “Effective Date” above and post the new version on our website."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "heading",
+                            "level": 3,
+                            "text": "11. Contact Us"
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "If you have any questions or requests regarding this Privacy Policy, please contact:"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Copper Eagle Plumbing",
+                                    "mark": "strong"
+                                },
+                                {
+                                    "text": " 📞 [385-625-0369] ✉️ [Diamond9utah@gmail.com] 🌐 [Coppereagleplumbing.com]"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

@@ -1,19 +1,36 @@
-# macOS
-.DS_Store
-
-# Secrets and local environment
-.env
-.env.*
-!.env.example
-
-# Dependencies and build output
-node_modules/
-dist/
-build/
-
-# Logs
 *.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.codex
+/.worktrees
+/.cursor/
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/fonts-manifest.dev.json
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+_ide_helper.php
+Homestead.json
+Homestead.yaml
+Thumbs.db
 
-# Editor
-.vscode/
-.idea/
+# Agent configuration. The committed parts — skills and any shared settings —
+# are shared repository contract. Everything else under .claude is per-machine:
+# launch.json carries absolute paths to one checkout, and settings.local.json is
+# personal permission state.
+/.claude/*
+!/.claude/skills/
+!/.claude/settings.json

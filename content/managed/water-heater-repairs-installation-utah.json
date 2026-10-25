@@ -1,0 +1,148 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/water-heater-repairs-installation-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "water-heater-repairs-installation-utah",
+        "title": "Water Heater Repairs + Installation",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "Water Heater Repair and Installation, Utah",
+        "description": "Water heater repair and installation in Utah, including tankless models. Learn the signs your water heater needs service from Copper Eagle Plumbing.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Water Heater Installation + Repair",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/pages/water-banner.jpg",
+                    "alt": "A water droplet splashing up from a pool of water",
+                    "width": 1200,
+                    "height": 1200
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Hot water is an essential component of our daily routines, facilitating everything from refreshing showers to efficient household cleaning.",
+                "body": "If your water heater, be it traditional or tankless, is no longer delivering the reliability and efficiency you need, look no further than our expert team at Copper Eagle Plumbing. We take immense pride in offering homeowners across Salt Lake City and the surrounding areas top-notch products and services."
+            },
+            "offerings": {
+                "id": "offerings",
+                "body": "While regular maintenance can extend your water heater's lifespan, there comes a point when replacement becomes inevitable. Keep an eye out for these key indicators suggesting a replacement may be imminent:",
+                "heading": "How To Know When It’s Time To Replace Your Hot Water Heater in Utah",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "How old is your water heater?",
+                        "body": "On average, a water heater serves faithfully for 10 to 15 years, often requiring replacement around the 12-year mark.",
+                        "image": {
+                            "src": "/images/brand/pages/watre4.jpg",
+                            "alt": "How old is your water heater",
+                            "width": 900,
+                            "height": 1350
+                        }
+                    },
+                    {
+                        "title": "Do you notice any water leaking?",
+                        "body": "While a small amount of water near the tank's base may not be alarming, consistent pooling or large leaks could indicate corrosion or an external tank breach.",
+                        "image": {
+                            "src": "/images/brand/pages/facuet-1.jpg",
+                            "alt": "Do you notice any water leaking from your hot water heater",
+                            "width": 900,
+                            "height": 654
+                        }
+                    },
+                    {
+                        "title": "Is there a change in the water quality?",
+                        "body": "Discolored hot water or the presence of rust-colored particles suggests pipe or tank corrosion issues.",
+                        "image": {
+                            "src": "/images/brand/pages/water-6.jpg",
+                            "alt": "Is there a change in the water quality",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Not enough hot water?",
+                        "body": "If an aging unit can no longer meet your hot water demands, it's time to enhance comfort and reliability with a replacement.",
+                        "image": {
+                            "src": "/images/brand/pages/dsc-1157.jpg",
+                            "alt": "Do you have enough hot water",
+                            "width": 900,
+                            "height": 1350
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "Why hire us for Water Heater Repairs and Installations?",
+                "body": "When it comes to installing a water heater, be it for a new construction project or an upgrade to a more efficient tankless model, the quality of the installation process is just as vital as the choice of equipment. Our team of licensed and certified technicians boasts the experience and tools necessary to ensure a safe and efficient installation. Unlike some home improvement projects that homeowners can tackle themselves, water heater installation is a task best left to the professionals due to several critical factors, including:",
+                "checklist": [
+                    {
+                        "label": "High-Pressure Holding Tank",
+                        "text": "Water heaters involve high-pressure systems that demand careful handling and expertise to avoid potential hazards."
+                    },
+                    {
+                        "label": "Carbon Monoxide Concerns",
+                        "text": "Proper ventilation and gas connections are crucial to prevent carbon monoxide issues, which require professional knowledge."
+                    },
+                    {
+                        "label": "Natural Gas Expertise",
+                        "text": "For gas-powered water heaters, ensuring the safe installation of natural gas connections is essential for your safety and the proper functioning of the unit."
+                    }
+                ],
+                "image": {
+                    "src": "/images/brand/pages/faucet-2.jpg",
+                    "alt": "Water Heater Repairs and Installation in Utah",
+                    "width": 1200,
+                    "height": 800
+                },
+                "imageSide": "start"
+            },
+            "guarantee": {
+                "heading": "Repair or Replace?",
+                "body": "Timing is everything when it comes to water heater issues. The best moment to seek water heater repair is at the initial signs of trouble, preventing further damage. Our highly skilled technicians specialize in swift diagnosis and provide expert guidance on the necessary steps, whether it's water heater repair or replacement.\n\nFor dependable water heater replacement services in Salt Lake City, look no further than Copper Eagle Plumbing. We are well-versed in servicing and replacing both traditional and tankless water heaters, ensuring your home continues to enjoy a steady supply of hot water.",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "image": {
+                    "src": "/images/brand/pages/dsc-1155.jpg",
+                    "alt": "A man kneeling and repairing a water heater in a utility room.",
+                    "width": 900,
+                    "height": 1350
+                },
+                "tone": "primary"
+            },
+            "faq": {
+                "heading": "Water Heater Repairs + Installation",
+                "items": [
+                    {
+                        "question": "Any unusual noises or sounds?",
+                        "answer": "Neglected maintenance can lead to mineral deposits accumulating on the tank's bottom and interior walls, resulting in unsettling sounds during operation. This signals potential internal damage."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Contact us today to schedule water heater services, which encompass water heater repair, replacement, maintenance, and installation.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/water-banner.jpg",
+            "alt": "A water droplet splashing up from a pool of water",
+            "width": 1200,
+            "height": 1200
+        }
+    }
+}

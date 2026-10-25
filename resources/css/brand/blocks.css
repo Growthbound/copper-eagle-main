@@ -1,0 +1,453 @@
+/*
+ * Copper Eagle-specific blocks: hero/photo, service-cards/icon-strip,
+ * content/feature-cards. See docs/brand/design-system.md.
+ */
+
+/* ------------------------------------------------------------------------
+ * service-cards/icon-strip: mist band with diamond corners under the header,
+ * eight line icons with two-line uppercase captions, copper hairline below.
+ * --------------------------------------------------------------------- */
+.service-strip {
+    position: relative;
+    border-bottom: 3px solid var(--theme-accent);
+    background: var(--theme-surface) url('../../../public/images/brand/patterns/diamond-corners.png') center / cover no-repeat;
+    color: var(--theme-primary);
+}
+
+/* As wide as the header row, so eight captions keep to two lines. */
+.service-strip-list {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.25rem, 1vw, 1rem);
+    width: min(100% - 3rem, 1360px);
+    margin-inline: auto;
+    padding-block: clamp(1rem, 2vw, 1.5rem);
+}
+
+.service-strip-list > li {
+    flex: 0 1 11rem;
+    min-width: 0;
+}
+
+.service-strip-link {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.35rem 0.25rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.service-strip-link img {
+    width: clamp(3.5rem, 6vw, 5.25rem);
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.service-strip-caption {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+.service-strip-caption > span {
+    display: block;
+}
+
+.service-strip-link:hover .service-strip-caption {
+    color: var(--theme-accent-on-page);
+}
+
+.service-strip-link:hover img {
+    transform: translateY(-2px);
+}
+
+/* Rows of four on tablets; a short last row stays centred. */
+@media (max-width: 900px) {
+    .service-strip-list {
+        --strip-gap: 0.5rem;
+
+        flex-wrap: wrap;
+        gap: 0.75rem var(--strip-gap);
+    }
+
+    .service-strip-list > li {
+        flex: 0 0 calc((100% - 3 * var(--strip-gap)) / 4);
+    }
+}
+
+/*
+ * One scrolling row on phones, so the H1 stays near the top. The strip
+ * scrolls, never the page; auto margins centre a short selection and give
+ * way when the row overflows.
+ */
+@media (max-width: 600px) {
+    .service-strip-list {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 0.25rem;
+        width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        padding-inline: 0.75rem;
+        scroll-padding-inline: 0.75rem;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+    }
+
+    .service-strip-list > li {
+        flex: 0 0 7rem;
+        scroll-snap-align: start;
+    }
+
+    .service-strip-link {
+        padding-inline: 0;
+    }
+
+    .service-strip-list > li:first-child {
+        margin-left: auto;
+    }
+
+    .service-strip-list > li:last-child {
+        margin-right: auto;
+    }
+
+    .service-strip-link img {
+        width: 3.25rem;
+    }
+
+    .service-strip-caption {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * hero/photo: full-bleed photo under a deep-blue overlay, left-aligned copy,
+ * and a white chevron with a thin copper line rising into the next section.
+ * --------------------------------------------------------------------- */
+.photo-hero {
+    --photo-hero-edge: clamp(1.75rem, 5.5vw, 5rem);
+    --photo-hero-line: 0.25rem;
+
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: clamp(30rem, 46vw, 44rem);
+    align-items: center;
+    /* Visible, so the edge's extra pixels cover the seam with the next section. */
+    overflow: visible;
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+}
+
+.photo-hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Strongest behind the copy, so white text holds AA over any photo. */
+.photo-hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--theme-primary) 86%, transparent) 0%,
+        color-mix(in srgb, var(--theme-primary) 78%, transparent) 45%,
+        color-mix(in srgb, var(--theme-primary) 60%, transparent) 100%
+    );
+    content: '';
+}
+
+.photo-hero-inner {
+    width: min(100% - 3rem, 1200px);
+    margin-inline: auto;
+    padding-block: clamp(4rem, 9vw, 7.5rem) calc(clamp(4rem, 9vw, 7.5rem) + var(--photo-hero-edge));
+}
+
+.photo-hero-copy {
+    max-width: 38rem;
+}
+
+.photo-hero .eyebrow {
+    color: var(--theme-accent-on-primary);
+}
+
+.photo-hero h1 {
+    color: var(--theme-on-primary);
+}
+
+.photo-hero-body {
+    max-width: 36rem;
+    margin-top: 1.5rem;
+    color: var(--theme-on-primary);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.photo-hero .button {
+    margin-top: 2rem;
+}
+
+/*
+ * The chevron: a copper line, then the colour of the section it rises into
+ * (white unless a mist, stone, or light-blue band follows). The edge runs
+ * 2px past the bottom so no sub-pixel seam shows between the two sections.
+ */
+.photo-hero-edge {
+    --photo-hero-seam: 2px;
+
+    position: absolute;
+    right: 0;
+    bottom: calc(-1 * var(--photo-hero-seam));
+    left: 0;
+    height: calc(var(--photo-hero-edge) + var(--photo-hero-line) + var(--photo-hero-seam));
+    pointer-events: none;
+}
+
+.photo-hero-edge::before,
+.photo-hero-edge::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+}
+
+/* Only the band itself, so no copper sits under the next-section colour. */
+.photo-hero-edge::before {
+    background: var(--theme-accent);
+    clip-path: polygon(
+        0 calc(100% - var(--photo-hero-seam) - var(--photo-hero-line)),
+        50% 0,
+        100% calc(100% - var(--photo-hero-seam) - var(--photo-hero-line)),
+        100% calc(100% - var(--photo-hero-seam)),
+        50% var(--photo-hero-line),
+        0 calc(100% - var(--photo-hero-seam))
+    );
+}
+
+.photo-hero-edge::after {
+    background: var(--photo-hero-next, var(--theme-page));
+    clip-path: polygon(
+        0 calc(100% - var(--photo-hero-seam)),
+        50% var(--photo-hero-line),
+        100% calc(100% - var(--photo-hero-seam)),
+        100% 100%,
+        0 100%
+    );
+}
+
+/* Same rule as the interior hero's chevron in sections.css. */
+[data-page-section]:has(> .photo-hero):has(+ [data-page-section] > :is(.split-band--mist, .inline-cta.is-mist)) > .photo-hero,
+.photo-hero:has(+ :is(.split-band--mist, .inline-cta.is-mist)) {
+    --photo-hero-next: var(--theme-surface);
+}
+
+[data-page-section]:has(> .photo-hero):has(+ [data-page-section] > :is(.split-band--stone, .feature-cards--stone)) > .photo-hero,
+.photo-hero:has(+ :is(.split-band--stone, .feature-cards--stone)) {
+    --photo-hero-next: var(--theme-stone);
+}
+
+[data-page-section]:has(> .photo-hero):has(+ [data-page-section] > .testimonial-band) > .photo-hero,
+.photo-hero:has(+ .testimonial-band) {
+    --photo-hero-next: var(--theme-sky);
+}
+
+@media (max-width: 768px) {
+    .photo-hero {
+        min-height: 0;
+    }
+
+    .photo-hero::before {
+        background: color-mix(in srgb, var(--theme-primary) 82%, transparent);
+    }
+}
+
+@media (max-width: 600px) {
+    .photo-hero-inner {
+        width: min(100% - 2rem, 1200px);
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * content/feature-cards: round photo cards. "side" puts a large H2 over the
+ * eagle watermark to the left of the cards; "stacked" centres the H2 above
+ * them with copper card titles.
+ * --------------------------------------------------------------------- */
+.feature-cards {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(4rem, 8vw, 6.5rem);
+    background: var(--theme-page);
+    color: var(--theme-text);
+}
+
+.feature-cards--stone {
+    background: var(--theme-stone);
+}
+
+.feature-cards-inner {
+    width: min(100% - 3rem, 1200px);
+    margin-inline: auto;
+}
+
+.feature-cards-heading > p:not(.eyebrow) {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+}
+
+.feature-cards-list {
+    display: grid;
+    grid-template-columns: repeat(var(--feature-columns, 3), minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.feature-cards-list.is-count-2 {
+    --feature-columns: 2;
+}
+
+.feature-cards-list.is-count-4 {
+    --feature-columns: 4;
+}
+
+/* Five or six cards sit in rows of three. */
+.feature-cards-list.is-count-5,
+.feature-cards-list.is-count-6 {
+    --feature-columns: 3;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-card-image {
+    width: min(100%, 10rem);
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+}
+
+.feature-card h3 {
+    max-width: 16rem;
+    margin-top: 1.25rem;
+}
+
+.feature-card p {
+    max-width: 18rem;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.85;
+}
+
+/* Side: heading column left, cards right. */
+.feature-cards--side .feature-cards-inner {
+    display: grid;
+    grid-template-columns: minmax(14rem, 1fr) minmax(0, 3fr);
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.feature-cards--side .feature-cards-heading h2 {
+    font-size: clamp(2.5rem, 4.6vw, 3.5rem);
+    line-height: 1.08;
+}
+
+/* The watermark PNG is stone on white; multiply drops the white on any field. */
+.feature-cards.has-watermark::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+    height: min(96%, 40rem);
+    aspect-ratio: 1600 / 796;
+    translate: 0 -50%;
+    background: url('../../../public/images/brand/patterns/eagle-watermark.png') left center / contain no-repeat;
+    content: '';
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+/* Stacked: centred deep-blue heading, copper card titles. */
+.feature-cards--stacked .feature-cards-heading {
+    max-width: 48rem;
+    margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+    text-align: center;
+}
+
+.feature-cards--stacked .feature-cards-heading h2 {
+    color: var(--theme-primary);
+}
+
+.feature-cards--stacked .feature-card h3 {
+    color: var(--theme-accent-on-page);
+}
+
+.feature-cards--stacked .feature-card-image {
+    width: min(100%, 9.5rem);
+}
+
+@media (max-width: 1024px) {
+    .feature-cards--side .feature-cards-inner {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .feature-cards--side .feature-cards-heading {
+        max-width: 36rem;
+    }
+
+    .feature-cards.has-watermark::before {
+        top: 1rem;
+        height: min(55%, 24rem);
+        translate: 0 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .feature-cards-list.is-count-4,
+    .feature-cards-list.is-count-5,
+    .feature-cards-list.is-count-6 {
+        --feature-columns: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .feature-cards-inner {
+        width: min(100% - 2rem, 1200px);
+    }
+
+    .feature-cards-list,
+    .feature-cards-list.is-count-2,
+    .feature-cards-list.is-count-4,
+    .feature-cards-list.is-count-5,
+    .feature-cards-list.is-count-6 {
+        --feature-columns: 1;
+    }
+
+    .feature-card-image,
+    .feature-cards--stacked .feature-card-image {
+        width: min(100%, 9rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-strip-link img {
+        transition: none;
+    }
+
+    .service-strip-link:hover img {
+        transform: none;
+    }
+}

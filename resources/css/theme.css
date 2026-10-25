@@ -1,0 +1,90 @@
+@theme {
+    /* Editable in Admin -> Theme. Values match docs/brand/design-system.md. */
+    --color-teal: #284758;
+    --color-orange: #a56542;
+    --color-orange-ink: #9a5a38;
+    --color-orange-light: #e8b591;
+    --color-mist: #edf2f9;
+    --color-ink: #42474a;
+    --color-muted: #5c6367;
+
+    /* Fixed brand values. */
+    --color-sky: #a3c3d2;
+    --color-stone: #f2eeea;
+    --color-copper-light: #c4845a;
+    --color-copper-dark: #864629;
+    --color-white: #ffffff;
+
+    /* One family for everything: the free match for the brand's Arboria. */
+    --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+    /*
+     * Shape. The brand is square-cornered; only photos, carousel arrows and
+     * social icons are round, through --radius-pill.
+     */
+    --radius-control: 0;
+    --radius-card: 0;
+    --radius-panel: 0;
+    --radius-feature: 0;
+    --radius-pill: 999px;
+}
+
+:root {
+    --theme-primary: var(--color-teal);
+    --theme-accent: var(--color-orange);
+    --theme-page: var(--color-white);
+    --theme-surface: var(--color-mist);
+    --theme-text: var(--color-ink);
+    --theme-muted: var(--color-muted);
+    --theme-on-primary: var(--color-white);
+    --theme-on-accent: var(--color-white);
+    --theme-accent-on-page: var(--color-orange-ink);
+    --theme-accent-on-primary: var(--color-orange-light);
+    --theme-cta-panel: var(--color-sky);
+    --theme-sky: var(--color-sky);
+    --theme-stone: var(--color-stone);
+    --theme-copper-band: var(--color-copper-dark);
+    --theme-accent-gradient: linear-gradient(40deg, var(--color-copper-light), var(--color-copper-dark));
+    --theme-accent-gradient-hover: linear-gradient(40deg, var(--color-copper-dark), var(--color-copper-dark));
+    --theme-heading-weight: 400;
+    --theme-emphasis-weight: 600;
+    --theme-label-tracking: 0.16em;
+    --theme-border: #e5e7eb;
+    --theme-danger: #b42318;
+
+    --theme-primary-hover: color-mix(in srgb, var(--theme-primary) 85%, var(--theme-text));
+    --theme-accent-hover: color-mix(in srgb, var(--theme-accent) 88%, var(--theme-text));
+    --theme-on-primary-07: color-mix(in srgb, var(--theme-on-primary) 7%, transparent);
+    --theme-on-primary-10: color-mix(in srgb, var(--theme-on-primary) 10%, transparent);
+    --theme-on-primary-15: color-mix(in srgb, var(--theme-on-primary) 15%, transparent);
+    --theme-on-primary-20: color-mix(in srgb, var(--theme-on-primary) 20%, transparent);
+    --theme-on-primary-25: color-mix(in srgb, var(--theme-on-primary) 25%, transparent);
+    --theme-on-primary-35: color-mix(in srgb, var(--theme-on-primary) 35%, transparent);
+    --theme-on-primary-70: color-mix(in srgb, var(--theme-on-primary) 70%, transparent);
+    --theme-on-primary-72: color-mix(in srgb, var(--theme-on-primary) 72%, transparent);
+    --theme-on-primary-76: color-mix(in srgb, var(--theme-on-primary) 76%, transparent);
+    --theme-on-primary-78: color-mix(in srgb, var(--theme-on-primary) 78%, transparent);
+    --theme-text-08: color-mix(in srgb, var(--theme-text) 8%, transparent);
+    --theme-text-16: color-mix(in srgb, var(--theme-text) 16%, transparent);
+    --theme-text-18: color-mix(in srgb, var(--theme-text) 18%, transparent);
+    --theme-text-20: color-mix(in srgb, var(--theme-text) 20%, transparent);
+    --theme-text-24: color-mix(in srgb, var(--theme-text) 24%, transparent);
+    --theme-text-60: color-mix(in srgb, var(--theme-text) 60%, transparent);
+    --theme-primary-10: color-mix(in srgb, var(--theme-primary) 10%, transparent);
+}
+
+@theme inline {
+    --color-primary: var(--theme-primary);
+    --color-accent: var(--theme-accent);
+    --color-page: var(--theme-page);
+    --color-surface: var(--theme-surface);
+    --color-text: var(--theme-text);
+    --color-text-muted: var(--theme-muted);
+    --color-on-primary: var(--theme-on-primary);
+    --color-on-accent: var(--theme-on-accent);
+    --color-accent-on-page: var(--theme-accent-on-page);
+    --color-accent-on-primary: var(--theme-accent-on-primary);
+    --color-border: var(--theme-border);
+    --color-danger: var(--theme-danger);
+}

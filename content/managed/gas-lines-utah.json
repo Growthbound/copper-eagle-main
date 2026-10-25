@@ -1,0 +1,165 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/gas-lines-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "gas-lines-utah",
+        "title": "Gas Lines",
+        "template": "service-detail"
+    },
+    "payload": {
+        "title": "Gas Line Installation and Repair, Utah",
+        "description": "Gas line installation, repair and safety inspections in Utah. Copper Eagle Plumbing runs new lines for gas appliances and checks for leaks.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "heading": "Expert Gas Pipe Services",
+                "body": "in Salt Lake City + Surrounding Areas",
+                "image": {
+                    "src": "/images/brand/pages/ilse-driessen-qdeciexgcbu-unsplash.jpg",
+                    "alt": "Blue flames on a gas stove burner",
+                    "width": 1200,
+                    "height": 800
+                }
+            },
+            "introduction": {
+                "id": "introduction",
+                "heading": "Your Trusted Source for Gas Pipe Repair and Installation",
+                "body": "When it comes to gas pipe repair and installation, your safety and peace of mind are our top priorities. Our dedicated team of technicians is ready to serve you with professionalism and expertise, no matter where you are in the Salt Lake Valley, Utah County, Wasatch County or surrounding areas.",
+                "image": {
+                    "src": "/images/brand/pages/kwon-junho-cdw4daf5i7q-unsplash.jpg",
+                    "alt": "Close-up of a lit gas stove burner with visible blue flames.",
+                    "width": 998,
+                    "height": 665
+                },
+                "imageSide": "start",
+                "cta": {
+                    "label": "CALL or text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "offerings": {
+                "id": "offerings",
+                "heading": "Our Comprehensive Gas Pipe Services",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "New Gas Lines Professional Installation",
+                        "body": "Our licensed and insured agents specialize in the expert installation of new gas lines. Whether you're adding a gas-powered feature to your home or embarking on a new project, we ensure safe and efficient gas line installations.",
+                        "image": {
+                            "src": "/images/brand/pages/cznmcy1wcml2yxrll3jhd3bpegvsx2ltywdlcy93zwjzaxrlx2nvbnrlbnqv.jpg",
+                            "alt": "New gas lines and professional installation",
+                            "width": 160,
+                            "height": 227
+                        }
+                    },
+                    {
+                        "title": "Stove Connections",
+                        "body": "If you've invested in a new gas stove, it's essential to have it properly installed and connected. Our technicians ensure your stove is set up for optimal performance and safety.",
+                        "image": {
+                            "src": "/images/brand/pages/kwon-junho-radv5yb8gdc-unsplash.jpg",
+                            "alt": "Stove connections for gas in utah",
+                            "width": 791,
+                            "height": 656
+                        }
+                    },
+                    {
+                        "title": "Gas Line Repair or Replacement",
+                        "body": "Gas leaks are not to be taken lightly. We offer 24-hour emergency services to address gas line repairs promptly, ensuring your safety and peace of mind.",
+                        "image": {
+                            "src": "/images/brand/pages/5996168789-fbec38b8c2-b.jpg",
+                            "alt": "Gas line repair or replacement",
+                            "width": 205,
+                            "height": 154
+                        }
+                    },
+                    {
+                        "title": "Outdoor Grill Installations",
+                        "body": "Enhance your outdoor cooking experience with a professionally installed grill. Our experts ensure that your outdoor grill is correctly connected, allowing you to enjoy cooking outdoors without worries.",
+                        "image": {
+                            "src": "/images/brand/pages/paul-hermann-jeiqzogwwku-unsplash.jpg",
+                            "alt": "outdoor gas grill installation utah",
+                            "width": 605,
+                            "height": 806
+                        }
+                    },
+                    {
+                        "title": "Safety Inspections",
+                        "body": "For recently completed construction projects, it's crucial to confirm that everything is functioning correctly and safely. Our comprehensive safety inspections provide you with confidence in your gas system.",
+                        "image": {
+                            "src": "/images/brand/pages/mufid-majnun-6203ynp5zqe-unsplash.jpg",
+                            "alt": "safety inspections for gas",
+                            "width": 800,
+                            "height": 1200
+                        }
+                    },
+                    {
+                        "title": "… And More",
+                        "body": "Looking for something we don’t have listed here? Chances are we’re able to help with your gas line needs. Give us a call today to learn more about our gas line services.",
+                        "image": {
+                            "src": "/images/brand/pages/jason-grant-mes8f-sg4xc-unsplash.jpg",
+                            "alt": "Plumber for gas lines in utah",
+                            "width": 774,
+                            "height": 518
+                        }
+                    }
+                ]
+            },
+            "details": {
+                "id": "details",
+                "heading": "Your safety is our priority.",
+                "lead": "We’re committed to delivering top-quality gas pipe services that you can rely on.",
+                "body": "Gas leaks can be hazardous and require immediate attention. If you ever detect the smell of gas, contact us or your local gas company immediately.",
+                "image": {
+                    "src": "/images/brand/pages/dsc-1162.jpg",
+                    "alt": "gas leaks in utah",
+                    "width": 900,
+                    "height": 1350
+                },
+                "imageSide": "start",
+                "cta": {
+                    "label": "CALL or text (385) 625-0369",
+                    "href": "tel:+13856250369"
+                }
+            },
+            "guarantee": {
+                "eyebrow": "DONE RIGHT, EVERY TIME",
+                "heading": "100% Guaranteed",
+                "body": "We pride ourselves in being the best plumbers in Utah with work done to perfection every time. We warranty all of our work so that you can rest easy knowing you’re getting a quality plumbing job.",
+                "cta": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                },
+                "tone": "copper"
+            },
+            "faq": {
+                "heading": "Gas Lines",
+                "items": [
+                    {
+                        "question": "Why Trust the Professionals at Copper Eagle Plumbing?",
+                        "answer": "Whether you're adding a new gas-powered appliance to your home or enhancing your outdoor living space with a barbecue, fire pit, or fireplace, you deserve a service you can trust.\n\nGas piping projects demand the precision and knowledge that only licensed professionals can provide. This holds true for both underground and interior piping installations.\n\nOur highly trained technicians possess in-depth expertise in gas sizing and installation codes, utilizing cutting-edge technology to detect even the smallest leaks.\n\nWith Copper Eagle Plumbing, you can be confident that your gas installation or repair is in capable hands. Safety is paramount, and we take swift action in the event of a gas leak. Gas leaks are often the result of improper installations or the work of unqualified individuals handling your gas dryer, water heater, or appliances."
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Choose Copper Eagle Plumbing for all your gas pipe repair and installation needs.",
+                "body": "We combine expertise, technology, and professionalism to ensure your gas systems function safely and efficiently.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/ilse-driessen-qdeciexgcbu-unsplash.jpg",
+            "alt": "Blue flames on a gas stove burner",
+            "width": 1200,
+            "height": 800
+        }
+    }
+}

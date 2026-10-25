@@ -1,0 +1,6 @@
+{
+    "name": "Springfield",
+    "region": "Example State",
+    "summary": "A fictional area that exists only for tests.",
+    "landmarks": ["Example Park"]
+}

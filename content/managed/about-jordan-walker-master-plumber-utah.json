@@ -1,0 +1,94 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "squarespace-export",
+        "url": "https://www.coppereagleplumbing.com/about-jordan-walker-master-plumber-utah"
+    },
+    "identity": {
+        "kind": "page",
+        "slug": "about-jordan-walker-master-plumber-utah",
+        "title": "About",
+        "template": "about"
+    },
+    "payload": {
+        "title": "About Jordan Walker, Master Plumber",
+        "description": "Meet Jordan Walker, the owner and master plumber behind Copper Eagle Plumbing in Salt Lake City, and see how the team approaches every job.",
+        "noindex": false,
+        "sections": {
+            "hero": {
+                "eyebrow": "UTAH’S BEST PLUMBERS",
+                "heading": "About Us",
+                "image": {
+                    "src": "/images/brand/pages/plumbing-pipes-jordan-walker-utah.jpg",
+                    "alt": "Copper pipes and valves connected to a steam generator",
+                    "width": 1600,
+                    "height": 790
+                }
+            },
+            "story": {
+                "eyebrow": "Jordan Walker Owner + Master Plumber",
+                "heading": "At Copper Eagle Plumbing we strive for excellence.",
+                "emphasis": "excellence",
+                "lead": "With Over a decade of experience, we’re committed to bringing you the best service.",
+                "body": "We strive to be the best plumbers in Utah. Through our years of extensive, hands-on experience, we’ve learned the best practices in plumbing. Our goal is to help you protect your investment while providing a comfortable service experience. We take plumbing seriously so that you don’t have to worry about a thing. Copper Eagle Plumbing is a locally owned and Family-operated plumbing company serving Northern Utah.",
+                "image": {
+                    "src": "/images/brand/pages/jordan-plumber-utah.jpg",
+                    "alt": "Jordan Walker, Owner and Master Plumber of Copper Eagle in Utah",
+                    "width": 900,
+                    "height": 1350
+                }
+            },
+            "values": {
+                "heading": "What sets Copper Eagle apart from other plumbers in Utah?",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "COMMUNICATION",
+                        "body": "We understand that your service request at your time slot is important. When you schedule with us, our plumbing professional will help keep you informed. If we have to reschedule, we understand you want to know ASAP! We offer a 2 hour arrival time slot and if our Pro is running late he will let you know in advance.",
+                        "image": {
+                            "src": "/images/brand/pages/dsc-1113.jpg",
+                            "alt": "Expert Communication with our plumbing services",
+                            "width": 900,
+                            "height": 900
+                        }
+                    },
+                    {
+                        "title": "COMPETENCE",
+                        "body": "We know how hard it is to find a competent professional to work on your home, especially when it comes to plumbing. We take pride in our years of experience and master plumbing license. We’re able to use our knowledge and expertise to fix current issues and sometimes even prevent problems before they happen.",
+                        "image": {
+                            "src": "/images/brand/pages/dsc-1161.jpg",
+                            "alt": "Hire a competent plumber in the salt lake valley",
+                            "width": 900,
+                            "height": 900
+                        }
+                    },
+                    {
+                        "title": "VALUE",
+                        "body": "Without the overhead of Private-equity-owned plumbing chains, we’re able to pass on the savings to you. You’ll never feel pressured into more services than you want or need. We treat our customers better, without any sales tactics. We pride ourselves in honest upfront pricing and want you to get the service you pay for, at a value you can appreciate.",
+                        "image": {
+                            "src": "/images/brand/pages/dsc-1134.jpg",
+                            "alt": "The best value and affordable plumber in salt lake city",
+                            "width": 900,
+                            "height": 900
+                        }
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        },
+        "social_image": {
+            "src": "/images/brand/pages/plumbing-pipes-jordan-walker-utah.jpg",
+            "alt": "Copper pipes and valves connected to a steam generator",
+            "width": 1600,
+            "height": 790
+        }
+    }
+}
