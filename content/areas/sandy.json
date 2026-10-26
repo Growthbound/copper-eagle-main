@@ -1,5 +1,13 @@
 {
     "name": "Sandy",
     "region": "Utah",
-    "order": 10
+    "order": 10,
+    "summary": "Canyon streams and reservoir water from Metro Water, with 16 city wells that mostly run in summer.",
+    "landmarks": [
+        "Historic Sandy",
+        "Sandy Downtown",
+        "South Towne",
+        "Sandy Corners",
+        "90th South Gateway"
+    ]
 }

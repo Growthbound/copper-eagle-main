@@ -1,0 +1,169 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-sandy-utah",
+        "title": "Sandy",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Sandy, Utah",
+        "description": "Copper Eagle Plumbing serves Sandy, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Sandy's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-3.jpg",
+            "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in Sandy, Utah",
+                "place": "Sandy",
+                "body": "Copper Eagle Plumbing helps Sandy homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Sandy homes",
+                "body": "Half of the homes in Sandy were built in 1985 or later, and about 42% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nSandy City Public Utilities supplies water from Little Cottonwood Creek, Bell Canyon Creek and the Ontario Drain Tunnel, plus stored water from Deer Creek and Jordanelle reservoirs delivered by the Metropolitan Water District of Salt Lake & Sandy. Sixteen city wells add groundwater, mostly in summer.\n\nBecause Sandy's wells usually run only in summer to meet peak demand, the mix of water in the pipes changes through the year.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-3.jpg",
+                    "alt": "Dalton in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Sandy?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Sandy at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Canyon streams and reservoir water from Metro Water, with 16 city wells that mostly run in summer.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1985. Built before 1980: about 42% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Areas",
+                        "body": "Including Historic Sandy, Sandy Downtown, South Towne, Sandy Corners and 90th South Gateway.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Sandy City Building and Safety Division.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Sandy plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Sandy?",
+                        "answer": "Yes. Sandy is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Draper, Midvale, Murray and South Jordan."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Sandy?",
+                        "answer": "The Sandy City Building and Safety Division."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Sandy?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Sandy."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Sandy City water quality report",
+                        "href": "https://sandy.utah.gov/waterqualityreport"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Sandy (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4967440"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Sandy (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4967440"
+                    },
+                    {
+                        "title": "Sandy City area master plans",
+                        "href": "https://sandy.utah.gov/departments/community-development/planning/long-range-planning/area-master-plans"
+                    },
+                    {
+                        "title": "Sandy City building permits",
+                        "href": "https://sandy.utah.gov/building-permits"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Draper",
+                        "href": "/plumber-draper-utah/"
+                    },
+                    {
+                        "name": "Midvale",
+                        "href": "/plumber-midvale-utah/"
+                    },
+                    {
+                        "name": "Murray",
+                        "href": "/plumber-murray-utah/"
+                    },
+                    {
+                        "name": "South Jordan",
+                        "href": "/plumber-south-jordan-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Sandy? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

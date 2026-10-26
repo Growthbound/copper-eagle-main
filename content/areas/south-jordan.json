@@ -1,5 +1,14 @@
 {
     "name": "South Jordan",
     "region": "Utah",
-    "order": 11
+    "order": 11,
+    "summary": "All drinking water comes from the Jordan Valley Water Conservancy District.",
+    "landmarks": [
+        "Daybreak",
+        "Downtown Daybreak",
+        "The District",
+        "Towne Center",
+        "RiverPark",
+        "Glenmoor"
+    ]
 }

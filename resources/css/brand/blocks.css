@@ -278,6 +278,383 @@
 }
 
 /* ------------------------------------------------------------------------
+ * Hero background video (hero/photo, hero/interior): decorative, over the
+ * photo and under the overlay, with a small square pause control in the
+ * lower corner, above the chevron. See hero/partials/background-video.
+ * --------------------------------------------------------------------- */
+.photo-hero-video,
+.interior-hero-video {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    border-radius: 0;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Matches the interior hero's darkened photo backdrop. */
+.interior-hero-video {
+    filter: grayscale(1);
+}
+
+.background-video-control {
+    position: absolute;
+    right: max(1rem, calc((100vw - 1200px) / 2));
+    bottom: 1rem;
+    z-index: 2;
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--theme-on-primary-35);
+    border-radius: 0;
+    background: color-mix(in srgb, var(--theme-primary) 72%, transparent);
+    color: var(--theme-on-primary);
+    cursor: pointer;
+}
+
+.background-video-control[hidden] {
+    display: none;
+}
+
+.photo-hero .background-video-control {
+    bottom: calc(var(--photo-hero-edge) + var(--photo-hero-line) + 1rem);
+}
+
+.interior-hero .background-video-control {
+    bottom: calc(var(--interior-hero-edge) + 1rem);
+}
+
+.background-video-control:hover,
+.background-video-control:focus-visible {
+    background: var(--theme-primary);
+}
+
+.background-video-control:focus-visible {
+    outline: 2px solid var(--theme-accent-on-primary);
+    outline-offset: 3px;
+}
+
+/* Pause: two bars. Play, once paused: a triangle. */
+.background-video-control-icon {
+    width: 0.8rem;
+    height: 0.9rem;
+    border-inline: 0.27rem solid currentColor;
+}
+
+.background-video-control.is-paused .background-video-control-icon {
+    width: 0;
+    height: 0;
+    margin-left: 0.2rem;
+    border-inline: 0;
+    border-block: 0.45rem solid transparent;
+    border-left: 0.7rem solid currentColor;
+}
+
+/* ------------------------------------------------------------------------
+ * social/feed: heading and profile handles beside a grid of square posts.
+ * --------------------------------------------------------------------- */
+.social-feed {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 3rem);
+    color: var(--theme-text);
+}
+
+.social-feed.has-posts {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    align-items: start;
+}
+
+.social-feed-intro h2 {
+    color: var(--theme-text);
+    text-wrap: balance;
+}
+
+.social-feed-intro .eyebrow {
+    color: var(--theme-accent-on-page);
+}
+
+.social-feed-intro > p:not(.eyebrow) {
+    margin-top: 1rem;
+}
+
+.social-feed-profiles {
+    display: grid;
+    gap: 1.25rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.social-feed-profiles li {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.social-feed-network {
+    color: var(--theme-primary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+.social-feed-profiles a {
+    color: var(--theme-accent-on-page);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.social-feed-posts {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.social-feed-post a {
+    display: block;
+    overflow: hidden;
+}
+
+.social-feed-post img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 0;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.social-feed-post a:hover img,
+.social-feed-post a:focus-visible img {
+    transform: scale(1.04);
+}
+
+.social-feed-post a:focus-visible {
+    outline: 3px solid var(--theme-accent);
+    outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+    .social-feed.has-posts {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .social-feed-posts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .social-feed-posts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * social/profiles: a row of profile image tiles beside a contact card.
+ * --------------------------------------------------------------------- */
+.social-profiles {
+    color: var(--theme-text);
+    text-align: center;
+}
+
+.social-profiles-heading h2 {
+    color: var(--theme-text);
+}
+
+.social-profiles-heading .eyebrow {
+    color: var(--theme-accent-on-page);
+}
+
+.social-profiles-heading > p:not(.eyebrow) {
+    max-width: 40rem;
+    margin: 1rem auto 0;
+}
+
+.social-profiles-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.social-profiles.has-card .social-profiles-layout {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+}
+
+.social-profiles-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.social-profiles-tile {
+    width: clamp(8rem, 16vw, 11rem);
+}
+
+.social-profiles-tile a {
+    display: block;
+}
+
+.social-profiles-tile img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    transition: transform 0.3s ease;
+}
+
+.social-profiles-tile a:hover img,
+.social-profiles-tile a:focus-visible img {
+    transform: translateY(-0.25rem);
+}
+
+.social-profiles-tile a:focus-visible,
+.social-profiles-card:focus-visible {
+    outline: 3px solid var(--theme-accent);
+    outline-offset: 4px;
+}
+
+.social-profiles-card {
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    color: var(--theme-primary);
+    text-decoration: none;
+}
+
+.social-profiles-card img {
+    width: min(100%, 11rem);
+    height: auto;
+    border-radius: 0;
+}
+
+.social-profiles-card-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+.social-profiles-card:hover .social-profiles-card-label {
+    color: var(--theme-accent-on-page);
+}
+
+@media (max-width: 900px) {
+    .social-profiles.has-card .social-profiles-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .social-feed-post img,
+    .social-profiles-tile img {
+        transition: none;
+    }
+
+    .social-feed-post a:hover img,
+    .social-feed-post a:focus-visible img,
+    .social-profiles-tile a:hover img,
+    .social-profiles-tile a:focus-visible img {
+        transform: none;
+    }
+}
+
+/* ------------------------------------------------------------------------
+ * The blog index (resources/views/blog/index.blade.php): one row per post,
+ * the post's photo beside its author, date, title and "Read More".
+ * --------------------------------------------------------------------- */
+.blog-index {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    color: var(--theme-text);
+}
+
+.blog-index-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.blog-index-item.has-image {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+}
+
+.blog-index-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.blog-index-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    color: var(--theme-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+.blog-index-title {
+    margin-top: 0.75rem;
+    font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+    text-wrap: balance;
+}
+
+.blog-index-title a {
+    color: var(--theme-primary);
+    text-decoration: none;
+}
+
+.blog-index-title a:hover,
+.blog-index-title a:focus-visible {
+    color: var(--theme-accent-on-page);
+}
+
+.blog-index-more {
+    display: inline-block;
+    margin-top: 1.25rem;
+    color: var(--theme-accent-on-page);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+    .blog-index-item.has-image {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .blog-index-media img {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* ------------------------------------------------------------------------
  * content/feature-cards: round photo cards. "side" puts a large H2 over the
  * eagle watermark to the left of the cards; "stacked" centres the H2 above
  * them with copper card titles.

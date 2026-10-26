@@ -1,5 +1,14 @@
 {
     "name": "West Jordan",
     "region": "Utah",
-    "order": 12
+    "order": 12,
+    "summary": "About 93% from the Jordan Valley Water Conservancy District and 7% from city wells.",
+    "landmarks": [
+        "Jordan Landing",
+        "Highlands",
+        "Jordan Highlands",
+        "Oquirrh Shadows",
+        "Copper Hills Estates",
+        "Teton Estates"
+    ]
 }

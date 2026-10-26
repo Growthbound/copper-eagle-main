@@ -60,7 +60,12 @@ final class BlockRegistry
         'hero/photo' => 'hero',
         'service-cards/icon-strip' => 'service-strip',
         'content/feature-cards' => 'features',
+        'social/feed' => 'social',
+        'social/profiles' => 'social-profiles',
     ];
+
+    /** The live contact page's Instagram feed shows ten; the grid takes at most twelve. */
+    private const SOCIAL_FEED_MAX_POSTS = 12;
 
     /** @var array<string, BlockDefinition>|null */
     private ?array $definitions = null;
@@ -195,8 +200,9 @@ final class BlockRegistry
             'content/split' => ['image', 'inset'],
             'content/story-checklist' => ['image', 'inset'],
             'cta/image-split' => ['image'],
-            'cta/panel' => ['image'],
-            'cta/quote-form-split' => ['image'],
+            'cta/panel' => ['image', 'logo'],
+            'cta/quote-form-split' => ['image', 'secondaryImage'],
+            'cta/inline-band' => ['image'],
             'hero/split' => ['image'],
             'hero/service' => ['image'],
             'hero/photo' => ['image'],
@@ -237,6 +243,8 @@ final class BlockRegistry
             'pricing/toggle' => ['plans' => ['media']],
             'pricing/yearly' => ['plans' => ['media']],
             'content/feature-cards' => ['items' => ['image']],
+            'social/feed' => ['posts' => ['image']],
+            'social/profiles' => ['profiles' => ['image']],
         ][$type] ?? [] as $collection => $fields) {
             if (! is_array($props[$collection] ?? null)) {
                 continue;
@@ -258,6 +266,12 @@ final class BlockRegistry
                 })
                 ->values()
                 ->all();
+        }
+
+        if ($type === 'social/profiles'
+            && is_array($props['card'] ?? null)
+            && ($props['card']['image'] ?? null) !== null) {
+            $props['card']['image'] = $this->resolvedMedia($props['card']['image']);
         }
 
         return $props;
@@ -411,6 +425,8 @@ final class BlockRegistry
             'cta/visit-expectations' => ['items'],
             'content/feature-cards' => ['items'],
             'service-cards/icon-strip' => ['services'],
+            'social/feed' => ['profiles', 'posts'],
+            'social/profiles' => ['profiles'],
         ][$type] ?? [] as $field) {
             if (array_key_exists($field, $props)
                 && (! is_array($props[$field]) || ! array_is_list($props[$field]))) {
@@ -592,7 +608,6 @@ final class BlockRegistry
 
         foreach ([
             'cta/image-split' => 'cta',
-            'cta/panel' => 'cta',
             'cta/sticky-mobile' => 'primaryAction',
             'cta/inline-band' => 'primaryAction',
             'hero/service' => 'primaryAction',
@@ -606,6 +621,8 @@ final class BlockRegistry
         foreach ([
             'content/direct-answer' => ['source', 'nextStep'],
             'cta/inline-band' => ['secondaryAction'],
+            // Optional: the live guarantee bands are statements with no button.
+            'cta/panel' => ['cta'],
             'hero/interior' => ['primaryAction', 'secondaryAction'],
             'hero/location' => ['secondaryAction'],
             'hero/service' => ['secondaryAction'],
@@ -622,8 +639,9 @@ final class BlockRegistry
             'content/split' => ['image', 'inset'],
             'content/story-checklist' => ['image', 'inset'],
             'cta/image-split' => ['image'],
-            'cta/panel' => ['image'],
-            'cta/quote-form-split' => ['image'],
+            'cta/panel' => ['image', 'logo'],
+            'cta/quote-form-split' => ['image', 'secondaryImage'],
+            'cta/inline-band' => ['image'],
             'hero/split' => ['image'],
             'hero/service' => ['image'],
         ][$type] ?? [] as $field) {
@@ -887,8 +905,71 @@ final class BlockRegistry
 
         $this->validatePhotoHeroIconStripAndFeatureCards($type, $props, $errors);
         $this->validateCopperEagleSectionOptions($type, $props, $errors);
+        $this->validateSocialBlocks($type, $props, $errors);
+
+        if (in_array($type, ['hero/photo', 'hero/interior'], true)
+            && array_key_exists('video', $props)
+            && $props['video'] !== null
+            && $this->data->backgroundVideo($props['video']) === null) {
+            $errors['/props/video'][] = 'The background video needs a safe .mp4 or .webm source and a poster with a safe source, width, and height.';
+        }
 
         return $errors;
+    }
+
+    /**
+     * social/feed and social/profiles. Profile and post links open in a new
+     * tab, so they must be absolute http(s) addresses on another site.
+     *
+     * @param  array<string, mixed>  $props
+     * @param  array<string, array<int, string>>  $errors
+     */
+    private function validateSocialBlocks(string $type, array $props, array &$errors): void
+    {
+        if ($type === 'social/feed') {
+            foreach ($this->listItems($props['profiles'] ?? []) as $index => $profile) {
+                if (! is_array($profile)
+                    || ! $this->filledString($profile['label'] ?? null)
+                    || ! $this->filledString($profile['handle'] ?? null)
+                    || (($profile['href'] ?? null) !== null && $this->data->externalUrl($profile['href']) === null)) {
+                    $errors["/props/profiles/{$index}"][] = 'Each profile needs a network label, a handle, and an optional absolute http(s) link.';
+                }
+            }
+
+            $posts = $this->listItems($props['posts'] ?? []);
+
+            if (count($posts) > self::SOCIAL_FEED_MAX_POSTS) {
+                $errors['/props/posts'][] = 'The feed shows at most '.self::SOCIAL_FEED_MAX_POSTS.' posts.';
+            }
+
+            foreach ($posts as $index => $post) {
+                if (! is_array($post)
+                    || $this->data->externalUrl($post['href'] ?? null) === null
+                    || $this->data->media($post['image'] ?? null) === null) {
+                    $errors["/props/posts/{$index}"][] = 'Each post needs an absolute http(s) link and an image with alt text, width, and height.';
+                }
+            }
+        }
+
+        if ($type === 'social/profiles') {
+            foreach ($this->listItems($props['profiles'] ?? []) as $index => $profile) {
+                if (! is_array($profile)
+                    || $this->data->externalUrl($profile['href'] ?? null) === null
+                    || $this->data->media($profile['image'] ?? null) === null) {
+                    $errors["/props/profiles/{$index}"][] = 'Each profile tile needs an absolute http(s) link and an image whose alt text names the profile.';
+                }
+            }
+
+            if (array_key_exists('card', $props) && $props['card'] !== null) {
+                $card = $props['card'];
+
+                if (! is_array($card)
+                    || $this->data->link($card) === null
+                    || $this->data->media($card['image'] ?? null) === null) {
+                    $errors['/props/card'][] = 'The contact card needs a label, a safe link, and an image with alt text, width, and height.';
+                }
+            }
+        }
     }
 
     /**
@@ -960,6 +1041,7 @@ final class BlockRegistry
         return match ($type) {
             'hero/interior' => [
                 'image' => $image('Optional photo behind the deep-blue band, darkened and decorative. Without it the band is plain deep blue.'),
+                'video' => $this->backgroundVideoField('Optional decorative background video behind the deep-blue band, over the photo when there is one. Muted and looping; a reduced-motion visitor sees the poster.'),
             ],
             'content/split' => [
                 'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered in the heavier weight.'),
@@ -979,11 +1061,18 @@ final class BlockRegistry
                 'emphasis' => $this->field('string', false, 'Optional exact phrase from the heading, rendered underlined.'),
                 'background' => $this->field('string', false, 'Band behind the prompt. Defaults to white.', ['white', 'mist']),
                 'buttonStyle' => $this->field('string', false, 'Primary button look. Defaults to copper.', ['copper', 'sky']),
+                'image' => $image('Optional photo on the start side of the prompt, such as a portrait. Without it the prompt is centered on its own.'),
             ],
             'cta/panel' => [
                 'body' => $this->field('string', false, 'Optional text under the heading. A blank line starts a new paragraph.'),
+                'cta' => $link('Optional button. Without it the band is a statement, such as the guarantee, and offers no call line either.'),
                 'tone' => $this->field('string', false, 'Deep-blue band (primary, the default) or the solid copper guarantee band. The copper band ignores image.', ['primary', 'copper']),
                 'image' => $image('Optional photo behind the deep-blue band, darkened and decorative.'),
+                'logo' => $image('Optional small logo above the heading, such as the review site\'s mark. Its alt text names it.'),
+            ],
+            'cta/quote-form-split' => [
+                'showContact' => $this->field('boolean', false, 'Whether the phone number (as a call button under the heading) and the email address (under the body) from site settings are shown. Defaults to false.'),
+                'secondaryImage' => $image('Optional second photo stacked under the first in the photo column.'),
             ],
             'pricing/factors' => [
                 'body' => $this->field('string', false, 'Optional short introduction under the heading.'),
@@ -1329,8 +1418,8 @@ final class BlockRegistry
             $this->define('content/split', 'Pair explanatory copy with one approved image.', ['heading', 'body'], $this->copperEagleSectionFields('content/split')),
             $this->define('content/story-checklist', 'Tell a company story beside a checklist.', ['heading', 'items']),
             $this->define('cta/image-split', 'Present a primary response beside approved imagery.', ['heading', 'cta']),
-            $this->define('cta/panel', 'Present one focused response action.', ['heading', 'cta'], $this->copperEagleSectionFields('cta/panel')),
-            $this->define('cta/quote-form-split', 'Pair the quote form with an approved image.', ['heading']),
+            $this->define('cta/panel', 'Present one focused response, or a statement band with no button.', ['heading'], $this->copperEagleSectionFields('cta/panel')),
+            $this->define('cta/quote-form-split', 'Pair the quote form with an approved image.', ['heading'], $this->copperEagleSectionFields('cta/quote-form-split')),
             $this->define('cta/quote-form', 'Render the shared quote form.', ['heading']),
             $this->define('faq/accordion', 'Answer a crawlable collection of common questions.', ['heading', 'items']),
             $this->define('faq/highlighted', 'Highlight a compact set of common questions.', ['heading', 'items']),
@@ -1381,6 +1470,7 @@ final class BlockRegistry
                 'body' => $this->contractField('hero/photo', 'body', false),
                 'primaryAction' => $this->contractField('hero/photo', 'primaryAction', true),
                 'image' => $this->contractField('hero/photo', 'image', true),
+                'video' => $this->backgroundVideoField('Optional decorative background video over the photo, under the same overlay. Muted and looping; a reduced-motion visitor sees the poster. The photo stays the priority image.'),
                 'serviceStrip' => $this->field('boolean', false, 'Whether the service icon strip renders under the header. Defaults to true.'),
             ]),
             $this->withoutFields($this->define('service-cards/icon-strip', 'Link to each service that has an icon, as the strip of line icons under the header.', [], [
@@ -1407,6 +1497,47 @@ final class BlockRegistry
                 'layout' => $this->field('string', false, 'Heading beside the cards (side, the default) or centred above them (stacked).', ['side', 'stacked']),
                 'background' => $this->field('string', false, 'Section background. Defaults to white.', ['white', 'stone']),
                 'watermark' => $this->field('boolean', false, 'Whether the eagle watermark sits behind a side-layout heading. Defaults to true.'),
+            ]),
+            $this->define('social/feed', 'Invite visitors to follow the business: profile handles beside a static grid of recent posts, each opening the post in a new tab.', ['heading'], [
+                'body' => $this->field('string', false, 'Optional short line under the heading.'),
+                'profiles' => [
+                    ...$this->field('array', false, 'Optional profiles listed under the heading: the network as an uppercase label, the handle, and an optional absolute link to the profile.'),
+                    'shape' => 'list',
+                    'items' => $this->objectProperty([
+                        'label' => $this->scalarProperty('string', true),
+                        'handle' => $this->scalarProperty('string', true),
+                        'href' => $this->scalarProperty('string', false),
+                    ]),
+                ],
+                'posts' => [
+                    ...$this->field('array', false, 'Up to '.self::SOCIAL_FEED_MAX_POSTS.' posts in display order, each an absolute link to the post and a square image whose alt text describes it.'),
+                    'shape' => 'list',
+                    'maxItems' => self::SOCIAL_FEED_MAX_POSTS,
+                    'items' => $this->objectProperty([
+                        'href' => $this->scalarProperty('string', true),
+                        'image' => $this->objectProperty($this->mediaProperties()),
+                    ]),
+                ],
+            ]),
+            $this->define('social/profiles', 'Link to each social profile as an image tile, beside an optional contact card such as a vCard QR code.', ['heading', 'profiles'], [
+                'body' => $this->field('string', false, 'Optional short line under the heading.'),
+                'profiles' => [
+                    ...$this->field('array', true, 'Profile tiles in display order, each an absolute link to the profile and an image whose alt text names it.'),
+                    'shape' => 'list',
+                    'items' => $this->objectProperty([
+                        'href' => $this->scalarProperty('string', true),
+                        'image' => $this->objectProperty($this->mediaProperties()),
+                    ]),
+                ],
+                'card' => [
+                    ...$this->field('array', false, 'Optional contact card beside the tiles: an image (such as a QR code), a short label under it, and a safe link (such as /s/contact.vcf).'),
+                    'shape' => 'object',
+                    'properties' => [
+                        'label' => $this->scalarProperty('string', true),
+                        'href' => $this->scalarProperty('string', true),
+                        'image' => $this->objectProperty($this->mediaProperties()),
+                    ],
+                ],
             ]),
         ];
 
@@ -1896,6 +2027,25 @@ final class BlockRegistry
         };
 
         return $this->objectProperty($properties);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function backgroundVideoField(string $description): array
+    {
+        return [
+            ...$this->field('array', false, $description),
+            'shape' => 'object',
+            'properties' => [
+                'src' => $this->scalarProperty('string', true),
+                'poster' => $this->objectProperty([
+                    'src' => $this->scalarProperty('string', true),
+                    'width' => $this->scalarProperty('integer', true),
+                    'height' => $this->scalarProperty('integer', true),
+                ]),
+            ],
+        ];
     }
 
     /**

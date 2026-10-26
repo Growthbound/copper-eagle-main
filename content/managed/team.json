@@ -23,6 +23,14 @@
                     "alt": "The Copper Eagle Plumbing team standing in front of a company truck",
                     "width": 1534,
                     "height": 1025
+                },
+                "video": {
+                    "src": "/videos/brand/hero-team.mp4",
+                    "poster": {
+                        "src": "/videos/brand/hero-team-poster.jpg",
+                        "width": 1280,
+                        "height": 720
+                    }
                 }
             },
             "team": {
@@ -32,6 +40,7 @@
                     {
                         "name": "Matt Porter",
                         "role": "Foreman",
+                        "bio": "Matt Porter is our trusted Foreman in the field and an exceptional Master Plumber. Whether it's a 2 AM emergency, a late-night repair, or a weekend service call, Matt is relentless in making sure our customers are taken care of. He leads by example, mentors the next generation of skilled tradesmen, and never quits until the job is done right. Matt is truly a diamond in the rough, and we're proud to have him leading our team.",
                         "image": {
                             "src": "/images/brand/photos/team-truck-5.jpg",
                             "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
@@ -42,6 +51,7 @@
                     {
                         "name": "Dalton",
                         "role": "Journeyman Plumber",
+                        "bio": "Dalton is one of our outstanding Journeyman Plumbers who brings skill, honesty, and a positive attitude to every job. Known for being caring, upfront, and fun-loving, he always goes the extra mile to ensure customers receive the best value for their money. Whether he's working late, on weekends, or even holidays, Dalton is dedicated to keeping your water hot and your pipes flowing. We're proud to have him serving our customers and representing Copper Eagle Plumbing.",
                         "image": {
                             "src": "/images/brand/photos/team-truck-3.jpg",
                             "alt": "Dalton in front of a Copper Eagle Plumbing truck",
@@ -52,6 +62,7 @@
                     {
                         "name": "Holden",
                         "role": "soon to be Journeyman Plumber",
+                        "bio": "Holden is one of our rising soon to be Journeyman Plumbers and a key part of our growing team. Known for his attention to detail and strong work ethic, he takes pride in doing things the right way. While he is still learning and growing in the trade, he consistently goes above and beyond by identifying problems and bringing thoughtful solutions to the table. Holden's willingness to learn, support his teammates, and take ownership makes him a valuable asset to Copper Eagle Plumbing.",
                         "image": {
                             "src": "/images/brand/photos/team-truck-4.jpg",
                             "alt": "Holden in front of a Copper Eagle Plumbing truck",
@@ -62,6 +73,7 @@
                     {
                         "name": "Spencer",
                         "role": "longest-standing employee",
+                        "bio": "Spencer is the longest-standing employee at Copper Eagle Plumbing and has been a vital part of our journey through every stage of growth. His dedication to the company is matched only by his commitment to learning and mastering plumbing code compliance. Spencer's positive attitude, reliability, and willingness to improve make him an incredible asset to our team. Customers regularly compliment his professionalism and work ethic, and while he is still working toward becoming a full Journeyman, we have no doubt he is destined for greatness in the plumbing profession.",
                         "image": {
                             "src": "/images/brand/photos/team-truck-2.jpg",
                             "alt": "Spencer in front of a Copper Eagle Plumbing truck",
@@ -72,6 +84,7 @@
                     {
                         "name": "JD",
                         "role": "Plumbing Apprentice",
+                        "bio": "JD is the newest Plumbing Apprentice at Copper Eagle Plumbing, and he has already shown the dedication and determination it takes to succeed in the trade. He has put it all on the line to pursue a career in plumbing and continues to invest his heart and soul into learning and growing every day. His curious nature and willingness to ask questions demonstrate a genuine desire to improve and master his craft. We're excited to watch JD's journey and confident he has a bright future ahead in the plumbing profession.",
                         "image": {
                             "src": "/images/brand/photos/team-truck-1.jpg",
                             "alt": "JD in front of a Copper Eagle Plumbing truck",
@@ -82,6 +95,7 @@
                     {
                         "name": "Matthew \"Hibs\"",
                         "role": "Customer Retention Agent and Office Manager",
+                        "bio": "Last but certainly not least, Matthew \"Hibs\" serves as our Customer Retention Agent and Office Manager. His ability to organize, communicate, and keep our team moving forward is nothing short of remarkable. Whether he's coordinating paperwork for a new project, managing customer expectations, ensuring complete customer satisfaction, or answering calls at all hours, Matthew is always ready to help. His vision, dedication, and problem-solving skills make him an essential part of Copper Eagle Plumbing. As the bridge between our company and our customers, Matthew helps ensure every customer receives the exceptional experience they deserve.",
                         "image": {
                             "src": "/images/brand/photos/team-truck-6.jpg",
                             "alt": "Matthew \"Hibs\" in front of a Copper Eagle Plumbing truck",

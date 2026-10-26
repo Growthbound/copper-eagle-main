@@ -1,0 +1,177 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-murray-utah",
+        "title": "Murray",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Murray, Utah",
+        "description": "Copper Eagle Plumbing serves Murray, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Murray's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-6.jpg",
+            "alt": "Matthew \"Hibs\" in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in Murray, Utah",
+                "place": "Murray",
+                "body": "Copper Eagle Plumbing helps Murray homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Murray homes",
+                "body": "Half of the homes in Murray were built in 1978 or later, and about 54% before 1980, according to the U.S. Census Bureau. Older homes like these often need work on main water lines, drains and fixtures, along with the water heater.\n\nMurray runs its own water system from 19 deep wells and 8 springs, including McGhie Springs near Big Cottonwood Canyon. Some parts of Murray are served by other providers instead. Hardness averaged 194 mg/L (11.4 grains per gallon), according to Murray's 2025 water quality report. The U.S. Geological Survey classes that as very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nMurray's system includes 198 miles of water line and 12 million gallons of storage, according to its 2025 report.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-6.jpg",
+                    "alt": "Matthew \"Hibs\" in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Murray?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Murray at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Murray's own 19 deep wells and 8 springs, with other providers serving some areas. Hardness: 194 mg/L on average (Murray, 2025), very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1978. Built before 1980: about 54% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Areas",
+                        "body": "Including Historic Downtown, Fireclay, East Vine Street and Cherry Street.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Murray City Building Division. Apply through the city's eProcess 360 portal.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Murray plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Murray?",
+                        "answer": "Yes. Murray is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Midvale, Salt Lake City, West Valley and Sandy."
+                    },
+                    {
+                        "question": "How hard is the water in Murray?",
+                        "answer": "Hardness averaged 194 mg/L (11.4 grains per gallon), according to Murray's 2025 water quality report. That's very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Murray?",
+                        "answer": "The Murray City Building Division. Apply through the city's eProcess 360 portal."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Murray?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Murray."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Murray 2025 water quality report",
+                        "href": "https://www.murray.utah.gov/DocumentCenter/View/19322/2025-Water-Quality-Report"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Murray (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4953230"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Murray (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4953230"
+                    },
+                    {
+                        "title": "Redevelopment Agency of Murray City annual report (areas)",
+                        "href": "https://murray.utah.gov/DocumentCenter/View/9443/Redevelopment-Agency-of-Murray-City---Annual-Report-2026?bidId="
+                    },
+                    {
+                        "title": "Murray City Building Division",
+                        "href": "https://www.murray.utah.gov/167/Building-Division"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Midvale",
+                        "href": "/plumber-midvale-utah/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    },
+                    {
+                        "name": "West Valley",
+                        "href": "/plumber-west-valley-city-utah/"
+                    },
+                    {
+                        "name": "Sandy",
+                        "href": "/plumber-sandy-utah/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Murray? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

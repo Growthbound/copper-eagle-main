@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Content\AreaRepository;
 use App\Content\Enums\PageTemplate;
 
 /**
@@ -142,8 +143,8 @@ final class CopperEagleTemplateContent
                 'guarantee' => [
                     'eyebrow' => 'Sample promise eyebrow',
                     'heading' => 'Sample guarantee headline',
+                    'body' => 'A sample promise about the work. Like the live guarantee band, it is a statement with no button.',
                     'tone' => 'copper',
-                    'cta' => ['label' => 'Get in touch', 'href' => '#final-response'],
                 ],
                 'faq' => [
                     'heading' => 'Common questions',
@@ -270,6 +271,8 @@ final class CopperEagleTemplateContent
                     'heading' => 'Send us a message',
                     'body' => 'Tell us what is going on and the best way to reach you. We will get back to you to talk it through.',
                     'image' => $this->photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900),
+                    'secondaryImage' => $this->photo('copper-pipe.jpg', 'Copper pipe joint', 1200, 800),
+                    'showContact' => true,
                     'submitLabel' => 'Send message',
                     'showMessage' => true,
                 ],
@@ -282,6 +285,72 @@ final class CopperEagleTemplateContent
                     'eyebrow' => 'Sample emergency eyebrow',
                     'heading' => 'Plumbing emergencies',
                     'cta' => ['label' => 'Learn more', 'href' => '#hero'],
+                ],
+                'social' => [
+                    'heading' => 'Connect with us on social media',
+                    'profiles' => [
+                        ['label' => 'Instagram', 'handle' => '@sample.company', 'href' => 'https://example.com/sample-profile'],
+                        ['label' => 'YouTube', 'handle' => '@SampleCompany'],
+                    ],
+                    'posts' => [
+                        ['href' => 'https://example.com/sample-post-1', 'image' => $this->photo('drain.jpg', 'Water running into a sink drain', 1200, 800)],
+                        ['href' => 'https://example.com/sample-post-2', 'image' => $this->photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900)],
+                        ['href' => 'https://example.com/sample-post-3', 'image' => $this->photo('copper-pipe.jpg', 'Copper pipe joint', 1200, 800)],
+                        ['href' => 'https://example.com/sample-post-4', 'image' => $this->photo('valve.jpg', 'Valve and gauge on a water line', 900, 900)],
+                        ['href' => 'https://example.com/sample-post-5', 'image' => $this->photo('kitchen.jpg', 'Kitchen counter with copper pans', 900, 900)],
+                    ],
+                ],
+            ],
+
+            PageTemplate::City->value => [
+                'hero' => [
+                    'heading' => $title,
+                    // The place must be a service area record; the first one
+                    // stands in for the fictional town in this preview.
+                    'place' => app(AreaRepository::class)->all()->first()?->name() ?? 'Example Area',
+                    'body' => 'Sample introduction to plumbing service in this place.',
+                    'primaryAction' => ['label' => 'Contact us', 'href' => '#final-response'],
+                ],
+                'introduction' => [
+                    'heading' => 'Sample local introduction',
+                    'body' => "A sample paragraph about homes in this place.\n\nA second sample paragraph about the water they use.",
+                    'image' => $this->photo('copper-pipe.jpg', 'Copper pipe joint', 1200, 800),
+                ],
+                'services' => [
+                    'heading' => 'Sample services heading',
+                ],
+                'local-plumbing' => [
+                    'heading' => 'Sample local facts',
+                    'layout' => 'stacked',
+                    'background' => 'stone',
+                    'items' => [
+                        ['title' => 'Sample water fact', 'body' => 'Where the water comes from and how hard it is.', 'image' => $this->photo('drain.jpg', 'Sink drain with running water', 1200, 800)],
+                        ['title' => 'Sample housing fact', 'body' => 'How old the homes are and what that means for pipes.', 'image' => $this->photo('bath-sink.jpg', 'Bathroom sink and faucet', 900, 900)],
+                        ['title' => 'Sample permit fact', 'body' => 'Which office issues plumbing permits.', 'image' => $this->photo('valve.jpg', 'Valve and gauge on a water line', 900, 900)],
+                    ],
+                ],
+                'faq' => [
+                    'heading' => 'Sample local questions',
+                    'items' => [
+                        ['question' => 'Sample question about this place?', 'answer' => 'A sample answer that leads with the answer.'],
+                        ['question' => 'Another sample question?', 'answer' => 'Another sample answer.'],
+                    ],
+                ],
+                'sources' => [
+                    'heading' => 'Sources',
+                    'items' => [
+                        ['title' => 'Sample water quality report', 'href' => 'https://example.com/water-quality-report'],
+                        ['title' => 'Sample census profile', 'href' => 'https://example.com/census-profile'],
+                    ],
+                ],
+                'nearby-areas' => [
+                    'eyebrow' => 'Sample nearby eyebrow',
+                    'heading' => 'Nearby areas we serve',
+                    'areas' => $this->sampleAreas(),
+                ],
+                'final-response' => [
+                    'heading' => 'Sample closing call to action.',
+                    'primaryAction' => ['label' => 'Get in touch with us', 'href' => '#hero'],
                 ],
             ],
         ];

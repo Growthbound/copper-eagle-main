@@ -1,0 +1,189 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-midvale-utah",
+        "title": "Midvale",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Midvale, Utah",
+        "description": "Copper Eagle Plumbing serves Midvale, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Midvale's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-1.jpg",
+            "alt": "JD in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1200
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SALT LAKE COUNTY",
+                "heading": "Plumber in Midvale, Utah",
+                "place": "Midvale",
+                "body": "Copper Eagle Plumbing helps Midvale homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Midvale homes",
+                "body": "Half of the homes in Midvale were built in 1987 or later, and about 40% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nWest Midvale gets its water from city-owned wells, and east Midvale gets water the city buys from the Jordan Valley Water Conservancy District. Hardness of the east side's water averaged 182 mg/L, according to the Jordan Valley Water Conservancy District's 2025 water quality report (no figure is published for the city wells). The U.S. Geological Survey classes that as very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nMidvale says its water system has no lead or galvanized service lines needing replacement; it checked service lines at buildings built before 1990 to finish its inventory.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-1.jpg",
+                    "alt": "JD in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1200
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Midvale?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Midvale at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "City wells serve the west side; the Jordan Valley Water Conservancy District serves the east side. Hardness: 182 mg/L on average for the east side's water (2025), very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1987. Built before 1980: about 40% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Areas",
+                        "body": "Including Midvale Main, Bingham Junction, Jordan Bluffs and Fort Union.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Midvale Building and Safety Division.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Midvale plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Midvale?",
+                        "answer": "Yes. Midvale is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Murray, Sandy, West Jordan and Salt Lake City."
+                    },
+                    {
+                        "question": "How hard is the water in Midvale?",
+                        "answer": "Hardness of the east side's water averaged 182 mg/L, according to the Jordan Valley Water Conservancy District's 2025 water quality report (no figure is published for the city wells). That's very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Midvale?",
+                        "answer": "The Midvale Building and Safety Division."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Midvale?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Midvale."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Midvale public utilities",
+                        "href": "https://www.midvale.utah.gov/government/departments/public_works/public_utilities_divisions/index.php"
+                    },
+                    {
+                        "title": "Jordan Valley Water Conservancy District: summary of operations",
+                        "href": "https://jvwcd.gov/file/e338fc08-75cd-4e91-8285-dc7580a7d6b8/Summary-of-Operations-FY26web.pdf"
+                    },
+                    {
+                        "title": "Jordan Valley Water Conservancy District 2025 water quality report",
+                        "href": "https://jvwcd.gov/file/1532dbfe-7819-4096-bef6-a496c1192ab3/JVW---Consumer-Confidence-Report-2025.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Midvale (B25035)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25035?g=160XX00US4949710"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Midvale (B25034)",
+                        "href": "https://data.census.gov/table/ACSDT5Y2024.B25034?g=160XX00US4949710"
+                    },
+                    {
+                        "title": "Midvale Redevelopment Agency (areas)",
+                        "href": "https://www.midvale.utah.gov/government/departments/redevelopment_agency/index.php"
+                    },
+                    {
+                        "title": "Midvale Building and Safety",
+                        "href": "https://www.midvale.utah.gov/government/departments/community_development/building___safety.php"
+                    },
+                    {
+                        "title": "Midvale lead and copper inventory",
+                        "href": "https://www.midvale.utah.gov/government/departments/public_works/public_utilities_divisions/lead_and_copper.php"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Murray",
+                        "href": "/plumber-murray-utah/"
+                    },
+                    {
+                        "name": "Sandy",
+                        "href": "/plumber-sandy-utah/"
+                    },
+                    {
+                        "name": "West Jordan",
+                        "href": "/plumber-west-jordan-utah/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Midvale? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

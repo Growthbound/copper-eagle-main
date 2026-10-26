@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Content\AreaRepository;
 use App\Content\ContentLifecycle;
 use App\Content\Enums\ContentKind;
 use App\Content\Enums\PageTemplate;
@@ -190,6 +191,29 @@ class StructuredDataTest extends TestCase
         $types = array_column($this->graphFrom($path)['@graph'], '@type');
 
         $this->assertNotContains('FAQPage', $types);
+    }
+
+    public function test_a_city_page_declares_plumbing_service_in_its_place(): void
+    {
+        $this->fixtureArea('fixture-springfield', ['name' => 'Springfield', 'region' => 'Example State']);
+        $area = app(AreaRepository::class)->find('fixture-springfield');
+
+        $payload = $this->fixedPayload(PageTemplate::City, 'Plumber in Springfield');
+        $payload['sections']['hero']['place'] = 'Springfield';
+        $payload['sections']['nearby-areas']['areas'] = [['name' => 'Springfield', 'href' => $area->url()]];
+
+        $path = $this->publishManagedPage(ContentKind::Location, PageTemplate::City, 'plumber-springfield', 'Plumber in Springfield', $payload);
+
+        $service = $this->nodeOfType($path, 'Service');
+
+        $this->assertSame('Plumbing in Springfield, Example State', $service['name']);
+        $this->assertSame('Plumbing', $service['serviceType']);
+        $this->assertSame(StructuredData::businessId(), $service['provider']['@id']);
+        $this->assertSame([[
+            '@type' => 'City',
+            'name' => 'Springfield',
+            'containedInPlace' => ['@type' => 'AdministrativeArea', 'name' => 'Example State'],
+        ]], $service['areaServed']);
     }
 
     public function test_an_article_names_the_business_as_its_publisher(): void

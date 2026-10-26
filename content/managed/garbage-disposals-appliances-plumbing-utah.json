@@ -105,10 +105,6 @@
             "guarantee": {
                 "heading": "Safety",
                 "body": "Your safety is our paramount concern. We adhere to the highest safety standards, guaranteeing that all installations and repairs are completed securely.",
-                "cta": {
-                    "label": "GET IN TOUCH WITH US",
-                    "href": "/contact-copper-eagle-plumbing"
-                },
                 "tone": "primary"
             },
             "faq": {

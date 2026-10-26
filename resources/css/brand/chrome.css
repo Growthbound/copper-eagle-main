@@ -167,6 +167,83 @@
 }
 
 /*
+ * Team spotlight, directly above the footer: one row per person over the
+ * drain photo, the photo beside a copper panel with the name and bio in
+ * white. 90% solid copper keeps white text at AA over any part of the photo.
+ * Full width from inside .page-shell, like .edge-panel.
+ */
+.team-spotlight {
+    width: 100vw;
+    margin: clamp(4.5rem, 9vw, 7.5rem) calc(50% - 50vw) 0;
+    padding-block: clamp(3rem, 6vw, 5rem) clamp(5rem, 8vw, 6.5rem);
+    background: var(--theme-primary) url('../../../public/images/brand/photos/drain.jpg') center / cover no-repeat;
+}
+
+/* The footer's notch rises into the spotlight photo. */
+.team-spotlight + .site-footer {
+    margin-top: 0;
+}
+
+.team-spotlight-inner {
+    width: min(100% - 3rem, 1200px);
+    margin-inline: auto;
+}
+
+.team-spotlight-list {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.team-spotlight-member {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.team-spotlight-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.team-spotlight-copy {
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    background: color-mix(in srgb, var(--theme-copper-band) 90%, transparent);
+    color: var(--theme-on-accent);
+}
+
+.team-spotlight-copy h3 {
+    margin-bottom: 0.5rem;
+    color: var(--theme-on-accent);
+    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+}
+
+.team-spotlight-copy p {
+    color: var(--theme-on-accent);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+    .team-spotlight-inner {
+        width: min(100% - 2rem, 1200px);
+    }
+
+    .team-spotlight-member {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+}
+
+/*
  * Footer: deep blue with a centered notch holding the stacked logo.
  * Services left, logo and call button center, company and social right.
  */

@@ -62,7 +62,34 @@ return [
             'pattern' => '/^https:\/\/[^\s]+$/',
             'pattern_hint' => 'The PostHog host must be a full https:// URL.',
         ],
+        'ctm_account_id' => [
+            'label' => 'CallTrackingMetrics',
+            'help' => 'Account number from the tracking script address (the digits in NNNNNN.tctm.co). It swaps the phone number shown to each visitor for a tracking number.',
+            'placeholder' => '123456',
+            'pattern' => '/^[0-9]{3,12}$/',
+            'pattern_hint' => 'A CallTrackingMetrics account number is digits only.',
+        ],
     ],
+
+    /*
+     * IDs a deployment carries in its environment, used for any field the
+     * owner has not saved in Admin → Tracking. A value that does not match its
+     * field's format is ignored.
+     */
+    'defaults' => [
+        'ga4_measurement_id' => env('TRACKING_GA4_MEASUREMENT_ID'),
+        'gtm_container_id' => env('TRACKING_GTM_CONTAINER_ID'),
+        'clarity_project_id' => env('TRACKING_CLARITY_PROJECT_ID'),
+        'meta_pixel_id' => env('TRACKING_META_PIXEL_ID'),
+        'ctm_account_id' => env('TRACKING_CTM_ACCOUNT_ID'),
+    ],
+
+    /*
+     * Load tracking only on the canonical host (SITE_CANONICAL_HOST). A
+     * staging copy runs with production settings, and its review visits would
+     * otherwise land in the client's analytics and call tracking.
+     */
+    'canonical_host_only' => (bool) env('TRACKING_CANONICAL_HOST_ONLY', true),
 
     /*
      * Escape hatches for anything without a dedicated field above: chat

@@ -1,5 +1,13 @@
 {
     "name": "Bountiful",
     "region": "Utah",
-    "order": 13
+    "order": 13,
+    "summary": "About 60% city wells, 20% Mill Creek and 20% Weber River water.",
+    "landmarks": [
+        "Downtown and Main Street",
+        "Val Verda",
+        "Renaissance Towne Centre",
+        "Mueller Park",
+        "North Canyon"
+    ]
 }

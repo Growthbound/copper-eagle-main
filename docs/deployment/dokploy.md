@@ -17,6 +17,52 @@ Enable Dokploy's isolated deployment mode. Do not add `container_name`, host
 port bindings, or manual Traefik labels; Dokploy's native Domains UI supplies
 the routing network and labels during deployment.
 
+## Deploying as a Dokploy Application
+
+Copper Eagle's staging site runs as a Dokploy **Application** rather than a
+Compose service. That builds one container from `Dockerfile.production`, so the
+pieces `compose.production.yaml` normally supplies (the volumes, a handful of
+settings, and the separate `scheduler` service) are set by hand.
+
+**Build Type**
+
+| Setting | Value |
+|---|---|
+| Build type | Dockerfile |
+| Docker File | `Dockerfile.production` |
+| Docker Context Path | `.` |
+| Docker Build Stage | `runtime` |
+
+**Volumes.** Add two volume mounts (Docker named volumes, not bind mounts to a
+host folder; a host folder is owned by root and the app, which runs as
+`www-data`, cannot write to it):
+
+| Volume | Mount path | Holds |
+|---|---|---|
+| `copper-eagle-data` | `/data` | The SQLite database |
+| `copper-eagle-storage` | `/app/storage` | Uploads, logs, sessions and cache |
+
+**Environment.** Paste `.env.production.example` with the blanks filled in,
+including its "Dokploy Application deploys only" block. Those settings are the
+ones the compose file would otherwise set: `SESSION_DRIVER=file`,
+`CACHE_STORE=file`, `QUEUE_CONNECTION=sync`, `FILESYSTEM_DISK=local`,
+`SESSION_SECURE_COOKIE=true`, `LOG_LEVEL=info` and `APP_NAME`. The image itself
+sets `APP_ENV`, `APP_DEBUG`, `DB_CONNECTION`, `DB_DATABASE` and `LOG_CHANNEL`.
+`QUEUE_CONNECTION=sync` matters: without it, queued work such as HighLevel lead
+delivery waits for a worker that never runs.
+
+**Scheduler.** Set `RUN_SCHEDULER=true`. The container then runs
+`php artisan schedule:work` in the background next to the web server, so
+scheduled publishing and the nightly cleanup of expired preview tokens and API
+idempotency records still happen. It restarts if it exits and stops with the
+container. Leave `RUN_SCHEDULER` unset on a Compose deploy: its `scheduler`
+service already runs the schedule, and two schedulers would run every task
+twice.
+
+**Domains.** Container port `8080`, path `/`, internal path `/`, strip path
+off, custom entrypoint off, HTTPS on, no middlewares. For staging, see
+"Staging for client approval" below.
+
 ## Required environment variables
 
 Add all required variables in the Dokploy Compose environment before the first
@@ -36,6 +82,11 @@ MAIL_SCHEME=smtp
 MAIL_FROM_ADDRESS=notifications@mail.youragency.com
 MAIL_FROM_NAME="Copper Eagle Plumbing"
 ```
+
+The complete list, with Copper Eagle's values filled in (lead inbox, tracking
+IDs, form settings) and placeholders for credentials, is in
+`.env.production.example`. `compose.production.yaml` forwards every variable in
+it; anything left blank stays off.
 
 Use the `www` host: the current Squarespace site's sitemap and canonical links
 all use `https://www.coppereagleplumbing.com`, so keeping it carries the
@@ -128,12 +179,17 @@ Until launch, links the application builds from `APP_URL` (the sitemap, the
 `www.coppereagleplumbing.com`, which still serves the Squarespace site. Pages
 browsed on the staging host link within the staging host.
 
-Test leads: the contact form on staging behaves like the real one. Leave the
-HighLevel variables unset on staging to keep test submissions in the site's
-own lead inbox, or set them deliberately for the text-message consent check in
+Test leads: the contact form on staging behaves like the real one, and lead
+emails go to `LEAD_NOTIFICATION_RECIPIENTS`. Leave Admin → HighLevel
+disconnected on staging to keep test submissions in the site's own lead inbox,
+or connect it deliberately for the text-message consent check in
 `docs/content/website-forms-runbook.md` (one submission with a box ticked, one
 with both left unticked), and tell the client so they know the test contacts
 in HighLevel are ours.
+
+Tracking (Google Tag Manager and CallTrackingMetrics) loads only on the
+canonical host, so review visits on staging stay out of the client's analytics
+and call reports.
 
 After approval, move to the live domain. No variable changes:
 

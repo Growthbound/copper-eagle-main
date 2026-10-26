@@ -150,9 +150,10 @@ texts, ads, calls to action, page titles, or meta descriptions. It does not
 apply to code, comments, commit messages, or internal documentation, which stay
 plain and direct.
 
-Copper Eagle's voice has not been written yet, and the file says so. Until it
-is, keep customer-facing copy plain, specific, and limited to facts the owner
-has confirmed. Do not borrow another brand's voice, offers, or claims, including
+Copper Eagle's voice is drafted from the live site's own copy and awaits the
+owner's confirmation; the file says so. Write like that copy (friendly, local,
+confident, plain) and limit claims to facts the owner has confirmed or
+published. Do not borrow another brand's voice, offers, or claims, including
 those of other sites built on this platform.
 
 Legal and regulated text is carved out, and the carve-out is not stylistic. The

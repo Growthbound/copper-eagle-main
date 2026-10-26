@@ -46,14 +46,24 @@ class LeadNotifications
     {
         $saved = trim((string) Setting::read(self::RECIPIENTS));
 
+        // Nothing saved in the admin: the deployment's environment list, then
+        // the site's own contact address.
+        if ($saved === '') {
+            $saved = trim((string) config('website-forms.lead_notification_recipients'));
+        }
+
         if ($saved === '') {
             $fallback = trim((string) config('site.email'));
 
             return $fallback === '' ? [] : [$fallback];
         }
 
+        // A closure, not trim(...): map() passes each item's index as the
+        // second argument, which trim reads as the characters to strip, so
+        // "a@x.test, b@y.test" kept the space and dropped every address after
+        // the first.
         return collect(preg_split('/[\r\n,]+/', $saved) ?: [])
-            ->map(trim(...))
+            ->map(fn (string $address): string => trim($address))
             ->filter(fn (string $address): bool => filter_var($address, FILTER_VALIDATE_EMAIL) !== false)
             ->unique()
             ->take(self::MAX_RECIPIENTS)

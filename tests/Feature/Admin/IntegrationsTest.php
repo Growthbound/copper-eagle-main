@@ -18,6 +18,9 @@ class IntegrationsTest extends TestCase
         parent::setUp();
 
         $this->actingAs(User::factory()->create());
+
+        // Tracking loads only on the canonical host; the test host is it.
+        config()->set('search.canonical_host', 'localhost');
     }
 
     public function test_an_unconfigured_site_loads_no_third_party_scripts(): void
@@ -97,5 +100,67 @@ class IntegrationsTest extends TestCase
             'key' => Integrations::PREFIX.'clarity_project_id',
             'value' => 'abcd1234ef',
         ]);
+    }
+
+    /**
+     * A deployment can carry the IDs in its environment, so a fresh database
+     * still tracks. Anything the owner saves in the admin wins.
+     */
+    public function test_environment_ids_apply_until_the_owner_saves_their_own(): void
+    {
+        config()->set('integrations.defaults.gtm_container_id', 'GTM-ENV1234');
+        config()->set('integrations.defaults.clarity_project_id', 'not valid!');
+
+        $this->get('/')
+            ->assertSee("'GTM-ENV1234'", false)
+            ->assertSee('googletagmanager.com/ns.html?id=GTM-ENV1234', false)
+            ->assertDontSee('clarity.ms', false);
+
+        Livewire::test(IntegrationsEditor::class)
+            ->set('integrations.gtm_container_id', 'GTM-SAVED99')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->get('/')
+            ->assertSee("'GTM-SAVED99'", false)
+            ->assertDontSee('GTM-ENV1234', false);
+    }
+
+    public function test_call_tracking_loads_its_account_script(): void
+    {
+        Livewire::test(IntegrationsEditor::class)
+            ->set('integrations.ctm_account_id', '581672')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->get('/')->assertSee('<script async src="https://581672.tctm.co/t.js"></script>', false);
+
+        Livewire::test(IntegrationsEditor::class)
+            ->set('integrations.ctm_account_id', '581672.evil.test/x')
+            ->call('save')
+            ->assertHasErrors('integrations.ctm_account_id');
+    }
+
+    /**
+     * A staging copy runs with the production settings. Its visits must not
+     * land in the client's analytics or call tracking.
+     */
+    public function test_tracking_stays_off_a_non_canonical_host(): void
+    {
+        Livewire::test(IntegrationsEditor::class)
+            ->set('integrations.gtm_container_id', 'GTM-SAVED99')
+            ->set('integrations.body_snippet', '<script id="chat-widget"></script>')
+            ->call('save');
+
+        config()->set('search.canonical_host', 'www.example.com');
+
+        $this->get('/')
+            ->assertOk()
+            ->assertDontSee('GTM-SAVED99', false)
+            ->assertDontSee('chat-widget', false);
+
+        config()->set('integrations.canonical_host_only', false);
+
+        $this->get('/')->assertSee('GTM-SAVED99', false);
     }
 }

@@ -22,10 +22,10 @@ Conversion prompts, including inline lead forms.
 |---|---|
 | `quote-form` | Dark panel with copy beside the lead form. |
 | `quote-form-split` | The form on a mist card beside a photo, on white. Square inputs, deep-blue uppercase labels, copper submit. Errors are tied to their fields with `aria-describedby`. |
-| `panel` | Dark full-width band: centered eyebrow, H2, optional `body` (plain text; a blank line starts a new paragraph), one button, and the call link. `tone`: `primary` (default, deep blue with a copper button, optionally over a darkened decorative `image`) or `copper` (the solid copper guarantee band with the lattice and a deep-blue button; ignores `image`). |
+| `panel` | Dark full-width band: optional small `logo` (governed media whose alt names it, such as the Google mark), centered eyebrow, H2, optional `body` (plain text; a blank line starts a new paragraph), and an optional `cta` button with an "or call" line. Without `cta` the band is a statement, like the live guarantee band, with no button and no call line. `tone`: `primary` (default, deep blue with a copper button, optionally over a darkened decorative `image`) or `copper` (the solid copper guarantee band with the lattice and a deep-blue button; ignores `image`). |
 | `image-split` | Full-width primary CTA with inner-margin copy and prominent right-side media. |
 | `sticky-mobile` | Safe-area-aware single action visible only at mobile widths. |
-| `inline-band` | Centered prompt: large deep-blue H2, optional body, one button, and quieter secondary and call links. `emphasis` (an exact phrase from the heading) is underlined in copper. `background`: `white` (default) or `mist`. `buttonStyle`: `copper` (default) or `sky`. |
+| `inline-band` | Centered prompt: large deep-blue H2, optional body, one button, and quieter secondary and call links. `emphasis` (an exact phrase from the heading) is underlined in copper. `background`: `white` (default) or `mist`. `buttonStyle`: `copper` (default) or `sky`. Optional governed `image` (such as a portrait) on the start side with the prompt beside it; phones stack it above. It comes last in the markup so the heading is read first. |
 | `form-confirmation` | Ordered post-submit expectation sequence. |
 | `visit-expectations` | Icon-governed service-visit expectation cards. |
 
@@ -41,6 +41,12 @@ Use `<x-blocks.cta.quote-form-split>` when a screenshot or page composition
 calls for the conversion form and image to share one full-width panel. It uses
 the same provider renderer; `submitLabel` and `showMessage` customize native/demo
 forms only. HighLevel owns its fields and confirmation.
+
+`showContact` (boolean, default `false`) adds the phone number as a copper call
+button under the heading and the email address as a `mailto:` link under the
+body. Both come from site settings (`config('site.phone')`, `config('site.email')`)
+and each is hidden when blank; never type them into content. An optional
+governed `secondaryImage` stacks under the first photo.
 
 The local, noindex reference is available at `/_templates/contact-form`.
 

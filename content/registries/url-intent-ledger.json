@@ -61,6 +61,86 @@
             "id": "legal.privacy",
             "label": "Privacy Policy",
             "status": "resolved"
+        },
+        {
+            "id": "location.bountiful",
+            "label": "Plumber in Bountiful, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.centerville",
+            "label": "Plumber in Centerville, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.draper",
+            "label": "Plumber in Draper, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.kaysville",
+            "label": "Plumber in Kaysville, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.midvale",
+            "label": "Plumber in Midvale, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.murray",
+            "label": "Plumber in Murray, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.orem",
+            "label": "Plumber in Orem, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.park-city",
+            "label": "Plumber in Park City, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.provo",
+            "label": "Plumber in Provo, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.sandy",
+            "label": "Plumber in Sandy, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.south-jordan",
+            "label": "Plumber in South Jordan, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.summit-county",
+            "label": "Plumber in Summit County",
+            "status": "resolved"
+        },
+        {
+            "id": "location.utah-county",
+            "label": "Plumber in Utah County",
+            "status": "resolved"
+        },
+        {
+            "id": "location.wasatch-county",
+            "label": "Plumber in Wasatch County",
+            "status": "resolved"
+        },
+        {
+            "id": "location.west-jordan",
+            "label": "Plumber in West Jordan, Utah",
+            "status": "resolved"
+        },
+        {
+            "id": "location.west-valley",
+            "label": "Plumber in West Valley, Utah",
+            "status": "resolved"
         }
     ],
     "entries": [
@@ -1174,105 +1254,105 @@
             "url": "/areas/salt-lake-city/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "home",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "Salt Lake City is the home page's market, so its area page folds into the home page."
         },
         {
             "url": "/areas/draper/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.draper",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-draper-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-draper-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/areas/utah-county/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.utah-county",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-utah-county/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-utah-county/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/areas/provo/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.provo",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-provo-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-provo-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/areas/orem/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.orem",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-orem-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-orem-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/areas/west-valley/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.west-valley",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-west-valley-city-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-west-valley-city-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/areas/park-city/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.park-city",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-park-city-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-park-city-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/areas/summit-county/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.summit-county",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-summit-county/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-summit-county/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/copper-eagle-salt-lake-city-plumbing/",
@@ -1304,14 +1384,14 @@
             "url": "/areas/murray/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.murray",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-murray-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-murray-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/murray/",
@@ -1421,14 +1501,14 @@
             "url": "/areas/sandy/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.sandy",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-sandy-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-sandy-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/sandy/",
@@ -1538,14 +1618,14 @@
             "url": "/areas/south-jordan/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.south-jordan",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-south-jordan-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-south-jordan-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/south-jordan/",
@@ -1655,14 +1735,14 @@
             "url": "/areas/west-jordan/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.west-jordan",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-west-jordan-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-west-jordan-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/west-jordan/",
@@ -1772,14 +1852,14 @@
             "url": "/areas/bountiful/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.bountiful",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-bountiful-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-bountiful-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/bountiful/",
@@ -1889,14 +1969,14 @@
             "url": "/areas/centerville/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.centerville",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-centerville-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-centerville-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/centerville/",
@@ -2006,14 +2086,14 @@
             "url": "/areas/kaysville/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.kaysville",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-kaysville-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-kaysville-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/kaysville/",
@@ -2123,14 +2203,14 @@
             "url": "/areas/midvale/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.midvale",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-midvale-utah/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-midvale-utah/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/midvale/",
@@ -2240,14 +2320,14 @@
             "url": "/areas/wasatch-county/",
             "source": "area_record",
             "content_kind": "area",
-            "intent": "contact",
+            "intent": "location.wasatch-county",
             "intent_role": "supporting",
             "indexation": "noindex",
-            "canonical": "/contact-copper-eagle-plumbing/",
+            "canonical": "/plumber-wasatch-county/",
             "disposition": "consolidate",
-            "disposition_target": "/contact-copper-eagle-plumbing/",
+            "disposition_target": "/plumber-wasatch-county/",
             "evidence_gates": [],
-            "notes": "The live site has no area pages; areas are listed on the contact page."
+            "notes": "The generated area page folds into its city page."
         },
         {
             "url": "/services/general-plumbing/wasatch-county/",
@@ -2352,6 +2432,198 @@
             "disposition_target": "/garbage-disposals-appliances-plumbing-utah/",
             "evidence_gates": [],
             "notes": "Generated service-in-area page; the service page covers the area."
+        },
+        {
+            "url": "/plumber-bountiful-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.bountiful",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-bountiful-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-centerville-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.centerville",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-centerville-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-draper-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.draper",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-draper-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-kaysville-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.kaysville",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-kaysville-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-midvale-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.midvale",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-midvale-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-murray-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.murray",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-murray-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-orem-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.orem",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-orem-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-park-city-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.park-city",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-park-city-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-provo-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.provo",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-provo-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-sandy-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.sandy",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-sandy-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-south-jordan-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.south-jordan",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-south-jordan-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-summit-county/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.summit-county",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-summit-county/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-utah-county/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.utah-county",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-utah-county/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-wasatch-county/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.wasatch-county",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-wasatch-county/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-west-jordan-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.west-jordan",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-west-jordan-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
+        },
+        {
+            "url": "/plumber-west-valley-city-utah/",
+            "source": "managed",
+            "content_kind": "location",
+            "intent": "location.west-valley",
+            "intent_role": "primary_owner",
+            "indexation": "indexable",
+            "canonical": "/plumber-west-valley-city-utah/",
+            "disposition": "preserve",
+            "evidence_gates": [],
+            "notes": "City page with sourced local facts."
         }
     ]
 }

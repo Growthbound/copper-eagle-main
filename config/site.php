@@ -33,7 +33,8 @@ return [
      */
     'description' => 'Copper Eagle Plumbing is a plumbing company in Salt Lake City, Utah, for drain cleaning, water heaters, water filtration, gas lines, steam showers and remodel plumbing.',
     'phone' => '(385) 625-0369',
-    'email' => '',
+    // Shown on the live site's contact page, and where leads go by default.
+    'email' => 'diamond9utah@gmail.com',
     'address' => '',
 
     /*

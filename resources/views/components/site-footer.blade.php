@@ -3,7 +3,8 @@
 
     Deep blue, with the stacked logo in a centered notch (see "Site chrome" in
     docs/brand/design-system.md). Services and areas come from their records;
-    contact details from site settings, each hidden when blank.
+    contact details from site settings, each hidden when blank. The team
+    spotlight above it reads the published team page (see team-spotlight).
 --}}
 @props(['footerLinks' => null])
 
@@ -14,6 +15,8 @@
     $footerLinks ??= app(App\Content\SiteStructureRepository::class)->footer();
     $stackedLogo = App\Support\SiteLogo::stacked();
 @endphp
+
+<x-team-spotlight />
 
 <footer id="contact" class="site-footer edge-panel">
     <div class="site-footer-inner">

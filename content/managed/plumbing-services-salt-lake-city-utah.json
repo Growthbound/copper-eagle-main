@@ -18,7 +18,15 @@
         "sections": {
             "hero": {
                 "eyebrow": "SALT LAKE CITY + SURROUNDING AREAS",
-                "heading": "Utah Plumbing Services"
+                "heading": "Utah Plumbing Services",
+                "video": {
+                    "src": "/videos/brand/hero-services.mp4",
+                    "poster": {
+                        "src": "/videos/brand/hero-services-poster.jpg",
+                        "width": 1280,
+                        "height": 720
+                    }
+                }
             },
             "services": {
                 "heading": "What can we help you with?"

@@ -27,6 +27,7 @@ class CopperEaglePageTemplatesTest extends TestCase
         'team' => 'team-page',
         'reviews' => 'reviews-page',
         'contact' => 'contact-page',
+        'city' => 'city-page',
     ];
 
     public function test_the_registry_matches_the_design_spec_section_for_section(): void

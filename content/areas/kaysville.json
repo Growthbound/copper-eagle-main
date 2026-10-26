@@ -1,5 +1,13 @@
 {
     "name": "Kaysville",
     "region": "Utah",
-    "order": 15
+    "order": 15,
+    "summary": "All drinking water comes from the Weber Basin Water Conservancy District.",
+    "landmarks": [
+        "Historic Main Street",
+        "Main Street North",
+        "Mutton Hollow",
+        "Flint Street",
+        "Deseret Drive"
+    ]
 }

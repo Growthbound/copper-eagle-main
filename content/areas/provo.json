@@ -1,5 +1,14 @@
 {
     "name": "Provo",
     "region": "Utah",
-    "order": 4
+    "order": 4,
+    "summary": "Mainly springs and deep wells, plus treated reservoir water.",
+    "landmarks": [
+        "Downtown",
+        "Joaquin",
+        "Maeser",
+        "Franklin",
+        "Edgemont",
+        "Rock Canyon"
+    ]
 }

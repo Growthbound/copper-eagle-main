@@ -22,6 +22,9 @@
         && $data->date($reviewer['reviewed_at'] ?? null)
             ? $reviewer
             : null;
+    // Dates read the way the live blog writes them ("Sep 8, 2023"); the
+    // machine-readable ISO date stays in each <time datetime>.
+    $readable = static fn (string $date): string => \Carbon\CarbonImmutable::createFromFormat('!Y-m-d', $date)->format('M j, Y');
 @endphp
 
 @if (filled($author) && $publishedDate)
@@ -35,14 +38,14 @@
             <p class="article-hero-summary">{{ $summary }}</p>
         @endif
         <div class="article-hero-meta">
+            <time datetime="{{ $publishedDate }}">{{ $readable($publishedDate) }}</time>
             <span>Written by <strong>{{ $author }}</strong></span>
-            <time datetime="{{ $publishedDate }}">Published {{ $publishedDate }}</time>
             @if ($updatedDate)
-                <time datetime="{{ $updatedDate }}">Updated {{ $updatedDate }}</time>
+                <time datetime="{{ $updatedDate }}">Updated {{ $readable($updatedDate) }}</time>
             @endif
             @if ($validReviewer)
                 <span>Reviewed by <strong>{{ $validReviewer['name'] }}</strong></span>
-                <time datetime="{{ $validReviewer['reviewed_at'] }}">Reviewed {{ $validReviewer['reviewed_at'] }}</time>
+                <time datetime="{{ $validReviewer['reviewed_at'] }}">Reviewed {{ $readable($validReviewer['reviewed_at']) }}</time>
             @endif
         </div>
     </header>

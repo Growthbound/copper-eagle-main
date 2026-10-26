@@ -87,6 +87,36 @@ class ProductionContainerContractTest extends TestCase
         $this->assertGreaterThanOrEqual(2, substr_count($compose, 'storage_data:/app/storage'));
     }
 
+    /**
+     * Compose passes only the variables it lists. A setting the app reads but
+     * compose never forwards is silently empty in production, however it is
+     * set in Dokploy. Each optional one reaches both services, and the
+     * production example names it.
+     */
+    public function test_optional_production_settings_reach_both_services(): void
+    {
+        $compose = $this->contents('compose.production.yaml');
+        $example = $this->contents('.env.production.example');
+
+        foreach ([
+            'WEBSITE_FORM_PROVIDER', 'WEBSITE_HIGHLEVEL_ORIGIN', 'WEBSITE_HIGHLEVEL_INQUIRY_FORM_ID',
+            'WEBSITE_HIGHLEVEL_FEEDBACK_FORM_ID', 'WEBSITE_HIGHLEVEL_COMMENTS_FORM_ID',
+            'LEAD_NOTIFICATION_RECIPIENTS', 'REFERRAL_FORM_URL',
+            'GHL_PRIVATE_INTEGRATION_TOKEN', 'GHL_LOCATION_ID', 'GHL_COMPANY_ID', 'GHL_EXCLUDED_USER_IDS',
+            'GHL_REFERRAL_CODE_FIELD_ID', 'GHL_REFERRAL_SOURCE_FIELD_ID', 'GHL_REFERRAL_BUSINESS_FIELD_ID',
+            'GHL_REFERRAL_MAIN_CONTACT_FIELD_ID', 'GHL_REFERRAL_URL_FIELD_ID', 'GHL_REFERRAL_SERVICE_AREAS_FIELD_ID',
+            'TRACKING_GA4_MEASUREMENT_ID', 'TRACKING_GTM_CONTAINER_ID', 'TRACKING_CLARITY_PROJECT_ID',
+            'TRACKING_META_PIXEL_ID', 'TRACKING_CTM_ACCOUNT_ID', 'TRACKING_CANONICAL_HOST_ONLY',
+        ] as $variable) {
+            $this->assertSame(
+                2,
+                preg_match_all('/^\s+'.$variable.': \$\{'.$variable.':-[^}]*\}\s*$/m', $compose),
+                $variable.' must be forwarded, optionally, by both services.',
+            );
+            $this->assertMatchesRegularExpression('/^'.$variable.'=/m', $example, $variable.' must be listed in .env.production.example.');
+        }
+    }
+
     public function test_deployment_runbook_lists_every_fail_closed_mail_sender_variable(): void
     {
         $runbook = $this->contents('docs/deployment/dokploy.md');
@@ -140,6 +170,34 @@ class ProductionContainerContractTest extends TestCase
         $this->assertStringContainsString('php artisan optimize', $entrypoint);
         $this->assertStringContainsString('exec "$@"', $entrypoint);
         $this->assertStringNotContainsString('key:generate', $entrypoint);
+    }
+
+    /**
+     * A single-container deploy (Dokploy's Application type) has no separate
+     * scheduler service, so the app container can run one itself. It is off by
+     * default: the Compose deploy already runs `scheduler`, and two schedulers
+     * would run every task twice.
+     */
+    public function test_the_app_container_can_run_the_scheduler_when_asked(): void
+    {
+        $entrypoint = $this->contents('docker/production/entrypoint.sh');
+        $compose = $this->contents('compose.production.yaml');
+        $example = $this->contents('.env.production.example');
+        $runbook = $this->contents('docs/deployment/dokploy.md');
+
+        $this->assertStringContainsString('${RUN_SCHEDULER:-false}', $entrypoint);
+        $this->assertStringContainsString('php artisan schedule:work', $entrypoint);
+        $this->assertMatchesRegularExpression('/while true; do\s+php artisan schedule:work \|\| true/', $entrypoint, 'The scheduler must restart if it exits.');
+
+        $scheduler = strpos($entrypoint, 'php artisan schedule:work');
+        $this->assertGreaterThan(strpos($entrypoint, 'php artisan migrate --force --no-interaction'), $scheduler, 'The scheduler starts after migrations.');
+        $this->assertGreaterThan(strpos($entrypoint, 'php artisan optimize'), $scheduler, 'The scheduler starts after the caches are built.');
+        $this->assertLessThan(strrpos($entrypoint, 'exec "$@"'), $scheduler, 'The scheduler starts before the web server takes over.');
+
+        $this->assertStringNotContainsString('RUN_SCHEDULER: "true"', $compose, 'Compose already runs the scheduler service.');
+        $this->assertMatchesRegularExpression('/^RUN_SCHEDULER=/m', $example);
+        $this->assertStringContainsString('## Deploying as a Dokploy Application', $runbook);
+        $this->assertStringContainsString('RUN_SCHEDULER=true', $runbook);
     }
 
     public function test_phpunit_pins_the_application_url_independently_of_dotenv(): void

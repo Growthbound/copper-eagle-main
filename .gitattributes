@@ -6,6 +6,10 @@
 *.md diff=markdown
 *.php diff=php
 
+# vCards use CRLF line endings by spec; keep the live file byte for byte, and
+# don't report those line endings as trailing whitespace.
+*.vcf -text -whitespace
+
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore

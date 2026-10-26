@@ -1,5 +1,14 @@
 {
     "name": "Wasatch County",
     "region": "Utah",
-    "order": 17
+    "order": 17,
+    "summary": "Town systems such as Heber City's springs and wells, and the Jordanelle Special Service District.",
+    "landmarks": [
+        "Heber City",
+        "Midway",
+        "Charleston",
+        "Daniel",
+        "Hideout",
+        "Wallsburg"
+    ]
 }

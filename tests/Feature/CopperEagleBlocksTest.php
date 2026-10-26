@@ -373,7 +373,7 @@ class CopperEagleBlocksTest extends TestCase
         $hero = $schema['hero/photo'];
         $this->assertSame('blocks.hero.photo', $hero['component']);
         $this->assertSame(
-            ['id', 'eyebrow', 'heading', 'emphasis', 'body', 'primaryAction', 'image', 'serviceStrip'],
+            ['id', 'eyebrow', 'heading', 'emphasis', 'body', 'primaryAction', 'image', 'video', 'serviceStrip'],
             array_keys($hero['fields']),
         );
         $this->assertTrue($hero['fields']['heading']['required']);

@@ -89,6 +89,12 @@
                     "alt": "Copper pipes and valves connected to a steam generator",
                     "width": 1600,
                     "height": 790
+                },
+                "logo": {
+                    "src": "/images/brand/pages/google-g-icon-download.png",
+                    "alt": "Google logo with red, yellow, green, and blue colors.",
+                    "width": 512,
+                    "height": 512
                 }
             },
             "final-response": {
@@ -97,6 +103,12 @@
                 "primaryAction": {
                     "label": "GET IN TOUCH WITH US",
                     "href": "/contact-copper-eagle-plumbing"
+                },
+                "image": {
+                    "src": "/images/brand/pages/jordan-the-plumber-utah.jpg",
+                    "alt": "Jordan Walker Master Plumber Reviews",
+                    "width": 900,
+                    "height": 1350
                 }
             }
         },

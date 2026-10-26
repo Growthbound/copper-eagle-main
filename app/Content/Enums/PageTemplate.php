@@ -21,4 +21,5 @@ enum PageTemplate: string
     case Team = 'team';
     case Reviews = 'reviews';
     case Contact = 'contact';
+    case City = 'city';
 }

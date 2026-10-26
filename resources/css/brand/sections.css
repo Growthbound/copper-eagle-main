@@ -657,6 +657,57 @@
     font-size: 0.95rem;
 }
 
+/* With a photo: the photo on the start side, the centered prompt beside it.
+   The photo comes last in the markup, so the heading is read first. */
+.inline-cta.has-media {
+    display: grid;
+    grid-template-columns: minmax(0, 26rem) minmax(0, 40rem);
+    grid-template-areas:
+        'media copy'
+        'media actions';
+    justify-content: center;
+    align-content: center;
+    column-gap: clamp(2rem, 5vw, 4.5rem);
+    row-gap: 2rem;
+}
+
+.inline-cta.has-media > div:first-child {
+    grid-area: copy;
+    align-self: end;
+}
+
+.inline-cta.has-media > .inline-cta-actions {
+    grid-area: actions;
+    align-self: start;
+}
+
+.inline-cta-media {
+    grid-area: media;
+    align-self: center;
+}
+
+.inline-cta-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+
+@media (max-width: 900px) {
+    .inline-cta.has-media {
+        grid-template-columns: minmax(0, 36rem);
+        grid-template-areas:
+            'media'
+            'copy'
+            'actions';
+    }
+
+    .inline-cta-media img {
+        max-height: 28rem;
+        object-fit: cover;
+    }
+}
+
 @media (max-width: 600px) {
     .inline-cta-actions {
         align-items: center;
@@ -713,6 +764,15 @@
     justify-content: center;
     margin-top: 1.25rem;
     color: var(--theme-on-primary);
+}
+
+/* An optional small logo above the heading (the Google mark on reviews). */
+.cta-panel-logo {
+    display: block;
+    width: clamp(3.5rem, 6vw, 4.5rem);
+    height: auto;
+    margin: 0 auto 1.5rem;
+    border-radius: 0;
 }
 
 /* The guarantee band: solid copper with the lattice lines, white text. */
@@ -1130,6 +1190,34 @@
 
 .contact-split-panel.is-without-media .contact-split-copy {
     width: auto;
+}
+
+/* showContact: the site phone as a call button, the email under the body. */
+.contact-split-copy > .contact-split-call {
+    margin-top: 1.5rem;
+}
+
+.contact-split-copy > .contact-split-email {
+    margin-top: 1rem;
+}
+
+.contact-split-email a {
+    color: var(--theme-accent-on-page);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+/* A second photo stacked under the first. */
+.contact-split-media.has-secondary {
+    display: grid;
+    align-content: start;
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.contact-split-media.has-secondary img {
+    height: auto;
 }
 
 @media (max-width: 900px) {

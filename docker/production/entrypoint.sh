@@ -82,4 +82,18 @@ fi
 
 php artisan optimize
 
+# A single-container deploy (Dokploy's Application type) has no separate
+# scheduler service, so the app container runs one in the background when
+# asked. Off by default: the Compose deploy runs its own `scheduler` service,
+# and two schedulers would run every task twice. The loop restarts it if it
+# ever exits, and it stops with the container.
+if [ "${RUN_SCHEDULER:-false}" = "true" ]; then
+    (
+        while true; do
+            php artisan schedule:work || true
+            sleep 5
+        done
+    ) &
+fi
+
 exec "$@"

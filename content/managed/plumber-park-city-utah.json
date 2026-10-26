@@ -1,0 +1,191 @@
+{
+    "schema_version": 1,
+    "publication_status": "published",
+    "source": {
+        "provider": "copper-eagle-city-research",
+        "checked_on": "2026-10-25",
+        "note": "Every local fact is cited in the page's Sources section."
+    },
+    "identity": {
+        "kind": "location",
+        "slug": "plumber-park-city-utah",
+        "title": "Park City",
+        "template": "city"
+    },
+    "payload": {
+        "title": "Plumber in Park City, Utah",
+        "description": "Copper Eagle Plumbing serves Park City, Utah: drains, water heaters, softeners, gas lines and remodels. Learn about Park City's water, homes and permits.",
+        "noindex": false,
+        "social_image": {
+            "src": "/images/brand/photos/team-truck-5.jpg",
+            "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+            "width": 1600,
+            "height": 1199
+        },
+        "sections": {
+            "hero": {
+                "eyebrow": "SUMMIT COUNTY",
+                "heading": "Plumber in Park City, Utah",
+                "place": "Park City",
+                "body": "Copper Eagle Plumbing helps Park City homeowners with everything from clogged drains and leaky faucets to water heaters, water softeners and remodels. Call or text us any time.",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            },
+            "introduction": {
+                "heading": "Plumbing for Park City homes",
+                "body": "Half of the homes in Park City were built in 1989 or later, and about 26% before 1980, according to the U.S. Census Bureau. Many of those homes are reaching the age when water heaters, faucets and fixtures need replacing. A water heater usually lasts 10 to 15 years.\n\nPark City's Water Division draws from eight sources: three deep wells, a spring, two tunnels, Rockport Reservoir and water imported from the Jordanelle Special Service District, treated at the Quinns Junction, 3Kings and Spiro plants. Hardness ranged from 222 to 394 mg/L (13 to 23 grains per gallon) across the city's eight sampling areas, according to Park City's third-quarter 2026 water sampling. The U.S. Geological Survey classes that as very hard water. Hard water leaves mineral deposits in water heaters, faucets and appliances, and a water softener or filtration system cuts that buildup.\n\nPark City says its water system is one of the most complex in the U.S., with 43 pressure zones, 16 pump stations and 49 pressure-reducing stations.",
+                "image": {
+                    "src": "/images/brand/photos/team-truck-5.jpg",
+                    "alt": "Matt Porter in front of a Copper Eagle Plumbing truck",
+                    "width": 1600,
+                    "height": 1199
+                }
+            },
+            "services": {
+                "heading": "What can we help you with in Park City?"
+            },
+            "local-plumbing": {
+                "heading": "Plumbing in Park City at a glance",
+                "layout": "stacked",
+                "background": "stone",
+                "items": [
+                    {
+                        "title": "Your water",
+                        "body": "Eight sources, including deep wells, a spring, two tunnels and Rockport Reservoir. Hardness: 222 to 394 mg/L (Park City, third quarter 2026), very hard by U.S. Geological Survey standards.",
+                        "image": {
+                            "src": "/images/brand/pages/water-filtration.jpg",
+                            "alt": "A glass of water held in a hand",
+                            "width": 900,
+                            "height": 600
+                        }
+                    },
+                    {
+                        "title": "Your home",
+                        "body": "Median year built: 1989. Built before 1980: about 26% of homes.",
+                        "image": {
+                            "src": "/images/brand/pages/kitchen.jpg",
+                            "alt": "Kitchen with white cabinets, a pull-down faucet and a green tile backsplash",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Neighborhoods",
+                        "body": "Including Old Town, Park Meadows, Prospector, Thaynes, Upper Deer Valley and Lower Deer Valley.",
+                        "image": {
+                            "src": "/images/brand/pages/dillon-kydd-2kecpb73aqy-unsplash.jpg",
+                            "alt": "A row of newly built houses with driveways",
+                            "width": 1070,
+                            "height": 714
+                        }
+                    },
+                    {
+                        "title": "Permits",
+                        "body": "Plumbing and building permits come from the Park City Building Department. Apply through the city's online City Inspect portal.",
+                        "image": {
+                            "src": "/images/brand/pages/plumbing-utah.jpg",
+                            "alt": "Red bucket of copper pipe fittings on a gray tiled floor",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    },
+                    {
+                        "title": "Elevation",
+                        "body": "About 7,034 feet above sea level. Summit County's building rules set a 36-inch frost line depth and a winter design temperature of -7°F.",
+                        "image": {
+                            "src": "/images/brand/pages/stars.jpg",
+                            "alt": "Milky Way over silhouetted pine trees at night",
+                            "width": 1200,
+                            "height": 800
+                        }
+                    }
+                ]
+            },
+            "faq": {
+                "heading": "Park City plumbing questions",
+                "items": [
+                    {
+                        "question": "Does Copper Eagle Plumbing serve Park City?",
+                        "answer": "Yes. Park City is one of the Utah communities Copper Eagle Plumbing serves from Salt Lake City, along with Summit County, Wasatch County and Salt Lake City."
+                    },
+                    {
+                        "question": "How hard is the water in Park City?",
+                        "answer": "Hardness ranged from 222 to 394 mg/L (13 to 23 grains per gallon) across the city's eight sampling areas, according to Park City's third-quarter 2026 water sampling. That's very hard water by U.S. Geological Survey standards."
+                    },
+                    {
+                        "question": "Who issues plumbing permits in Park City?",
+                        "answer": "The Park City Building Department. Apply through the city's online City Inspect portal."
+                    },
+                    {
+                        "question": "Can I get an emergency plumber in Park City?",
+                        "answer": "Yes. Copper Eagle Plumbing takes emergency calls 24 hours a day, 7 days a week, 365 days a year, including in Park City."
+                    }
+                ]
+            },
+            "sources": {
+                "heading": "Sources",
+                "items": [
+                    {
+                        "title": "Park City water",
+                        "href": "https://www.parkcity.gov/services/public_utilities/water/index.php"
+                    },
+                    {
+                        "title": "Park City water sampling, third quarter 2026",
+                        "href": "https://www.parkcity.gov/8AreaSpreadsheet3rdQuarter2026Map.pdf"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: median year built, Park City (B25035)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25035&g=160XX00US4958070"
+                    },
+                    {
+                        "title": "U.S. Census Bureau: year built, Park City (B25034)",
+                        "href": "https://data.census.gov/api/access/data/table?id=ACSDT5Y2024.B25034&g=160XX00US4958070"
+                    },
+                    {
+                        "title": "USGS: Park City elevation",
+                        "href": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/1444206"
+                    },
+                    {
+                        "title": "Park City building permits",
+                        "href": "https://www.parkcity.gov/services/building/permits.php"
+                    },
+                    {
+                        "title": "Summit County building design criteria",
+                        "href": "https://www.summitcountyutah.gov/DocumentCenter/View/17882/Design-Criteria"
+                    },
+                    {
+                        "title": "U.S. Geological Survey: hardness of water",
+                        "href": "https://www.usgs.gov/special-topics/water-science-school/science/hardness-water"
+                    }
+                ]
+            },
+            "nearby-areas": {
+                "eyebrow": "NEARBY AREAS",
+                "heading": "We also serve",
+                "areas": [
+                    {
+                        "name": "Summit County",
+                        "href": "/plumber-summit-county/"
+                    },
+                    {
+                        "name": "Wasatch County",
+                        "href": "/plumber-wasatch-county/"
+                    },
+                    {
+                        "name": "Salt Lake City",
+                        "href": "/"
+                    }
+                ]
+            },
+            "final-response": {
+                "heading": "Need a plumber in Park City? Let our friendly and competent team of experienced plumbers help you today!",
+                "primaryAction": {
+                    "label": "GET IN TOUCH WITH US",
+                    "href": "/contact-copper-eagle-plumbing"
+                }
+            }
+        }
+    }
+}

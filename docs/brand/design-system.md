@@ -139,6 +139,13 @@ displayed number.
 - **Footer:** deep blue. Centered notch with the stacked logo, the copper call
   button, and the emergency note; services on the left; company links and
   social links on the right.
+- **Team spotlight:** directly above the footer on every page except the team
+  page itself, as on the live site. Over the drain photo, one row per person:
+  their square photo, then their name (H3) and bio in white on a 90% solid
+  copper (`--theme-copper-band`) panel; phones stack the photo over the panel.
+  The H2 is visually hidden. It reads the team section of the published team
+  page, so the team page is the one place to edit it, and it never renders on
+  a fictional template preview.
 
 ### Section backgrounds
 
@@ -149,6 +156,19 @@ dark sections back to back.
 
 Interior heroes are deep blue over a photo, with a centered uppercase eyebrow,
 a centered white H1, and a white chevron rising into the next section.
+
+The home, services and team heroes play a muted, looping background video
+(`public/videos/brand/`) over their photo and under the same overlay, as the
+live site does. The video is decorative (`aria-hidden`), loads only once the
+page is idle and only when the visitor allows motion; otherwise its poster
+still shows. A small square pause control appears in the lower corner once it
+plays. The photo stays the priority image and the fallback.
+
+Closing prompts (`cta/inline-band`) may carry a portrait on the start side
+with the prompt centered beside it, as on the reviews and general plumbing
+pages. The copper guarantee band (`cta/panel` with `tone: copper`) is a
+statement with no button and no call line; a panel may show a small logo above
+its heading (the Google mark on the reviews page).
 
 ### Cards, points, and paragraphs
 
@@ -175,6 +195,12 @@ approval:
 | `patterns/diamond-lattice.jpg`, `patterns/eagle-watermark.png`, `patterns/diamond-corners.png`, `patterns/footer-notch.png` | Backgrounds listed under Shape |
 | `photos/*.jpg` | Real job and staff photos. Staff photos only beside the person's confirmed name |
 | `photos/master-plumber-badge.png` | The license badge. A claim: publish only where the owner has confirmed it |
+| `instagram/instagram-01.jpg` … `-10.jpg` | The contact page's Instagram feed, newest first, each linked to its post |
+| `pages/*.png` social tiles (`tictok.png`, `next-door.png`, `face-book.png`, `google-reviews.png`, `instagram.png`) | The social media page's profile tiles, 400px wide |
+
+The hero videos (`hero-home.mp4`, `hero-services.mp4`, `hero-team.mp4`, 1280×720,
+muted H.264, each with a `-poster.jpg` still) live in `public/videos/brand/`, and
+Jordan Walker's vCard at `public/s/JW.vcf`, the address the live site links.
 
 Never recolor, stretch, or crop the logo. Keep clear space of at least the
 height of the copper mark around it.
@@ -193,7 +219,16 @@ fixed by `app/Content/PageTemplateRegistry.php`; content changes props only.
 | `about` | About | `hero/interior` · `content/split` · `content/feature-cards` · `cta/inline-band` |
 | `team` | Team | `hero/interior` · `team/grid` · `cta/inline-band` |
 | `reviews` | Reviews | `hero/interior` · `testimonials/quotes` · `cta/panel` · `cta/inline-band` |
-| `contact` | Contact | `hero/interior` · `cta/quote-form-split` · `service-areas/list` · `cta/panel` |
+| `contact` | Contact | `hero/interior` · `cta/quote-form-split` · `service-areas/list` · `cta/panel` · `social/feed` |
+| `city` | One city or county served | `hero/location` · `content/split` · `service-cards/grid` · `content/feature-cards` · `faq/accordion` · `content/related-content` · `service-areas/list` · `cta/inline-band` |
+
+City pages (kind `location`) live at `/plumber-<place>-utah` (counties drop
+`-utah`, e.g. `/plumber-utah-county`). The `hero/location` place must be a
+service area record, and the generated `/areas/<slug>/` page folds into the
+city page through the URL ledger. Every local fact on a city page (water
+supplier and hardness, housing age, elevation, neighborhoods, permit office)
+comes from a public source listed in its `content/related-content` "Sources"
+section; a place without sourced local facts gets no page.
 
 Blog posts use `standard` with `hero/article` followed by `content/rich-text`;
 `decision-guide` is for long, evidence-led guides. `standard` also serves the
@@ -208,6 +243,14 @@ marked optional, and shows text-message consent as a `Text Message Consent (opti
 fieldset of separate, unticked `.quote-consent` boxes, with the Privacy Policy
 and SMS Terms links in the note beneath them. The consent wording is the
 company's registered text and is never restyled into marketing copy.
+
+Beside the form, the contact page shows the phone number as a copper call
+button under the heading and the email address under the body (both from site
+settings, through the `showContact` prop), with the crew photo stacked under
+the portrait. It closes with `social/feed`: the profile handles beside a static
+grid of the ten latest Instagram posts, each opening in a new tab. The social
+media page (`standard`) is a `hero/interior` followed by `social/profiles`: one
+image tile per profile and the vCard QR card linking to `/s/JW.vcf`.
 
 Pages keep the live site's addresses (e.g. `/24-7-emergency-plumber-salt-lake-utah`).
 Generated service and area pages are folded into the real pages through

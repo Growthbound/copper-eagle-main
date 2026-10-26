@@ -80,6 +80,10 @@ final readonly class PublicLinkTarget
             return true;
         }
 
+        if ($this->publicDownloadExists($path)) {
+            return true;
+        }
+
         $segments = array_values(array_filter(explode('/', trim($path, '/')), 'strlen'));
         $slug = trim($path, '/') ?: '/';
 
@@ -113,7 +117,7 @@ final readonly class PublicLinkTarget
                 && Media::query()->whereKey((int) $segments[1])->exists();
         }
 
-        if (! Schema::hasTable('content_entries')) {
+        if (! $this->contentCatalogAvailable()) {
             return $this->pages->find($slug) !== null;
         }
 
@@ -130,6 +134,34 @@ final readonly class PublicLinkTarget
         }
 
         return $this->pages->find($slug) !== null;
+    }
+
+    /**
+     * A downloadable file shipped in public/, such as the vCard the live site
+     * links at /s/JW.vcf. Only these document types count, so a link can never
+     * point at a script, a build asset, or a path that merely looks like one.
+     */
+    private function publicDownloadExists(string $path): bool
+    {
+        if (preg_match('#^/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9._-]+\.(?:vcf|pdf)$#', $path) !== 1) {
+            return false;
+        }
+
+        return File::isFile(public_path(ltrim($path, '/')));
+    }
+
+    /**
+     * Whether the publication table can be queried. Before the first
+     * migration the SQLite file may not exist at all, and asking about the
+     * table then throws instead of answering no.
+     */
+    private function contentCatalogAvailable(): bool
+    {
+        try {
+            return Schema::hasTable('content_entries');
+        } catch (\Throwable) {
+            return false;
+        }
     }
 
     private function managedFileExists(string $slug): bool
