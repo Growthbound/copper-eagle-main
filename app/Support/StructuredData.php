@@ -38,7 +38,7 @@ class StructuredData
 
         $nodes[] = array_filter([
             '@type' => 'WebPage',
-            '@id' => $url.'#webpage',
+            '@id' => self::webPageId($url),
             'name' => $title,
             'description' => $description,
             'url' => $url,
@@ -56,7 +56,7 @@ class StructuredData
     {
         $nodes = [array_filter([
             '@type' => 'WebPage',
-            '@id' => $page->canonicalUrl().'#webpage',
+            '@id' => self::webPageId($page->canonicalUrl()),
             'name' => $page->title,
             'description' => $page->description,
             'url' => $page->canonicalUrl(),
@@ -124,6 +124,18 @@ class StructuredData
     public static function websiteId(): string
     {
         return rtrim(url('/'), '/').'/#website';
+    }
+
+    /**
+     * The page node's id. The homepage's canonical URL has no path, and
+     * `https://example.com#webpage` beside `https://example.com/#business`
+     * reads as a different address. Both are the root, so the id says so.
+     */
+    private static function webPageId(string $url): string
+    {
+        $path = parse_url($url, PHP_URL_PATH);
+
+        return ($path === null || $path === '' ? $url.'/' : $url).'#webpage';
     }
 
     /**
@@ -223,9 +235,8 @@ class StructuredData
         /*
          * An entity with no picture is harder to attach to a Knowledge Panel or
          * to cite in an AI answer, both of which want something to show. `logo`
-         * is the mark itself; `image` is what a result may render, and pointing
-         * both at one asset keeps the two consistent rather than leaving a
-         * consumer to guess which represents the business.
+         * is the mark itself; `image` is a photograph of the business, which
+         * the logo never stands in for.
          */
         if ($logo = SiteLogo::forSchema()) {
             $business['logo'] = [
@@ -236,7 +247,37 @@ class StructuredData
             ];
         }
 
+        if ($photo = self::photo()) {
+            $business['image'] = $photo;
+        }
+
         return $business;
+    }
+
+    /**
+     * The site's photograph of the business, from site settings. Declared
+     * only while the file exists, so a renamed image can't leave a broken URL
+     * in the markup of every page.
+     *
+     * @return array<string, mixed>|null
+     */
+    private static function photo(): ?array
+    {
+        $photo = config('site.photo');
+
+        if (! is_array($photo)
+            || ! is_string($photo['src'] ?? null)
+            || trim($photo['src']) === ''
+            || ! is_file(public_path($photo['src']))) {
+            return null;
+        }
+
+        return array_filter([
+            '@type' => 'ImageObject',
+            'url' => asset($photo['src']),
+            'width' => is_int($photo['width'] ?? null) && $photo['width'] > 0 ? $photo['width'] : null,
+            'height' => is_int($photo['height'] ?? null) && $photo['height'] > 0 ? $photo['height'] : null,
+        ]);
     }
 
     /**
@@ -396,18 +437,23 @@ class StructuredData
     }
 
     /**
-     * Wraps the nodes for a page into one graph, so the business is declared
-     * once and the rest reference it.
+     * The page's JSON-LD, one document per node, business first. The business
+     * is declared once and the rest point at it by `@id`.
      *
-     * @param  array<int, array<string, mixed>>  $nodes
-     * @return array<string, mixed>
+     * Each node is its own document rather than one `@graph`. Search engines
+     * read either, and the `@id` references join the nodes across documents,
+     * but simpler readers (AI crawlers and readiness checkers among them) only
+     * look at each document's top-level type and miss everything in a graph.
+     *
+     * @param  array<int, array<string, mixed>|null>  $nodes
+     * @return list<array<string, mixed>>
      */
-    public static function graph(array $nodes = []): array
+    public static function documents(array $nodes = []): array
     {
-        return [
-            '@context' => 'https://schema.org',
-            '@graph' => [self::localBusiness(), self::website(), ...array_values(array_filter($nodes))],
-        ];
+        return array_map(
+            fn (array $node): array => ['@context' => 'https://schema.org', ...$node],
+            [self::localBusiness(), self::website(), ...array_values(array_filter($nodes))],
+        );
     }
 
     /**

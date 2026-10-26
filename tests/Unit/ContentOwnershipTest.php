@@ -20,7 +20,7 @@ class ContentOwnershipTest extends TestCase
         $config = require dirname(__DIR__, 2).'/config/site.php';
 
         $this->assertSame(
-            ['name', 'logo_media_id', 'business_type', 'description', 'phone', 'email', 'address', 'opening_hours', 'people', 'social_links', 'navigation'],
+            ['name', 'logo_media_id', 'photo', 'business_type', 'description', 'phone', 'email', 'address', 'opening_hours', 'people', 'social_links', 'navigation'],
             array_keys($config),
             'config/site.php gained a key. Page content belongs in content/, not here.',
         );

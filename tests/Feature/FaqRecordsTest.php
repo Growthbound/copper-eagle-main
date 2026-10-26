@@ -6,6 +6,7 @@ use App\Content\AreaRepository;
 use App\Content\FaqRepository;
 use App\Content\ServiceRepository;
 use Illuminate\Support\Facades\File;
+use Tests\Concerns\ReadsStructuredData;
 use Tests\Concerns\WritesRecordFixtures;
 use Tests\TestCase;
 
@@ -18,6 +19,7 @@ use Tests\TestCase;
  */
 class FaqRecordsTest extends TestCase
 {
+    use ReadsStructuredData;
     use WritesRecordFixtures;
 
     private const QUESTION_PAGE = 'fixture-questions';
@@ -265,13 +267,9 @@ class FaqRecordsTest extends TestCase
      */
     private function faqNodeFrom(string $path): array
     {
-        $content = $this->get($path)->assertOk()->getContent();
+        $content = (string) $this->get($path)->assertOk()->getContent();
 
-        preg_match('/<script type="application\/ld\+json">\s*(.*?)\s*<\/script>/s', $content, $matches);
-
-        $this->assertNotEmpty($matches, 'No JSON-LD on '.$path);
-
-        foreach (json_decode(html_entity_decode($matches[1]), true)['@graph'] as $node) {
+        foreach ($this->structuredDataIn($content) as $node) {
             if (($node['@type'] ?? null) === 'FAQPage') {
                 return $node;
             }

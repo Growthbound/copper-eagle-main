@@ -6,7 +6,9 @@ use App\Models\Media;
 use App\Support\SiteLogo;
 use App\Support\StructuredData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\File;
 use Tests\Concerns\IsolatesManagedContent;
+use Tests\Concerns\ReadsStructuredData;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\TestCase;
 
@@ -15,16 +17,21 @@ use Tests\TestCase;
  * single, pictured business.
  *
  * A third-party readiness checker reported the Organization name, FAQPage and
- * Article schema as missing. All three were present — it was matching
- * `@type == "Organization"` literally and never opened an article. The
- * assertions here pin the parts that were genuinely absent, and equally pin the
- * two things that must not be "fixed" into a worse state.
+ * Article schema as missing. All three were present — it reads only each
+ * JSON-LD block's top-level type, never a `@graph`, and matches
+ * `@type == "Organization"` literally. Nodes are now separate blocks so such
+ * readers find them (see StructuredDataTest). The assertions here pin the parts
+ * that were genuinely absent, and equally pin the two things that must not be
+ * "fixed" into a worse state.
  */
 class EntityIdentityTest extends TestCase
 {
     use IsolatesManagedContent;
+    use ReadsStructuredData;
     use RefreshDatabase;
     use UsesFixtureContent;
+
+    private const FIXTURE_PHOTO = 'fixture-business-photo.jpg';
 
     protected function setUp(): void
     {
@@ -37,6 +44,7 @@ class EntityIdentityTest extends TestCase
 
     protected function tearDown(): void
     {
+        File::delete(public_path(self::FIXTURE_PHOTO));
         SiteLogo::flush();
         $this->tearDownFixtureContent();
 
@@ -73,16 +81,64 @@ class EntityIdentityTest extends TestCase
     }
 
     /**
-     * `image` on a LocalBusiness is meant to be a picture of the business, not
-     * its wordmark. Nothing in the media library is confirmed as a
-     * representative photograph, so the field stays absent rather than pointing
-     * at a logo.
+     * `image` on a LocalBusiness is meant to be a picture of the business: the
+     * crew, a van, the shop. The site's configured photograph is the one it
+     * declares, at its real size.
+     */
+    public function test_the_business_declares_its_configured_photograph(): void
+    {
+        $this->configurePhoto();
+
+        $this->assertSame([
+            '@type' => 'ImageObject',
+            'url' => asset(self::FIXTURE_PHOTO),
+            'width' => 1200,
+            'height' => 745,
+        ], $this->businessNode()['image']);
+    }
+
+    /**
+     * The logo is not a photograph of the business. A site with no photo
+     * configured declares no image rather than pointing the field at its mark.
      */
     public function test_the_business_does_not_pass_its_logo_off_as_a_photograph(): void
     {
+        config()->set('site.photo', null);
         $this->uploadLogo(512, 512);
 
         $this->assertArrayNotHasKey('image', $this->businessNode());
+    }
+
+    /**
+     * A renamed or deleted file would otherwise leave a broken image URL in the
+     * markup of every page.
+     */
+    public function test_a_photograph_missing_from_disk_is_not_declared(): void
+    {
+        config()->set('site.photo', ['src' => 'images/no-such-photo.jpg', 'width' => 1200, 'height' => 745]);
+
+        $this->assertArrayNotHasKey('image', $this->businessNode());
+    }
+
+    /**
+     * Whatever photograph the site ships with has to be on disk at the size the
+     * markup declares for it.
+     */
+    public function test_the_shipped_photograph_exists_at_its_declared_size(): void
+    {
+        $photo = config('site.photo');
+
+        if ($photo === null) {
+            $this->assertNull($photo);
+
+            return;
+        }
+
+        $this->assertFileExists(public_path($photo['src']));
+        $this->assertSame(
+            [$photo['width'], $photo['height']],
+            array_slice(getimagesize(public_path($photo['src'])), 0, 2),
+        );
     }
 
     /**
@@ -253,6 +309,13 @@ class EntityIdentityTest extends TestCase
         $this->assertStringNotContainsString('summary_large_image', $rendered);
     }
 
+    private function configurePhoto(): void
+    {
+        File::put(public_path(self::FIXTURE_PHOTO), 'not a real image');
+
+        config()->set('site.photo', ['src' => self::FIXTURE_PHOTO, 'width' => 1200, 'height' => 745]);
+    }
+
     private function uploadLogo(int $width, int $height): Media
     {
         $media = Media::create([
@@ -277,11 +340,7 @@ class EntityIdentityTest extends TestCase
     {
         $content = (string) $this->get('/')->assertOk()->getContent();
 
-        preg_match('/<script type="application\/ld\+json">\s*(.*?)\s*<\/script>/s', $content, $matches);
-
-        $this->assertNotEmpty($matches, 'No JSON-LD on the homepage.');
-
-        foreach (json_decode(html_entity_decode($matches[1]), true)['@graph'] as $node) {
+        foreach ($this->structuredDataIn($content) as $node) {
             if (($node['@id'] ?? null) === StructuredData::businessId()) {
                 return $node;
             }
