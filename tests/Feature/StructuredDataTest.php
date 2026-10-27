@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Support\StructuredData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Concerns\IsolatesManagedContent;
+use Tests\Concerns\ReadsStructuredData;
 use Tests\Concerns\UsesFixtureContent;
 use Tests\Support\ManagedContentFixtures;
 use Tests\TestCase;
@@ -18,6 +19,7 @@ class StructuredDataTest extends TestCase
 {
     use IsolatesManagedContent;
     use ManagedContentFixtures;
+    use ReadsStructuredData;
     use RefreshDatabase;
     use UsesFixtureContent;
 
@@ -48,14 +50,67 @@ class StructuredDataTest extends TestCase
         $this->assertSame(StructuredData::businessId(), $business['@id']);
     }
 
-    public function test_the_markup_is_valid_json(): void
+    /**
+     * Each node is its own block. Search engines read a `@graph` too, but
+     * simpler readers (AI crawlers and readiness checkers among them) only
+     * look at each block's top-level type and miss everything inside a graph.
+     */
+    public function test_each_node_is_its_own_json_ld_block(): void
     {
         foreach (['/', '/services', $this->fixtureService(), $this->fixtureArea()] as $path) {
-            $graph = $this->graphFrom($path);
+            $nodes = $this->nodesFrom($path);
 
-            $this->assertSame('https://schema.org', $graph['@context']);
-            $this->assertNotEmpty($graph['@graph']);
+            $this->assertGreaterThanOrEqual(3, count($nodes), $path);
+
+            foreach ($nodes as $node) {
+                $this->assertSame('https://schema.org', $node['@context'], $path);
+                $this->assertArrayHasKey('@type', $node, $path);
+                $this->assertArrayNotHasKey('@graph', $node, $path);
+            }
+
+            // The business comes first, then the site, then the page.
+            $this->assertSame(StructuredData::businessId(), $nodes[0]['@id'], $path);
+            $this->assertSame('WebSite', $nodes[1]['@type'], $path);
+            $this->assertContains('WebPage', array_column($nodes, '@type'), $path);
         }
+    }
+
+    /**
+     * The nodes still point at one another by `@id`, which is what joins them
+     * into one business once they no longer share a graph.
+     */
+    public function test_separate_blocks_still_reference_the_business_by_id(): void
+    {
+        $nodes = collect($this->nodesFrom($this->fixtureService()));
+        $businessId = StructuredData::businessId();
+
+        $this->assertSame($businessId, $nodes->firstWhere('@type', 'WebSite')['publisher']['@id']);
+        $this->assertSame($businessId, $nodes->firstWhere('@type', 'WebPage')['about']['@id']);
+        $this->assertSame($businessId, $nodes->firstWhere('@type', 'Service')['provider']['@id']);
+        $this->assertSame(1, $nodes->where('@id', $businessId)->count(), 'The business is declared more than once.');
+    }
+
+    /**
+     * The homepage's canonical URL has no path. Its page id still sits under
+     * the root path, as the business and site ids do, so all three read as the
+     * same address.
+     */
+    public function test_the_home_page_id_sits_under_the_root_path(): void
+    {
+        $page = collect($this->nodesFrom('/'))->firstWhere('@type', 'WebPage');
+        $root = rtrim(url('/'), '/');
+
+        $this->assertSame($root.'/#webpage', $page['@id']);
+        $this->assertSame($root.'/#business', StructuredData::businessId());
+        $this->assertSame($root.'/#website', StructuredData::websiteId());
+    }
+
+    public function test_fallback_page_identity_for_a_bare_origin_uses_the_root_path(): void
+    {
+        $nodes = StructuredData::withWebPage([], 'https://example.com', 'Home', null);
+
+        $this->assertSame('https://example.com/#webpage', $nodes[0]['@id']);
+        $this->assertSame('https://example.com', $nodes[0]['url']);
     }
 
     public function test_public_pages_have_one_page_identity_matching_their_canonical(): void
@@ -72,13 +127,16 @@ class StructuredDataTest extends TestCase
             $html = $this->get($path)->assertOk()->getContent();
             preg_match('/<link rel="canonical" href="([^"]+)"/', $html, $canonical);
             $pages = array_values(array_filter(
-                $this->graphFrom($path)['@graph'],
+                $this->nodesFrom($path),
                 fn (array $node): bool => in_array('WebPage', (array) ($node['@type'] ?? []), true),
             ));
 
+            // A canonical with no path (the homepage) takes the root path in its id.
+            $base = parse_url($canonical[1], PHP_URL_PATH) === null ? $canonical[1].'/' : $canonical[1];
+
             $this->assertCount(1, $pages, $path);
             $this->assertSame($canonical[1], $pages[0]['url'], $path);
-            $this->assertSame($canonical[1].'#webpage', $pages[0]['@id'], $path);
+            $this->assertSame($base.'#webpage', $pages[0]['@id'], $path);
             $this->assertNotEmpty($pages[0]['name'], $path);
         }
     }
@@ -100,7 +158,7 @@ class StructuredDataTest extends TestCase
 
     public function test_the_site_is_declared_as_a_website_the_business_publishes(): void
     {
-        $graph = collect($this->graphFrom('/')['@graph']);
+        $graph = collect($this->nodesFrom('/'));
         $website = $graph->firstWhere('@type', 'WebSite');
         $page = $graph->first(fn (array $node): bool => in_array('WebPage', (array) ($node['@type'] ?? []), true));
 
@@ -188,7 +246,7 @@ class StructuredDataTest extends TestCase
 
         $path = $this->publishManagedPage(ContentKind::Page, PageTemplate::ServiceDetail, 'fixture-disposals', 'Fixture Disposals', $payload);
 
-        $types = array_column($this->graphFrom($path)['@graph'], '@type');
+        $types = array_column($this->nodesFrom($path), '@type');
 
         $this->assertNotContains('FAQPage', $types);
     }
@@ -334,7 +392,7 @@ class StructuredDataTest extends TestCase
      */
     public function test_every_url_in_the_graph_shares_one_host(): void
     {
-        $graph = $this->graphFrom($this->fixtureService());
+        $graph = $this->nodesFrom($this->fixtureService());
 
         preg_match_all('#https?://[^"\\\\/]+#', json_encode($graph, JSON_UNESCAPED_SLASHES), $matches);
 
@@ -406,21 +464,15 @@ class StructuredDataTest extends TestCase
     }
 
     /**
-     * @return array<string, mixed>
+     * @return list<array<string, mixed>>
      */
-    private function graphFrom(string $path): array
+    private function nodesFrom(string $path): array
     {
-        $content = $this->get($path)->assertOk()->getContent();
+        $nodes = $this->structuredDataIn((string) $this->get($path)->assertOk()->getContent());
 
-        preg_match('/<script type="application\/ld\+json">\s*(.*?)\s*<\/script>/s', $content, $matches);
+        $this->assertNotEmpty($nodes, 'No JSON-LD found on '.$path);
 
-        $this->assertNotEmpty($matches, 'No JSON-LD found on '.$path);
-
-        $decoded = json_decode(html_entity_decode($matches[1]), true);
-
-        $this->assertIsArray($decoded, 'JSON-LD on '.$path.' did not parse');
-
-        return $decoded;
+        return $nodes;
     }
 
     /**
@@ -428,7 +480,7 @@ class StructuredDataTest extends TestCase
      */
     private function businessNodeFrom(string $path): array
     {
-        return $this->graphFrom($path)['@graph'][0];
+        return $this->nodesFrom($path)[0];
     }
 
     /**
@@ -436,7 +488,7 @@ class StructuredDataTest extends TestCase
      */
     private function nodeOfType(string $path, string $type): array
     {
-        foreach ($this->graphFrom($path)['@graph'] as $node) {
+        foreach ($this->nodesFrom($path) as $node) {
             if (($node['@type'] ?? null) === $type) {
                 return $node;
             }

@@ -20,6 +20,17 @@ return [
     'logo_media_id' => null,
 
     /*
+     * A photograph of the business for structured data: the crew, a van, the
+     * shop, never the logo. A path under public/ with its real size, or null
+     * until the business has one. This is the crew photo from the contact page.
+     */
+    'photo' => [
+        'src' => 'images/brand/pages/crew-photo.jpg',
+        'width' => 1200,
+        'height' => 745,
+    ],
+
+    /*
      * The schema.org type for this business, used in structured data. Pick the
      * most specific type that fits: HVACBusiness, Plumber, Electrician,
      * RoofingContractor, HousePainter, MovingCompany. Falls back to
