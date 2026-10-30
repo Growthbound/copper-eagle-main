@@ -242,11 +242,86 @@ const initializeBackgroundVideos = () => {
     });
 };
 
+// Job check-ins: show a batch at a time behind "Load more check-ins", and let
+// the square buttons under a photo strip pick a photo. Without JavaScript every
+// check-in shows and the strip scrolls by touch or trackpad.
+const initializeCheckIns = () => {
+    const smooth = () => (window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
+
+    document.querySelectorAll('[data-check-ins]').forEach((section) => {
+        const items = [...section.querySelectorAll('[data-check-in]')];
+        const batch = Number.parseInt(section.dataset.checkInsBatch ?? '2', 10) || 2;
+        const more = section.querySelector('[data-check-ins-more]');
+        const button = section.querySelector('[data-check-ins-more-button]');
+        let shown = Math.min(batch, items.length);
+
+        items.slice(shown).forEach((item) => {
+            item.hidden = true;
+        });
+
+        if (!more || !button || shown >= items.length) {
+            return;
+        }
+
+        more.hidden = false;
+        button.addEventListener('click', () => {
+            const next = items.slice(shown, shown + batch);
+
+            next.forEach((item) => {
+                item.hidden = false;
+            });
+            shown += next.length;
+            next[0]?.focus({ preventScroll: true });
+
+            if (shown >= items.length) {
+                more.hidden = true;
+            }
+        });
+    });
+
+    document.querySelectorAll('[data-check-in-photos]').forEach((photos) => {
+        const track = photos.querySelector('[data-check-in-photo-track]');
+        const dots = photos.querySelector('[data-check-in-photo-dots]');
+
+        if (!track || !dots) {
+            return;
+        }
+
+        const buttons = [...dots.querySelectorAll('[data-check-in-photo-dot]')];
+        const mark = (current) => {
+            buttons.forEach((button, index) => {
+                if (index === current) {
+                    button.setAttribute('aria-current', 'true');
+                } else {
+                    button.removeAttribute('aria-current');
+                }
+            });
+        };
+
+        dots.hidden = false;
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                track.scrollTo({ left: index * track.clientWidth, behavior: smooth() });
+                mark(index);
+            });
+        });
+
+        let frame = 0;
+        track.addEventListener('scroll', () => {
+            window.cancelAnimationFrame(frame);
+            frame = window.requestAnimationFrame(() => {
+                mark(Math.round(track.scrollLeft / Math.max(track.clientWidth, 1)));
+            });
+        }, { passive: true });
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeBeforeAfter();
     initializePhotoGalleries();
     initializeLazyHeroVideos();
     initializeBackgroundVideos();
+    initializeCheckIns();
 });
 
 // Legacy campaigns target /#contact-us. Keep managed/native anchors unchanged.

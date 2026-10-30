@@ -80,6 +80,10 @@ final class CopperEagleTemplateContent
                     'primaryAction' => ['label' => 'Reach out to us today', 'href' => '#hero'],
                     'buttonStyle' => 'sky',
                 ],
+                'local-reviews' => [
+                    'heading' => 'Local Reviews',
+                    'items' => $this->sampleCheckIns(),
+                ],
             ],
 
             PageTemplate::ServicesHub->value => [
@@ -364,6 +368,44 @@ final class CopperEagleTemplateContent
         return collect(['Springfield', 'Riverton', 'Lakeside', 'Hillcrest', 'Fairview', 'Oak Park'])
             ->map(fn (string $name): array => ['name' => $name, 'href' => '/areas'])
             ->all();
+    }
+
+    /**
+     * Fictional job check-ins for the gallery: sample names and jobs, generic
+     * plumbing photos, and no real staff.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function sampleCheckIns(): array
+    {
+        return [
+            [
+                'author' => 'Sample Technician',
+                'date' => '2026-03-02',
+                'body' => "Replaced a leaking 50-gallon gas water heater and added an expansion tank.\n\nHot water was back the same afternoon.",
+                'photos' => [
+                    $this->photo('copper-pipe.jpg', 'Copper pipe joint against a dark background', 1200, 800),
+                    $this->photo('valve.jpg', 'Close-up of a pressure gauge on a water line', 900, 900),
+                ],
+            ],
+            [
+                'author' => 'Example Plumber',
+                'date' => '2026-02-18',
+                'body' => 'Cleared a slow kitchen drain and replaced the worn trap.',
+                'photos' => [$this->photo('drain.jpg', 'Water running into a sink drain', 1200, 800)],
+            ],
+            [
+                'author' => 'Sample Technician',
+                'date' => '2026-02-03',
+                'body' => 'Rebuilt a running toilet with a new fill valve and flapper.',
+            ],
+            [
+                'author' => 'Example Plumber',
+                'date' => '2026-01-20',
+                'body' => 'Set a new vanity faucet during a bathroom refresh.',
+                'photos' => [$this->photo('bath-sink.jpg', 'Modern bathroom sink with a wall-mounted faucet', 900, 900)],
+            ],
+        ];
     }
 
     /**

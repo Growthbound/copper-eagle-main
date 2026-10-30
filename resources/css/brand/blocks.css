@@ -828,3 +828,182 @@
         transform: none;
     }
 }
+
+/* ------------------------------------------------------------------------
+ * evidence/check-ins: the "Local Reviews" job check-ins. One card per
+ * check-in: initials, name and date, the write-up in italics, and a photo
+ * strip beside it. Cards alternate white and mist, as the live site's do.
+ * --------------------------------------------------------------------- */
+.check-ins {
+    color: var(--theme-text);
+}
+
+.check-ins .section-heading h2 {
+    color: var(--theme-text);
+}
+
+.check-ins-list {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    max-width: 76rem;
+    margin: clamp(2rem, 4vw, 3rem) auto 0;
+    padding: 0;
+    list-style: none;
+}
+
+.check-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding: clamp(1.5rem, 3.5vw, 2.75rem);
+    background: var(--theme-page);
+    box-shadow: 0 0.5rem 1.5rem var(--theme-text-16);
+}
+
+.check-in:nth-child(even) {
+    background: var(--theme-surface);
+}
+
+.check-in[hidden] {
+    display: none;
+}
+
+.check-in.is-text-only {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.check-in:focus-visible {
+    outline: 3px solid var(--theme-accent);
+    outline-offset: 4px;
+}
+
+.check-in-byline {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+}
+
+.check-in-initials {
+    display: grid;
+    width: 3.25rem;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    place-items: center;
+    background: var(--theme-accent);
+    color: var(--theme-on-accent);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+}
+
+.check-in-meta {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.check-in-author {
+    color: var(--theme-primary);
+    font-weight: var(--theme-emphasis-weight);
+}
+
+.check-in-meta time {
+    color: var(--theme-muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+.check-in-body {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.25rem;
+    font-style: italic;
+    line-height: 1.75;
+}
+
+.check-in-body p {
+    margin: 0;
+}
+
+.check-in-photos {
+    position: relative;
+}
+
+.check-in-photo-track {
+    display: flex;
+    aspect-ratio: 16 / 11;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    list-style: none;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    background: var(--theme-text-08);
+}
+
+.check-in-photo-track::-webkit-scrollbar {
+    display: none;
+}
+
+.check-in-photo {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+}
+
+.check-in-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.check-in-photo-dots {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.55rem 0.8rem;
+    translate: -50% 0;
+    background: var(--theme-text-60);
+}
+
+.check-in-photo-dots[hidden] {
+    display: none;
+}
+
+.check-in-photo-dot {
+    width: 0.75rem;
+    aspect-ratio: 1;
+    border: 2px solid var(--theme-on-primary);
+    background: transparent;
+    cursor: pointer;
+}
+
+.check-in-photo-dot[aria-current='true'] {
+    background: var(--theme-on-primary);
+}
+
+.check-in-photo-dot:focus-visible {
+    outline: 2px solid var(--theme-on-primary);
+    outline-offset: 3px;
+}
+
+.check-ins-more {
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    text-align: center;
+}
+
+.check-ins-more[hidden] {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .check-in {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

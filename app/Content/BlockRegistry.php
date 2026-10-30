@@ -30,6 +30,7 @@ final class BlockRegistry
         'service-cards/grid' => 'services',
         'evidence/case-study' => 'case-study',
         'evidence/local-project' => 'local-project',
+        'evidence/check-ins' => 'check-ins',
         'testimonials/quotes' => 'testimonials',
         'content/split' => null,
         'cta/panel' => 'cta',
@@ -66,6 +67,10 @@ final class BlockRegistry
 
     /** The live contact page's Instagram feed shows ten; the grid takes at most twelve. */
     private const SOCIAL_FEED_MAX_POSTS = 12;
+
+    private const CHECK_INS_MAX_ITEMS = 60;
+
+    private const CHECK_IN_MAX_PHOTOS = 8;
 
     /** @var array<string, BlockDefinition>|null */
     private ?array $definitions = null;
@@ -274,6 +279,24 @@ final class BlockRegistry
             $props['card']['image'] = $this->resolvedMedia($props['card']['image']);
         }
 
+        // Each check-in carries its own list of photos.
+        if ($type === 'evidence/check-ins' && is_array($props['items'] ?? null)) {
+            $props['items'] = collect($props['items'])
+                ->map(function (mixed $item): mixed {
+                    if (is_array($item) && is_array($item['photos'] ?? null)) {
+                        $item['photos'] = collect($item['photos'])
+                            ->map(fn (mixed $photo): ?array => $this->resolvedMedia($photo))
+                            ->filter()
+                            ->values()
+                            ->all();
+                    }
+
+                    return $item;
+                })
+                ->values()
+                ->all();
+        }
+
         return $props;
     }
 
@@ -427,6 +450,7 @@ final class BlockRegistry
             'service-cards/icon-strip' => ['services'],
             'social/feed' => ['profiles', 'posts'],
             'social/profiles' => ['profiles'],
+            'evidence/check-ins' => ['items'],
         ][$type] ?? [] as $field) {
             if (array_key_exists($field, $props)
                 && (! is_array($props[$field]) || ! array_is_list($props[$field]))) {
@@ -906,6 +930,7 @@ final class BlockRegistry
         $this->validatePhotoHeroIconStripAndFeatureCards($type, $props, $errors);
         $this->validateCopperEagleSectionOptions($type, $props, $errors);
         $this->validateSocialBlocks($type, $props, $errors);
+        $this->validateCheckIns($type, $props, $errors);
 
         if (in_array($type, ['hero/photo', 'hero/interior'], true)
             && array_key_exists('video', $props)
@@ -915,6 +940,73 @@ final class BlockRegistry
         }
 
         return $errors;
+    }
+
+    /**
+     * evidence/check-ins. Each check-in names who did the work and the day,
+     * and shows a write-up, photos, or both. Every photo needs alt text and
+     * its real size.
+     *
+     * @param  array<string, mixed>  $props
+     * @param  array<string, array<int, string>>  $errors
+     */
+    private function validateCheckIns(string $type, array $props, array &$errors): void
+    {
+        if ($type !== 'evidence/check-ins') {
+            return;
+        }
+
+        $items = $this->listItems($props['items'] ?? []);
+
+        if (count($items) > self::CHECK_INS_MAX_ITEMS) {
+            $errors['/props/items'][] = 'The section shows at most '.self::CHECK_INS_MAX_ITEMS.' check-ins.';
+        }
+
+        foreach ($items as $index => $item) {
+            $pointer = "/props/items/{$index}";
+
+            if (! is_array($item)) {
+                $errors[$pointer][] = 'Each check-in must be a record.';
+
+                continue;
+            }
+
+            if (! $this->filledString($item['author'] ?? null)) {
+                $errors[$pointer][] = 'Each check-in needs the name of whoever did the work.';
+            }
+
+            $date = is_string($item['date'] ?? null)
+                ? \DateTimeImmutable::createFromFormat('!Y-m-d', $item['date'])
+                : false;
+
+            if ($date === false || $date->format('Y-m-d') !== $item['date']) {
+                $errors[$pointer][] = 'Each check-in needs a real date written as YYYY-MM-DD.';
+            }
+
+            $photos = $item['photos'] ?? [];
+
+            if (! is_array($photos) || ! array_is_list($photos)) {
+                $errors[$pointer][] = 'The photos must be an ordered array.';
+
+                continue;
+            }
+
+            if (count($photos) > self::CHECK_IN_MAX_PHOTOS) {
+                $errors[$pointer][] = 'A check-in shows at most '.self::CHECK_IN_MAX_PHOTOS.' photos.';
+            }
+
+            foreach ($photos as $photo) {
+                if ($this->data->media($photo) === null) {
+                    $errors[$pointer][] = 'Each photo needs a safe source, alt text, width, and height.';
+
+                    break;
+                }
+            }
+
+            if ($photos === [] && ! $this->filledString($item['body'] ?? null)) {
+                $errors[$pointer][] = 'A check-in needs a write-up, photos, or both.';
+            }
+        }
     }
 
     /**
@@ -1537,6 +1629,25 @@ final class BlockRegistry
                         'href' => $this->scalarProperty('string', true),
                         'image' => $this->objectProperty($this->mediaProperties()),
                     ],
+                ],
+            ]),
+            $this->define('evidence/check-ins', 'Show the job check-ins the team posts: who did the work, the day, what they did, and photos from the job. Two show at first and the rest load on request. These are the team\'s own write-ups, never customer reviews.', ['heading', 'items'], [
+                'items' => [
+                    ...$this->field('array', true, 'Up to '.self::CHECK_INS_MAX_ITEMS.' check-ins, newest first. Each needs a write-up, photos, or both.'),
+                    'shape' => 'list',
+                    'maxItems' => self::CHECK_INS_MAX_ITEMS,
+                    'items' => $this->objectProperty([
+                        'author' => $this->scalarProperty('string', true),
+                        'date' => $this->scalarProperty('string', true),
+                        'body' => $this->scalarProperty('string', false),
+                        'photos' => [
+                            'type' => 'array',
+                            'required' => false,
+                            'shape' => 'list',
+                            'maxItems' => self::CHECK_IN_MAX_PHOTOS,
+                            'items' => $this->objectProperty($this->mediaProperties()),
+                        ],
+                    ]),
                 ],
             ]),
         ];

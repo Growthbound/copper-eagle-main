@@ -36,7 +36,7 @@ class CopperEaglePageTemplatesTest extends TestCase
 
         $this->assertSame(array_keys(self::PREVIEWS), array_keys($spec), 'The page template table in the design spec lists different templates.');
 
-        foreach ($spec as $template => $blocks) {
+        foreach ($spec as $template => ['blocks' => $blocks, 'optional' => $optional]) {
             $definition = app(PageTemplateRegistry::class)->definition(PageTemplate::from($template));
 
             $this->assertSame(
@@ -44,7 +44,14 @@ class CopperEaglePageTemplatesTest extends TestCase
                 array_values($definition->sectionTypes),
                 "The {$template} template's blocks differ from docs/brand/design-system.md.",
             );
-            $this->assertSame($definition->sequence, $definition->requiredSections, "Every {$template} section must be required.");
+
+            $optionalSections = array_values(array_diff($definition->sequence, $definition->requiredSections));
+
+            $this->assertSame(
+                $optional,
+                array_map(fn (string $section): string => $definition->sectionTypes[$section], $optionalSections),
+                "Every {$template} section is required unless docs/brand/design-system.md marks it optional.",
+            );
         }
     }
 
@@ -123,7 +130,7 @@ class CopperEaglePageTemplatesTest extends TestCase
     }
 
     /**
-     * @return array<string, array<int, string>> template => block types, from the spec.
+     * @return array<string, array{blocks: array<int, string>, optional: array<int, string>}> template => block types and the optional ones, from the spec.
      */
     private function specTemplates(): array
     {
@@ -135,7 +142,8 @@ class CopperEaglePageTemplatesTest extends TestCase
 
         foreach ($rows as $row) {
             preg_match_all('/`([a-z-]+\/[a-z-]+)`/', $row[2], $blocks);
-            $templates[$row[1]] = $blocks[1];
+            preg_match_all('/`([a-z-]+\/[a-z-]+)` \(optional/', $row[2], $optional);
+            $templates[$row[1]] = ['blocks' => $blocks[1], 'optional' => $optional[1]];
         }
 
         return $templates;
