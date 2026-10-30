@@ -120,6 +120,17 @@ addresses; they open in a new tab. A link to a document shipped in `public/`
 (`.vcf` or `.pdf`, such as `/s/JW.vcf`) counts as an existing internal
 destination.
 
+`evidence/check-ins` lists the job check-ins the team posts, newest first: up
+to 60 items, each `{"author": "…", "date": "YYYY-MM-DD", "body": "…",
+"photos": [media, …]}` with a write-up, up to eight photos, or both. The body
+takes blank-line paragraphs. These are the team's own write-ups, so never send
+customer reviews or ratings through this block.
+
+The home template's `local-reviews` section (`evidence/check-ins`) is
+optional: it was added after the home page was published, so a home page
+without it stays valid and renders without it. Every other fixed-template
+section is required.
+
 ## Fixed-template scaffolds
 
 The owner CMS can create a fixed-template draft containing placeholder sections

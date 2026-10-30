@@ -89,7 +89,8 @@ final class PageTemplateRegistry
                 'assurances' => 'content/feature-cards',
                 'service-areas' => 'service-areas/list',
                 'help-prompt' => 'cta/inline-band',
-            ]),
+                'local-reviews' => 'evidence/check-ins',
+            ], optional: ['local-reviews']),
             PageTemplate::ServicesHub => $this->fixed($template, [
                 'hero' => 'hero/interior',
                 'services' => 'service-cards/grid',
@@ -237,14 +238,20 @@ final class PageTemplateRegistry
     }
 
     /**
+     * Every section of a fixed template is required, except the ones listed
+     * as optional. A section added to a template after pages were published
+     * is optional, so those pages stay valid; the template skips it when a
+     * page leaves it out.
+     *
      * @param  array<string, string>  $sectionTypes
+     * @param  array<int, string>  $optional
      */
-    private function fixed(PageTemplate $template, array $sectionTypes): PageTemplateDefinition
+    private function fixed(PageTemplate $template, array $sectionTypes, array $optional = []): PageTemplateDefinition
     {
         return new PageTemplateDefinition(
             template: $template,
             view: 'page-templates.'.$template->value,
-            requiredSections: array_keys($sectionTypes),
+            requiredSections: array_values(array_diff(array_keys($sectionTypes), $optional)),
             sequence: array_keys($sectionTypes),
             sectionTypes: $sectionTypes,
         );

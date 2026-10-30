@@ -182,6 +182,19 @@ its heading (the Google mark on the reviews page).
   `faq/accordion` answers are plain text. A blank line starts a new paragraph;
   they never carry HTML.
 
+### Local Reviews (job check-ins)
+
+The home page closes, before the team spotlight, with "Local Reviews": the
+job check-ins the team posts (`evidence/check-ins`), as on the live site. They
+are the team's own write-ups, never customer reviews. Under a centered H2,
+each check-in is a card with a soft shadow: square copper initials beside the
+name (deep blue, weight 600) and the date (an uppercase label), the write-up
+in italics, and the job photos on the end side in a sideways strip with a
+square white button per photo on a dark bar. Cards alternate white and mist,
+and stack below 900px. Two show at first; an outline "Load more check-ins"
+button reveals two more at a time. The live site's map of job pins is not
+rebuilt.
+
 ## Brand assets
 
 All in `public/images/brand`, downloaded from the live site with the owner's
@@ -197,6 +210,7 @@ approval:
 | `photos/master-plumber-badge.png` | The license badge. A claim: publish only where the owner has confirmed it |
 | `instagram/instagram-01.jpg` … `-10.jpg` | The contact page's Instagram feed, newest first, each linked to its post |
 | `pages/*.png` social tiles (`tictok.png`, `next-door.png`, `face-book.png`, `google-reviews.png`, `instagram.png`) | The social media page's profile tiles, 400px wide |
+| `check-ins/*.jpg` | Photos from the team's job check-ins on the home page's "Local Reviews", copied from the live site's check-in feed. At most 1200px on the long side, with camera metadata (including location) stripped. None shows a customer's house front, house number, or face |
 
 The hero videos (`hero-home.mp4`, `hero-services.mp4`, `hero-team.mp4`, 1280×720,
 muted H.264, each with a `-poster.jpg` still) live in `public/videos/brand/`, and
@@ -209,10 +223,13 @@ height of the copper mark around it.
 
 Every public page uses one of these fixed templates. The section order is
 fixed by `app/Content/PageTemplateRegistry.php`; content changes props only.
+Every section is required except the ones marked optional below. An optional
+section was added after pages using the template were published, so those
+pages stay valid; the template skips it when a page leaves it out.
 
 | Template | Page | Sections, in order |
 |---|---|---|
-| `home` | Home | `hero/photo` (with the service icon strip) · `content/split` · `testimonials/quotes` · `content/feature-cards` · `service-areas/list` · `cta/inline-band` |
+| `home` | Home | `hero/photo` (with the service icon strip) · `content/split` · `testimonials/quotes` · `content/feature-cards` · `service-areas/list` · `cta/inline-band` · `evidence/check-ins` (optional, "Local Reviews") |
 | `services-hub` | Services | `hero/interior` · `service-cards/grid` · `cta/inline-band` · `content/split` |
 | `service-detail` | One service | `hero/interior` · `content/split` · `content/feature-cards` · `content/split` · `cta/panel` · `faq/accordion` · `cta/inline-band` |
 | `emergency` | 24/7 Emergency | `hero/interior` · `content/split` · `pricing/factors` · `cta/inline-band` |

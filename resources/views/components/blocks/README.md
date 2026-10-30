@@ -150,6 +150,7 @@ logo-strip/credentials
 service-areas/grid
 service-areas/coverage
 evidence/local-project
+evidence/check-ins
 cta/sticky-mobile
 cta/inline-band
 cta/form-confirmation
