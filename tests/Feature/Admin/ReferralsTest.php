@@ -5,8 +5,8 @@ namespace Tests\Feature\Admin;
 use App\Livewire\Admin\Referrals;
 use App\Models\Referral;
 use App\Models\User;
-use App\Services\Referrals\ReferralCards;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -67,15 +67,18 @@ class ReferralsTest extends TestCase
     public function test_zip_contains_every_code_in_the_selected_batch_only(): void
     {
         $this->actingAs(User::factory()->create());
-        $batch = app(ReferralCards::class)->generate(2);
-        app(ReferralCards::class)->generate(1);
+        // Fixed codes keep this test the same on every run. generate(), which
+        // makes random codes, has its own test above.
+        $batch = $this->batch(['c2d809da3a90', 'a6c74ccd237f']);
+        $this->batch(['1b8c32b16626']);
         $bytes = $this->get('/admin/referrals/batches/'.$batch)->assertOk()->getContent();
         $path = tempnam(sys_get_temp_dir(), 'qr-test-');
         file_put_contents($path, $bytes);
         $zip = new ZipArchive;
         try {
             $this->assertTrue($zip->open($path));
-            $this->assertSame(2, $zip->numFiles);
+            $names = array_map(fn (int $index): string => (string) $zip->getNameIndex($index), range(0, $zip->numFiles - 1));
+            $this->assertEqualsCanonicalizing(['c2d809da3a90.png', 'a6c74ccd237f.png'], $names);
             foreach (Referral::where('batch_id', $batch)->get() as $referral) {
                 $png = $zip->getFromName($referral->code.'.png');
                 $this->assertSame($referral->publicUrl(), $this->decodeQr($png));
@@ -84,6 +87,23 @@ class ReferralsTest extends TestCase
         } finally {
             unlink($path);
         }
+    }
+
+    /**
+     * A batch of unclaimed cards with the given codes, stored as generate()
+     * stores them.
+     *
+     * @param  array<int, string>  $codes
+     */
+    private function batch(array $codes): string
+    {
+        $batch = (string) Str::uuid();
+
+        foreach ($codes as $code) {
+            Referral::create(['code' => $code, 'batch_id' => $batch, 'referral_url' => Referral::urlForCode($code)]);
+        }
+
+        return $batch;
     }
 
     public static function qrCodes(): array
@@ -116,10 +136,11 @@ class ReferralsTest extends TestCase
         try {
             // This decoder can misidentify alignment patterns in one orientation.
             // Decode the actual exported pixels in each orientation, never a regenerated QR.
+            // Without TRY_HARDER it misread 13 of 1,000 random cards; with it, none.
             foreach ([0, 90, 180, 270] as $angle) {
                 $rotated = imagerotate($image, $angle, 0xFFFFFF);
                 try {
-                    $decoded = (new QrReader($rotated, QrReader::SOURCE_TYPE_RESOURCE, false))->text();
+                    $decoded = (new QrReader($rotated, QrReader::SOURCE_TYPE_RESOURCE, false))->text(['TRY_HARDER' => true]);
                     if (is_string($decoded)) {
                         return $decoded;
                     }
