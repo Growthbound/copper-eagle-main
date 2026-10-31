@@ -12,6 +12,7 @@ use App\Webhooks\WebhookDispatcher;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -24,6 +25,13 @@ class Webhooks extends Component
     public string $name = '';
 
     public string $url = '';
+
+    public string $authenticationMode = Webhook::AUTH_HMAC;
+
+    public string $headerName = Webhook::SIGNATURE_HEADER;
+
+    // Write-only replacement: never hydrate either stored secret into the form.
+    public string $secret = '';
 
     public ?int $editing = null;
 
@@ -124,32 +132,49 @@ class Webhooks extends Component
 
     public function save(): void
     {
-        $this->validate([
-            'name' => 'required|string|max:80',
-            'url' => 'required|url|max:500|starts_with:https://,http://',
-        ], [
-            'url.starts_with' => 'The address must begin with https:// or http://.',
-            'url.url' => 'Enter a full address, such as https://example.com/hooks/leads.',
-        ]);
-
-        if ($this->editing !== null) {
-            Webhook::query()->findOrFail($this->editing)->update([
-                'name' => $this->name,
-                'url' => $this->url,
+        try {
+            $webhook = $this->editing !== null ? Webhook::query()->findOrFail($this->editing) : null;
+            $this->validate([
+                'name' => 'required|string|max:80',
+                'url' => ['required', 'url', 'max:500', $this->authenticationMode === Webhook::AUTH_HEADER ? 'starts_with:https://' : 'starts_with:https://,http://'],
+                'authenticationMode' => ['required', Rule::in([Webhook::AUTH_HMAC, Webhook::AUTH_HEADER])],
+                'headerName' => ['required', 'string', function (string $attribute, mixed $value, callable $fail): void {
+                    if (! is_string($value) || ! Webhook::validHeaderName($value)) {
+                        $fail('Use a valid authentication header, such as X-Signature. Request and timestamp headers are reserved.');
+                    }
+                }],
+                'secret' => [Rule::requiredIf($this->authenticationMode === Webhook::AUTH_HEADER && ($webhook?->header_secret ?? '') === ''), 'nullable', 'string', 'max:255', 'regex:/^[\x20-\x7E]+$/D', 'not_regex:/^\s|\s$/'],
+            ], [
+                'url.starts_with' => $this->authenticationMode === Webhook::AUTH_HEADER ? 'Use https:// when sending a plain secret.' : 'The address must begin with https:// or http://.',
+                'url.url' => 'Enter a full address, such as https://example.com/hooks/leads.',
+                'secret.required' => 'Paste the secret supplied by the receiving system.',
+                'secret.regex' => 'The secret must contain only printable characters, without line breaks.',
+                'secret.not_regex' => 'Remove spaces at the start or end of the secret.',
             ]);
 
-            session()->flash('status', 'Destination updated.');
-        } else {
-            Webhook::query()->create([
-                'name' => $this->name,
-                'url' => $this->url,
-                'is_active' => true,
-            ]);
+            $attributes = [
+                'name' => $this->name, 'url' => $this->url,
+                'authentication_mode' => $this->authenticationMode, 'header_name' => $this->headerName,
+            ];
 
-            session()->flash('status', 'Destination added. Copy its signing secret into the receiving system.');
+            if ($this->secret !== '') {
+                $attributes[$this->authenticationMode === Webhook::AUTH_HEADER ? 'header_secret' : 'secret'] = $this->secret;
+            }
+
+            if ($webhook) {
+                $webhook->update($attributes);
+                session()->flash('status', 'Destination updated.');
+            } else {
+                Webhook::query()->create($attributes + ['is_active' => true]);
+                session()->flash('status', $this->authenticationMode === Webhook::AUTH_HEADER
+                    ? 'Destination added. Send a test to check the connection.'
+                    : 'Destination added. Copy its signing secret into the receiving system.');
+            }
+
+            $this->cancelEdit();
+        } finally {
+            $this->secret = '';
         }
-
-        $this->reset(['name', 'url', 'editing']);
     }
 
     public function edit(int $webhookId): void
@@ -159,11 +184,16 @@ class Webhooks extends Component
         $this->editing = $webhook->id;
         $this->name = $webhook->name;
         $this->url = $webhook->url;
+        $this->authenticationMode = $webhook->authentication_mode;
+        $this->headerName = $webhook->header_name;
+        $this->secret = '';
+        $this->resetValidation();
     }
 
     public function cancelEdit(): void
     {
-        $this->reset(['name', 'url', 'editing']);
+        $this->reset(['name', 'url', 'editing', 'authenticationMode', 'headerName', 'secret']);
+        $this->resetValidation();
     }
 
     public function toggle(int $webhookId): void
@@ -182,7 +212,15 @@ class Webhooks extends Component
 
     public function rotateSecret(int $webhookId): void
     {
-        Webhook::query()->findOrFail($webhookId)->update(['secret' => Webhook::newSecret()]);
+        $webhook = Webhook::query()->findOrFail($webhookId);
+
+        if ($webhook->authentication_mode === Webhook::AUTH_HEADER) {
+            $this->addError('secret', 'Edit this destination to replace the secret supplied by the receiving system.');
+
+            return;
+        }
+
+        $webhook->update(['secret' => Webhook::newSecret()]);
 
         session()->flash('status', 'Signing secret replaced. Update the receiving system or deliveries will be rejected.');
     }

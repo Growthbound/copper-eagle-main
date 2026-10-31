@@ -239,6 +239,222 @@ class WebhookTest extends TestCase
         $this->get(route('admin.webhooks'))->assertRedirect(route('admin.login'));
     }
 
+    public function test_a_destination_can_send_the_receivers_secret_in_a_custom_header(): void
+    {
+        Http::fake(fn (Request $request) => Http::response('',
+            hash_equals('example-receiver-secret', $request->header('X-Signature')[0] ?? '') ? 200 : 401
+        ));
+
+        Livewire::test(WebhooksScreen::class)
+            ->set('name', 'Local Business Pro')
+            ->set('url', 'https://crm.example/webhook/example')
+            ->set('authenticationMode', 'header')
+            ->set('headerName', 'X-Signature')
+            ->set('secret', 'example-receiver-secret')
+            ->call('save')
+            ->assertHasNoErrors()
+            ->assertSet('secret', '');
+
+        $webhook = Webhook::query()->sole();
+
+        Livewire::test(WebhooksScreen::class)->call('sendTest', $webhook->id);
+
+        Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-Signature', 'example-receiver-secret')
+            && ! $request->hasHeader(Webhook::SIGNATURE_HEADER)
+            && ! $request->hasHeader(Webhook::TIMESTAMP_HEADER));
+        $this->assertTrue(WebhookDelivery::query()->sole()->succeeded);
+        $this->assertSame(1, WebhookDelivery::query()->sole()->attempts);
+    }
+
+    public function test_real_leads_also_use_the_saved_header_and_secret(): void
+    {
+        Http::fake(['*' => Http::response('', 200)]);
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Api-Key', 'header_secret' => 'example-token']);
+
+        $this->createLeadAndDeliver();
+
+        Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-Api-Key', 'example-token')
+            && json_decode($request->body(), true)['event'] === WebhookDispatcher::LEAD_CREATED);
+    }
+
+    public function test_header_secrets_are_encrypted_and_not_loaded_into_the_edit_form(): void
+    {
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => 'example-token']);
+
+        $this->assertNotSame('example-token', $webhook->getRawOriginal('header_secret'));
+        $this->assertArrayNotHasKey('header_secret', $webhook->toArray());
+
+        Livewire::test(WebhooksScreen::class)
+            ->call('edit', $webhook->id)
+            ->assertSet('authenticationMode', 'header')
+            ->assertSet('headerName', 'X-Signature')
+            ->assertSet('secret', '')
+            ->assertDontSee('example-token');
+    }
+
+    public function test_editing_can_preserve_or_replace_the_secret_and_header(): void
+    {
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => 'example-old-token']);
+
+        $screen = Livewire::test(WebhooksScreen::class)->call('edit', $webhook->id);
+        $screen->set('name', 'Renamed')->call('save')->assertHasNoErrors();
+        $this->assertSame('example-old-token', $webhook->refresh()->header_secret);
+
+        $screen->call('edit', $webhook->id)
+            ->set('headerName', 'X-Api-Key')
+            ->set('secret', 'example-new-token')
+            ->call('save')->assertHasNoErrors()->assertSet('secret', '');
+
+        $this->assertSame('example-new-token', $webhook->refresh()->header_secret);
+        $this->assertSame('X-Api-Key', $webhook->header_name);
+    }
+
+    public function test_hmac_destinations_can_also_change_the_signing_secret_and_header(): void
+    {
+        Http::fake(['*' => Http::response('', 200)]);
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+
+        Livewire::test(WebhooksScreen::class)->call('edit', $webhook->id)
+            ->set('secret', 'example-hmac-secret')
+            ->set('headerName', 'X-Custom-Signature')
+            ->call('save')->assertHasNoErrors();
+
+        $this->createLeadAndDeliver();
+
+        Http::assertSent(function (Request $request): bool {
+            $timestamp = (int) $request->header(Webhook::TIMESTAMP_HEADER)[0];
+
+            return $request->hasHeader('X-Custom-Signature', 'sha256='.hash_hmac('sha256', $timestamp.'.'.$request->body(), 'example-hmac-secret'));
+        });
+    }
+
+    public function test_a_blank_edit_preserves_a_saved_zero_string_secret(): void
+    {
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => '0']);
+
+        Livewire::test(WebhooksScreen::class)->call('edit', $webhook->id)
+            ->set('name', 'Renamed')->call('save')->assertHasNoErrors();
+
+        $this->assertSame('0', $webhook->refresh()->header_secret);
+    }
+
+    public function test_plain_secret_mode_requires_a_secret_and_https(): void
+    {
+        Livewire::test(WebhooksScreen::class)
+            ->set('name', 'CRM')->set('url', 'http://crm.example/hook')
+            ->set('authenticationMode', 'header')->set('headerName', 'X-Signature')
+            ->call('save')->assertHasErrors(['secret', 'url']);
+
+        $this->assertDatabaseCount('webhooks', 0);
+    }
+
+    public function test_switching_an_existing_hmac_destination_requires_the_receivers_secret(): void
+    {
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+
+        Livewire::test(WebhooksScreen::class)->call('edit', $webhook->id)
+            ->set('authenticationMode', 'header')->set('headerName', 'X-Signature')
+            ->call('save')->assertHasErrors('secret');
+    }
+
+    public function test_invalid_or_reserved_headers_and_control_characters_are_rejected(): void
+    {
+        foreach (['', 'Bad Header', "X-Key\r\nInjected", 'Host', 'content-type', 'Content-Length', 'Connection', Webhook::TIMESTAMP_HEADER] as $header) {
+            Livewire::test(WebhooksScreen::class)
+                ->set('name', 'CRM')->set('url', 'https://crm.example/hook')
+                ->set('headerName', $header)->call('save')->assertHasErrors('headerName');
+        }
+
+        Livewire::test(WebhooksScreen::class)
+            ->set('name', 'CRM')->set('url', 'https://crm.example/hook')
+            ->set('secret', "example-token\r\nInjected: value")
+            ->call('save')->assertHasErrors('secret')->assertSet('secret', '');
+
+        Livewire::test(WebhooksScreen::class)
+            ->set('name', 'CRM')->set('url', 'https://crm.example/hook')
+            ->set('authenticationMode', 'invalid')->call('save')->assertHasErrors('authenticationMode');
+    }
+
+    public function test_cancelling_an_edit_clears_secret_input_and_validation_errors(): void
+    {
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        Livewire::test(WebhooksScreen::class)->call('edit', $webhook->id)
+            ->set('secret', 'example-token')->set('url', 'invalid')->call('save')
+            ->assertHasErrors('url')->assertSet('secret', '')
+            ->call('cancelEdit')->assertSet('secret', '')->assertHasNoErrors();
+    }
+
+    public function test_redelivery_uses_the_replaced_secret_without_exposing_it_in_history(): void
+    {
+        Http::fake(['*' => Http::response('', 200)]);
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => 'example-new-token']);
+        $delivery = WebhookDelivery::query()->create([
+            'webhook_id' => $webhook->id, 'event' => 'lead.test', 'payload' => ['id' => 0],
+            'status_code' => 401, 'attempts' => 3, 'succeeded' => false,
+        ]);
+
+        Livewire::test(WebhooksScreen::class)->call('redeliver', $delivery->id);
+
+        Http::assertSent(fn (Request $request): bool => $request->hasHeader('X-Signature', 'example-new-token'));
+        $this->assertStringNotContainsString('example-new-token', WebhookDelivery::query()->get()->toJson());
+    }
+
+    public function test_delivery_errors_do_not_store_credentials_from_transport_exceptions(): void
+    {
+        Http::fake(fn () => throw new \RuntimeException('Transport failed with example-private-token'));
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => 'example-private-token']);
+
+        Livewire::test(WebhooksScreen::class)->call('sendTest', $webhook->id);
+
+        $this->assertFalse(WebhookDelivery::query()->sole()->succeeded);
+        $this->assertStringNotContainsString('example-private-token', WebhookDelivery::query()->sole()->error);
+    }
+
+    public function test_plain_secret_delivery_does_not_follow_redirects(): void
+    {
+        $redirects = null;
+        Http::fake(function (Request $request, array $options) use (&$redirects) {
+            $redirects = $options['allow_redirects'];
+
+            return Http::response('', 302, ['Location' => 'https://other.example/hook']);
+        });
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => 'example-token']);
+
+        Livewire::test(WebhooksScreen::class)->call('sendTest', $webhook->id);
+
+        $this->assertFalse($redirects);
+        $this->assertFalse(WebhookDelivery::query()->sole()->succeeded);
+    }
+
+    public function test_invalid_persisted_plain_secret_settings_fail_without_sending(): void
+    {
+        Http::fake();
+        $webhook = $this->makeWebhook('CRM', 'http://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_name' => 'X-Signature', 'header_secret' => 'example-token']);
+
+        Livewire::test(WebhooksScreen::class)->call('sendTest', $webhook->id);
+
+        Http::assertNothingSent();
+        $this->assertFalse(WebhookDelivery::query()->sole()->succeeded);
+    }
+
+    public function test_rotation_is_disabled_for_receiver_owned_secrets(): void
+    {
+        $webhook = $this->makeWebhook('CRM', 'https://crm.example/hook');
+        $webhook->update(['authentication_mode' => 'header', 'header_secret' => 'example-token']);
+
+        Livewire::test(WebhooksScreen::class)->call('rotateSecret', $webhook->id)->assertHasErrors('secret');
+
+        $this->assertSame('example-token', $webhook->refresh()->header_secret);
+    }
+
     private function makeWebhook(string $name, string $url, bool $active = true): Webhook
     {
         return Webhook::query()->create([

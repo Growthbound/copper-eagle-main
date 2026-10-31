@@ -63,14 +63,8 @@ class SendWebhook
             $attempt++;
 
             try {
-                $signature = $webhook->sign($body, $timestamp);
-                $timestampHeader = (string) $timestamp;
-
-                $response = Http::withHeaders([
-                    'Content-Type' => 'application/json',
-                    Webhook::SIGNATURE_HEADER => $signature,
-                    Webhook::TIMESTAMP_HEADER => $timestampHeader,
-                ])
+                $response = Http::withHeaders($webhook->deliveryHeaders($body, $timestamp))
+                    ->withoutRedirecting()
                     ->timeout(self::TIMEOUT_SECONDS)
                     ->withBody($body, 'application/json')
                     ->post($webhook->url);
@@ -78,9 +72,9 @@ class SendWebhook
                 $statusCode = $response->status();
                 $succeeded = $response->successful();
                 $error = $succeeded ? null : 'The endpoint answered '.$statusCode.'.';
-            } catch (Throwable $e) {
+            } catch (Throwable) {
                 $statusCode = null;
-                $error = $e->getMessage();
+                $error = 'Delivery could not be completed. Check the destination address and authentication settings.';
             }
 
             if (! $succeeded && $attempt < self::ATTEMPTS && ! app()->runningUnitTests()) {
