@@ -42,6 +42,34 @@ class RichTextBlockTest extends TestCase
         $this->assertStringContainsString('<hr', $html);
     }
 
+    /**
+     * Template indentation must not leak between segments: it put a space
+     * before the full stop after a link or bold word ("reply START .") and
+     * underlined a trailing space inside links.
+     */
+    public function test_links_and_marked_words_sit_flush_against_the_text_around_them(): void
+    {
+        $html = Blade::render(
+            '<x-blocks.content.rich-text heading="Terms" :nodes="$nodes" />',
+            ['nodes' => [
+                ['type' => 'paragraph', 'segments' => [
+                    ['text' => 'Reply '],
+                    ['text' => 'STOP', 'mark' => 'strong'],
+                    ['text' => '. See '],
+                    ['text' => 'our terms', 'href' => '/terms-and-conditions/'],
+                    ['text' => ' or '],
+                    ['text' => 'the source', 'href' => 'https://example.com/source', 'mark' => 'emphasis'],
+                    ['text' => '.'],
+                ]],
+            ]],
+        );
+
+        $this->assertStringContainsString(
+            '<p>Reply <strong>STOP</strong>. See <a href="/terms-and-conditions/">our terms</a> or <a href="https://example.com/source" rel="noopener noreferrer"><em>the source</em></a>.</p>',
+            $html,
+        );
+    }
+
     public function test_it_omits_malformed_nodes_and_unsafe_optional_links(): void
     {
         $html = Blade::render(

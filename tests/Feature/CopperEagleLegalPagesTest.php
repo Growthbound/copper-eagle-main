@@ -9,16 +9,18 @@ use Tests\TestCase;
 /**
  * The Privacy Policy and Terms pages as they ship.
  *
- * Their text comes from the company and is not ours to reword. Its SMS consent
- * paragraph quotes https://www.coppereagleplumbing.com/privacy, but this site's
- * privacy page lives at /privacy-policy. So the quoted address has to redirect,
- * and the long address has to wrap on a phone instead of widening the page.
+ * Their text comes from the company and is not ours to reword: both are copied
+ * word for word from the live site (Terms effective, and Privacy Policy last
+ * updated, October 24, 2026). The Privacy Policy's SMS consent message now
+ * quotes /privacy-policy, but messages sent before that quoted
+ * https://www.coppereagleplumbing.com/privacy, so that address still has to
+ * redirect. Long addresses have to wrap on a phone instead of widening the page.
  */
 class CopperEagleLegalPagesTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const QUOTED_ADDRESS = 'https://www.coppereagleplumbing.com/privacy.';
+    private const QUOTED_ADDRESS = 'https://www.coppereagleplumbing.com/privacy-policy.';
 
     protected function setUp(): void
     {
@@ -34,7 +36,7 @@ class CopperEagleLegalPagesTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_the_address_the_legal_text_quotes_redirects_to_the_privacy_policy(): void
+    public function test_the_address_older_messages_quote_redirects_to_the_privacy_policy(): void
     {
         foreach (['/privacy', '/privacy/'] as $path) {
             $response = $this->get($path)->assertStatus(301);
@@ -49,13 +51,34 @@ class CopperEagleLegalPagesTest extends TestCase
         $this->get('/privacy-policy/')->assertOk();
     }
 
-    public function test_the_legal_text_still_quotes_the_address_unchanged(): void
+    public function test_the_privacy_policy_quotes_its_own_address_and_links_to_the_terms(): void
     {
-        foreach (['/privacy-policy/', '/terms-and-conditions/'] as $path) {
-            $this->get($path)
-                ->assertOk()
-                ->assertSee(self::QUOTED_ADDRESS, false);
-        }
+        $html = $this->get('/privacy-policy/')
+            ->assertOk()
+            ->assertSee('Copper Eagle Plumbing Privacy Policy')
+            ->assertSee(self::QUOTED_ADDRESS, false)
+            ->getContent();
+
+        // The footer links to both legal pages on every page, so match the
+        // link by the policy's own link text.
+        $this->assertMatchesRegularExpression('#<a href="/terms-and-conditions/"[^>]*>\s*coppereagleplumbing\.com/terms-and-conditions\s*</a>#', $html);
+    }
+
+    /**
+     * The Terms page once carried a copy of the Privacy Policy. It must carry
+     * the SMS program terms that the contact form's consent boxes point to.
+     */
+    public function test_the_terms_page_carries_the_sms_terms_and_links_to_the_privacy_policy(): void
+    {
+        $html = $this->get('/terms-and-conditions/')
+            ->assertOk()
+            ->assertSee('Copper Eagle Plumbing Terms and Conditions')
+            ->assertSee('Program name: Copper Eagle Plumbing Customer Text Messages.')
+            ->assertDontSee('Copper Eagle Plumbing Privacy Policy')
+            ->getContent();
+
+        $this->assertMatchesRegularExpression('#<a href="/privacy-policy/"[^>]*>\s*coppereagleplumbing\.com/privacy-policy\s*</a>#', $html);
+        $this->assertMatchesRegularExpression('#<a href="/contact-copper-eagle-plumbing/"[^>]*>\s*coppereagleplumbing\.com/contact-copper-eagle-plumbing\s*</a>#', $html);
     }
 
     /**

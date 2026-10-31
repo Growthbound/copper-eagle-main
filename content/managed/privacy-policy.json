@@ -36,14 +36,19 @@
                                     "mark": "strong"
                                 },
                                 {
-                                    "text": " [10/16/25] "
-                                },
+                                    "text": " October 16, 2025"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
                                 {
                                     "text": "Last Updated:",
                                     "mark": "strong"
                                 },
                                 {
-                                    "text": " [10/30/25]"
+                                    "text": " October 24, 2026"
                                 }
                             ]
                         },
@@ -56,7 +61,15 @@
                             "type": "paragraph",
                             "segments": [
                                 {
-                                    "text": "Copper Eagle Plumbing respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard information obtained from our customers, website visitors, and anyone who communicates with us through phone, text, or online channels."
+                                    "text": "Copper Eagle Plumbing LLC (\"Copper Eagle Plumbing,\" \"we,\" \"us,\" or \"our\") respects your privacy and is committed to protecting your personal information."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "This Privacy Policy explains how we collect, use, and safeguard information obtained from our customers, website visitors, and anyone who communicates with us through phone, text, or online channels."
                                 }
                             ]
                         },
@@ -145,9 +158,14 @@
                                 {
                                     "text": "c. Information from Third Parties",
                                     "mark": "strong"
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
                                 {
-                                    "text": " We may receive data from service platforms, scheduling software, or payment processors when necessary to complete your service."
+                                    "text": "We may receive data from service platforms, scheduling software, or payment processors when necessary to complete your service."
                                 }
                             ]
                         },
@@ -268,15 +286,20 @@
                                 {
                                     "text": "Inbound Consent Message:",
                                     "mark": "strong"
-                                },
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
                                 {
-                                    "text": " When a client first texts or confirms participation, we inform them:"
+                                    "text": "When a client first texts or confirms participation, we inform them:"
                                 }
                             ]
                         },
                         {
                             "type": "quote",
-                            "quote": "“Thank you for choosing Copper Eagle Plumbing! You can receive text updates, scheduling notices, and service information from our team. Reply HELP for more info or STOP to opt out at any time. Standard message and data rates may apply. See our Privacy Policy at https://www.coppereagleplumbing.com/privacy.”"
+                            "quote": "“Thank you for choosing Copper Eagle Plumbing! You can receive text updates, scheduling notices, and service information from our team. Reply HELP for more info or STOP to opt out at any time. Standard message and data rates may apply. See our Privacy Policy at https://www.coppereagleplumbing.com/privacy-policy.”"
                         },
                         {
                             "type": "paragraph",
@@ -291,7 +314,7 @@
                             "items": [
                                 [
                                     {
-                                        "text": "You may receive text messages regarding service updates, scheduling, and promotions."
+                                        "text": "You may receive customer care and service text messages (such as appointment confirmations, scheduling updates, technician arrival notices, and service follow-ups) if you opt in to service messages. You will receive promotional or marketing text messages only if you separately opt in to marketing messages. Opting in is optional and is not a condition of purchase."
                                     }
                                 ],
                                 [
@@ -325,7 +348,14 @@
                                 ],
                                 [
                                     {
-                                        "text": "We will not share or sell your phone number to any third parties for marketing purposes."
+                                        "text": "No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. See our SMS Terms at "
+                                    },
+                                    {
+                                        "text": "coppereagleplumbing.com/terms-and-conditions",
+                                        "href": "/terms-and-conditions/"
+                                    },
+                                    {
+                                        "text": "."
                                     }
                                 ]
                             ]
@@ -375,6 +405,14 @@
                                 },
                                 {
                                     "text": " customer information for marketing or solicitation."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "All of the categories above exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties. We do not sell or share your SMS opt-in data or personal information with third parties for marketing purposes."
                                 }
                             ]
                         },
@@ -492,7 +530,15 @@
                             "type": "paragraph",
                             "segments": [
                                 {
-                                    "text": "We may update this Privacy Policy periodically. When we make changes, we’ll update the “Effective Date” above and post the new version on our website."
+                                    "text": "We may update this Privacy Policy periodically."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "When we make changes, we’ll update the “Effective Date” above and post the new version on our website."
                                 }
                             ]
                         },
@@ -513,11 +559,44 @@
                             "type": "paragraph",
                             "segments": [
                                 {
-                                    "text": "Copper Eagle Plumbing",
+                                    "text": "Copper Eagle Plumbing LLC",
                                     "mark": "strong"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Salt Lake City, Utah"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Phone: (385) 625-0369"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Email: diamond9utah@gmail.com"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "segments": [
+                                {
+                                    "text": "Website: "
                                 },
                                 {
-                                    "text": " 📞 [385-625-0369] ✉️ [Diamond9utah@gmail.com] 🌐 [Coppereagleplumbing.com]"
+                                    "text": "coppereagleplumbing.com",
+                                    "href": "/"
                                 }
                             ]
                         }
