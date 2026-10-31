@@ -70,6 +70,36 @@
             </div>
         </div>
 
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+                <label class="admin-label" for="webhook-authentication">Authentication</label>
+                <select id="webhook-authentication" class="admin-input" wire:model.live="authenticationMode">
+                    <option value="hmac">Signed payload (HMAC-SHA256)</option>
+                    <option value="header">Plain secret in a header (Local Business Pro)</option>
+                </select>
+                @error('authenticationMode') <p class="admin-error">{{ $message }}</p> @enderror
+            </div>
+            <div>
+                <label class="admin-label" for="webhook-header">Header name</label>
+                <input id="webhook-header" type="text" class="admin-input font-mono text-xs" placeholder="X-Signature" wire:model="headerName" maxlength="80" autocapitalize="off" spellcheck="false">
+                @error('headerName') <p class="admin-error">{{ $message }}</p> @enderror
+            </div>
+            <div class="sm:col-span-2">
+                <label class="admin-label" for="webhook-secret">{{ $authenticationMode === 'header' ? 'Receiver secret' : 'Signing secret' }}</label>
+                <p id="webhook-secret-help" class="mb-2 text-sm text-text-muted">
+                    @if ($authenticationMode === 'header')
+                        For Local Business Pro, use X-Signature as the header name and paste its generated secret here.
+                        The secret is sent exactly as entered over HTTPS. Leave blank when editing to keep the saved receiver secret.
+                    @else
+                        Leave blank to {{ $editing ? 'keep the current signing secret' : 'generate a signing secret' }}, or enter a replacement.
+                        The header carries a signature calculated from this secret and the payload.
+                    @endif
+                </p>
+                <input id="webhook-secret" type="password" class="admin-input font-mono text-xs" wire:model="secret" autocomplete="new-password" maxlength="255" aria-describedby="webhook-secret-help">
+                @error('secret') <p class="admin-error">{{ $message }}</p> @enderror
+            </div>
+        </div>
+
         <div class="mt-5 flex flex-wrap items-center gap-3">
             <button type="submit" class="admin-button">{{ $editing ? 'Save changes' : 'Add destination' }}</button>
 
@@ -96,6 +126,10 @@
                         </div>
 
                         <p class="mt-1 truncate font-mono text-xs text-text-muted">{{ $webhook->url }}</p>
+                        <p class="mt-1 break-words text-xs text-text-muted">
+                            {{ $webhook->authentication_mode === 'header' ? 'Plain secret' : 'HMAC signature' }}
+                            in <code>{{ $webhook->header_name }}</code>
+                        </p>
 
                         <p class="mt-1 text-sm text-text-muted">
                             @if ($webhook->last_delivered_at)
@@ -110,9 +144,11 @@
                         <button type="button" class="admin-button admin-button-quiet" wire:click="sendTest({{ $webhook->id }})">
                             Send test
                         </button>
-                        <button type="button" class="admin-button admin-button-quiet" wire:click="inspect({{ $webhook->id }})">
-                            {{ $inspecting === $webhook->id ? 'Hide' : 'Show' }} secret
-                        </button>
+                        @if ($webhook->authentication_mode === 'hmac')
+                            <button type="button" class="admin-button admin-button-quiet" wire:click="inspect({{ $webhook->id }})">
+                                {{ $inspecting === $webhook->id ? 'Hide' : 'Show' }} secret
+                            </button>
+                        @endif
                         <button type="button" class="admin-button admin-button-quiet" wire:click="edit({{ $webhook->id }})">
                             Edit
                         </button>
@@ -130,7 +166,7 @@
                     </div>
                 </div>
 
-                @if ($inspecting === $webhook->id)
+                @if ($inspecting === $webhook->id && $webhook->authentication_mode === 'hmac')
                     <div class="mt-4 rounded-lg bg-surface p-4">
                         <label class="admin-label" for="secret-{{ $webhook->id }}">Signing secret</label>
                         <p class="mb-2 text-sm text-text-muted">
@@ -207,9 +243,11 @@
     <div class="admin-card mt-8">
         <h2 class="mb-3 font-heading text-xl font-bold">What gets sent</h2>
         <p class="mb-3 text-sm text-text-muted">
-            A POST with a JSON body. The <code class="font-mono text-xs">{{ App\Models\Webhook::SIGNATURE_HEADER }}</code>
-            header is an HMAC-SHA256 of the timestamp and body using the destination's signing secret, so the receiver can
-            verify the request and reject replays.
+            A POST with a JSON body and the authentication header chosen for each destination.
+            Signed payloads use an HMAC-SHA256 of the timestamp and body, with the timestamp in
+            <code class="font-mono text-xs">{{ App\Models\Webhook::TIMESTAMP_HEADER }}</code>.
+            Plain-secret destinations send the receiver's saved secret as the header value.
+            Redirects are rejected; use the receiving system's final address.
         </p>
 
         <pre class="overflow-x-auto rounded-lg bg-surface p-4 font-mono text-xs">{{ json_encode([
