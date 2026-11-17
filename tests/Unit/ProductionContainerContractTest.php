@@ -262,6 +262,22 @@ class ProductionContainerContractTest extends TestCase
         $this->assertStringContainsString('8080', $runbook);
     }
 
+    public function test_runbook_redirects_railway_to_the_production_dockerfile(): void
+    {
+        $runbook = $this->contents('docs/deployment/railway.md');
+
+        // Railway builds a root-level `Dockerfile` by default, and this repository's
+        // is the development image: it copies no source and expects the project
+        // bind-mounted at /var/www/html. Pointing Railway elsewhere is a variable,
+        // not a settings field, so the runbook has to say the variable's name.
+        $this->assertStringContainsString('RAILWAY_DOCKERFILE_PATH=Dockerfile.production', $runbook);
+        $this->assertStringContainsString('/var/www/html', $runbook);
+
+        // `runtime` is the last stage in Dockerfile.production, so it is already the
+        // default target. Railway exposes no build-stage setting to name it in.
+        $this->assertStringNotContainsString('Docker build stage', $runbook);
+    }
+
     public function test_phpunit_pins_the_application_url_independently_of_dotenv(): void
     {
         $phpunit = $this->contents('phpunit.xml');

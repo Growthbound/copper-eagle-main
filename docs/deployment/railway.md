@@ -9,12 +9,23 @@ with Railway's own volume and port behavior accounted for.
 | Setting | Value |
 |---|---|
 | Builder | Dockerfile |
-| Dockerfile path | `Dockerfile.production` |
-| Docker build stage | `runtime` |
+| `RAILWAY_DOCKERFILE_PATH` | `Dockerfile.production` — a **variable**, not a settings field |
 | Target port | `8080` |
 | Healthcheck path | `/up` |
 | Start command | none — the image's `CMD` already runs FrankenPHP |
 | Replicas | 1 |
+
+**Set `RAILWAY_DOCKERFILE_PATH` before the first deploy.** Railway builds a file
+named `Dockerfile` at the repository root, and this repository's root
+`Dockerfile` is the *development* image: it copies no application source, because
+`compose.yaml` bind-mounts the project onto `/var/www/html`. Deployed unchanged it
+starts with an empty working directory and crash-loops on `sha256sum:
+composer.lock: No such file or directory`. The variable is the documented way to
+redirect Railway to another filename; it belongs with the other variables, which
+is why it appears in the paste block below.
+
+There is no build-stage setting to fill in. `runtime` is the last stage in
+`Dockerfile.production`, so it is already what Docker builds by default.
 
 The container always listens on `8080` — `docker/production/Caddyfile` binds it
 literally and reads no `PORT` variable — so the target port has to be `8080`.
@@ -60,11 +71,13 @@ sessions then survive a deploy too.
 ## Variables
 
 Paste this into the service's Raw Editor, then fill in `APP_KEY`, `APP_URL` and
-the SES SMTP credentials. Generate the key with
+the SES SMTP credentials. The first line is the builder redirect described above
+and is not optional. Generate the key with
 `php artisan key:generate --show` and keep the same one across redeploys;
 rotating it invalidates every encrypted cookie.
 
 ```dotenv
+RAILWAY_DOCKERFILE_PATH=Dockerfile.production
 APP_NAME="Copper Eagle Plumbing"
 APP_KEY=base64:replace-with-a-generated-key
 APP_URL=https://replace-me.up.railway.app
@@ -137,3 +150,20 @@ match; they must name the same host or boot fails with the mismatch printed.
 3. Submit the contact form and confirm the lead email arrives.
 4. Confirm the deploy logs show migrations running once and no scheduler
    duplication.
+
+## When a deploy crash-loops
+
+Read the first error, not the repeated one. Each of these fails before the
+application starts, so none of them produces a Laravel log.
+
+| Log line | Cause |
+|---|---|
+| `sha256sum: composer.lock: No such file or directory`, `Composer could not find a composer.json file in /var/www/html` | Railway built the root `Dockerfile` — the development image. Set `RAILWAY_DOCKERFILE_PATH=Dockerfile.production` and redeploy. |
+| `Application startup error: APP_KEY is required.` | `APP_KEY` is unset. Generate one with `php artisan key:generate --show`. |
+| `Application startup error: setpriv is required to drop root privileges.` | The container started as root but cannot drop back to `www-data`. Do not work around this by leaving it as root. |
+| A SQLite path refusal | `DB_DATABASE` was set by hand. Remove it; the image sets it to `/data/database.sqlite`. |
+| `attempt to write a readonly database`, or uploads failing | The volume is root-owned and `RAILWAY_RUN_UID=0` is missing, so the entrypoint never took ownership of it. |
+
+The entrypoint changes that `STORAGE_ON_DATA_VOLUME` and `RAILWAY_RUN_UID=0`
+depend on are not on every branch. Deploy a commit that contains them, or those
+two variables do nothing.
