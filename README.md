@@ -171,7 +171,9 @@ development dependencies, serves Laravel with FrankenPHP on port 8080, runs
 migrations at startup, and reports health through `/up`.
 
 For the exact repository, environment, volume, domain, verification, and
-rollback settings, see [Dokploy deployment](docs/deployment/dokploy.md).
+rollback settings, see [Dokploy deployment](docs/deployment/dokploy.md), or
+[Railway deployment](docs/deployment/railway.md) for a single-container host
+that mounts one volume per service.
 
 ## Discovery endpoints
 

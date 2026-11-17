@@ -200,6 +200,68 @@ class ProductionContainerContractTest extends TestCase
         $this->assertStringContainsString('RUN_SCHEDULER=true', $runbook);
     }
 
+    /**
+     * A managed host mounts a service's volume as root, so the image's
+     * `USER www-data` cannot write to it — not the media library, not even the
+     * SQLite file. Such a host is told to start the container as root instead;
+     * the entrypoint then takes the one action root is needed for and hands
+     * the rest of the startup, and the web server, back to `www-data`. Where
+     * the volume already belongs to `www-data` (Docker named volumes keep the
+     * image's ownership) the container never starts as root and this is inert.
+     */
+    public function test_a_root_started_container_fixes_volume_ownership_then_drops_privileges(): void
+    {
+        $entrypoint = $this->contents('docker/production/entrypoint.sh');
+
+        $this->assertStringContainsString('[ "$(id -u)" = "0" ]', $entrypoint);
+        $this->assertStringContainsString('chown -R www-data:www-data /data /app/storage /app/bootstrap/cache', $entrypoint);
+        $this->assertStringContainsString('setpriv is required to drop root privileges', $entrypoint);
+        $this->assertStringContainsString('exec setpriv --reuid=www-data --regid=www-data --clear-groups "$0" "$@"', $entrypoint);
+
+        $this->assertLessThan(
+            strpos($entrypoint, 'APP_KEY is required'),
+            strpos($entrypoint, '[ "$(id -u)" = "0" ]'),
+            'Privileges drop before any of the application startup work, so every check below runs as the user that will serve the site.',
+        );
+    }
+
+    /**
+     * A host that gives a service a single volume persists `/data` only, so
+     * `storage/app` — the uploaded media library — would come back empty after
+     * every deploy. Pointing it at the database volume keeps one mount
+     * sufficient. Opt-in: the Compose deploy gives `/app/storage` a volume of
+     * its own and must keep using it.
+     */
+    public function test_storage_can_share_the_database_volume_on_single_volume_hosts(): void
+    {
+        $entrypoint = $this->contents('docker/production/entrypoint.sh');
+
+        $this->assertStringContainsString('${STORAGE_ON_DATA_VOLUME:-false}', $entrypoint);
+        $this->assertStringContainsString('mkdir -p /data/app/private /data/app/public', $entrypoint);
+        $this->assertStringContainsString('ln -sfn /data/app storage/app', $entrypoint);
+
+        $relocation = strpos($entrypoint, 'ln -sfn /data/app storage/app');
+
+        $this->assertLessThan(
+            strpos($entrypoint, 'php artisan migrate --force --no-interaction'),
+            $relocation,
+            'Storage moves before the application runs, so nothing writes to the copy that is about to be replaced.',
+        );
+
+        $this->assertStringNotContainsString(
+            'STORAGE_ON_DATA_VOLUME',
+            $this->contents('compose.production.yaml'),
+            'Compose mounts /app/storage on its own volume; reshaping it there would move the media library for no reason.',
+        );
+
+        $runbook = $this->contents('docs/deployment/railway.md');
+
+        $this->assertStringContainsString('STORAGE_ON_DATA_VOLUME=true', $runbook);
+        $this->assertStringContainsString('RAILWAY_RUN_UID=0', $runbook);
+        $this->assertStringContainsString('/data', $runbook);
+        $this->assertStringContainsString('8080', $runbook);
+    }
+
     public function test_phpunit_pins_the_application_url_independently_of_dotenv(): void
     {
         $phpunit = $this->contents('phpunit.xml');
