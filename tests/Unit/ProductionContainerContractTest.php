@@ -154,13 +154,15 @@ class ProductionContainerContractTest extends TestCase
         $this->assertStringContainsString('${APP_DEBUG:-false}', $entrypoint);
         $this->assertStringContainsString('APP_DEBUG must be false in production', $entrypoint);
         $this->assertStringContainsString('${MAIL_MAILER:-}', $entrypoint);
-        $this->assertStringContainsString('MAIL_MAILER must be smtp in production', $entrypoint);
+        $this->assertStringContainsString('MAIL_MAILER must be smtp or resend in production', $entrypoint);
         $this->assertStringContainsString('${MAIL_HOST:-}', $entrypoint);
         $this->assertStringContainsString('${MAIL_USERNAME:-}', $entrypoint);
         $this->assertStringContainsString('${MAIL_PASSWORD:-}', $entrypoint);
         $this->assertStringContainsString('${MAIL_FROM_ADDRESS:-}', $entrypoint);
         $this->assertStringContainsString('${MAIL_FROM_NAME:-}', $entrypoint);
         $this->assertStringContainsString('SMTP mail requires MAIL_HOST, MAIL_USERNAME, MAIL_PASSWORD, MAIL_FROM_ADDRESS, and MAIL_FROM_NAME', $entrypoint);
+        $this->assertStringContainsString('${RESEND_API_KEY:-}', $entrypoint);
+        $this->assertStringContainsString('Resend mail requires RESEND_API_KEY, MAIL_FROM_ADDRESS, and MAIL_FROM_NAME', $entrypoint);
         $this->assertStringContainsString('${DB_CONNECTION:-sqlite}', $entrypoint);
         $this->assertStringContainsString('${DB_DATABASE:-}', $entrypoint);
         $this->assertStringContainsString('SQLite DB_DATABASE must be an absolute path under /data', $entrypoint);

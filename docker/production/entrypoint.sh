@@ -53,19 +53,30 @@ if [ "${APP_ENV:-production}" = "production" ]; then
             ;;
     esac
 
-    if [ "${MAIL_MAILER:-}" != "smtp" ]; then
-        echo "Application startup error: MAIL_MAILER must be smtp in production." >&2
-        exit 1
-    fi
-
-    if [ -z "${MAIL_HOST:-}" ] \
-        || [ -z "${MAIL_USERNAME:-}" ] \
-        || [ -z "${MAIL_PASSWORD:-}" ] \
-        || [ -z "${MAIL_FROM_ADDRESS:-}" ] \
-        || [ -z "${MAIL_FROM_NAME:-}" ]; then
-        echo "Application startup error: SMTP mail requires MAIL_HOST, MAIL_USERNAME, MAIL_PASSWORD, MAIL_FROM_ADDRESS, and MAIL_FROM_NAME." >&2
-        exit 1
-    fi
+    case "${MAIL_MAILER:-}" in
+        smtp)
+            if [ -z "${MAIL_HOST:-}" ] \
+                || [ -z "${MAIL_USERNAME:-}" ] \
+                || [ -z "${MAIL_PASSWORD:-}" ] \
+                || [ -z "${MAIL_FROM_ADDRESS:-}" ] \
+                || [ -z "${MAIL_FROM_NAME:-}" ]; then
+                echo "Application startup error: SMTP mail requires MAIL_HOST, MAIL_USERNAME, MAIL_PASSWORD, MAIL_FROM_ADDRESS, and MAIL_FROM_NAME." >&2
+                exit 1
+            fi
+            ;;
+        resend)
+            if [ -z "${RESEND_API_KEY:-}" ] \
+                || [ -z "${MAIL_FROM_ADDRESS:-}" ] \
+                || [ -z "${MAIL_FROM_NAME:-}" ]; then
+                echo "Application startup error: Resend mail requires RESEND_API_KEY, MAIL_FROM_ADDRESS, and MAIL_FROM_NAME." >&2
+                exit 1
+            fi
+            ;;
+        *)
+            echo "Application startup error: MAIL_MAILER must be smtp or resend in production." >&2
+            exit 1
+            ;;
+    esac
 fi
 
 # A host that gives a service one volume persists /data only, so storage/app —
