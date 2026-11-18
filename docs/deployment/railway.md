@@ -59,8 +59,8 @@ sessions then survive a deploy too.
 
 ## Variables
 
-Paste this into the service's Raw Editor, then fill in `APP_KEY`, `APP_URL` and
-the SES SMTP credentials. Generate the key with
+Paste this into the service's Raw Editor, then fill in `APP_KEY`, `APP_URL`,
+`RESEND_API_KEY` and a verified sender address. Generate the application key with
 `php artisan key:generate --show` and keep the same one across redeploys;
 rotating it invalidates every encrypted cookie.
 
@@ -82,12 +82,8 @@ FILESYSTEM_DISK=local
 RUN_SCHEDULER=true
 STORAGE_ON_DATA_VOLUME=true
 RAILWAY_RUN_UID=0
-MAIL_MAILER=smtp
-MAIL_HOST=email-smtp.us-east-1.amazonaws.com
-MAIL_PORT=587
-MAIL_SCHEME=smtp
-MAIL_USERNAME=your-ses-smtp-username
-MAIL_PASSWORD=your-ses-smtp-password
+MAIL_MAILER=resend
+RESEND_API_KEY=replace-with-a-resend-api-key
 MAIL_FROM_ADDRESS=notifications@mail.youragency.com
 MAIL_FROM_NAME="Copper Eagle Plumbing"
 LEAD_NOTIFICATION_RECIPIENTS=diamond9utah@gmail.com
@@ -109,6 +105,33 @@ Application: there is no separate scheduler service, so the web container runs
 
 `QUEUE_CONNECTION=sync` matters too — without it, queued work such as HighLevel
 lead delivery waits for a worker that never runs.
+
+### Website notification mail
+
+Use Resend's HTTPS API on Railway. [Railway blocks outbound SMTP on Free,
+Trial and Hobby plans](https://docs.railway.com/networking/outbound-networking),
+so SMTP credentials alone cannot deliver notifications on those plans. The
+production Composer dependencies include the SDK required by Laravel's native
+`resend` mailer.
+
+1. Add and verify a sending domain in Resend. Prefer a dedicated sending
+   subdomain; add only its issued DNS records and preserve existing mailbox MX,
+   SPF and DKIM records.
+2. Set `MAIL_MAILER=resend`, `RESEND_API_KEY` to an API key allowed to send from
+   that domain, and `MAIL_FROM_ADDRESS` to an address on the verified domain.
+   Resend's `resend.dev` domain is restricted to sending to the Resend account
+   owner's email; it is not a production sender for arbitrary recipients.
+3. Deploy the code containing the SDK before activating these variables. SMTP
+   host, port, username and password settings are unused by the API mailer.
+4. Check Admin → Notifications: saved recipients override
+   `LEAD_NOTIFICATION_RECIPIENTS`. After approving a test recipient, run
+   `php artisan mail:test recipient@example.com` in the Railway Console. It
+   sends one synthetic notification without creating a lead. Check Resend's
+   delivery status and the destination inbox; provider acceptance alone does
+   not prove arrival.
+
+This configures website notifications independently of the business's mailbox
+provider. Do not replace the root domain's mailbox records with Resend records.
 
 The referral program (`REFERRAL_FORM_URL`, every `GHL_*`) and the HighLevel form
 IDs are optional; `.env.production.example` lists them all, and anything left
