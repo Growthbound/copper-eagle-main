@@ -4,6 +4,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContentPreviewController;
 use App\Http\Controllers\DiscoveryFilesController;
+use App\Http\Controllers\HomePlumbingQuizController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PublicMediaController;
 use App\Http\Controllers\ReferralCardController;
@@ -26,6 +27,7 @@ use App\Livewire\Admin\Referrals;
 use App\Livewire\Admin\SiteDetailsEditor;
 use App\Livewire\Admin\ThemeEditor;
 use App\Livewire\Admin\Webhooks;
+use App\Support\HomePlumbingQuiz;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -36,6 +38,17 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 Route::get('/', PageController::class)->name('home');
+
+$quizQuestions = array_keys(HomePlumbingQuiz::QUESTIONS);
+foreach (['home-plumbing-quiz' => 'home-plumbing-quiz', '_templates/home-plumbing-quiz' => 'template-preview.home-plumbing-quiz'] as $path => $name) {
+    Route::prefix($path)->name($name.'.')->group(function () use ($quizQuestions): void {
+        Route::get('{step?}', [HomePlumbingQuizController::class, 'show'])
+            ->whereIn('step', [...$quizQuestions, 'contact', 'complete', 'report'])->block()->name('show');
+        Route::post('{step?}', [HomePlumbingQuizController::class, 'store'])
+            ->whereIn('step', [...$quizQuestions, 'contact'])->block()
+            ->middleware('throttle:60,1,home-plumbing-quiz:')->name('store');
+    });
+}
 
 Route::get('/referrals/{code}', [ReferralController::class, 'show'])
     ->where('code', '[A-Za-z0-9_-]{1,64}')

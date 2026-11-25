@@ -1,0 +1,265 @@
+.plumbing-quiz {
+    min-height: 100svh;
+    background: var(--theme-surface);
+    color: var(--theme-text);
+}
+
+.plumbing-quiz-masthead {
+    display: grid;
+    justify-items: center;
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--theme-border);
+    background: var(--theme-page);
+}
+
+.plumbing-quiz-masthead a {
+    display: block;
+    padding-block: 0.3rem;
+}
+
+.plumbing-quiz-masthead img {
+    width: min(49vw, 13rem);
+    height: auto;
+}
+
+.plumbing-quiz-shell {
+    width: min(100% - 2rem, 35rem);
+    margin-inline: auto;
+    padding-block: clamp(1.25rem, 4vw, 2.75rem) max(2.5rem, env(safe-area-inset-bottom));
+}
+
+.plumbing-quiz-hero {
+    background: var(--theme-primary);
+    color: var(--theme-on-primary);
+}
+
+.plumbing-quiz-hero-copy,
+.plumbing-quiz-start,
+.plumbing-quiz-content {
+    padding: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.plumbing-quiz-hero .plumbing-quiz-label {
+    color: var(--theme-accent-on-primary);
+}
+
+.plumbing-quiz-hero img {
+    display: block;
+    width: 100%;
+    height: clamp(7.5rem, 37vw, 11rem);
+    object-fit: cover;
+    object-position: center 52%;
+    border-top: 2px solid var(--theme-accent);
+}
+
+.plumbing-quiz-start,
+.plumbing-quiz-content {
+    background: var(--theme-page);
+}
+
+.plumbing-quiz-content {
+    border-top: 2px solid var(--theme-accent);
+}
+
+.plumbing-quiz-content h1,
+.plumbing-quiz-content h2,
+.plumbing-quiz-start h2 {
+    color: var(--theme-primary);
+    overflow-wrap: anywhere;
+}
+
+.plumbing-quiz-start h2,
+.plumbing-quiz-results h2,
+.plumbing-quiz-inspection h2 {
+    font-size: clamp(1.45rem, 4.6vw, 1.9rem);
+}
+
+.plumbing-quiz p {
+    line-height: 1.55;
+}
+
+.plumbing-quiz-hero h1 + p,
+.plumbing-quiz-start h2 + p,
+.plumbing-quiz-hint {
+    margin-top: 0.65rem;
+}
+
+.plumbing-quiz-label {
+    margin-bottom: 0.6rem;
+    color: var(--theme-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: var(--theme-label-tracking);
+    text-transform: uppercase;
+}
+
+.plumbing-quiz-preview {
+    margin-bottom: 0.75rem;
+    color: var(--theme-muted);
+    font-size: 0.875rem;
+}
+
+.plumbing-quiz-progress {
+    margin-bottom: 1rem;
+}
+
+.plumbing-quiz-progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    color: var(--theme-primary);
+    font-size: 0.875rem;
+}
+
+.plumbing-quiz-progress progress {
+    display: block;
+    width: 100%;
+    height: 0.4rem;
+    border: 0;
+    appearance: none;
+    background: var(--theme-sky);
+    color: var(--theme-primary);
+}
+
+.plumbing-quiz-progress progress::-webkit-progress-bar {
+    background: var(--theme-sky);
+}
+
+.plumbing-quiz-progress progress::-webkit-progress-value {
+    background: var(--theme-primary);
+}
+
+.plumbing-quiz-progress progress::-moz-progress-bar {
+    background: var(--theme-primary);
+}
+
+.plumbing-quiz-options,
+.plumbing-quiz-fields {
+    display: grid;
+    min-width: 0;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+}
+
+.plumbing-quiz-choice {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.7rem 0.75rem;
+    border: 1px solid var(--theme-muted);
+    color: var(--theme-primary);
+    cursor: pointer;
+}
+
+.plumbing-quiz-choice input {
+    flex: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: var(--theme-primary);
+}
+
+.plumbing-quiz-choice:has(:checked) {
+    background: var(--theme-surface);
+    border-color: var(--theme-primary);
+    box-shadow: inset 0.2rem 0 var(--theme-primary);
+}
+
+.plumbing-quiz-choice:has(:focus-visible) {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+}
+
+.plumbing-quiz-field {
+    display: grid;
+    min-width: 0;
+}
+
+.plumbing-quiz-field .quote-input {
+    width: 100%;
+}
+
+.plumbing-quiz .button {
+    width: 100%;
+    min-height: 3.25rem;
+    margin-top: 1.15rem;
+    padding: 0.7rem 0.75rem;
+    border-radius: var(--radius-control);
+    text-align: center;
+}
+
+.plumbing-quiz-back,
+.plumbing-quiz-privacy {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--theme-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+}
+
+.plumbing-quiz-content > .plumbing-quiz-back {
+    margin-top: 0.5rem;
+}
+
+.plumbing-quiz-results {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    list-style: none;
+}
+
+.plumbing-quiz-results li,
+.plumbing-quiz-inspection {
+    padding: clamp(1rem, 4vw, 1.5rem);
+    background: var(--theme-surface);
+}
+
+.plumbing-quiz-results h2 ~ p,
+.plumbing-quiz-inspection h2 + p {
+    margin-top: 0.5rem;
+}
+
+.plumbing-quiz-inspection {
+    margin-top: 1rem;
+    background: var(--theme-stone);
+}
+
+.plumbing-quiz-inspection .plumbing-quiz-choice {
+    margin-top: 0.75rem;
+    background: var(--theme-page);
+}
+
+.plumbing-quiz-inspection .plumbing-quiz-choice + p {
+    margin-top: 0.5rem;
+}
+
+.plumbing-quiz-sources {
+    margin-top: 1rem;
+    color: var(--theme-primary);
+    font-size: 0.875rem;
+}
+
+.plumbing-quiz-sources summary {
+    display: list-item;
+    padding-block: 0.75rem;
+    cursor: pointer;
+}
+
+.plumbing-quiz-sources a {
+    display: inline-block;
+    padding-block: 0.35rem;
+    text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:has(.plumbing-quiz) {
+        scroll-behavior: auto;
+    }
+
+    .plumbing-quiz .button {
+        transition: none;
+    }
+}
