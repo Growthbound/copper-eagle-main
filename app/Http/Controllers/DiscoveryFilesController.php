@@ -193,6 +193,9 @@ class DiscoveryFilesController extends Controller
             $urls['blog'] = $baseUrl.'/blog/';
         }
 
+        $quizPath = route('home-plumbing-quiz.show', absolute: false);
+        $urls[ltrim($quizPath, '/')] = $baseUrl.$quizPath;
+
         // Everything generated from records, so publishing a service or an area
         // is the single act of adding its file.
         if ($services->isEmpty() && $areas->isEmpty()) {

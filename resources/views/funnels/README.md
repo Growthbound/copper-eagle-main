@@ -3,8 +3,9 @@
 The fixed flow at `/home-plumbing-quiz` has an introduction, six questions, and a
 final report delivery form for required contact details and an optional free
 home plumbing inspection. The confirmation page includes the report and a PDF
-download. Browser sessions keep progress and authorize the download. The quiz is
-noindex.
+download. Browser sessions keep progress and authorize the download. The beta
+start page is listed in `/sitemap.xml` and stays off the site menus. The steps
+and report use `noindex`, as does the start page on noncanonical hosts.
 The gallery version at `/_templates/home-plumbing-quiz` uses its own session
 state, saves no leads, and returns 404 in production.
 

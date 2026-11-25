@@ -8,6 +8,7 @@ use App\Models\Lead;
 use App\Support\Attribution;
 use App\Support\HomePlumbingQuiz;
 use App\Support\HomePlumbingReport;
+use App\Support\SearchVisibility;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -28,6 +29,10 @@ class HomePlumbingQuizController extends Controller
     private const PRIVATE_HEADERS = [
         'Cache-Control' => 'private, no-store, max-age=0',
         'Referrer-Policy' => 'no-referrer',
+    ];
+
+    private const NOINDEX_HEADERS = [
+        ...self::PRIVATE_HEADERS,
         'X-Robots-Tag' => 'noindex, nofollow',
     ];
 
@@ -39,7 +44,7 @@ class HomePlumbingQuizController extends Controller
         if ($step === 'report') {
             return $next === 'complete'
                 ? response(app(HomePlumbingReport::class)->pdf($state['answers']), headers: [
-                    ...self::PRIVATE_HEADERS,
+                    ...self::NOINDEX_HEADERS,
                     'Content-Type' => 'application/pdf',
                     'Content-Disposition' => 'attachment; filename="'.HomePlumbingReport::FILENAME.'"',
                 ])
@@ -52,10 +57,12 @@ class HomePlumbingQuizController extends Controller
         $questions = HomePlumbingQuiz::QUESTIONS;
         $steps = [...array_keys($questions), 'contact', 'complete'];
         $position = $step === null ? null : array_search($step, $steps, true);
+        $indexable = ! $preview && $step === null && SearchVisibility::indexable();
 
         return response()->view($preview ? 'template-previews.home-plumbing-quiz' : 'funnels.home-plumbing-quiz', [
             'step' => $step,
             'preview' => $preview,
+            'canonical' => $indexable ? rtrim((string) config('app.url'), '/').route('home-plumbing-quiz.show', absolute: false) : null,
             'routeName' => $this->routeName($request),
             'next' => $next,
             'position' => $position,
@@ -66,7 +73,7 @@ class HomePlumbingQuizController extends Controller
             'checklist' => $step === 'complete' ? HomePlumbingQuiz::checklist($state['answers']) : [],
             'sources' => HomePlumbingQuiz::SOURCES,
             'inspection' => $state['inspection'] ?? null,
-        ], headers: self::PRIVATE_HEADERS);
+        ], headers: $indexable ? self::PRIVATE_HEADERS : self::NOINDEX_HEADERS);
     }
 
     public function store(Request $request, ?string $step = null): RedirectResponse

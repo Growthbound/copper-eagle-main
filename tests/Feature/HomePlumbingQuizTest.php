@@ -37,6 +37,24 @@ class HomePlumbingQuizTest extends TestCase
         $this->assertFalse($links->exists(self::URL.'/report'));
     }
 
+    public function test_only_the_public_start_page_is_in_the_sitemap_and_the_menus_leave_it_unlisted(): void
+    {
+        $sitemap = $this->get('/sitemap.xml')->assertOk();
+        $sitemap->assertSee('<loc>http://localhost'.self::URL.'</loc>', false)
+            ->assertDontSee(self::URL.'/')
+            ->assertDontSee('/_templates'.self::URL);
+
+        $this->get('/')->assertOk()->assertDontSee(self::URL);
+        $this->get(self::URL)->assertOk()->assertHeaderMissing('X-Robots-Tag')
+            ->assertSee('rel="canonical" href="http://localhost'.self::URL.'"', false)
+            ->assertDontSee('content="noindex', false);
+        $this->post(self::URL)->assertRedirect(self::URL.'/home');
+        $this->get(self::URL.'/home')->assertOk()->assertHeader('X-Robots-Tag', 'noindex, nofollow');
+
+        config()->set('search.canonical_host', 'www.example.com');
+        $this->get(self::URL)->assertOk()->assertHeader('X-Robots-Tag', 'noindex, nofollow');
+    }
+
     public function test_the_last_form_requests_the_report_and_optional_inspection_once(): void
     {
         Bus::fake([NotifyOfLead::class, SendHomePlumbingReport::class]);

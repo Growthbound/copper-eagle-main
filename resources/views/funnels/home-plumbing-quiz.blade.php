@@ -13,7 +13,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
+    @if ($canonical)
+        <link rel="canonical" href="{{ $canonical }}">
+    @else
+        <meta name="robots" content="noindex, nofollow">
+    @endif
     <title>{{ $heading }} | {{ config('site.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @if ($themeOverrides = App\Support\Theme::cssOverrides())
