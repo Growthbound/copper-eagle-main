@@ -40,6 +40,8 @@ class ContentValidatorTest extends TestCase
             'templates' => ['templates'],
             'services' => ['services'],
             'service child' => ['services/example'],
+            'home plumbing quiz' => ['home-plumbing-quiz'],
+            'home plumbing quiz step' => ['home-plumbing-quiz/results'],
             'areas' => ['areas'],
             'media' => ['media/1'],
             'images' => ['images'],

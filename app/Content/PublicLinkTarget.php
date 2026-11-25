@@ -73,6 +73,7 @@ final readonly class PublicLinkTarget
             '/areas',
             // The blog index always answers, listing the published articles.
             '/blog',
+            '/home-plumbing-quiz',
             '/robots.txt',
             '/llms.txt',
             '/sitemap.xml',

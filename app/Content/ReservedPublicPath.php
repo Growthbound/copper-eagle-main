@@ -14,6 +14,7 @@ final class ReservedPublicPath
         'admin',
         'api',
         'referrals',
+        'home-plumbing-quiz',
         '_templates',
         'templates',
         'services',

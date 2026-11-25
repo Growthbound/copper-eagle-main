@@ -274,6 +274,18 @@ Generated service and area pages are folded into the real pages through
 `content/registries/url-intent-ledger.json`, so record links always point at
 the page that owns the topic.
 
+### Home plumbing quiz
+
+The fixed quiz funnel uses a white masthead with the horizontal logo, a deep
+blue introduction with the copper pipe photo, and a single column on every
+screen. Mist surrounds the white question panel. Each question uses full-width
+radio controls with a visible selected and focused state. A deep blue progress
+bar tracks the questions and final report delivery form. The optional inspection
+request sits in a stone panel in that form. The confirmation page offers the
+PDF above the recommendations, which stack on mist cards. The PDF uses Outfit,
+the horizontal logo, a deep blue header, and the same mist cards. The funnel
+has its own route and local gallery preview and does not use managed page sections.
+
 ## Checklist for any visual change
 
 - [ ] Uses only tokens from `resources/css/theme.css`.

@@ -81,6 +81,8 @@ class Lead extends Model
             // Null when the form did not ask; see LeadConsent::CHOICE_KINDS.
             'consent_service' => 'boolean',
             'consent_marketing' => 'boolean',
+            'quiz_answers' => 'array',
+            'quiz_report_sent_at' => 'datetime',
         ];
     }
 

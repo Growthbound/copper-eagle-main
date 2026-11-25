@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.3",
         "blade-ui-kit/blade-heroicons": "^2.7",
+        "dompdf/dompdf": "^3.1",
         "endroid/qr-code": "^5.1",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",

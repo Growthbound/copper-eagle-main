@@ -1,3 +1,9 @@
+const clarityProject = document.querySelector('meta[name="clarity-project-id"]')?.content;
+
+if (clarityProject) {
+    import('@microsoft/clarity').then(({ default: Clarity }) => Clarity.init(clarityProject));
+}
+
 const initializeBeforeAfter = () => {
     document.querySelectorAll('[data-before-after]').forEach((comparison) => {
         const control = comparison.querySelector('[data-before-after-control]');

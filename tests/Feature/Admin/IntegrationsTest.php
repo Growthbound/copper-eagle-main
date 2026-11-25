@@ -30,7 +30,7 @@ class IntegrationsTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertDontSee('googletagmanager.com', false)
-            ->assertDontSee('clarity.ms', false)
+            ->assertDontSee('clarity-project-id', false)
             ->assertDontSee('connect.facebook.net', false);
     }
 
@@ -55,7 +55,8 @@ class IntegrationsTest extends TestCase
             ->assertHasNoErrors();
 
         $this->get('/')
-            ->assertSee('clarity.ms/tag/', false)
+            ->assertSee('<meta name="clarity-project-id" content="abcd1234ef">', false)
+            ->assertDontSee('clarity.ms/tag/', false)
             ->assertSee('123456789012345', false);
     }
 
@@ -114,7 +115,7 @@ class IntegrationsTest extends TestCase
         $this->get('/')
             ->assertSee("'GTM-ENV1234'", false)
             ->assertSee('googletagmanager.com/ns.html?id=GTM-ENV1234', false)
-            ->assertDontSee('clarity.ms', false);
+            ->assertDontSee('clarity-project-id', false);
 
         Livewire::test(IntegrationsEditor::class)
             ->set('integrations.gtm_container_id', 'GTM-SAVED99')
