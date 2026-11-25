@@ -8,7 +8,7 @@ This install starts clean. There are no pages beyond a placeholder homepage, no
 service or area records, and no business details yet. See
 [Starting the site](#starting-the-site).
 
-## Stack
+## Technology stack
 
 - Laravel 13 and PHP 8.5
 - Livewire 4 and Blade
